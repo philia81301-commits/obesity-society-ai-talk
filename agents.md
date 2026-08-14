@@ -16,7 +16,8 @@
 - [x] 階段一：RDQ 需求訪談確認、專案初始化
 - [x] 階段二：整理演講參考資料（見 `reference/material-inventory.md`、`reference/ai-privacy-security-notes.md`）
 - [x] 階段三：內容大綱（`content/outline-50slides.md`，v2.1，50張，減重生態系為主線／其餘門診工具為輔線）＋ 摘要 DOCX 已產出
-- [ ] 階段四：HTML 離線簡報製作（`html-slide-builder` skill，`slides/spec.yaml` 已完成並通過驗證；**卡在 BG 底圖視覺風格**，見 handoff.md）
+- [x] 階段四：HTML 離線簡報製作 —— 50 頁骨架完成、視覺系統定案（板塊識別色＋SVG 圖標＋資料視覺化）、
+      P19／P21／P24 手繪底圖定案、離線化完成並實測。**剩餘為內容補件（截圖與少數數據），見 handoff.md**
 - [ ] 階段五：PPTX 版本製作（存 OneDrive，不進 git）
 - [ ] 階段六：臨床數據套用四條鐵律二次核對（若有使用門診數據）
 
@@ -47,12 +48,40 @@ obesity-society-ai-talk/
 ├── content/
 │   └── outline-50slides.md            50張投影片大綱 v2.1
 └── slides/
+    ├── index.html                     ★簡報本體（50頁，離線可播）
     ├── spec.yaml                      HTML簡報規格（html-slide-builder skill 格式，已驗證）
-    └── images/                        AI生圖草稿（4版golden sample皆未過關，未進git，見handoff.md）
+    ├── build_fonts.py                 中文字型子集化腳本（改內文後需重跑，見下方離線化）
+    ├── vendor/                        reveal.js 5.1.0 本地副本（reset.css／reveal.css／reveal.js）
+    ├── fonts/                         Noto Sans/Serif TC 子集 woff2（*-VF.ttf 來源檔不進 git）
+    └── images/                        P19／P21／P24 手繪底圖（已定案採用）
+                                       cover_v1-v4 為早期未過關草稿，未進 git
 
 最終成品（摘要 DOCX、簡報 PPTX）存放於
 D:\潘湘如\演講\2026演講\肥胖醫學會南區研討會\，不進本 repo（見工作約定）
 ```
+
+## 離線化（2026-08-14 完成，現場播放的命脈）
+
+演講廳網路不可靠，簡報**所有資產一律本地**，`index.html` 內**不得出現任何 CDN 連結**。
+已實測：載入時零外部請求，字型與底圖皆正常。
+
+| 資產 | 位置 | 備註 |
+|------|------|------|
+| reveal.js 5.1.0 | `slides/vendor/` | reset.css／reveal.css／reveal.js |
+| 中文字型 | `slides/fonts/*-subset.woff2` | variable font，單檔涵蓋 100–900 全字重 |
+| 底圖 | `slides/images/*.png` | 3 張，共約 6.7 MB |
+
+**⚠️ 改動 `index.html` 內文後，必須重跑字型子集化**，否則新字會變豆腐：
+
+```bash
+cd slides && python build_fonts.py
+```
+
+腳本會自動比對缺字並警告；來源 VF 檔（27MB，不進 git）缺少時會自動下載。
+子集包含「簡報實際用字 ＋ Big5 常用字 5400 字」作安全邊際，小幅改字通常不會缺。
+
+> 踩過的坑：Google Fonts CDN 的 `chinese-traditional` 分割子集**缺全形標點（，／：）與羅馬數字（Ⅰ Ⅱ Ⅲ）**，
+> 直接拿來用會滿頁豆腐字。因此改為從完整 variable font 自行切子集。
 
 ## 同步層級（本專案初始化至第 2 層級）
 

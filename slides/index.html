@@ -1,0 +1,2149 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>人工智慧在肥胖治療運用的新發展｜潘湘如 醫師</title>
+
+<!-- 離線化：所有資產一律本地，現場無網路也能播。
+     切勿改回 CDN —— 演講廳網路不可靠，斷線會整份失效。 -->
+<link rel="stylesheet" href="vendor/reset.css" />
+<link rel="stylesheet" href="vendor/reveal.css" />
+<style>
+/* 字型子集由 build_fonts.py 產生（含簡報用字＋Big5 常用字）。
+   改動內文後若出現豆腐字，重跑該腳本即可。
+   variable font：單一檔案涵蓋 100–900 全部字重，不需分檔。 */
+@font-face{
+  font-family:'Noto Sans TC';
+  src:url('fonts/NotoSansTC-subset.woff2') format('woff2-variations');
+  font-weight:100 900; font-style:normal; font-display:block;
+}
+@font-face{
+  font-family:'Noto Serif TC';
+  src:url('fonts/NotoSerifTC-subset.woff2') format('woff2-variations');
+  font-weight:200 900; font-style:normal; font-display:block;
+}
+</style>
+
+<style>
+/* ============================================================
+   設計系統 — 學術沉穩風（白底墨綠）
+   來源：slides/spec.yaml → design_system
+   注意：本檔覆寫 html-slide-builder skill 預設的深色霓虹風
+   ============================================================ */
+:root{
+  --accent:      #1B4332;   /* 墨綠：標題／強調／大數字 */
+  --accent2:     #52796F;   /* 灰綠：輔助元素、圖標 */
+  --success:     #8A9A5B;   /* 橄欖金綠：正向數據 */
+  --warn:        #B5651D;   /* 赭紅棕：風險警示 */
+  --bg:          #FFFFFF;
+  --bg-alt:      #F6F5F0;   /* 暖米白：板塊開篇頁 */
+  --text:        #22303C;
+  --text-2:      #5B6B63;
+  --rule:        rgba(27,67,50,0.18);
+  --font-head:   'Noto Serif TC', serif;
+  --font-body:   'Noto Sans TC', sans-serif;
+
+  /* 板塊識別色：同一調性、不同色相，翻到新板塊時眼睛會知道換段了。
+     --sec 由頁尾 script 依 data-slide 自動指派，各元件一律吃 --sec 而非寫死顏色。 */
+  --sec:      #1B4332;
+  --sec-2:    #52796F;
+}
+/* 每個板塊配一組冷暖對比：--sec 為主色，--pop 為互補強調色。
+   單色版面會枯燥，--pop 用在數字、項目符號、標記線、圖表第二系列，
+   讓每一頁都有兩個色相在互相拉扯，但不失學術沉穩。 */
+/* 前言＋Ⅰ 發展脈絡：墨綠 × 赭金 */
+section[data-sec="0"], section[data-sec="1"]{ --sec:#1B4332; --sec-2:#52796F; --pop:#BE6C33; }
+/* Ⅱ 現況實務：深青藍 × 暖橘（本場最長的一段，換色避免疲勞） */
+section[data-sec="2"]{ --sec:#1D5A6C; --sec-2:#4E8195; --pop:#CE8438; }
+/* Ⅲ 落地挑戰：赭棕 × 深青綠（風險 vs 解方的語意對比） */
+section[data-sec="3"]{ --sec:#8C4A2F; --sec-2:#B5651D; --pop:#2D6A4F; }
+/* 結語與展望：橄欖 × 暖金（原配深藍，在橄欖底上反白字對比僅 3.56，不合格） */
+section[data-sec="4"]{ --sec:#5C6B3C; --sec-2:#8A9A5B; --pop:#A9761B; }
+
+/* 由 --sec 自動衍生的色階，元件直接用，不必各自定義 */
+section{
+  --sec-tint: color-mix(in srgb, var(--sec) 7%, #fff);
+  --sec-soft: color-mix(in srgb, var(--sec) 22%, #fff);
+  --sec-line: color-mix(in srgb, var(--sec) 35%, #fff);
+}
+
+/* 基準字級：本檔未引入 Reveal 內建 theme（theme 會帶暗色配色），
+   故必須自行指定基準，否則所有 em 會以瀏覽器預設 16px 計算而全面過小。
+   42px 為 Reveal 各官方 theme 的標準基準值，以下所有 em 皆以此為準。 */
+.reveal{ font-family: var(--font-body); color: var(--text); font-weight:400; font-size:42px; line-height:1.4; }
+.reveal-viewport{ background: var(--bg); }
+.reveal .slides{ text-align:left; }
+
+/* --- 標題 + 墨綠細線（layout_note：標題下方一律加細線） --- */
+.reveal h1,.reveal h2,.reveal h3{
+  font-family: var(--font-head);
+  color: var(--sec);
+  font-weight:700;
+  letter-spacing:.01em;
+  text-transform:none;
+  margin:0;
+}
+.reveal h1{ font-size:1.72em; line-height:1.25; }
+.reveal h2{ font-size:1.06em; line-height:1.3; }
+.reveal h3{ font-size:.72em; color: var(--sec-2); }
+
+.slide-head{ margin-bottom:.52em; }
+.slide-head h2{ padding-bottom:.28em; }
+.slide-head::after{
+  content:''; display:block; width:100%; height:2px;
+  background: linear-gradient(to right,
+    var(--pop) 0%, var(--pop) 5%,
+    var(--sec) 5%, var(--sec) 16%,
+    var(--rule) 16%, var(--rule) 100%);
+}
+.slide-head .sub{
+  font-size:.48em; color: var(--text-2); margin-top:.5em; line-height:1.55;
+}
+
+/* --- 左上角板塊羅馬數字 --- */
+/* 板塊標記：早期版本用 absolute 定位，會疊在標題上（字擠成一團）。
+   改為流內區塊，自然佔一行。 */
+.sec-mark{
+  display:block; margin-bottom:.45em;
+  font-family: var(--font-body);
+  font-size:.34em; letter-spacing:.2em; font-weight:500;
+  color: var(--sec-2);
+}
+.sec-mark::before{
+  content:''; display:inline-block; vertical-align:middle;
+  width:20px; height:2px; background: var(--pop); margin-right:.7em; margin-top:-2px;
+}
+/* --- 頁尾講題簡稱（頁碼由 Reveal slideNumber 提供，置於右下） --- */
+.reveal .footer-brand{
+  position:fixed; bottom:14px; left:26px; z-index:30;
+  font-size:13px; letter-spacing:.06em; color: var(--text-2); opacity:.55;
+  font-family: var(--font-body); pointer-events:none;
+}
+.reveal .slide-number{
+  background:none; color: var(--text-2); font-size:14px; opacity:.6; right:26px; bottom:12px;
+}
+.reveal .progress{ color: var(--sec); height:3px; }
+.reveal .controls{ color: var(--sec-2); }
+
+/* --- 內文通用 --- */
+.reveal p{ font-size:.58em; line-height:1.72; color: var(--text); margin:.4em 0; }
+.reveal ul{ list-style:none; padding:0; margin:.2em 0; font-size:.58em; line-height:1.7; }
+.reveal ul li{ padding:.26em 0 .26em 1.15em; position:relative; }
+.reveal ul li::before{
+  content:''; position:absolute; left:0; top:.86em;
+  width:7px; height:7px; background: var(--pop); border-radius:1px;
+}
+.reveal ul ul{ font-size:.9em; margin:.1em 0 .1em .2em; }
+.reveal strong{ color: var(--sec); font-weight:700; }
+.em-num{ font-family: var(--font-body); font-weight:900; color: var(--pop); }
+
+/* --- 板塊開篇頁（[BG] 佔位版型：暖米白 + 細線裝飾）
+       整頁底色由 section 上的 data-background-color 提供（Reveal 才會滿版） --- */
+.section-open .opener{ padding-left:2px; }
+.opener .roman{
+  font-family: var(--font-head); font-size:2.6em; font-weight:900;
+  color: var(--sec); opacity:.16; line-height:1; margin-bottom:-.28em;
+}
+.opener h1{ margin-top:.1em; }
+.opener .rule{ width:88px; height:3px; background: var(--sec); margin:.5em 0 .55em; }
+.opener .lead{ font-size:.56em; color: var(--text-2); line-height:1.75; max-width:82%; }
+
+/* --- 封面 / 封底 --- */
+.title-slide{ text-align:left; }
+.title-slide .kicker{
+  display:inline-block; font-size:.4em; letter-spacing:.14em;
+  color: var(--sec-2); border:1px solid var(--rule);
+  padding:.42em 1.1em; border-radius:2px; margin-bottom:1.1em;
+}
+.title-slide h1{ font-size:2.05em; line-height:1.3; }
+.title-slide .rule{ width:110px; height:3px; background: var(--sec); margin:.7em 0 .85em; }
+.title-slide .who{ font-size:.6em; color: var(--text); line-height:1.85; }
+.title-slide .meta{ font-size:.44em; color: var(--text-2); margin-top:1.5em; line-height:1.8; }
+
+.end-slide{ text-align:center; }
+.end-slide h1{ font-size:2.1em; }
+.end-slide .rule{ width:110px; height:3px; background: var(--sec); margin:.75em auto .85em; }
+
+/* --- 掛強烈底圖的頁面（P19/P21/P24 減重門診三工具） ---
+   插畫主體實際從畫面 ~57% 起（1536x1024 套進 16:9 會上下裁切、主體放大），
+   單靠限寬會把文字擠成碎行，因此改為：底圖上加一層由左至右的漸層遮罩，
+   左側 48% 完全不透明（乾淨底色給文字），72% 之後全透明（插畫完整呈現）。
+   遮罩色 = 底圖本身的紙張米白，接縫看不出來。 */
+/* Reveal 會自動把 section 的 class 複製到對應的 .slide-background，
+   所以這裡直接用 .has-bg，不需要額外的 JS 標記。 */
+.slide-background.has-bg .slide-background-content::after{
+  content:''; position:absolute; inset:0;
+  background: linear-gradient(to right,
+    #F6EEDC 0%, #F6EEDC 48%,
+    rgba(246,238,220,.90) 60%,
+    rgba(246,238,220,0) 72%);
+}
+.has-bg .case{ max-width:58%; }
+.has-bg .case-body .cite{ border-top-color: rgba(29,90,108,.28); }
+/* 內容頁沿用同款底圖但壓到極淡，維持風格連貫又不影響讀字 */
+.bg-faint .case{ max-width:80%; }
+
+/* --- 案例頁子版型：左側編號色塊 + 右側內容（P19-34） --- */
+.case{ display:grid; grid-template-columns:118px 1fr; gap:30px; align-items:start; }
+.case-tab{
+  background: var(--sec); color:#fff; border-radius:3px;
+  padding:16px 10px 18px; text-align:center; align-self:stretch;
+}
+.case-tab.aux{ background: var(--sec-2); }
+.case-tab .ct-kind{ font-size:.32em; letter-spacing:.14em; opacity:.8; display:block; }
+.case-tab .ct-no{
+  font-family: var(--font-head); font-size:1.15em; font-weight:900; line-height:1.05; display:block; margin:.12em 0 .2em;
+}
+.case-tab .ct-name{ font-size:.32em; line-height:1.55; opacity:.92; display:block; }
+.case-tab .ct-step{
+  font-size:.3em; letter-spacing:.1em; margin-top:.9em; padding-top:.7em;
+  border-top:1px solid rgba(255,255,255,.28); opacity:.8; display:block;
+}
+.case-body h2{ margin-bottom:.1em; }
+
+/* --- 大數字卡（P36） --- */
+.stat-row{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:.55em; }
+.stat-card{
+  border:1px solid var(--sec-soft); border-top:3px solid var(--sec);
+  border-radius:3px; padding:22px 12px 18px; text-align:center; background: var(--sec-tint);
+}
+.stat-card .num{
+  font-family: var(--font-body); font-weight:900; font-size:1.28em;
+  color: var(--sec); line-height:1;
+}
+.stat-card .num .unit{ font-size:.42em; font-weight:700; margin-left:.12em; }
+.stat-card .label{ font-size:.38em; color: var(--text-2); margin-top:.9em; line-height:1.6; }
+
+/* --- ICON 卡（圖標未生成，先用序號圓佔位） --- */
+.adv-grid{ display:grid; gap:18px; margin-top:.5em; }
+.adv-grid.c3{ grid-template-columns:repeat(3,1fr); }
+.adv-grid.c5{ grid-template-columns:repeat(5,1fr); }
+.adv-card{
+  border:1px solid var(--sec-soft); border-top:3px solid var(--sec-2);
+  border-radius:3px; padding:20px 16px; text-align:center; background: var(--sec-tint);
+}
+.adv-card .adv-icon{ margin-bottom:12px; }
+
+/* === SVG 線性圖標 ===
+   不使用 AI 生圖：向量不糊、顏色跟著 --sec 走、離線零依賴。
+   圖形定義在 body 開頭的 <svg> sprite，此處只管尺寸與顏色。 */
+.ic{
+  width:52px; height:52px; display:block; margin:0 auto;
+  stroke: var(--sec); fill:none;
+  stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round;
+}
+.ic.sm{ width:38px; height:38px; }
+.ic.lg{ width:64px; height:64px; }
+.ic-badge{
+  width:64px; height:64px; margin:0 auto; border-radius:50%;
+  background: color-mix(in srgb, var(--sec) 12%, #fff);
+  display:flex; align-items:center; justify-content:center;
+}
+.ic-badge .ic{ width:34px; height:34px; }
+.adv-card .adv-title{ font-size:.5em; font-weight:700; color: var(--sec); margin-bottom:.5em; }
+.adv-card .adv-desc{ font-size:.4em; color: var(--text-2); line-height:1.65; }
+
+/* --- 兩欄對比 --- */
+.two-col{ display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-top:.5em; }
+.col-box{ border:1px solid var(--sec-soft); border-radius:3px; padding:18px 20px; background: var(--sec-tint); }
+.col-box.mark-a{ border-top:3px solid var(--sec); }
+.col-box.mark-b{ border-top:3px solid var(--sec-2); }
+.col-box.mark-w{ border-top:3px solid var(--warn); }
+.col-box .cb-title{ font-size:.54em; font-weight:700; color: var(--sec); margin-bottom:.3em; }
+.col-box.mark-w .cb-title{ color: var(--warn); }
+.col-box ul{ font-size:.5em; }
+
+/* --- 時間軸 --- */
+.timeline{ position:relative; padding-left:34px; margin-top:.5em; }
+.timeline::before{ content:''; position:absolute; left:9px; top:6px; bottom:6px; width:2px; background: var(--rule); }
+.timeline-item{ position:relative; margin-bottom:18px; }
+.timeline-item::before{
+  content:''; position:absolute; left:-30px; top:.42em;
+  width:11px; height:11px; border-radius:50%; background:#fff; border:2.5px solid var(--sec);
+}
+.ti-date{ font-size:.48em; font-weight:700; color: var(--sec); letter-spacing:.04em; }
+.ti-text{ font-size:.5em; color: var(--text); line-height:1.65; margin-top:.15em; }
+
+/* --- 引用出處 / 限定條件 --- */
+.cite{
+  font-size:.38em; color: var(--text-2); line-height:1.65; margin-top:1em;
+  padding-top:.7em; border-top:1px solid var(--rule);
+}
+.caveat{
+  display:inline-block; font-size:.85em; color: var(--warn);
+  border:1px solid rgba(181,101,29,.35); border-radius:2px;
+  padding:.1em .5em; margin-left:.3em; white-space:nowrap;
+}
+.quote-box{
+  border-left:3px solid var(--pop); background: var(--sec-tint);
+  padding:16px 22px; margin:.5em 0; font-size:.54em; line-height:1.72; color: var(--text);
+}
+
+/* 深色反白結論塊：整份簡報視覺重量最重的元件，一頁最多一個。
+   用於「這頁只要記住這句」的收束句，提供淡底卡片做不到的對比。 */
+.key-box{
+  background: var(--sec); color:#fff; border-left:6px solid var(--pop);
+  border-radius:3px; padding:20px 26px; margin-top:.6em;
+  font-size:.54em; line-height:1.72;
+}
+.key-box strong, .key-box b{
+  /* 深底上 strong 若沿用主色會看不見；用 --pop 的高亮版，靠亮度而非色相拉開對比 */
+  color: color-mix(in srgb, var(--pop) 18%, #fff);
+  font-weight:700;
+}
+.key-box .kb-note{ display:block; margin-top:.5em; font-size:.85em; opacity:.8; }
+
+/* ============ 資料視覺化元件 ============ */
+
+/* --- 水平堆疊條（構成比例，如代謝表型分群） --- */
+.stack-bar{ display:flex; height:62px; border-radius:3px; overflow:hidden; margin-top:.55em; }
+.stack-seg{
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  color:#fff; font-weight:700; position:relative;
+}
+.stack-seg .ss-pct{ font-size:.5em; line-height:1; }
+.stack-seg .ss-key{ font-size:.28em; letter-spacing:.06em; margin-top:.35em; opacity:.9; }
+/* 堆疊條下方的兩端標尺：把「44 vs 56」這個真正的臨床對比講出來 */
+.stack-scale{
+  display:flex; justify-content:space-between; margin-top:.35em;
+  font-size:.4em; font-weight:700;
+}
+.stack-scale .sc-left{ color:#1B4332; }
+.stack-scale .sc-right{ color:#B05F2C; }
+.stack-legend{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:.6em; }
+.stack-legend .sl-item{ font-size:.38em; line-height:1.55; color: var(--text-2); padding-left:14px; position:relative; }
+.stack-legend .sl-item::before{
+  content:''; position:absolute; left:0; top:.45em; width:8px; height:8px; border-radius:2px; background: var(--c);
+}
+.stack-legend .sl-name{ color: var(--text); font-weight:700; display:block; }
+
+/* --- 推演鏈：公開資料 → 反推手法 → 還原結果（P42-44 三個個資案例共用） --- */
+.chain{ display:grid; grid-template-columns:1fr 34px 1fr 34px 1fr; align-items:stretch; margin-top:.55em; }
+.chain-node{
+  border:1px solid var(--sec-soft); border-radius:3px; padding:16px 18px;
+  background:#fff; display:flex; flex-direction:column;
+}
+.chain-node.start{ border-top:3px solid var(--sec-2); }
+.chain-node.mid{ border-top:3px solid var(--sec); }
+.chain-node.end{ border-top:3px solid var(--pop); background: color-mix(in srgb, var(--pop) 8%, #fff); }
+.chain-node .cn-step{ font-size:.3em; letter-spacing:.12em; color: var(--text-2); }
+.chain-node .cn-title{ font-size:.44em; font-weight:700; color: var(--sec); margin:.35em 0 .3em; line-height:1.35; }
+.chain-node.end .cn-title{ color: var(--pop); }
+.chain-node .cn-desc{ font-size:.36em; color: var(--text-2); line-height:1.65; }
+.chain-arrow{ display:flex; align-items:center; justify-content:center; color: var(--sec-line); font-size:.7em; font-weight:700; }
+
+/* --- 兩數對比（A vs B）：把埋在句子裡的對照數字拉成視覺 --- */
+.cmp{ display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:10px; margin:.5em 0 .3em; }
+.cmp-side{ text-align:center; }
+.cmp-num{
+  font-family: var(--font-body); font-weight:900; font-size:.95em;
+  color: var(--sec-2); line-height:1;
+}
+.cmp-num .u{ font-size:.45em; margin-left:.06em; }
+.cmp-cap{ font-size:.34em; color: var(--text-2); line-height:1.5; margin-top:.5em; }
+.cmp-vs{ font-size:.36em; font-weight:700; color: var(--sec-line); }
+.col-box .cb-foot{
+  font-size:.32em; color: var(--text-2); line-height:1.6;
+  margin-top:.6em; padding-top:.55em; border-top:1px solid var(--sec-soft);
+}
+
+/* --- 左窄右寬分欄：破除「整頁全寬平鋪」的單調 --- */
+.split{ display:grid; grid-template-columns:33% 1fr; gap:32px; align-items:start; margin-top:.55em; }
+
+/* --- 研究概要卡：把埋在句子裡的關鍵數字拉出來當視覺焦點 --- */
+.study-card{ background: var(--sec-tint); border-left:5px solid var(--sec); padding:20px 22px; border-radius:0 3px 3px 0; }
+.study-card .sc-num{
+  font-family: var(--font-body); font-weight:900; font-size:1.15em;
+  color: var(--sec); line-height:1;
+}
+.study-card .sc-num .u{ font-size:.4em; font-weight:700; margin-left:.15em; }
+.study-card .sc-cap{ font-size:.4em; color: var(--text); margin-top:.5em; line-height:1.5; }
+.study-card .sc-meta{
+  font-size:.36em; color: var(--text-2); line-height:1.75;
+  margin-top:.9em; padding-top:.7em; border-top:1px solid var(--sec-soft);
+}
+
+/* --- 橫條圖（排序型，如風險因子重要度） --- */
+.bar-chart{ margin-top:.5em; }
+/* 顏色承載語意：.hi = 可介入因子，.dim = 不可介入 */
+.bar-fill.hi{ background: var(--pop); }
+.bar-fill.dim{ background: color-mix(in srgb, var(--sec) 32%, #fff); color: var(--sec); }
+.bar-tag{
+  display:inline-block; font-size:.3em; font-weight:700; letter-spacing:.06em;
+  padding:.15em .6em; border-radius:2px; margin-left:.5em; vertical-align:middle;
+}
+.bar-tag.hi{ background: var(--pop); color:#fff; }
+.bar-row{ display:grid; grid-template-columns:250px 1fr; align-items:center; gap:16px; margin-bottom:6px; }
+.bar-label{ font-size:.44em; text-align:right; color: var(--text); line-height:1.3; }
+.bar-track{ height:21px; background: var(--sec-tint); border-radius:2px; overflow:hidden; }
+.bar-fill{
+  height:100%; background: var(--sec); border-radius:2px;
+  display:flex; align-items:center; justify-content:flex-end; padding-right:10px;
+  color:#fff; font-size:.34em; font-weight:700;
+}
+
+/* --- 流程圖（橫向步驟，如今日架構、月報自動化流程） --- */
+.flow{ display:flex; align-items:stretch; gap:0; margin-top:.6em; }
+.flow-step{
+  flex:1; background: var(--sec-tint); border:1px solid var(--sec-soft);
+  border-top:3px solid var(--sec); border-radius:3px; padding:16px 14px; text-align:center;
+}
+.flow-step .fs-ic{ margin-bottom:9px; }
+.flow-step .fs-title{ font-size:.46em; font-weight:700; color: var(--sec); line-height:1.35; }
+.flow-step .fs-desc{ font-size:.35em; color: var(--text-2); margin-top:.45em; line-height:1.6; }
+.flow-arrow{
+  flex:0 0 34px; display:flex; align-items:center; justify-content:center;
+  color: var(--sec-line); font-size:.6em; font-weight:700;
+}
+
+/* --- 階段推進（時間縱貫，如三個發展階段） --- */
+.phase-row{ display:grid; grid-template-columns:repeat(3,1fr); gap:0; margin-top:.6em; align-items:stretch; }
+.phase{
+  position:relative; padding:20px 22px 18px;
+  background: linear-gradient(to bottom, var(--sec-tint), #fff);
+  border-top:3px solid var(--sec);
+}
+.phase:not(:last-child){ border-right:1px solid var(--sec-soft); }
+.phase .ph-era{ font-size:.34em; letter-spacing:.1em; color: var(--sec-2); }
+.phase .ph-name{ font-family: var(--font-head); font-size:.62em; font-weight:700; color: var(--sec); margin:.25em 0 .4em; }
+.phase .ph-claim{ font-size:.42em; color: var(--text); line-height:1.6; }
+.phase .ph-claim b{ color: var(--sec); }
+/* 三段深淺遞進，暗示「愈來愈成熟」 */
+.phase-row .phase:nth-child(1){ opacity:.72; }
+.phase-row .phase:nth-child(2){ opacity:.86; }
+
+/* --- 待補標記（Phase 2 骨架用，之後刪除） --- */
+.todo{
+  background:#FFF3CD; color:#7A5B00; border:1px dashed #D4A017;
+  border-radius:2px; padding:.08em .5em; font-size:.9em; font-weight:500;
+}
+.todo-block{
+  background:#FFF9E6; border:1px dashed #D4A017; border-radius:3px;
+  padding:14px 18px; font-size:.42em; color:#7A5B00; line-height:1.7; margin-top:.6em;
+}
+.todo-block b{ color:#7A5B00; }
+
+/* --- VIZ 滑桿（P22） --- */
+.viz-wrap{ position:relative; height:328px; border:1px solid var(--rule); border-radius:3px; overflow:hidden; margin-top:.4em; background:#fff; }
+.viz-pane{ position:absolute; inset:0; padding:26px 30px; }
+.viz-pane.after{ clip-path: inset(0 100% 0 0); background: var(--bg-alt); }
+.viz-pane .vp-label{ font-size:.48em; font-weight:700; margin-bottom:.5em; }
+.viz-pane.before .vp-label{ color: var(--warn); }
+.viz-pane.after  .vp-label{ color: var(--sec); }
+.viz-pane ul{ font-size:.48em; }
+.viz-divider{
+  position:absolute; top:0; left:0; width:2px; height:100%;
+  background: var(--sec); pointer-events:none; z-index:5;
+}
+.viz-slider{ width:100%; margin-top:14px; accent-color: var(--sec); }
+.viz-hint{ font-size:.36em; color: var(--text-2); text-align:center; margin-top:.2em; }
+
+/* --- 互動佔位（Phase 5 接 Firebase 後替換） --- */
+.interact-ph{
+  border:1px dashed var(--sec-2); border-radius:3px; background: var(--bg-alt);
+  padding:30px 26px; text-align:center; margin-top:.5em;
+}
+.interact-ph .ip-title{ font-size:.54em; font-weight:700; color: var(--sec); }
+.interact-ph .ip-desc{ font-size:.42em; color: var(--text-2); margin-top:.6em; line-height:1.7; }
+.poll-opts{ display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-top:1em; text-align:left; }
+.poll-opt{ border:1px solid var(--rule); border-radius:3px; padding:12px 16px; font-size:.46em; background:#fff; color: var(--text); }
+</style>
+</head>
+
+<body>
+
+<!-- ============================================================
+     SVG 圖標庫（取代 AI 生成圖標）
+     用法：<svg class="ic"><use href="#ic-xxx"/></svg>
+     顏色由 CSS 的 stroke: var(--sec) 控制，會自動跟著板塊色變化。
+     ============================================================ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- Ⅰ 分析框架 -->
+    <symbol id="ic-diagnosis" viewBox="0 0 24 24">
+      <circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/>
+      <path d="M7 10.5h1.8l1.2-2.4 1.6 4 1.2-1.6H15"/>
+    </symbol>
+    <symbol id="ic-management" viewBox="0 0 24 24">
+      <rect x="7" y="6" width="10" height="12" rx="2.5"/>
+      <path d="M9.5 6V3.5h5V6M9.5 18v2.5h5V18"/><path d="M9.8 12l1.7 1.7 3-3.4"/>
+    </symbol>
+    <symbol id="ic-research" viewBox="0 0 24 24">
+      <path d="M10 3v6.2L5.2 18a2 2 0 0 0 1.7 3h10.2a2 2 0 0 0 1.7-3L14 9.2V3"/>
+      <path d="M8.6 3h6.8"/><path d="M7.4 15h9.2"/>
+    </symbol>
+    <!-- Ⅱ 減重生態系 -->
+    <symbol id="ic-collect" viewBox="0 0 24 24">
+      <rect x="4.5" y="3.5" width="15" height="17" rx="2"/>
+      <path d="M9 3.5h6v3H9z"/><path d="M8 11h8M8 15h5"/>
+    </symbol>
+    <symbol id="ic-communicate" viewBox="0 0 24 24">
+      <path d="M4 5.5h16v10H9l-5 4z"/><path d="M8 9h8M8 12h5"/>
+    </symbol>
+    <symbol id="ic-analyze" viewBox="0 0 24 24">
+      <path d="M4 20h16"/><rect x="6" y="12" width="3.2" height="6"/>
+      <rect x="11" y="8" width="3.2" height="10"/><rect x="16" y="4.5" width="3.2" height="13.5"/>
+    </symbol>
+    <!-- 三步驟方法論 -->
+    <symbol id="ic-scope" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/>
+    </symbol>
+    <symbol id="ic-mvp" viewBox="0 0 24 24">
+      <rect x="4" y="13" width="7" height="7"/><rect x="13" y="13" width="7" height="7"/>
+      <rect x="8.5" y="4" width="7" height="7"/>
+    </symbol>
+    <symbol id="ic-iterate" viewBox="0 0 24 24">
+      <path d="M20 12a8 8 0 1 1-2.6-5.9"/><path d="M20.5 3v4.2h-4.2"/>
+      <path d="M12 8v4.4l2.8 1.7"/>
+    </symbol>
+    <!-- Ⅲ 去識別化五法 -->
+    <symbol id="ic-mask" viewBox="0 0 24 24">
+      <path d="M2.5 12S6 6 12 6s9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6z"/>
+      <circle cx="12" cy="12" r="2.6"/><path d="M4 20 20 4"/>
+    </symbol>
+    <symbol id="ic-generalize" viewBox="0 0 24 24">
+      <path d="M3 12h18"/><path d="M6 8.5v7M18 8.5v7"/><path d="M10 10.5v3M14 10.5v3"/>
+    </symbol>
+    <symbol id="ic-hash" viewBox="0 0 24 24">
+      <path d="M9 3.5 7 20.5M17 3.5l-2 17"/><path d="M4 8.5h16M3.5 15.5h16"/>
+    </symbol>
+    <symbol id="ic-noise" viewBox="0 0 24 24">
+      <path d="M2.5 12h2.8l2-6 2.6 12 2.6-9 2.2 6 1.8-3h5"/>
+    </symbol>
+    <symbol id="ic-aggregate" viewBox="0 0 24 24">
+      <path d="M12 3 21 7.5 12 12 3 7.5z"/><path d="M3 12.2 12 16.7l9-4.5"/><path d="M3 16.7 12 21.2l9-4.5"/>
+    </symbol>
+    <!-- Ⅲ 生成式 AI 風險三類 -->
+    <symbol id="ic-voice" viewBox="0 0 24 24">
+      <rect x="9" y="2.5" width="6" height="11" rx="3"/>
+      <path d="M5.5 11.5a6.5 6.5 0 0 0 13 0"/><path d="M12 18v3.5M8.5 21.5h7"/>
+    </symbol>
+    <symbol id="ic-summary" viewBox="0 0 24 24">
+      <path d="M6 2.5h8l4.5 4.5v14.5H6z"/><path d="M14 2.5V7h4.5"/><path d="M9 12h6M9 15.5h6M9 19h3.5"/>
+    </symbol>
+    <symbol id="ic-chatbot" viewBox="0 0 24 24">
+      <rect x="4" y="7.5" width="16" height="11" rx="2.5"/>
+      <circle cx="9.2" cy="12.8" r="1.1"/><circle cx="14.8" cy="12.8" r="1.1"/>
+      <path d="M12 7.5V4.2M10.4 3h3.2"/><path d="M2.5 11.5v3.5M21.5 11.5v3.5"/>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="reveal">
+  <div class="footer-brand">AI 在肥胖治療的新發展｜2026 肥胖醫學會南區研討會</div>
+  <div class="slides">
+
+<!-- ============================================================
+     前言（P1-3）
+     ============================================================ -->
+
+<!-- P1 [BG] 標題頁 -->
+<section class="section-open" data-background-color="#F6F5F0" data-slide="1">
+  <!-- [BG] 封面目前用純 CSS 暖米白。若日後要加 AI 底圖，
+       在本 section 加上 data-background-image / -size / -opacity 三個屬性即可
+       （作法可參考 P19、P21、P24 三頁；記得同時套 class="has-bg" 讓漸層遮罩生效）。 -->
+  <div class="title-slide">
+    <span class="kicker">台灣肥胖醫學會 2026 南區學術研討會</span>
+    <h1>人工智慧在<br>肥胖治療運用的新發展</h1>
+    <div class="rule"></div>
+    <div class="who">
+      潘湘如 醫師<br>
+      <span style="font-size:.82em; color:var(--text-2);">高雄榮民總醫院 家庭醫學部</span>
+    </div>
+    <div class="meta">2026 年 9 月 20 日</div>
+  </div>
+</section>
+
+<!-- P2 [INTERACT:wordcloud] -->
+<section data-slide="2">
+  <div class="sec-mark">前言</div>
+  <div class="slide-head">
+    <h2>為什麼是現在？</h2>
+    <div class="sub">肥胖照護負擔持續上升，與 AI 技術快速演進，在此刻交會。</div>
+  </div>
+  <div class="two-col" style="margin-bottom:.5em;">
+    <div class="col-box mark-w">
+      <div class="cb-title">減重的真正難題不是減下來</div>
+      <ul>
+        <li>2 年內　<span class="em-num" style="color:var(--warn);">&gt;50%</span>　復胖</li>
+        <li>5 年內　<span class="em-num" style="color:var(--warn);">&gt;80%</span>　復胖</li>
+      </ul>
+    </div>
+    <div class="col-box mark-b">
+      <div class="cb-title">門診端的結構性限制</div>
+      <ul>
+        <li>行政負擔重、衛教時間不足</li>
+        <li>專科照護可近性有限</li>
+        <li>資訊不正確、順從性不佳</li>
+      </ul>
+    </div>
+  </div>
+  <div class="interact-ph" id="slide-wordcloud" style="padding:22px 26px;">
+    <div class="ip-title">在您的減重門診裡，AI 最能發揮的環節是什麼？</div>
+    <div class="ip-desc">
+      掃碼作答，即時生成文字雲　<span class="todo">Phase 5 待接 Firebase</span>
+    </div>
+  </div>
+  <div class="cite">
+    復胖數據：Med Clin North Am. 2018 Jan;102(1):183–197.
+  </div>
+</section>
+
+<!-- P3 今日架構 -->
+<section data-slide="3">
+  <div class="sec-mark">前言</div>
+  <div class="slide-head"><h2>今日架構</h2></div>
+  <div class="flow">
+    <div class="flow-step" style="--sec:#1B4332;">
+      <div class="fs-ic"><svg class="ic sm"><use href="#ic-research"/></svg></div>
+      <div class="fs-title">Ⅰ　發展脈絡</div>
+      <div class="fs-desc">過去與現在<br>診斷／管理／研究</div>
+      <div class="fs-desc" style="margin-top:.5em; font-weight:700; color:var(--sec);">11 分</div>
+    </div>
+    <div class="flow-arrow">›</div>
+    <div class="flow-step" style="--sec:#1D5A6C;">
+      <div class="fs-ic"><svg class="ic sm"><use href="#ic-collect"/></svg></div>
+      <div class="fs-title">Ⅱ　現況實務</div>
+      <div class="fs-desc">臨床導入案例<br>減重生態系為主線</div>
+      <div class="fs-desc" style="margin-top:.5em; font-weight:700; color:var(--sec);">17 分</div>
+    </div>
+    <div class="flow-arrow">›</div>
+    <div class="flow-step" style="--sec:#8C4A2F;">
+      <div class="fs-ic"><svg class="ic sm"><use href="#ic-mask"/></svg></div>
+      <div class="fs-title">Ⅲ　落地挑戰</div>
+      <div class="fs-desc">資訊安全<br>與個資保護</div>
+      <div class="fs-desc" style="margin-top:.5em; font-weight:700; color:var(--sec);">7 分</div>
+    </div>
+    <div class="flow-arrow">›</div>
+    <div class="flow-step" style="--sec:#5C6B3C;">
+      <div class="fs-ic"><svg class="ic sm"><use href="#ic-iterate"/></svg></div>
+      <div class="fs-title">結語與展望</div>
+      <div class="fs-desc">三階段總結<br>可複製的方法</div>
+      <div class="fs-desc" style="margin-top:.5em; font-weight:700; color:var(--sec);">3 分</div>
+    </div>
+  </div>
+  <p style="margin-top:.7em; color:var(--text-2);">
+    每個板塊有各自的識別色，翻頁時可據此判斷進度。
+  </p>
+</section>
+
+<!-- ============================================================
+     Ⅰ 發展脈絡（P4-17）
+     ============================================================ -->
+
+<!-- P4 [BG][ICON] 板塊Ⅰ開篇 -->
+<section class="section-open" data-background-color="#F6F5F0" data-slide="4">
+  <!-- [BG] spec.yaml P4，opacity 0.12 -->
+  <div class="opener" style="margin-bottom:.5em;">
+    <div class="roman">Ⅰ</div>
+    <h1 style="font-size:1.32em;">AI 於肥胖醫學應用的分析框架</h1>
+    <div class="rule"></div>
+    <div class="lead" style="max-width:100%;">以「診斷／管理／研究」三面向作為全場回顧的分類骨架</div>
+  </div>
+  <div class="adv-grid c3">
+    <div class="adv-card">
+      <div class="adv-icon"><svg class="ic"><use href="#ic-diagnosis"/></svg></div>
+      <div class="adv-title">診斷</div>
+      <div class="adv-desc">風險預測、代謝表型分群</div>
+    </div>
+    <div class="adv-card">
+      <div class="adv-icon"><svg class="ic"><use href="#ic-management"/></svg></div>
+      <div class="adv-title">管理</div>
+      <div class="adv-desc">穿戴裝置與數位行為介入</div>
+    </div>
+    <div class="adv-card">
+      <div class="adv-icon"><svg class="ic"><use href="#ic-research"/></svg></div>
+      <div class="adv-title">研究</div>
+      <div class="adv-desc">GLP-1 與 AI 結合的精準醫療</div>
+    </div>
+  </div>
+</section>
+
+<!-- P5 -->
+<section data-slide="5">
+  <div class="sec-mark">Ⅰ　發展脈絡</div>
+  <div class="slide-head">
+    <h2>過去：AI 輔助診斷與風險分層（一）</h2>
+    <div class="sub">2018–2022　奠基期</div>
+  </div>
+  <div class="split">
+    <div class="study-card">
+      <div class="sc-num">9,478<span class="u">名</span></div>
+      <div class="sc-cap">3–6 歲學齡前兒童<br>其中 1,250 名過重／肥胖</div>
+      <div class="sc-meta">
+        中國北京、唐山<br>2020 橫斷面調查<br>
+        <strong>GBM</strong> 梯度提升機建模
+      </div>
+    </div>
+
+    <div>
+      <h3 style="font-size:.5em; margin-bottom:.3em;">
+        模型辨識出的前五大相關因子
+        <span class="bar-tag hi">可介入</span>
+      </h3>
+      <div class="bar-chart">
+        <div class="bar-row">
+          <div class="bar-label">年齡</div>
+          <div class="bar-track"><div class="bar-fill dim" style="width:100%;">1</div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">進食速度</div>
+          <div class="bar-track"><div class="bar-fill hi" style="width:86%;">2</div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">含糖飲料攝取</div>
+          <div class="bar-track"><div class="bar-fill hi" style="width:72%;">3</div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">肥胖親屬人數</div>
+          <div class="bar-track"><div class="bar-fill dim" style="width:58%;">4</div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">父親教育程度</div>
+          <div class="bar-track"><div class="bar-fill dim" style="width:44%;">5</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="key-box" style="margin-top:.5em;">
+    模型的價值不只在預測誰會胖，而在指出<strong>哪裡下手最有機會</strong>。
+  </div>
+
+  <div class="cite">
+    Endocrine. 2022 Jun;77(1):63–72｜長條長度僅代表原研究的<strong>排序 1–5</strong>，
+    <strong>非重要度數值</strong>（原文未提供效果量）。
+  </div>
+</section>
+
+<!-- P6 -->
+<section data-slide="6">
+  <div class="sec-mark">Ⅰ　發展脈絡</div>
+  <div class="slide-head">
+    <h2>過去：AI 輔助診斷與風險分層（二）</h2>
+    <div class="sub">2018–2022　奠基期</div>
+  </div>
+  <p style="margin-bottom:.2em;">
+    中國上海多中心橫斷面研究（<strong>n = 2,945</strong>），以<strong>非監督式機器學習</strong>
+    依血糖、胰島素、尿酸、OGTT 等代謝指標分群
+  </p>
+  <!-- 顏色承載語意：墨綠＝代謝健康型，暖色階＝帶代謝異常的三型 -->
+  <div class="stack-bar">
+    <div class="stack-seg" style="flex:44; background:#1B4332;">
+      <span class="ss-pct">44%</span><span class="ss-key">MHO</span>
+    </div>
+    <div class="stack-seg" style="flex:33; background:#B05F2C;">
+      <span class="ss-pct">33%</span><span class="ss-key">HMO-U</span>
+    </div>
+    <div class="stack-seg" style="flex:15; background:#CE8438;">
+      <span class="ss-pct">15%</span><span class="ss-key">LMO</span>
+    </div>
+    <div class="stack-seg" style="flex:8; background:#DFA968;">
+      <span class="ss-pct">8%</span><span class="ss-key">HMO-I</span>
+    </div>
+  </div>
+  <div class="stack-scale">
+    <span class="sc-left">代謝健康　44%</span>
+    <span class="sc-right">帶代謝異常　56%</span>
+  </div>
+  <div class="stack-legend">
+    <div class="sl-item" style="--c:#1B4332;"><span class="sl-name">MHO</span>代謝健康型，共病較少</div>
+    <div class="sl-item" style="--c:#B05F2C;"><span class="sl-name">HMO-U</span>高尿酸型</div>
+    <div class="sl-item" style="--c:#CE8438;"><span class="sl-name">LMO</span>低代謝型</div>
+    <div class="sl-item" style="--c:#DFA968;"><span class="sl-name">HMO-I</span>合併 PCOS／糖尿病</div>
+  </div>
+  <div class="key-box" style="margin-top:.5em;">
+    同樣是肥胖，<strong>超過半數帶有代謝異常</strong>——BMI 相同，風險未必相同。
+  </div>
+  <div class="cite">
+    Front Endocrinol (Lausanne). 2021 Aug;12:63–72｜另一取徑：以深度學習（DNN）
+    從營養攝取預測多項代謝疾病——Int J Environ Res Public Health. 2021 May 24（韓國 KNHANES）
+  </div>
+</section>
+
+<!-- P7 -->
+<section data-slide="7">
+  <div class="sec-mark">Ⅰ　發展脈絡</div>
+  <div class="slide-head">
+    <h2>中期：穿戴裝置與數位行為介入（一）</h2>
+    <div class="sub">2022–2024　驗證期</div>
+  </div>
+  <p style="margin-bottom:.15em;">
+    證據等級已由單一試驗，走向<strong>系統性回顧的再回顧</strong>——
+    身體活動 SMD 0.3–0.6、身體組成 SMD 0.7–2.0、體適能 SMD 0.3
+  </p>
+  <!-- 顏色承載語意：前兩張＝行為確實改變（暖橘），第三張＝但體重產出有限（淡） -->
+  <div class="stat-row" style="grid-template-columns:repeat(3,1fr); margin-top:.35em;">
+    <div class="stat-card" style="border-top-color:var(--pop); background:color-mix(in srgb, var(--pop) 9%, #fff);">
+      <div class="num" style="color:var(--pop);">+1,800<span class="unit">步</span></div>
+      <div class="label">每日平均增加步數</div>
+    </div>
+    <div class="stat-card" style="border-top-color:var(--pop); background:color-mix(in srgb, var(--pop) 9%, #fff);">
+      <div class="num" style="color:var(--pop);">+40<span class="unit">分鐘</span></div>
+      <div class="label">每日平均增加步行時間</div>
+    </div>
+    <div class="stat-card" style="border-top-color:var(--sec-line); background:#fff;">
+      <div class="num" style="color:var(--sec-2);">-1<span class="unit">公斤</span></div>
+      <div class="label">但平均體重僅減少</div>
+    </div>
+  </div>
+  <div class="key-box" style="margin-top:.5em;">
+    行為改變幅度明確，換算成體重卻只有 1 公斤——
+    <strong>單靠監測不足以處理肥胖</strong>，必須與臨床介入結合。
+  </div>
+  <div class="cite">
+    Lancet Digit Health. 2022;4:e615–26；另見 Obesity Reviews. 2019;20:1485–1493。
+  </div>
+</section>
+
+<!-- P8 -->
+<section data-slide="8">
+  <div class="sec-mark">Ⅰ　發展脈絡</div>
+  <div class="slide-head">
+    <h2>中期：穿戴裝置與數位行為介入（二）</h2>
+    <div class="sub">2022–2024　驗證期</div>
+  </div>
+  <div class="split">
+    <div class="study-card">
+      <div class="sc-num">450<span class="u">人</span></div>
+      <div class="sc-cap">英國 4 家醫院<br>為期 6 個月</div>
+      <div class="sc-meta">
+        University of Warwick（2025/5）<br>
+        <strong>App 遠距諮詢 vs 傳統門診</strong>
+      </div>
+    </div>
+    <div>
+      <ul style="margin-top:0;">
+        <li><strong>COVID-19 成為大規模自然實驗</strong>：疫情迫使照護轉為遠距，
+          意外累積出遠距減重的成效證據<br>
+          <span style="font-size:.8em; color:var(--text-2);">Front Endocrinol. 2022 Mar;13／Obes Res Clin Pract. 2025</span></li>
+        <li><strong>機器感知輔助減重</strong>：以自動辨識取代人工記錄食物、飲食行為與身體活動，
+          推估能量收支<br>
+          <span style="font-size:.8em; color:var(--text-2);">Public Health Nutr. 2021;24(8):1993–2020</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="key-box" style="margin-top:.5em;">
+    面對面與線上<strong>不是取代關係</strong>——線上的價值在於問責感、個人化回饋，
+    以及避開團體活動的心理負擔。
+  </div>
+</section>
+
+<!-- P9 -->
+<section data-slide="9">
+  <div class="sec-mark">Ⅰ　發展脈絡</div>
+  <div class="slide-head">
+    <h2>政策與產業採用現況</h2>
+  </div>
+  <div class="two-col">
+    <div class="col-box mark-a">
+      <div class="cb-title">2025 衛生福利政策白皮書</div>
+      <ul>
+        <li>遠距醫療：偏鄉與醫療資源不足地區</li>
+        <li>輔具：提升自主生活與生活品質</li>
+        <li>健康資訊系統、<strong>AI 與大數據</strong></li>
+        <li>智慧家庭、穿戴裝置、遠距監測系統</li>
+      </ul>
+    </div>
+    <div class="col-box mark-b">
+      <div class="cb-title">技術採用比例</div>
+      <ul>
+        <li>雲端　<span class="em-num" style="color:var(--sec-2);">58.17%</span></li>
+        <li>大數據　<span class="em-num" style="color:var(--sec-2);">36.60%</span></li>
+        <li>AI　<span class="em-num" style="color:var(--sec-2);">7.19%</span></li>
+      </ul>
+    </div>
+  </div>
+  <p style="margin-top:.6em;">
+    數位化是政策方向，但 <strong>AI 的實際採用率仍是個位數</strong>——落差正是本場要談的空間。
+  </p>
+  <div class="todo-block">
+    <b>待補：</b>右欄採用率數字的<b>調查單位、年份與母體</b>。數字取自您 2025-05-25
+    《The Role of Digital Health in Obesity Management》第 18 頁，該頁未載出處，
+    學術場合引用前需補上，否則建議改以文字敘述呈現、不列精確百分比。
+  </div>
+</section>
+
+<!-- P10 -->
+<section data-slide="10">
+  <div class="sec-mark">Ⅰ　發展脈絡</div>
+  <div class="slide-head">
+    <h2>消費端平台的 AI 產品化（一）：Noom</h2>
+    <div class="sub">技術路線：以心理行為驅動模型為核心</div>
+  </div>
+  <ul>
+    <li>設計核心是<strong>認知行為理論</strong>，而非熱量計算本身</li>
+    <li>AI 用於個人化訊息推送與行為模式辨識，鎖定<strong>使用者的動機曲線</strong></li>
+    <li>商業模式為訂閱制，強調教練＋演算法的混合介入</li>
+  </ul>
+  <div class="todo-block"><b>待補：</b>Noom 公開發表的成效數據與其研究設計限制（多為自家發表／單臂設計，引用時需說明）。</div>
+</section>
+
+<!-- P11 -->
+<section data-slide="11">
+  <div class="sec-mark">Ⅰ　發展脈絡</div>
+  <div class="slide-head">
+    <h2>消費端平台的 AI 產品化（二）：WeightWatchers</h2>
+    <div class="sub">技術路線：臨床整合模型</div>
+  </div>
+  <div class="two-col">
+    <div class="col-box mark-b">
+      <div class="cb-title">Noom：心理驅動</div>
+      <ul>
+        <li>行為改變理論為主軸</li>
+        <li>以內容與教練介入為核心</li>
+      </ul>
+    </div>
+    <div class="col-box mark-a">
+      <div class="cb-title">WeightWatchers：臨床整合</div>
+      <ul>
+        <li>納入處方藥物與醫療服務串接</li>
+        <li>朝「數位平台 ＋ 臨床路徑」整合</li>
+      </ul>
+    </div>
+  </div>
+  <p style="color:var(--text-2); margin-top:.7em;">
+    兩條路線的分歧，預告了後續 GLP-1 時代「藥物 ＋ 數位管理」的整合方向。
+  </p>
+</section>
+
+<!-- P12 -->
+<section data-slide="12">
+  <div class="sec-mark">Ⅰ　發展脈絡</div>
+  <div class="slide-head">
+    <h2>現在：GLP-1 藥物與 AI 結合的進展（一）</h2>
+    <div class="sub">2025–2026　精準醫療期</div>
+  </div>
+  <div class="two-col">
+    <div class="col-box">
+      <div class="cb-title">基因風險分數（GRS）預測藥物反應</div>
+      <div class="cmp">
+        <div class="cmp-side">
+          <div class="cmp-num" style="color:var(--pop);">68<span class="u">%</span></div>
+          <div class="cmp-cap">高 GRS 組<br>噁心副作用</div>
+        </div>
+        <div class="cmp-vs">vs</div>
+        <div class="cmp-side">
+          <div class="cmp-num">30<span class="u">%</span></div>
+          <div class="cmp-cap">低 GRS 組</div>
+        </div>
+      </div>
+      <div class="cb-foot">
+        Mayo Clinic／Phenomix｜<strong>liraglutide</strong>，n=110
+        <span class="caveat">會議摘要層級</span>
+      </div>
+    </div>
+
+    <div class="col-box">
+      <div class="cb-title">TiP DecScore：用藥是否符合 AI 建議</div>
+      <div class="cmp">
+        <div class="cmp-side">
+          <div class="cmp-num" style="color:var(--pop);">64.1<span class="u">%</span></div>
+          <div class="cmp-cap">符合 AI 建議<br>HbA1c 控制率</div>
+        </div>
+        <div class="cmp-vs">vs</div>
+        <div class="cmp-side">
+          <div class="cmp-num">46.2<span class="u">%</span></div>
+          <div class="cmp-cap">不符合者</div>
+        </div>
+      </div>
+      <div class="cb-foot">
+        <i>Communications Medicine</i> 2026
+        <span class="caveat">僅 &lt;55 歲亞組</span>
+      </div>
+    </div>
+  </div>
+  <div class="key-box">
+    重點不是「AI 讓藥更有效」，而是<strong>用 AI 挑對病人</strong>——把有限的藥物資源，配置到最可能受益的人身上。
+  </div>
+  <div class="cite">
+    引用限定條件已依 <code>reference/citation-verification.md</code> 查證回填：GRS 研究為 liraglutide（非 semaglutide）、
+    屬會議摘要；TiP DecScore 為次族群結果，非全體患者使用前後對比。
+  </div>
+</section>
+
+<!-- P13 -->
+<section data-slide="13">
+  <div class="sec-mark">Ⅰ　發展脈絡</div>
+  <div class="slide-head">
+    <h2>現在：GLP-1 藥物與 AI 結合的進展（二）</h2>
+    <div class="sub">AI 參與度對藥物成效的影響</div>
+  </div>
+  <div class="stat-row" style="grid-template-columns:repeat(2,1fr); max-width:76%;">
+    <div class="stat-card" style="border-top-color:var(--pop); background:color-mix(in srgb, var(--pop) 9%, #fff);">
+      <div class="num" style="color:var(--pop);">-22.89<span class="unit">%</span></div>
+      <div class="label">高參與度組（engaged）<br>tirzepatide 第 12 個月體重變化</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">-17.55<span class="unit">%</span></div>
+      <div class="label">低參與度組（non-engaged）<br>同期體重變化</div>
+    </div>
+  </div>
+  <ul style="margin-top:.7em;">
+    <li>市場規模：<strong>US$38.5B</strong><span class="caveat">限定主要市場，非全球</span>（DelveInsight）</li>
+  </ul>
+  <div class="cite">
+    資料來源：JMIR 2026;e83718（AI 參與度數字）；DelveInsight（市場規模）。
+    原大綱中的「Semaglutide 7.8%→9.5%／Tirzepatide 11.2%→13.9%」已查證為誤植並刪除，請勿於講稿中使用。
+  </div>
+</section>
+
+<!-- P14 -->
+<section data-slide="14">
+  <div class="sec-mark">Ⅰ　發展脈絡</div>
+  <div class="slide-head">
+    <h2>新興方向：Agentic AI 在肥胖照護</h2>
+    <div class="sub">從「回答問題」走向「主動執行照護任務」</div>
+  </div>
+  <div class="adv-grid c3">
+    <div class="adv-card">
+      <div class="adv-icon"><svg class="ic"><use href="#ic-chatbot"/></svg></div>
+      <div class="adv-title">MediKarma</div>
+      <div class="adv-desc">
+        「Diabetes &amp; Obesity Jill」<br>
+        月活躍使用者　<span class="em-num" style="font-size:1.5em;">35%</span>
+      </div>
+    </div>
+    <div class="adv-card">
+      <div class="adv-icon"><svg class="ic"><use href="#ic-aggregate"/></svg></div>
+      <div class="adv-title">HealthVerity eXOs</div>
+      <div class="adv-desc">
+        宣稱「零幻覺」<br>
+        <span class="caveat">廠商自評，非第三方驗證</span>
+      </div>
+    </div>
+    <div class="adv-card">
+      <div class="adv-icon"><svg class="ic"><use href="#ic-analyze"/></svg></div>
+      <div class="adv-title">WeGoTogether</div>
+      <div class="adv-desc">
+        成效 <span class="em-num" style="font-size:1.35em;">-20.4%</span>／<span class="em-num" style="font-size:1.35em;">-50.5%</span><br>
+        <span class="caveat">24 個月僅存 325 人</span>
+      </div>
+    </div>
+  </div>
+  <div class="key-box" style="margin-top:.45em;">
+    引用這類成效數字務必看 n——WeGoTogether 的漂亮數字
+    <strong>來自 24 個月後仍留下的 325 人</strong>，典型的存活者偏誤。
+  </div>
+  <div class="cite">
+    引用已依 <code>reference/citation-verification.md</code> 篩選：原列之「streaMLine」查無此平台（疑似幻覺）已刪除。
+    WeGoTogether 數字真實，但簡報現場若被追問 n 數，需主動說明存活者偏誤。
+  </div>
+</section>
+
+<!-- P15 -->
+<section data-slide="15">
+  <div class="sec-mark">Ⅰ　發展脈絡</div>
+  <div class="slide-head">
+    <h2>產業模式演變</h2>
+    <div class="sub">從賣藥，到資源配置的決策引擎</div>
+  </div>
+  <ul>
+    <li>支付端／雇主端開始以 AI 決定<strong>「誰該用藥、誰先用藥、誰需要更多人力介入」</strong></li>
+    <li>價值主張從「提供療法」轉為<strong>「提高每一分投入的健康產出」</strong></li>
+  </ul>
+  <div class="two-col" style="margin-top:.4em;">
+    <div class="col-box mark-a">
+      <div class="cb-title">實證：AI 優化資源配置</div>
+      <ul>
+        <li>52 名過重／肥胖者，4 週團體治療後隨機分派 12 週</li>
+        <li>對照組＝標準照護，介入組＝AI 最佳化分配</li>
+      </ul>
+    </div>
+    <div class="col-box" style="border-top:3px solid var(--pop); background:color-mix(in srgb, var(--pop) 9%, #fff);">
+      <div class="cb-title" style="color:var(--pop);">結果</div>
+      <ul>
+        <li>兩組同樣達成 <span class="em-num">7%</span> 體重減輕</li>
+        <li>但 AI 組<strong style="color:var(--pop);">只用了 1/3 的教練接觸量</strong></li>
+      </ul>
+    </div>
+  </div>
+  <div class="cite">
+    Contemporary Clinical Trials. 2023;124:107029（Using artificial intelligence to optimize
+    delivery of weight loss treatment）——
+    對臨床端的意涵：AI 的價值不只在「效果更好」，更在<strong>用更少的人力達到同樣效果</strong>；
+    但相對地，<strong>處方與資源決策外部化的壓力也將浮現</strong>。
+  </div>
+</section>
+
+<!-- P16 -->
+<section data-slide="16">
+  <div class="sec-mark">Ⅰ　發展脈絡</div>
+  <div class="slide-head">
+    <h2>小結：三個發展階段的共同軌跡</h2>
+  </div>
+  <div class="phase-row">
+    <div class="phase">
+      <div class="ph-era">2018 – 2022</div>
+      <div class="ph-name">奠基期</div>
+      <div class="ph-claim">證明「<b>可預測</b>」<br>風險模型與代謝表型分群</div>
+    </div>
+    <div class="phase">
+      <div class="ph-era">2022 – 2024</div>
+      <div class="ph-name">驗證期</div>
+      <div class="ph-claim">證明「<b>有效果</b>」<br>穿戴裝置與行為介入實證</div>
+    </div>
+    <div class="phase">
+      <div class="ph-era">2025 – 2026</div>
+      <div class="ph-name">精準醫療期</div>
+      <div class="ph-claim">證明「<b>可決策</b>」<br>GLP-1 反應預測與資源配置</div>
+    </div>
+  </div>
+  <div class="key-box" style="margin-top:.9em;">
+    共同軌跡：<strong>從理論驗證，走向臨床可操作的工具</strong>。
+  </div>
+</section>
+
+<!-- P17 [BG] 過渡頁 -->
+<section class="section-open" data-background-color="#F6F5F0" data-slide="17">
+  <!-- [BG] spec.yaml P17，opacity 0.10 -->
+  <div class="opener">
+    <h1 style="font-size:1.42em;">從文獻回顧，<br>到臨床實務導入現況</h1>
+    <div class="rule"></div>
+    <div class="lead">
+      前面談的是「別人做到哪裡」。<br>
+      接下來這一段，是在自己的門診裡實際做出來、每天在用的東西。
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     Ⅱ 現況實務（P18-38）
+     ============================================================ -->
+
+<!-- P18 [BG][ICON] 板塊Ⅱ開篇 -->
+<section class="section-open" data-background-color="#F6F5F0" data-slide="18">
+  <!-- [BG] spec.yaml P18，opacity 0.12 -->
+  <div class="opener" style="margin-bottom:.45em;">
+    <div class="roman">Ⅱ</div>
+    <h1 style="font-size:1.24em;">現況實務：臨床工作導入案例</h1>
+    <div class="rule"></div>
+    <div class="lead" style="max-width:100%;">
+      減重門診生態系為主線，其餘門診工具為輔線佐證方法論的可複製性
+    </div>
+  </div>
+  <div class="adv-grid c3">
+    <div class="adv-card">
+      <div class="adv-icon"><svg class="ic"><use href="#ic-collect"/></svg></div>
+      <div class="adv-title">資料蒐集自動化</div>
+      <div class="adv-desc">減重評估表單</div>
+    </div>
+    <div class="adv-card">
+      <div class="adv-icon"><svg class="ic"><use href="#ic-communicate"/></svg></div>
+      <div class="adv-title">AI 病人溝通</div>
+      <div class="adv-desc">門診 AI 管理系統（RAG）</div>
+    </div>
+    <div class="adv-card">
+      <div class="adv-icon"><svg class="ic"><use href="#ic-analyze"/></svg></div>
+      <div class="adv-title">AI 資料分析</div>
+      <div class="adv-desc">月度分析自動化</div>
+    </div>
+  </div>
+  <div class="cite" style="margin-top:.8em;">
+    本節「AI」有兩層意義，先分清楚：<strong>①工具本身運用 AI 技術</strong>（如 RAG 檢索）；
+    <strong>②工具由 AI agent 輔助開發完成</strong>。評估表單屬於後者——它沒有用到 AI 技術，
+    但它是後續兩個 AI 案例的資料基礎建設。
+  </div>
+</section>
+
+<!-- P19 [BG] 案例1-1 -->
+<section class="has-bg" data-slide="19"
+         data-background-image="images/p19_form_bg_20260814_230152.png"
+         data-background-size="cover" data-background-position="center"><!-- golden sample：手繪粗筆觸，風格基準 -->
+  <div class="case">
+    <div class="case-tab">
+      <span class="ct-kind">主線 案例</span>
+      <span class="ct-no">01</span>
+      <span class="ct-name">減重評估表單</span>
+      <span class="ct-step">1 / 2</span>
+    </div>
+    <div class="case-body">
+      <div class="slide-head">
+        <h2>雙軌資料蒐集設計</h2>
+        <div class="sub">病人自填 ＋ 醫師輸入，兩條路徑寫入同一份回覆試算表</div>
+      </div>
+      <ul>
+        <li><strong>病人端</strong>：初診前線上填寫 Google 表單；改為<strong>單一區段設計</strong>，
+          解決舊版問卷跳題造成資料斷裂的問題</li>
+        <li><strong>醫師端</strong>：看診時用「減重門診輸入工具」下拉選單快速輸入</li>
+        <li>兩者資料<strong>寫入同一份回覆試算表</strong>，不必事後合併</li>
+      </ul>
+      <div class="cite">
+        定位說明：本工具為純表單＋樣板拼接，<strong>不含 AI 技術</strong>；
+        但由 AI agent 輔助開發、<strong>當天上線</strong>。
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- P20 案例1-2 -->
+<section class="bg-faint" data-slide="20"
+         data-background-image="images/p19_form_bg_20260814_230152.png"
+         data-background-size="cover" data-background-opacity="0.1">
+  <div class="case">
+    <div class="case-tab">
+      <span class="ct-kind">主線 案例</span>
+      <span class="ct-no">01</span>
+      <span class="ct-name">減重評估表單</span>
+      <span class="ct-step">2 / 2</span>
+    </div>
+    <div class="case-body">
+      <div class="slide-head">
+        <h2>自動產生病歷貼稿，並驅動下游</h2>
+      </div>
+      <ul>
+        <li>一鍵「產生病歷文字」：把下拉選單資料組成<strong>可直接貼進病歷系統的結構化貼稿</strong>
+          <span class="caveat">樣板拼接，非 AI 生成</span></li>
+        <li>同時背景送出同一筆資料到 Google 表單——<strong>免去雙重輸入</strong></li>
+        <li>結構化回覆，是後續 AI 管理系統與月度分析自動化<strong>共同的資料基礎建設</strong></li>
+      </ul>
+      <div class="todo-block">
+        <b>待補：</b>工具操作畫面截圖 1 張（下拉選單 ＋ 產生貼稿結果）。
+        <b>務必使用空白／測試輸入</b>，不可截到真實病人資料（handoff.md 注意事項）。
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- P21 [BG] 案例2-1 -->
+<section class="has-bg" data-slide="21"
+         data-background-image="images/p21_rag_bg_20260814_231128.png"
+         data-background-size="cover" data-background-position="center">
+  <div class="case">
+    <div class="case-tab">
+      <span class="ct-kind">主線 案例</span>
+      <span class="ct-no">02</span>
+      <span class="ct-name">AI 管理系統</span>
+      <span class="ct-step">1 / 3</span>
+    </div>
+    <div class="case-body">
+      <div class="slide-head">
+        <h2>問題背景與 RAG 設計</h2>
+        <div class="sub">臨床決策輔助與病人溝通</div>
+      </div>
+      <ul>
+        <li><strong>設計動機</strong>：門診衛教問題高度重複，但直接用一般對話式 AI，
+          回答容易<strong>與院內實際作法脫節</strong></li>
+      </ul>
+      <h3 style="font-size:.5em; margin:.5em 0 .1em;">知識庫涵蓋兩類院內既有文件</h3>
+      <ul style="margin-top:0;">
+        <li><strong>衛教單張</strong>——門診原本就在發的素材，病人看得懂的語言</li>
+        <li><strong>治療指引</strong>——院內實際採用的處置準則</li>
+      </ul>
+      <div class="cite">
+        兩者都是<strong>既有文件</strong>，不需為了導入 AI 另外編寫內容——
+        這也是這套系統能快速上線的原因。
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- P22 [VIZ] 案例2-2 -->
+<section class="bg-faint" data-slide="22"
+         data-background-image="images/p21_rag_bg_20260814_231128.png"
+         data-background-size="cover" data-background-opacity="0.08">
+  <div class="case">
+    <div class="case-tab">
+      <span class="ct-kind">主線 案例</span>
+      <span class="ct-no">02</span>
+      <span class="ct-name">AI 管理系統</span>
+      <span class="ct-step">2 / 3</span>
+    </div>
+    <div class="case-body">
+      <div class="slide-head">
+        <h2>RAG 架構如何降低幻覺風險</h2>
+        <div class="sub">拖曳滑桿，比較有無 RAG 的差異</div>
+      </div>
+      <div class="viz-wrap">
+        <div class="viz-pane before">
+          <div class="vp-label">無 RAG（一般對話式 AI）</div>
+          <ul>
+            <li>憑訓練資料籠統作答</li>
+            <li>可能編造不存在的衛教資訊（幻覺）</li>
+            <li>無法引用院內實際數據</li>
+          </ul>
+        </div>
+        <div class="viz-pane after" id="viz-after">
+          <div class="vp-label">有 RAG（接院內資料庫）</div>
+          <ul>
+            <li>先檢索院內資料庫再作答</li>
+            <li>回答附實際資料來源</li>
+            <li>敏感問題自動轉介真人</li>
+          </ul>
+        </div>
+        <div class="viz-divider" id="viz-divider"></div>
+      </div>
+      <input class="viz-slider" id="viz-slider" type="range" min="0" max="100" value="0" aria-label="RAG 對比滑桿">
+      <div class="viz-hint">← 拖曳比較 →</div>
+    </div>
+  </div>
+</section>
+
+<!-- P23 案例2-3 -->
+<section class="bg-faint" data-slide="23"
+         data-background-image="images/p21_rag_bg_20260814_231128.png"
+         data-background-size="cover" data-background-opacity="0.1">
+  <div class="case">
+    <div class="case-tab">
+      <span class="ct-kind">主線 案例</span>
+      <span class="ct-no">02</span>
+      <span class="ct-name">AI 管理系統</span>
+      <span class="ct-step">3 / 3</span>
+    </div>
+    <div class="case-body">
+      <div class="slide-head">
+        <h2>完整流程與敏感問題轉介</h2>
+        <div class="sub">AI 負責重複性衛教，臨床判斷不外包給模型</div>
+      </div>
+      <div class="flow">
+        <div class="flow-step">
+          <div class="fs-ic"><svg class="ic sm"><use href="#ic-communicate"/></svg></div>
+          <div class="fs-title">病人提問</div>
+          <div class="fs-desc">門診常見的<br>重複性問題</div>
+        </div>
+        <div class="flow-arrow">›</div>
+        <div class="flow-step">
+          <div class="fs-ic"><svg class="ic sm"><use href="#ic-summary"/></svg></div>
+          <div class="fs-title">檢索知識庫</div>
+          <div class="fs-desc">衛教單張<br>＋治療指引</div>
+        </div>
+        <div class="flow-arrow">›</div>
+        <div class="flow-step">
+          <div class="fs-ic"><svg class="ic sm"><use href="#ic-chatbot"/></svg></div>
+          <div class="fs-title">生成回答</div>
+          <div class="fs-desc">依檢索內容作答<br><strong>並附資料來源</strong></div>
+        </div>
+        <div class="flow-arrow">›</div>
+        <div class="flow-step" style="--sec:var(--pop);">
+          <div class="fs-ic"><svg class="ic sm"><use href="#ic-management"/></svg></div>
+          <div class="fs-title">敏感議題<br>轉介真人</div>
+          <div class="fs-desc">不由模型作答，<br>交回醫療人員</div>
+        </div>
+      </div>
+      <div class="key-box" style="margin-top:.5em;">
+        關鍵設計不是「AI 能回答多少」，而是<strong>明確劃出它不該回答的範圍</strong>。
+      </div>
+      <div class="todo-block" style="margin-top:.5em;">
+        <b>待補：</b>「敏感議題」的實際判定範圍（哪些主題會觸發轉介），以及應用場景的成效觀察。
+        若尚無量化數據，建議以質性描述呈現，不要硬湊百分比。
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- P24 [BG] 案例3-1 -->
+<section class="has-bg" data-slide="24"
+         data-background-image="images/p24_report_bg_20260814_231727.png"
+         data-background-size="cover" data-background-position="center">
+  <div class="case">
+    <div class="case-tab">
+      <span class="ct-kind">主線 案例</span>
+      <span class="ct-no">03</span>
+      <span class="ct-name">月度分析自動化</span>
+      <span class="ct-step">1 / 4</span>
+    </div>
+    <div class="case-body">
+      <div class="slide-head">
+        <h2>流程總覽</h2>
+        <div class="sub">行政與資料分析效率化</div>
+      </div>
+      <div class="flow">
+        <div class="flow-step">
+          <div class="fs-ic"><svg class="ic sm"><use href="#ic-collect"/></svg></div>
+          <div class="fs-title">原始資料</div>
+          <div class="fs-desc">Google Drive<br>（含案例 01 表單回覆）</div>
+        </div>
+        <div class="flow-arrow">›</div>
+        <div class="flow-step">
+          <div class="fs-ic"><svg class="ic sm"><use href="#ic-analyze"/></svg></div>
+          <div class="fs-title">統計分析</div>
+          <div class="fs-desc">腳本自動執行<br>月度比較</div>
+        </div>
+        <div class="flow-arrow">›</div>
+        <div class="flow-step">
+          <div class="fs-ic"><svg class="ic sm"><use href="#ic-summary"/></svg></div>
+          <div class="fs-title">三格式產出</div>
+          <div class="fs-desc">HTML／PPTX<br>／DOCX</div>
+        </div>
+        <div class="flow-arrow">›</div>
+        <div class="flow-step">
+          <div class="fs-ic"><svg class="ic sm"><use href="#ic-aggregate"/></svg></div>
+          <div class="fs-title">雲端發布</div>
+          <div class="fs-desc">GitHub Pages<br>OneDrive／Drive</div>
+        </div>
+      </div>
+      <div class="quote-box" style="margin-top:.7em;">
+        全程<strong>每月自動執行一次</strong>，人工只需確認產出。
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- P25 案例3-2 -->
+<section class="bg-faint" data-slide="25"
+         data-background-image="images/p24_report_bg_20260814_231727.png"
+         data-background-size="cover" data-background-opacity="0.1">
+  <div class="case">
+    <div class="case-tab">
+      <span class="ct-kind">主線 案例</span>
+      <span class="ct-no">03</span>
+      <span class="ct-name">月度分析自動化</span>
+      <span class="ct-step">2 / 4</span>
+    </div>
+    <div class="case-body">
+      <div class="slide-head">
+        <h2>定期檢視成效</h2>
+        <div class="sub">門診經營不再只靠年度回顧，而能逐月追蹤</div>
+      </div>
+      <ul>
+        <li><strong>新增個案特徵</strong>：每月新收案的組成變化</li>
+        <li><strong>藥物成效趨勢</strong>：分組追蹤各藥物的減重表現</li>
+        <li><strong>未回診率</strong>：採<strong>雙軌口徑</strong>呈現，避免單一定義造成誤判</li>
+      </ul>
+      <div class="todo-block">
+        <b>待補：</b>報告畫面截圖 1–2 張。若要在簡報中呈現實際門診數字，
+        <b>務必先套用四條臨床資料鐵律</b>：性別編碼 0=女／1=男以平均身高交叉驗證、
+        n&lt;10 組別不當亮點、藥物欄位先掃 distinct 值、個案限近一年仍回診者。
+        本 repo 為公開，數據需去識別化、聚合呈現。
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- P26 案例3-3 -->
+<section class="bg-faint" data-slide="26"
+         data-background-image="images/p24_report_bg_20260814_231727.png"
+         data-background-size="cover" data-background-opacity="0.1">
+  <div class="case">
+    <div class="case-tab">
+      <span class="ct-kind">主線 案例</span>
+      <span class="ct-no">03</span>
+      <span class="ct-name">月度分析自動化</span>
+      <span class="ct-step">3 / 4</span>
+    </div>
+    <div class="case-body">
+      <div class="slide-head">
+        <h2>雲端發布與時程佐證</h2>
+      </div>
+      <ul>
+        <li>全流程<strong>18 天</strong>從動手到上線</li>
+        <li>自動發布至 <strong>GitHub Pages、OneDrive、Google Drive</strong> 三處</li>
+        <li><strong>每月固定執行一次</strong>——關鍵不在單次產出，而在「不需要記得做」</li>
+      </ul>
+      <div class="key-box">
+        自動化真正省下的不是分析時間，而是<strong>每個月重新啟動這件事的心力</strong>。
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- P27 案例3-4 -->
+<section class="bg-faint" data-slide="27"
+         data-background-image="images/p24_report_bg_20260814_231727.png"
+         data-background-size="cover" data-background-opacity="0.1">
+  <div class="case">
+    <div class="case-tab">
+      <span class="ct-kind">主線 案例</span>
+      <span class="ct-no">03</span>
+      <span class="ct-name">月度分析自動化</span>
+      <span class="ct-step">4 / 4</span>
+    </div>
+    <div class="case-body">
+      <div class="slide-head">
+        <h2>衍生應用：「減重大冒險」路線推薦遊戲</h2>
+        <div class="sub">從院內統計，長出病人衛教工具</div>
+      </div>
+      <ul>
+        <li>玩家答完 <strong>7 關</strong>後，依<strong>本院匿名統計</strong>自動推薦五種減重路線</li>
+        <li>推薦數字<strong>每月隨月度分析同步更新</strong>——衛教素材不會過期</li>
+        <li>意義：同一份分析基礎建設，同時服務<strong>門診經營</strong>與<strong>病人衛教</strong></li>
+      </ul>
+      <div class="todo-block"><b>待補：</b>遊戲畫面截圖 1 張（建議取推薦結果頁）。</div>
+    </div>
+  </div>
+</section>
+
+<!-- P28 [BG] 輔線A-1 -->
+<section class="section-open" data-background-color="#F6F5F0" data-slide="28">
+  <!-- [BG] spec.yaml P28，opacity 0.12 -->
+  <div class="case">
+    <div class="case-tab aux">
+      <span class="ct-kind">輔線 案例</span>
+      <span class="ct-no">A</span>
+      <span class="ct-name">骨鬆風險評估</span>
+      <span class="ct-step">1 / 4</span>
+    </div>
+    <div class="case-body">
+      <div class="slide-head">
+        <h2>問題背景</h2>
+        <div class="sub">同一套方法論，在減重門診之外也能複製</div>
+      </div>
+      <ul>
+        <li><strong>臨床痛點</strong>：骨折風險評估與用藥決策需反覆查表、對照指引</li>
+        <li>決策邏輯明確但步驟繁瑣——<strong>正是適合工具化的類型</strong></li>
+      </ul>
+      <div class="todo-block"><b>待補：</b>設計動機的具體場景描述（哪一類病人、原本花多少時間）。</div>
+    </div>
+  </div>
+</section>
+
+<!-- P29 輔線A-2 -->
+<section data-slide="29">
+  <div class="case">
+    <div class="case-tab aux">
+      <span class="ct-kind">輔線 案例</span>
+      <span class="ct-no">A</span>
+      <span class="ct-name">骨鬆風險評估</span>
+      <span class="ct-step">2 / 4</span>
+    </div>
+    <div class="case-body">
+      <div class="slide-head">
+        <h2>設計原則</h2>
+        <div class="sub">這三點會在第三段的資安論述中再次出現</div>
+      </div>
+      <div class="adv-grid c3">
+        <div class="adv-card"><div class="adv-title">純前端</div><div class="adv-desc">沒有後端伺服器</div></div>
+        <div class="adv-card"><div class="adv-title">不存個資</div><div class="adv-desc">不留姓名與識別資訊</div></div>
+        <div class="adv-card"><div class="adv-title">地端運算</div><div class="adv-desc">資料不離開瀏覽器</div></div>
+      </div>
+      <div class="cite">此設計呼應 Ⅲ 段核心主張：<strong>「資料不上傳」是比「去識別化」更上游的防線</strong>。</div>
+    </div>
+  </div>
+</section>
+
+<!-- P30 輔線A-3 -->
+<section data-slide="30">
+  <div class="case">
+    <div class="case-tab aux">
+      <span class="ct-kind">輔線 案例</span>
+      <span class="ct-no">A</span>
+      <span class="ct-name">骨鬆風險評估</span>
+      <span class="ct-step">3 / 4</span>
+    </div>
+    <div class="case-body">
+      <div class="slide-head"><h2>決策邏輯</h2></div>
+      <ul>
+        <li>風險分層依<strong>臨床指引</strong>產生，規則外顯可查核</li>
+        <li>用藥建議跟著分層走，<strong>邏輯寫在 rules 檔而非程式碼裡</strong>——指引更新時只改規則</li>
+      </ul>
+      <div class="todo-block">
+        <b>待補：</b>決策流程圖 1 張，以及依據的指引名稱與版本年份。
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- P31 輔線A-4 -->
+<section data-slide="31">
+  <div class="case">
+    <div class="case-tab aux">
+      <span class="ct-kind">輔線 案例</span>
+      <span class="ct-no">A</span>
+      <span class="ct-name">骨鬆風險評估</span>
+      <span class="ct-step">4 / 4</span>
+    </div>
+    <div class="case-body">
+      <div class="slide-head"><h2>臨床應用場景</h2></div>
+      <ul>
+        <li>已於 <strong>GitHub Pages 上線</strong>，純前端、不存資料</li>
+        <li>門診當場即可操作，不需登入、不需安裝</li>
+      </ul>
+      <div class="todo-block"><b>待補：</b>初步成效觀察（使用頻率／節省時間）。無量化數據則以質性描述呈現。</div>
+    </div>
+  </div>
+</section>
+
+<!-- P32 [BG] 輔線B-1 -->
+<section class="section-open" data-background-color="#F6F5F0" data-slide="32">
+  <!-- [BG] spec.yaml P32，opacity 0.12 -->
+  <div class="case">
+    <div class="case-tab aux">
+      <span class="ct-kind">輔線 案例</span>
+      <span class="ct-no">B</span>
+      <span class="ct-name">肌少症篩檢</span>
+      <span class="ct-step">1 / 3</span>
+    </div>
+    <div class="case-body">
+      <div class="slide-head">
+        <h2>問題背景</h2>
+        <div class="sub">SARC-F ＋ SARC-CalF 問卷式初篩</div>
+      </div>
+      <ul>
+        <li>社區與門診都需要<strong>快速初篩</strong>，但紙本問卷計分與判讀耗時</li>
+        <li>篩檢的價值在<strong>量體</strong>——工具化才能把量做出來</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- P33 輔線B-2 -->
+<section data-slide="33">
+  <div class="case">
+    <div class="case-tab aux">
+      <span class="ct-kind">輔線 案例</span>
+      <span class="ct-no">B</span>
+      <span class="ct-name">肌少症篩檢</span>
+      <span class="ct-step">2 / 3</span>
+    </div>
+    <div class="case-body">
+      <div class="slide-head"><h2>判定邏輯與離線架構</h2></div>
+      <div class="two-col">
+        <div class="col-box mark-a">
+          <div class="cb-title">AWGS 2019 兩段式判定</div>
+          <ul>
+            <li>初篩 → 確診二階段</li>
+            <li>切點與流程落地為可操作步驟</li>
+          </ul>
+        </div>
+        <div class="col-box mark-b">
+          <div class="cb-title">PWA 離線架構</div>
+          <ul>
+            <li>社區篩檢站現場常無穩定網路</li>
+            <li>離線可用是<strong>可行性前提</strong>，非加分項</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- P34 輔線B-3 -->
+<section data-slide="34">
+  <div class="case">
+    <div class="case-tab aux">
+      <span class="ct-kind">輔線 案例</span>
+      <span class="ct-no">B</span>
+      <span class="ct-name">肌少症篩檢</span>
+      <span class="ct-step">3 / 3</span>
+    </div>
+    <div class="case-body">
+      <div class="slide-head">
+        <h2>衍生衛教工具：寓教於樂</h2>
+        <div class="sub">「存肌力、享健康」——給做完篩檢的長輩與家人</div>
+      </div>
+      <div class="flow">
+        <div class="flow-step">
+          <div class="fs-ic"><svg class="ic sm"><use href="#ic-summary"/></svg></div>
+          <div class="fs-title">先看一遍</div>
+          <div class="fs-desc">衛教重點海報</div>
+        </div>
+        <div class="flow-arrow">›</div>
+        <div class="flow-step" style="--sec:var(--pop);">
+          <div class="fs-ic"><svg class="ic sm"><use href="#ic-scope"/></svg></div>
+          <div class="fs-title">再玩玩看</div>
+          <div class="fs-desc">10 題互動小測驗</div>
+        </div>
+        <div class="flow-arrow">›</div>
+        <div class="flow-step">
+          <div class="fs-ic"><svg class="ic sm"><use href="#ic-management"/></svg></div>
+          <div class="fs-title">帶回家做</div>
+          <div class="fs-desc">怎麼吃、怎麼練<br>防跌小提醒</div>
+        </div>
+      </div>
+      <div class="key-box" style="margin-top:.5em;">
+        篩檢工具的價值不在判定本身，而在<strong>判定之後病人知道要做什麼</strong>。
+        <span class="kb-note">與主線的「減重大冒險」同一個模式：臨床工具產出，直接長成衛教素材。</span>
+      </div>
+      <div class="cite">
+        依 AWGS 2019 亞洲肌少症共識與高齡營養運動建議編寫｜CC BY-NC-ND 4.0｜
+        介面與程式由 AI agent 協助實作<br>
+        philia81301-commits.github.io/sarcopenia-clinic/quiz.html
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- P35 [BG] 方法論延伸 -->
+<section class="section-open" data-background-color="#F6F5F0" data-slide="35">
+  <!-- [BG] spec.yaml P35，opacity 0.12 -->
+  <div class="opener" style="margin-bottom:.5em;">
+    <h1 style="font-size:1.24em;">同方法論延伸到其他門診</h1>
+    <div class="rule"></div>
+    <div class="lead" style="max-width:100%;">同一套「rules.json ＋ 決策引擎」，已複製到體重管理以外的場域</div>
+  </div>
+  <div class="two-col">
+    <div class="col-box mark-b">
+      <div class="cb-title">HP-clinic</div>
+      <ul>
+        <li>幽門螺旋桿菌陽性處置決策工具</li>
+        <li>附病人衛教單張，公開 GitHub Pages</li>
+      </ul>
+    </div>
+    <div class="col-box mark-b">
+      <div class="cb-title">pneumonia-clinic</div>
+      <ul>
+        <li>PPV23／PCV13／PCV20／PCV21 成人肺炎鏈球菌疫苗比較決策器</li>
+        <li>附 PPTX 與病人衛教單張</li>
+      </ul>
+    </div>
+  </div>
+  <div class="key-box" style="margin-top:.7em;">
+    共同目標：減少重複問診與行政負擔，<strong>把醫師心力留給臨床判斷</strong>。
+  </div>
+</section>
+
+<!-- P36 大數字卡片（自訂版型） -->
+<section data-slide="36">
+  <div class="sec-mark">Ⅱ　現況實務</div>
+  <div class="slide-head">
+    <h2>工具導入時程量化佐證</h2>
+    <div class="sub">從「動手」到「可用」的實測時間</div>
+  </div>
+  <div class="stat-row">
+    <div class="stat-card">
+      <div class="num">18<span class="unit">天</span></div>
+      <div class="label">月度分析自動化<br>＋ 減重大冒險遊戲</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">當天</div>
+      <div class="label">減重評估表單<br>（病人端 ＋ 醫師端）</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">跨一夜</div>
+      <div class="label">骨鬆風險評估<br>與用藥決策工具</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">13<span class="unit">分鐘</span></div>
+      <div class="label">肌少症篩檢工具<br>（SARC-F ＋ SARC-CalF）</div>
+    </div>
+  </div>
+  <div class="cite">
+    <b>方法學限制（請務必於現場口頭說明）：</b>
+    ①以上為 commit 時間區間，<strong>非實際投入工時</strong>；
+    ②第一個案例含學習期，時間不可與後續案例直接比較；
+    ③各案複雜度不同，數字僅示意可行性、不代表開發效率。<br>
+    AI 管理系統（RAG）與 HP、PCV 兩項延伸工具複雜度較高，未特別記錄動手時間，故不列入、不強行湊數字。
+  </div>
+</section>
+
+<!-- P37 [ICON] 三步驟方法論 -->
+<section data-slide="37">
+  <div class="sec-mark">Ⅱ　現況實務</div>
+  <div class="slide-head">
+    <h2>共通導入方法論：三步驟框架</h2>
+    <div class="sub">從減重門診三案例，延伸到骨鬆、肌少症、HP、PCV 共八項工具歸納而得</div>
+  </div>
+  <div class="adv-grid c3">
+    <div class="adv-card">
+      <div class="adv-icon"><svg class="ic"><use href="#ic-scope"/></svg></div>
+      <div class="adv-title">需求盤點</div>
+      <div class="adv-desc">釐清臨床痛點與資料來源</div>
+    </div>
+    <div class="adv-card">
+      <div class="adv-icon"><svg class="ic"><use href="#ic-mvp"/></svg></div>
+      <div class="adv-title">最小可行版本</div>
+      <div class="adv-desc">先求可用，再求完美</div>
+    </div>
+    <div class="adv-card">
+      <div class="adv-icon"><svg class="ic"><use href="#ic-iterate"/></svg></div>
+      <div class="adv-title">迭代驗證</div>
+      <div class="adv-desc">依實測回饋持續修正</div>
+    </div>
+  </div>
+  <div class="todo-block">
+    <b>待補（選配）：</b>可挑 1–2 個案例，具體回顧它們如何走過這三步（例：肌少症工具在哪一步被現場回饋改寫）。
+  </div>
+</section>
+
+<!-- P38 [BG][INTERACT:poll] Ⅱ段小結 -->
+<section class="section-open" data-background-color="#F6F5F0" data-slide="38">
+  <!-- [BG] spec.yaml P38，opacity 0.10 -->
+  <div class="slide-head">
+    <h2>小結：對臨床工作流程的具體影響</h2>
+  </div>
+  <ul>
+    <li>主線三案例構成<strong>完整生態系</strong>：蒐集 → 溝通 → 分析，資料一次輸入、多處使用</li>
+    <li>輔線四項工具佐證<strong>方法論可複製</strong>，不限於單一疾病領域</li>
+  </ul>
+  <div class="interact-ph" id="slide-poll" style="margin-top:.6em;">
+    <div class="ip-title">現場投票：您最想優先導入哪一類應用？</div>
+    <div class="poll-opts">
+      <div class="poll-opt">A　資料蒐集自動化</div>
+      <div class="poll-opt">B　AI 病人溝通</div>
+      <div class="poll-opt">C　AI 資料分析</div>
+      <div class="poll-opt">D　篩檢自動化（骨鬆／肌少症）</div>
+    </div>
+    <div class="ip-desc"><span class="todo">Phase 5 待接 Firebase</span>　Firestore 集合：<code>obesity-ai-talk_poll</code></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     Ⅲ 落地挑戰（P39-47）
+     ============================================================ -->
+
+<!-- P39 [BG] 板塊Ⅲ開篇 -->
+<section class="section-open" data-background-color="#F6F5F0" data-slide="39">
+  <!-- [BG] spec.yaml P39，opacity 0.12 -->
+  <div class="opener">
+    <div class="roman">Ⅲ</div>
+    <h1 style="font-size:1.28em;">為何 AI 導入必然伴隨<br>新的資安個資課題</h1>
+    <div class="rule"></div>
+    <div class="lead">
+      前一段的每一個工具，都在處理病人資料。<br>
+      工具愈好用，資料流動愈頻繁——個資保護因此不是附加題，而是必答題。
+    </div>
+  </div>
+  <div class="cite" style="margin-top:1.4em;">
+    資料來源：成功大學計算機與網路中心 李南逸主任
+    《AI 時代之醫療隱私與個資保護挑戰》講義
+  </div>
+</section>
+
+<!-- P40 -->
+<section data-slide="40">
+  <div class="sec-mark">Ⅲ　落地挑戰</div>
+  <div class="slide-head">
+    <h2>我國個資法對醫療特種個資的規範框架</h2>
+    <div class="sub">個人資料保護法 第 6 條</div>
+  </div>
+  <ul>
+    <li><strong>病歷、醫療、基因</strong>等特種個資，<strong>原則禁止蒐集、處理、利用</strong></li>
+    <li>例外之一：<strong>去識別化後</strong>，供醫療衛生統計或學術研究使用</li>
+    <li>臨床意涵：門診自製工具要用到病人資料，<strong>「去識別化」是法定入場券</strong></li>
+  </ul>
+  <div class="key-box">
+    但接下來三個案例會說明：<strong>去識別化本身，並不等於安全</strong>。
+  </div>
+</section>
+
+<!-- P41 [ICON] -->
+<section data-slide="41">
+  <div class="sec-mark">Ⅲ　落地挑戰</div>
+  <div class="slide-head">
+    <h2>官方認定之去識別化技術手法</h2>
+    <div class="sub">個資法施行細則 第 17 條</div>
+  </div>
+  <div class="adv-grid c5">
+    <div class="adv-card">
+      <div class="adv-icon"><svg class="ic"><use href="#ic-mask"/></svg></div>
+      <div class="adv-title">剔除與遮蔽</div>
+      <div class="adv-desc">刪除或遮蔽姓名、身分證字號</div>
+    </div>
+    <div class="adv-card">
+      <div class="adv-icon"><svg class="ic"><use href="#ic-generalize"/></svg></div>
+      <div class="adv-title">模糊化<br>與區間化</div>
+      <div class="adv-desc">精確數據換為寬泛區間</div>
+    </div>
+    <div class="adv-card">
+      <div class="adv-icon"><svg class="ic"><use href="#ic-hash"/></svg></div>
+      <div class="adv-title">雜湊與代碼化</div>
+      <div class="adv-desc">不可逆單向雜湊，不留對照表</div>
+    </div>
+    <div class="adv-card">
+      <div class="adv-icon"><svg class="ic"><use href="#ic-noise"/></svg></div>
+      <div class="adv-title">加噪與<br>差分隱私</div>
+      <div class="adv-desc">加入隨機雜訊，維持統計準確度</div>
+    </div>
+    <div class="adv-card">
+      <div class="adv-icon"><svg class="ic"><use href="#ic-aggregate"/></svg></div>
+      <div class="adv-title">數據聚合</div>
+      <div class="adv-desc">只輸出統計結果，不留個體資料</div>
+    </div>
+  </div>
+  <div class="cite">
+    對照講者工具的設計：<strong>不存姓名、只算分數</strong>——同時落在「剔除遮蔽」與「數據聚合」兩類。
+  </div>
+</section>
+
+<!-- P42 -->
+<section data-slide="42">
+  <div class="sec-mark">Ⅲ　落地挑戰</div>
+  <div class="slide-head">
+    <h2>個資反推風險（一）：Strava 熱圖</h2>
+    <div class="sub">去識別化的運動軌跡，仍反推出軍事機密</div>
+  </div>
+  <div class="chain">
+    <div class="chain-node start">
+      <div class="cn-step">公開的資料</div>
+      <div class="cn-title">全球運動軌跡熱圖</div>
+      <div class="cn-desc">聚合呈現，<strong>不含使用者身分</strong>、不含姓名</div>
+    </div>
+    <div class="chain-arrow">›</div>
+    <div class="chain-node mid">
+      <div class="cn-step">反推手法</div>
+      <div class="cn-title">疊合衛星地圖<br>與打卡時間</div>
+      <div class="cn-desc">在無人區出現的規律路線，本身就是線索</div>
+    </div>
+    <div class="chain-arrow">›</div>
+    <div class="chain-node end">
+      <div class="cn-step">還原結果</div>
+      <div class="cn-title">軍事基地位置<br>與特定士兵身分</div>
+      <div class="cn-desc">從「沒有名字的線」回推到具體的人</div>
+    </div>
+  </div>
+  <div class="key-box">
+    教訓：<strong>拿掉姓名，不代表拿掉身分</strong>——軌跡本身就是識別特徵。
+  </div>
+</section>
+
+<!-- P43 -->
+<section data-slide="43">
+  <div class="sec-mark">Ⅲ　落地挑戰</div>
+  <div class="slide-head">
+    <h2>個資反推風險（二）：Netflix 匿名觀影數據</h2>
+    <div class="sub">公開競賽資料，成為身分還原的素材</div>
+  </div>
+  <div class="chain">
+    <div class="chain-node start">
+      <div class="cn-step">公開的資料</div>
+      <div class="cn-title">50 萬名用戶<br>觀影評分數據</div>
+      <div class="cn-desc">為辦競賽而公開，<strong>已做匿名處理</strong></div>
+    </div>
+    <div class="chain-arrow">›</div>
+    <div class="chain-node mid">
+      <div class="cn-step">反推手法</div>
+      <div class="cn-title">比對 6 部電影的<br>評分與時間</div>
+      <div class="cn-desc">與公開影評網站的發文紀錄交叉比對</div>
+    </div>
+    <div class="chain-arrow">›</div>
+    <div class="chain-node end">
+      <div class="cn-step">還原結果</div>
+      <div class="cn-title">99% 準確度<br>還原真實身分</div>
+      <div class="cn-desc">連帶暴露政治傾向與性向等敏感資訊</div>
+    </div>
+  </div>
+  <div class="key-box">
+    教訓：<strong>少數幾個非敏感欄位的組合，就足以構成指紋</strong>。
+  </div>
+</section>
+
+<!-- P44 -->
+<section data-slide="44">
+  <div class="sec-mark">Ⅲ　落地挑戰</div>
+  <div class="slide-head">
+    <h2>個資反推風險（三）：郵遞區號還原身分</h2>
+    <div class="sub">三個欄位，定位 87% 的美國人</div>
+  </div>
+  <div class="chain">
+    <div class="chain-node start">
+      <div class="cn-step">看似無害的欄位</div>
+      <div class="cn-title">郵遞區號<br>生日 ＋ 性別</div>
+      <div class="cn-desc">三項都<strong>不是</strong>個資法定義的識別資訊</div>
+    </div>
+    <div class="chain-arrow">›</div>
+    <div class="chain-node mid">
+      <div class="cn-step">反推手法</div>
+      <div class="cn-title">比對公開的<br>選民登記資料庫</div>
+      <div class="cn-desc">合法可取得的第二份資料即可完成串聯</div>
+    </div>
+    <div class="chain-arrow">›</div>
+    <div class="chain-node end">
+      <div class="cn-step">還原結果</div>
+      <div class="cn-title">定位全美 87%<br>的特定個人</div>
+      <div class="cn-desc">三個欄位就足以構成唯一指紋</div>
+    </div>
+  </div>
+  <div class="key-box">
+    對門診的直接意涵：<strong>「年齡＋性別＋就診地區」在小樣本下同樣具備識別力</strong>
+    <span class="kb-note">這正是月度報告一律聚合呈現、n&lt;10 不單獨列出的理由。</span>
+  </div>
+</section>
+
+<!-- P45 [ICON] -->
+<section data-slide="45">
+  <div class="sec-mark">Ⅲ　落地挑戰</div>
+  <div class="slide-head">
+    <h2>AI 醫療新挑戰：風險矩陣</h2>
+    <div class="sub">三類生成式 AI 應用的個別風險</div>
+  </div>
+  <div class="adv-grid c3">
+    <div class="adv-card">
+      <div class="adv-icon"><svg class="ic"><use href="#ic-voice"/></svg></div>
+      <div class="adv-title">語音 AI</div>
+      <div class="adv-desc">錄音外洩、聲紋識別、<br>STT 轉錄錯誤</div>
+    </div>
+    <div class="adv-card">
+      <div class="adv-icon"><svg class="ic"><use href="#ic-summary"/></svg></div>
+      <div class="adv-title">病歷摘要</div>
+      <div class="adv-desc">AI 推論過度延伸、<br>未經確認即進病歷</div>
+    </div>
+    <div class="adv-card">
+      <div class="adv-icon"><svg class="ic"><use href="#ic-chatbot"/></svg></div>
+      <div class="adv-title">問答機器人</div>
+      <div class="adv-desc">Prompt Injection、<br>敏感資料被直接輸入</div>
+    </div>
+  </div>
+  <div class="cite">
+    三者共通風險：<strong>資料串聯、跨境傳輸、模型訓練的二次利用</strong>——
+    使用雲端服務時，資料是否被用於訓練，必須在導入前確認。
+  </div>
+</section>
+
+<!-- P46 -->
+<section data-slide="46">
+  <div class="sec-mark">Ⅲ　落地挑戰</div>
+  <div class="slide-head">
+    <h2>呼應：地端部署、資料不上傳的架構設計</h2>
+  </div>
+  <div class="two-col">
+    <div class="col-box mark-w">
+      <div class="cb-title">下游：去識別化</div>
+      <ul>
+        <li>Strava、Netflix、郵遞區號三案</li>
+        <li>資料<strong>已經去識別化</strong></li>
+        <li>但仍被<strong>反推還原身分</strong></li>
+      </ul>
+      <div style="font-size:.4em; color:var(--warn); margin-top:.6em; font-weight:700;">
+        處理的是「洩漏後的傷害」
+      </div>
+    </div>
+    <div class="col-box" style="--sec:#2D6A4F; border-top:3px solid #2D6A4F;">
+      <div class="cb-title" style="color:#2D6A4F;">上游：資料不離開現場</div>
+      <ul>
+        <li>純前端、<strong>零後端傳輸</strong></li>
+        <li>地端運算，不存個資</li>
+        <li>講者所有工具的一致選擇</li>
+      </ul>
+      <div style="font-size:.4em; color:#2D6A4F; margin-top:.6em; font-weight:700;">
+        處理的是「洩漏本身」
+      </div>
+    </div>
+  </div>
+  <div class="key-box">
+    <strong>「資料不上傳」是比「去識別化」更上游的防線。</strong>
+    <span class="kb-note">能不上傳的資料，就不要上傳——這是設計決策，不是事後補救。</span>
+  </div>
+</section>
+
+<!-- P47 [BG] Ⅲ段小結 -->
+<section class="section-open" data-background-color="#F6F5F0" data-slide="47">
+  <!-- [BG] spec.yaml P47，opacity 0.12 -->
+  <div class="opener">
+    <h1 style="font-size:1.3em;">資安治理應內建於<br>工具設計階段</h1>
+    <div class="rule"></div>
+    <div class="lead">
+      不是事後補救的合規檢查項目，<br>
+      而應該從工具設計的第一天，就內建於架構之中。
+    </div>
+  </div>
+  <div class="cite" style="margin-top:1.5em;">
+    本段（P39–47）資料來源：成功大學計算機與網路中心 李南逸主任
+    《AI 時代之醫療隱私與個資保護挑戰》講義
+  </div>
+</section>
+
+<!-- ============================================================
+     結語與展望（P48-50）
+     ============================================================ -->
+
+<!-- P48 [BG] 結語開篇 -->
+<section class="section-open" data-background-color="#F6F5F0" data-slide="48">
+  <!-- [BG] spec.yaml P48，opacity 0.12 -->
+  <div class="opener" style="margin-bottom:.5em;">
+    <h1 style="font-size:1.3em;">三階段發展脈絡總結</h1>
+    <div class="rule"></div>
+  </div>
+  <div class="phase-row">
+    <div class="phase" style="--sec:#1B4332;">
+      <div class="ph-era">Ⅰ　發展脈絡</div>
+      <div class="ph-name">過去：驗證理論</div>
+      <div class="ph-claim">風險模型、代謝分群、<br>行為介入實證</div>
+    </div>
+    <div class="phase" style="--sec:#1D5A6C;">
+      <div class="ph-era">Ⅱ　現況實務</div>
+      <div class="ph-name">現在：落地應用</div>
+      <div class="ph-claim">門診工具與<br>流程自動化</div>
+    </div>
+    <div class="phase" style="--sec:#8C4A2F;">
+      <div class="ph-era">Ⅲ　落地挑戰</div>
+      <div class="ph-name">同步：資安治理</div>
+      <div class="ph-claim">不是事後補救，<br>設計階段即內建</div>
+    </div>
+  </div>
+  <div class="key-box" style="margin-top:.9em;">
+    三者缺一不可——<strong>只有前兩項，是把風險留給未來</strong>。
+  </div>
+</section>
+
+<!-- P49 -->
+<section data-slide="49">
+  <div class="sec-mark">結語與展望</div>
+  <div class="slide-head">
+    <h2>未來展望與可複製的實務方法</h2>
+    <div class="sub">給想從自己門診開始的臨床工作者</div>
+  </div>
+  <ul>
+    <li><strong>從最煩的那件事開始</strong>——不是從最酷的技術開始</li>
+    <li><strong>先做最小可行版本</strong>，讓它在真實門診跑一週，再決定要不要長大</li>
+    <li><strong>資料設計比功能設計更重要</strong>：結構化的一次輸入，能餵養後續所有應用</li>
+    <li><strong>資安從第一天內建</strong>：能不上傳的資料，就不要上傳</li>
+  </ul>
+  <div class="quote-box">
+    真正的問題不是「科技或人」，而是兩者如何結合，
+    <strong>使整體大於部分之和</strong>——為的是更公平、更具人性的醫療照護。
+    <div style="font-size:.8em; color:var(--text-2); text-align:right; margin-top:.5em;">
+      — Dr. Abraham Verghese, Stanford University School of Medicine
+    </div>
+  </div>
+</section>
+
+<!-- P50 [BG] Q&A -->
+<section class="section-open" data-background-color="#F6F5F0" data-slide="50">
+  <!-- [BG] spec.yaml P50，opacity 0.12 -->
+  <div class="end-slide">
+    <h1>Q &amp; A</h1>
+    <div class="rule"></div>
+    <p style="color:var(--text-2);">感謝聆聽，歡迎討論</p>
+    <div style="margin-top:1.6em; font-size:.52em; line-height:2;">
+      潘湘如 醫師｜高雄榮民總醫院 家庭醫學部
+    </div>
+    <div class="todo-block" style="text-align:left; max-width:74%; margin:1.2em auto 0;">
+      <b>待補：</b>聯絡方式（email 或院內分機），以及要公開的案例工具連結。<br>
+      建議只放公開 repo 的 GitHub Pages 網址（如骨鬆、肌少症、HP、PCV 工具），
+      <b>不要放含真實門診資料的月報站</b>。
+    </div>
+  </div>
+</section>
+
+  </div>
+</div>
+
+<script src="vendor/reveal.js"></script>
+<script>
+  /* --- 依頁碼自動指派板塊識別色（免去在 50 個 section 上手寫 data-sec） ---
+     0=前言(P1-3)　1=Ⅰ發展脈絡(P4-17)　2=Ⅱ現況實務(P18-38)
+     3=Ⅲ落地挑戰(P39-47)　4=結語與展望(P48-50)
+     若日後增刪頁面，只需維護這張分界表。 */
+  (function(){
+    var BOUNDS = [[3,0], [17,1], [38,2], [47,3], [50,4]];
+    document.querySelectorAll('.slides > section').forEach(function(s){
+      var n = +s.getAttribute('data-slide');
+      for (var i = 0; i < BOUNDS.length; i++){
+        if (n <= BOUNDS[i][0]){ s.setAttribute('data-sec', BOUNDS[i][1]); return; }
+      }
+    });
+  })();
+
+  Reveal.initialize({
+    hash: true,
+    transition: 'fade',
+    transitionSpeed: 'fast',
+    backgroundTransition: 'fade',
+    center: true,
+    progress: true,
+    controls: true,
+    slideNumber: 'c/t',
+    width: 1280,
+    height: 720,
+    margin: 0.08,
+    plugins: []
+  });
+
+  /* --- P22 VIZ 滑桿：clip-path 揭露 --- */
+  (function(){
+    var slider  = document.getElementById('viz-slider');
+    var after   = document.getElementById('viz-after');
+    var divider = document.getElementById('viz-divider');
+    if (!slider) return;
+    function render(v){
+      after.style.clipPath = 'inset(0 ' + (100 - v) + '% 0 0)';
+      divider.style.left = v + '%';
+      divider.style.opacity = (v === 0 || v === 100) ? 0 : 1;
+    }
+    slider.addEventListener('input', function(){ render(+this.value); });
+    render(0);
+  })();
+</script>
+</body>
+</html>

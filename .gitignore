@@ -11,3 +11,12 @@ credentials.*
 *.csv
 *.pptx
 *.docx
+
+# 字型原始檔（Noto variable font，兩檔共 27MB）——不進 git。
+# 需要時由 slides/build_fonts.py 自動下載；
+# 實際播放用的是同目錄下已子集化的 *-subset.woff2（那兩個有進 git）。
+slides/fonts/*-VF.ttf
+
+# 早期未過關的封面底圖草稿 v1-v4（共 6.7MB）——不進版本歷史。
+# 檔案保留在本機 slides/images/ 供對照，定案採用的是 p19/p21/p24 三張。
+slides/images/cover_*.png
