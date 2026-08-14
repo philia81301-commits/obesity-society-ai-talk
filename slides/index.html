@@ -156,7 +156,35 @@ section{
   color: var(--sec-2); border:1px solid var(--rule);
   padding:.42em 1.1em; border-radius:2px; margin-bottom:1.1em;
 }
-.title-slide h1{ font-size:2.05em; line-height:1.3; }
+/* 封面標題：擠出式立體。左上一道白色高光讓字從紙面「浮起」，
+   右下四層漸深墨綠做厚度，最後一層柔影落地。深度只做到 4px——
+   再厚在投影機上會糊成一團，學術場合也會顯得浮誇。 */
+.title-slide h1{
+  font-size:2.25em; line-height:1.3; color:#1B4332;
+  font-weight:900;                      /* variable font 涵蓋 100–900，不需另外載檔 */
+  text-shadow:
+    -2px -2px 0 #BE6C33,                /* 左上暖橘鑲邊：與底圖器官同色，標題與插畫成為同一套色彩語言 */
+    -1px -1px 0 #BE6C33,
+     1px  1px 0 #16382A,                /* 右下五層漸深墨綠 = 厚度 */
+     2px  2px 0 #143224,
+     3px  3px 0 #112B1F,
+     4px  4px 0 #0E2419,
+     5px  5px 0 #0B1D14,
+     6px  9px 18px rgba(11,29,20,.32);  /* 落地柔影 */
+}
+
+/* 封面底圖遮罩：插畫本身左側已留白，只需在左側補一層同色紙張墊底，
+   保證標題在任何投影機色偏下都讀得到。遮罩色 = 底圖紙張色，接縫看不出來。
+   ⚠️ 遮罩不可再往右延伸：脂肪細胞與細胞激素放射網落在畫面 55% 處，
+   遮罩到 56% 會把它整個洗成淡影——那正是要傳達的 fat cell inflammation。
+   標題壓到的是該區的淺色紙底，對比仍然足夠。 */
+.slide-background.cover-bg .slide-background-content::after{
+  content:''; position:absolute; inset:0;
+  background: linear-gradient(to right,
+    #F1E9D6 0%, #F1E9D6 30%,
+    rgba(241,233,214,.80) 44%,
+    rgba(241,233,214,0) 58%);
+}
 .title-slide .rule{ width:110px; height:3px; background: var(--sec); margin:.7em 0 .85em; }
 .title-slide .who{ font-size:.6em; color: var(--text); line-height:1.85; }
 .title-slide .meta{ font-size:.44em; color: var(--text-2); margin-top:1.5em; line-height:1.8; }
@@ -243,6 +271,32 @@ section{
 .ic-badge .ic{ width:34px; height:34px; }
 .adv-card .adv-title{ font-size:.5em; font-weight:700; color: var(--sec); margin-bottom:.5em; }
 .adv-card .adv-desc{ font-size:.4em; color: var(--text-2); line-height:1.65; }
+
+/* 放大版卡片：只給 P4 分析框架（該頁只有 3 張卡、留白多，字要撐得起來當全場骨架）
+   不改 .adv-card 本體，否則 P41 的 5 欄會爆版 */
+.adv-lg{ gap:24px; margin-top:.9em; }
+.adv-lg .adv-card{ padding:34px 22px; border-top-width:5px; }
+.adv-lg .adv-card .adv-icon{ margin-bottom:18px; }
+.adv-lg .adv-card .ic{ width:68px; height:68px; }
+.adv-lg .adv-card .adv-title{ font-size:.78em; margin-bottom:.42em; letter-spacing:.04em; }
+.adv-lg .adv-card .adv-desc{ font-size:.5em; line-height:1.7; }
+
+/* --- 工具操作截圖（P20/P25/P27/P30） ---
+   一律不裁切（object-fit 會切掉數字），改用 max-height 等比縮小。
+   圖說用 figcaption 綁在圖上，避免日後有人只搬圖、漏掉「測試資料」這類但書。 */
+.shot{
+  margin-top:.7em; border:1px solid var(--sec-soft); border-radius:3px;
+  background:#fff; overflow:hidden;
+}
+.shot img{ display:block; max-width:100%; max-height:250px; width:auto; height:auto; margin:0 auto; }
+.shot figcaption{
+  font-size:.3em; color: var(--text-2); line-height:1.55;
+  padding:7px 12px; border-top:1px solid var(--rule);
+}
+/* 直式截圖：與條列並排，否則等比縮到剩一條細長影子，投影出去讀不到 */
+.case-split{ display:grid; grid-template-columns:1fr 306px; gap:24px; align-items:start; }
+.case-split .shot{ margin-top:0; }
+.case-split .shot img{ max-height:334px; }
 
 /* --- 兩欄對比 --- */
 .two-col{ display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-top:.5em; }
@@ -539,10 +593,15 @@ section{
      ============================================================ -->
 
 <!-- P1 [BG] 標題頁 -->
-<section class="section-open" data-background-color="#F6F5F0" data-slide="1">
-  <!-- [BG] 封面目前用純 CSS 暖米白。若日後要加 AI 底圖，
-       在本 section 加上 data-background-image / -size / -opacity 三個屬性即可
-       （作法可參考 P19、P21、P24 三頁；記得同時套 class="has-bg" 讓漸層遮罩生效）。 -->
+<section class="section-open cover-bg" data-slide="1"
+         data-background-color="#F1E9D6"
+         data-background-image="images/p1_cover_bg_20260815.png"
+         data-background-size="cover" data-background-position="right center">
+  <!-- [BG] 封面底圖（gpt-image-2, high, 2026-08-15）。插畫重量在右三分之一、
+       左側大片留白給標題；不透明度維持 1，靠 .cover-bg 的左側漸層遮罩保證讀字。
+       ⚠️ 檔名不可用 cover_*.png——.gitignore 擋掉那個樣式（當初為排除四張廢稿）。
+       備選版本（細胞代謝取向，紙張色 #F2EFE2）留在本機 images/generated/，
+       該資料夾不進 git；換用時記得同步改 data-background-color 與 .cover-bg 遮罩色。 -->
   <div class="title-slide">
     <span class="kicker">台灣肥胖醫學會 2026 南區學術研討會</span>
     <h1>人工智慧在<br>肥胖治療運用的新發展</h1>
@@ -641,7 +700,7 @@ section{
     <div class="rule"></div>
     <div class="lead" style="max-width:100%;">以「診斷／管理／研究」三面向作為全場回顧的分類骨架</div>
   </div>
-  <div class="adv-grid c3">
+  <div class="adv-grid c3 adv-lg">
     <div class="adv-card">
       <div class="adv-icon"><svg class="ic"><use href="#ic-diagnosis"/></svg></div>
       <div class="adv-title">診斷</div>
@@ -847,21 +906,24 @@ section{
       </ul>
     </div>
     <div class="col-box mark-b">
-      <div class="cb-title">技術採用比例</div>
+      <div class="cb-title">國際指引收錄現況</div>
       <ul>
-        <li>雲端　<span class="em-num" style="color:var(--sec-2);">58.17%</span></li>
-        <li>大數據　<span class="em-num" style="color:var(--sec-2);">36.60%</span></li>
-        <li>AI　<span class="em-num" style="color:var(--sec-2);">7.19%</span></li>
+        <li>ADA 指引<strong>肥胖與體重管理章</strong>　AI 提及
+          <span class="em-num" style="color:var(--sec-2);">0</span> 次</li>
+        <li>2026 全套 20 章　machine learning
+          <span class="em-num" style="color:var(--sec-2);">0</span> 次</li>
+        <li>ADA <strong>肥胖專屬指引</strong>兩章　AI
+          <span class="em-num" style="color:var(--sec-2);">0</span> 次</li>
       </ul>
     </div>
   </div>
   <p style="margin-top:.6em;">
-    數位化是政策方向，但 <strong>AI 的實際採用率仍是個位數</strong>——落差正是本場要談的空間。
+    數位化是政策方向，但 <strong>AI 至今未寫進任何一條肥胖治療建議條文</strong>——落差正是本場要談的空間。
   </p>
-  <div class="todo-block">
-    <b>待補：</b>右欄採用率數字的<b>調查單位、年份與母體</b>。數字取自您 2025-05-25
-    《The Role of Digital Health in Obesity Management》第 18 頁，該頁未載出處，
-    學術場合引用前需補上，否則建議改以文字敘述呈現、不列精確百分比。
+  <div class="cite">
+    ADA. Standards of Care in Diabetes—2026. <i>Diabetes Care</i> 2026;49(Suppl 1)（Section 8：DOI 10.2337/dc26-S008）；
+    The Obesity Association. Standards of Care in Overweight and Obesity（DOI 10.1136/bmjdrc-2025-005729、10.1136/bmjdrc-2026-006247）。
+    以 Europe PMC 全文檢索，檢索日 2026-08-15。
   </div>
 </section>
 
@@ -1198,10 +1260,11 @@ section{
         <li>同時背景送出同一筆資料到 Google 表單——<strong>免去雙重輸入</strong></li>
         <li>結構化回覆，是後續 AI 管理系統與月度分析自動化<strong>共同的資料基礎建設</strong></li>
       </ul>
-      <div class="todo-block">
-        <b>待補：</b>工具操作畫面截圖 1 張（下拉選單 ＋ 產生貼稿結果）。
-        <b>務必使用空白／測試輸入</b>，不可截到真實病人資料（handoff.md 注意事項）。
-      </div>
+      <figure class="shot">
+        <img src="images/p20_input_tool.png"
+             alt="減重門診輸入工具：左側為下拉選單式評估表輸入，右側為一鍵產生的結構化病歷貼稿">
+        <figcaption>左：下拉選單輸入　右：一鍵產生的結構化貼稿。畫面為<strong>測試資料</strong>，非真實病人。</figcaption>
+      </figure>
     </div>
   </div>
 </section>
@@ -1401,12 +1464,11 @@ section{
         <li><strong>藥物成效趨勢</strong>：分組追蹤各藥物的減重表現</li>
         <li><strong>未回診率</strong>：採<strong>雙軌口徑</strong>呈現，避免單一定義造成誤判</li>
       </ul>
-      <div class="todo-block">
-        <b>待補：</b>報告畫面截圖 1–2 張。若要在簡報中呈現實際門診數字，
-        <b>務必先套用四條臨床資料鐵律</b>：性別編碼 0=女／1=男以平均身高交叉驗證、
-        n&lt;10 組別不當亮點、藥物欄位先掃 distinct 值、個案限近一年仍回診者。
-        本 repo 為公開，數據需去識別化、聚合呈現。
-      </div>
+      <figure class="shot">
+        <img src="images/p25_report_charts.png"
+             alt="月度報告圖表：性別與年齡層分布、BMI 分布、問卷月份分布、BMI 分組人數">
+        <figcaption>2026-07 月報實際畫面。數據已<strong>去識別化並聚合呈現</strong>，不含任何可識別個人的欄位。</figcaption>
+      </figure>
     </div>
   </div>
 </section>
@@ -1454,12 +1516,18 @@ section{
         <h2>衍生應用：「減重大冒險」路線推薦遊戲</h2>
         <div class="sub">從院內統計，長出病人衛教工具</div>
       </div>
-      <ul>
-        <li>玩家答完 <strong>7 關</strong>後，依<strong>本院匿名統計</strong>自動推薦五種減重路線</li>
-        <li>推薦數字<strong>每月隨月度分析同步更新</strong>——衛教素材不會過期</li>
-        <li>意義：同一份分析基礎建設，同時服務<strong>門診經營</strong>與<strong>病人衛教</strong></li>
-      </ul>
-      <div class="todo-block"><b>待補：</b>遊戲畫面截圖 1 張（建議取推薦結果頁）。</div>
+      <div class="case-split">
+        <ul>
+          <li>玩家答完 <strong>7 關</strong>後，依<strong>本院匿名統計</strong>自動推薦五種減重路線</li>
+          <li>推薦數字<strong>每月隨月度分析同步更新</strong>——衛教素材不會過期</li>
+          <li>意義：同一份分析基礎建設，同時服務<strong>門診經營</strong>與<strong>病人衛教</strong></li>
+        </ul>
+        <figure class="shot">
+          <img src="images/p27_game_result.png"
+               alt="減重大冒險推薦結果頁：推薦路線、門診匿名追蹤的夥伴人數與平均調減幅度">
+          <figcaption>推薦結果頁。路線比較中 <strong>n&lt;10 的組別已排除</strong>，避免小樣本百分比誤導。</figcaption>
+        </figure>
+      </div>
     </div>
   </div>
 </section>
@@ -1523,12 +1591,17 @@ section{
     </div>
     <div class="case-body">
       <div class="slide-head"><h2>決策邏輯</h2></div>
-      <ul>
-        <li>風險分層依<strong>臨床指引</strong>產生，規則外顯可查核</li>
-        <li>用藥建議跟著分層走，<strong>邏輯寫在 rules 檔而非程式碼裡</strong>——指引更新時只改規則</li>
-      </ul>
-      <div class="todo-block">
-        <b>待補：</b>決策流程圖 1 張，以及依據的指引名稱與版本年份。
+      <div class="case-split">
+        <ul>
+          <li>風險分層依<strong>臨床指引</strong>產生，規則外顯可查核</li>
+          <li>用藥建議跟著分層走，<strong>邏輯寫在 rules 檔而非程式碼裡</strong>——指引更新時只改規則</li>
+          <li>判定依據直接列在結果頁上，<strong>醫師與病人都看得到為什麼</strong></li>
+        </ul>
+        <figure class="shot">
+          <img src="images/p30_risk_result.png"
+               alt="骨折風險評估工具判定結果：低風險，並列出判斷依據與建議處置">
+          <figcaption>示範個案：65 歲女性、T-score −2.3、無脆弱性骨折史。<b class="todo">待補：所依循的指引名稱與版本年份</b></figcaption>
+        </figure>
       </div>
     </div>
   </div>

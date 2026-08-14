@@ -20,3 +20,6 @@ slides/fonts/*-VF.ttf
 # 早期未過關的封面底圖草稿 v1-v4（共 6.7MB）——不進版本歷史。
 # 檔案保留在本機 slides/images/ 供對照，定案採用的是 p19/p21/p24 三張。
 slides/images/cover_*.png
+
+# draw 技能的原始輸出（含未採用版本），定案的底圖已另存為 pNN_*.png 進版
+slides/images/generated/

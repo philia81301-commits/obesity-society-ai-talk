@@ -17,7 +17,9 @@
 - [x] 階段二：整理演講參考資料（見 `reference/material-inventory.md`、`reference/ai-privacy-security-notes.md`）
 - [x] 階段三：內容大綱（`content/outline-50slides.md`，v2.1，50張，減重生態系為主線／其餘門診工具為輔線）＋ 摘要 DOCX 已產出
 - [x] 階段四：HTML 離線簡報製作 —— 50 頁骨架完成、視覺系統定案（板塊識別色＋SVG 圖標＋資料視覺化）、
-      P19／P21／P24 手繪底圖定案、離線化完成並實測。**剩餘為內容補件（截圖與少數數據），見 handoff.md**
+      P19／P21／P24 手繪底圖定案、離線化完成並實測。
+      2026-08-15 補：**P1 封面底圖與立體標題定案**、P4 卡片放大、**P9 改以國際指引收錄現況取代無出處數字**、
+      **P20／P25／P27／P30 四張工具截圖已嵌入**。**剩餘內容補件見 handoff.md**
 - [ ] 階段五：PPTX 版本製作（存 OneDrive，不進 git）
 - [ ] 階段六：臨床數據套用四條鐵律二次核對（若有使用門診數據）
 
@@ -44,7 +46,8 @@ obesity-society-ai-talk/
 ├── reference/
 │   ├── material-inventory.md          舊簡報＋自製專案素材盤點（含減重評估表單／醫師輸入工具位置）
 │   ├── ai-privacy-security-notes.md   AI醫療隱私個資講義筆記
-│   └── citation-verification.md       2026新素材數字查證報告
+│   ├── citation-verification.md       2026新素材數字查證報告
+│   └── guideline-ai-scan-20260815.md  ★ADA 2026與國際肥胖學會「AI收錄現況」掃描（P9 的出處依據）
 ├── content/
 │   └── outline-50slides.md            50張投影片大綱 v2.1
 └── slides/
@@ -53,8 +56,10 @@ obesity-society-ai-talk/
     ├── build_fonts.py                 中文字型子集化腳本（改內文後需重跑，見下方離線化）
     ├── vendor/                        reveal.js 5.1.0 本地副本（reset.css／reveal.css／reveal.js）
     ├── fonts/                         Noto Sans/Serif TC 子集 woff2（*-VF.ttf 來源檔不進 git）
-    └── images/                        P19／P21／P24 手繪底圖（已定案採用）
-                                       cover_v1-v4 為早期未過關草稿，未進 git
+    └── images/                        P1 封面底圖、P19／P21／P24 手繪底圖（已定案採用）
+                                       ＋ p20/p25/p27/p30 四張工具操作截圖
+                                       ⚠️ 新圖不可命名 cover_*.png（.gitignore 擋掉該樣式）
+                                       generated/ 為 draw 技能原始輸出，不進 git
 
 最終成品（摘要 DOCX、簡報 PPTX）存放於
 D:\潘湘如\演講\2026演講\肥胖醫學會南區研討會\，不進本 repo（見工作約定）
@@ -89,7 +94,7 @@ cd slides && python build_fonts.py
 |------|------|------|---------|
 | L1 | 本地（`C:\projects\obesity-society-ai-talk\`） | `agents.md`＋`handoff.md` | 每個 session |
 | L2 | GitHub（**跨電腦同步唯一管道**） | philia81301-commits/obesity-society-ai-talk（公開） | 指定時 |
-| L3 | Obsidian | 未啟用（這台電腦沒有 Obsidian MCP，之後可在有 Obsidian 的電腦說「補建第三層級」） | 有需要時 |
+| L3 | Obsidian | `2ndBrain/obesity-society-ai-talk/專案工作流程.md`（2026-08-15 補建） | 需要完整背景脈絡時 |
 
 ## 工作約定
 - 任何 Agent、任何電腦：**開工先讀 `handoff.md`，收工必更新 `handoff.md`**
