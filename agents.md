@@ -15,18 +15,23 @@
 ## 目標與路線圖
 - [x] 階段一：RDQ 需求訪談確認、專案初始化
 - [x] 階段二：整理演講參考資料（見 `reference/material-inventory.md`、`reference/ai-privacy-security-notes.md`）
-- [x] 階段三：內容大綱（`content/outline-50slides.md`，50張三板塊比例配置）＋ 摘要 DOCX 已產出
-- [ ] 階段四：HTML 離線簡報製作（風格待使用者確認）
+- [x] 階段三：內容大綱（`content/outline-50slides.md`，v2.1，50張，減重生態系為主線／其餘門診工具為輔線）＋ 摘要 DOCX 已產出
+- [ ] 階段四：HTML 離線簡報製作（`html-slide-builder` skill，`slides/spec.yaml` 已完成並通過驗證；**卡在 BG 底圖視覺風格**，見 handoff.md）
 - [ ] 階段五：PPTX 版本製作（存 OneDrive，不進 git）
 - [ ] 階段六：臨床數據套用四條鐵律二次核對（若有使用門診數據）
 
 ## 待確認事項（不擋流程，先記錄）
-- [ ] 簡報視覺風格尚未確認
-- [ ] 大綱 P28-30「減重門診月報自動化＋遊戲」案例素材尚未定位
+- [x] ~~簡報視覺風格~~ 版面／字型／色彩已定案（見下），**但BG底圖的具體圖案風格仍未定案**，見 handoff.md
+- [x] ~~大綱 P28-30／P32-34「減重門診月報自動化＋遊戲」案例素材~~ 已定位並納入大綱（2026-08-14）
 - [ ] 大綱裡標記「⚠️需查證」的 2026 新素材數字，製作前需回頭核實原始文獻
 
+## HTML簡報設計定案（2026-08-14）
+- 版面／字型／色彩：學術沉穩風，白底墨綠（`#1B4332`），標題用Noto Serif TC，內文Noto Sans TC，詳見 `slides/spec.yaml` 的 `design_system`
+- 內容結構：`slides/spec.yaml`（50張，已過 `validate_spec.py`）——Ⅱ現況實務段以減重門診工具為主線（評估表單雙軌蒐集→AI管理系統RAG→月度分析自動化＋遊戲），骨鬆／肌少症／HP-clinic／pneumonia-clinic為輔線
+- BG／ICON分布：BG 15頁（每個板塊開篇＋Ⅱ段每個子案例開篇）、ICON 5頁，皆已超出skill建議值但為使用者明確要求
+- **BG底圖風格尚未定案**：已試4版皆被否決，詳見 handoff.md「下一步」
+
 ## 資料夾結構
-<!-- 初始化時尚無內容檔案，之後新增請更新本區塊 -->
 ```
 obesity-society-ai-talk/
 ├── agents.md
@@ -35,10 +40,13 @@ obesity-society-ai-talk/
 ├── rdq/
 │   └── RDQ-spec-obesity-society-ai-talk-20260814.md
 ├── reference/
-│   ├── material-inventory.md          舊簡報＋自製專案素材盤點
+│   ├── material-inventory.md          舊簡報＋自製專案素材盤點（含減重評估表單／醫師輸入工具位置）
 │   └── ai-privacy-security-notes.md   AI醫療隱私個資講義筆記
-└── content/
-    └── outline-50slides.md            50張投影片大綱
+├── content/
+│   └── outline-50slides.md            50張投影片大綱 v2.1
+└── slides/
+    ├── spec.yaml                      HTML簡報規格（html-slide-builder skill 格式，已驗證）
+    └── images/                        AI生圖草稿（4版golden sample皆未過關，未進git，見handoff.md）
 
 最終成品（摘要 DOCX、簡報 PPTX）存放於
 D:\潘湘如\演講\2026演講\肥胖醫學會南區研討會\，不進本 repo（見工作約定）

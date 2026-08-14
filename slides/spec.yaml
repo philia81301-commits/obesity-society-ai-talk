@@ -1,0 +1,388 @@
+schema_version: "html_slide_deck_v1"
+
+deck:
+  title: "人工智慧在肥胖治療運用的新發展"
+  presenter: "潘湘如 醫師｜高雄榮民總醫院家庭醫學部"
+  audience: "醫護人員（台灣肥胖醫學會 2026 南區學術研討會會員）"
+  language: "zh-TW"
+  project_slug: "obesity-ai-talk"
+  slide_count: 50
+
+design_system:
+  # 本場為醫學會學術演講，覆寫 SKILL.md 預設的深色霓虹科技風，
+  # 改用先前已與使用者確認的「學術沉穩風：白底墨綠」
+  palette:
+    accent: "#1B4332"      # 主色：墨綠（標題／強調／大數字）
+    accent2: "#52796F"     # 次色：灰綠（輔助元素、連結、圖標）
+    success: "#8A9A5B"     # 正向數據強調（橄欖金綠，如成效%、正面案例）
+    warn: "#B5651D"        # 風險／警示強調（赭紅棕，僅第三段資安落地挑戰使用）
+  background: "#FFFFFF"        # 主背景：純白
+  background_alt: "#F6F5F0"    # 章節分隔頁備用：暖米白
+  text_primary: "#22303C"      # 內文深炭灰（非純黑）
+  text_secondary: "#5B6B63"    # 次要文字：灰綠
+  fonts:
+    heading: "Noto Serif TC"        # 標題：思源宋體，學術權威感
+    body: "Noto Sans TC"            # 內文：思源黑體，清晰易讀
+    stat_number: "Noto Sans TC"     # 大數字統計卡：思源黑體 Black/900，不另外引入字型
+  layout_note: >
+    16:9，版面留白寬鬆（不做滿版設計）；標題下方一律加一條墨綠細線；
+    左上角小字標示板塊羅馬數字（Ⅰ／Ⅱ／Ⅲ）；頁尾放頁碼＋講題簡稱。
+    案例頁（P19-34）採「左側案例編號色塊＋右側內容」的一致子版型。
+    P36 時程佐證頁採「大數字卡片」自訂版型（非 schema 標準 tag）：
+    4 張卡片橫列，每張上方超大墨綠數字＋下方小字說明，比照
+    material-inventory.md 的「18天／當天／跨一夜／13分鐘」四筆真實數據。
+  bg_style_note: >
+    SKILL.md 預設的 BG prompt（深藍霓虹發光）不適用本場學術主題，
+    以下所有 BG 頁的 prompt_direction 已改寫為「淺色紙感背景＋極淡墨綠線稿」，
+    opacity 建議壓低至 0.08-0.15（遠低於 SKILL.md 預設的 0.3-0.4），
+    避免與白底黑字的學術版面衝突。
+  citation_note: >
+    P39-47（Ⅲ落地挑戰段）內容整理自成功大學計算機與網路中心李南逸主任
+    《AI時代之醫療隱私與個資保護挑戰》講義（見 reference/ai-privacy-security-notes.md）。
+    Phase 2 生成 HTML 時，P39 與 P47 需在頁面可見處（建議頁尾小字或內文最後一行）
+    明確顯示「資料來源：成功大學計算機與網路中心 李南逸主任《AI時代之醫療隱私與
+    個資保護挑戰》講義」字樣，不能只放在講者備忘稿。
+  style_reference: null
+
+slides:
+  - id: 1
+    title: "標題頁"
+    summary: "講題「人工智慧在肥胖治療運用的新發展」、潘湘如醫師、高雄榮民總醫院家庭醫學部、台灣肥胖醫學會2026南區學術研討會、2026-09-20。"
+    tags: ["BG"]
+    bg:
+      prompt_direction: "soft off-white paper-textured background, extremely faint deep forest-green ink-line abstract medical data motif suggesting a subtle line chart and molecular network, generous negative space, minimal editorial academic illustration, no text, no glow, no neon"
+      opacity: 0.12
+
+  - id: 2
+    title: "為什麼現在要談這個"
+    summary: "肥胖照護負擔持續上升，與AI技術快速演進在此刻交會；開場以文字雲收集聽眾對「AI在減重門診最能發揮的環節」的第一印象。"
+    tags: ["INTERACT:wordcloud"]
+    interact:
+      type: "wordcloud"
+
+  - id: 3
+    title: "今日架構"
+    summary: "四段式地圖：發展脈絡（過去到現在）→ 臨床導入現況（四個實務案例）→ 落地挑戰（資安與個資）→ 結語與展望。"
+    tags: []
+
+  - id: 4
+    title: "AI 於肥胖醫學應用的分析框架"
+    summary: "以「診斷／管理／研究」三面向作為全場回顧的分類骨架，沿用2024/2025素材架構。板塊Ⅰ開篇，掛BG標示進入新板塊。"
+    tags: ["BG", "ICON"]
+    bg:
+      prompt_direction: "pale off-white background, faint deep green ink-line motif of a timeline or ascending curve suggesting research development over time, minimal academic editorial style, no text, no glow"
+      opacity: 0.12
+    icon:
+      items:
+        - "icon_diagnosis：診斷－風險預測、代謝表型分群"
+        - "icon_management：管理－穿戴裝置與數位行為介入"
+        - "icon_research：研究－GLP-1與AI結合的精準醫療"
+
+  - id: 5
+    title: "過去：AI輔助診斷與風險分層（一）"
+    summary: "2018-2022奠基期——兒童肥胖預測模型的早期研究，AI如何從人口學與生理指標預測未來肥胖風險。"
+    tags: []
+
+  - id: 6
+    title: "過去：AI輔助診斷與風險分層（二）"
+    summary: "2018-2022奠基期——代謝表型分群研究，AI如何從異質的肥胖族群中辨識具臨床意義的亞型。"
+    tags: []
+
+  - id: 7
+    title: "中期：穿戴裝置與數位行為介入（一）"
+    summary: "2022-2024驗證期——穿戴裝置實證累積的統合分析，數位監測工具在體重管理的證據等級演進。"
+    tags: []
+
+  - id: 8
+    title: "中期：穿戴裝置與數位行為介入（二）"
+    summary: "2022-2024驗證期——自我監控成效研究，數位行為介入對減重維持的實證證據。"
+    tags: []
+
+  - id: 9
+    title: "政策與產業採用現況"
+    summary: "台灣衛福政策白皮書對智慧照護的規劃方向，以及智慧照護採用率調查數字。"
+    tags: []
+
+  - id: 10
+    title: "消費端平台的 AI 產品化（一）：Noom"
+    summary: "Noom的技術路線——以心理行為驅動模型為核心的AI體重管理設計。"
+    tags: []
+
+  - id: 11
+    title: "消費端平台的 AI 產品化（二）：WeightWatchers"
+    summary: "WeightWatchers的技術路線——臨床整合模型，與Noom的心理驅動路線對比。"
+    tags: []
+
+  - id: 12
+    title: "現在：GLP-1藥物與AI結合的進展（一）"
+    summary: "Mayo Clinic／Phenomix GRS研究（liraglutide，n=110，噁心副作用比例68% vs 30%，會議摘要層級）；TiP DecScore：<55歲亞組中用藥符合AI建議者HbA1c控制率64.1% vs不符合者46.2%。"
+    tags: []
+
+  - id: 13
+    title: "現在：GLP-1藥物與AI結合的進展（二）"
+    summary: "AI參與度對藥物成效的影響（JMIR 2026 e83718：tirzepatide第12月，engaged -22.89% vs non-engaged -17.55%）；市場規模引用DelveInsight $38.5B（限定主要市場，非全球）。"
+    tags: []
+
+  - id: 14
+    title: "新興方向：Agentic AI在肥胖照護"
+    summary: "MediKarma「Diabetes & Obesity Jill」MAU 35%、HealthVerity eXOs（廠商自評零幻覺）；WeGoTogether成效-20.4%／-50.5%，須揭露24個月時樣本僅325人（存活者偏誤）。"
+    tags: []
+
+  - id: 15
+    title: "產業模式演變"
+    summary: "從賣藥到資源配置決策引擎——支付端與雇主端如何運用AI重新設計肥胖照護的商業模式。"
+    tags: []
+
+  - id: 16
+    title: "小結：三個發展階段的共同軌跡"
+    summary: "回顧奠基期、驗證期、精準醫療期三階段，共同軌跡是從理論驗證走向臨床可操作工具；收斂「過去到現在」的關鍵轉折點，銜接下一段的臨床實務導入現況。"
+    tags: []
+
+  - id: 17
+    title: "過渡頁：從文獻回顧到臨床實務導入現況"
+    summary: "承轉頁，從第一段的學術回顧過渡到第二段的實際臨床工作導入案例。"
+    tags: ["BG"]
+    bg:
+      prompt_direction: "pale ivory background, faint ink-wash deep green horizon line suggesting a path transitioning from left to right, minimal abstract academic style, no text, no glow"
+      opacity: 0.1
+
+  - id: 18
+    title: "本節架構：減重生態系為主線，其餘門診工具為輔"
+    summary: "現況實務案例以減重門診工具為主線——資料蒐集自動化→AI病人溝通→AI資料分析，三者構成完整生態系；骨鬆、肌少症篩檢工具作為方法論可複製性的輔線佐證。本節案例含兩層「AI」意義：部分工具本身運用AI技術（如RAG），所有工具則都由AI agent輔助開發完成——這是「AI導入臨床工作」的兩種不同層次，會分開講清楚。板塊Ⅱ開篇，掛BG標示進入新板塊。"
+    tags: ["BG", "ICON"]
+    bg:
+      prompt_direction: "pale off-white background, faint deep green ink-line motif of three interconnected nodes forming a small workflow loop, minimal academic editorial style, no text, no glow"
+      opacity: 0.12
+    icon:
+      items:
+        - "icon_collect：資料蒐集自動化－減重評估表單"
+        - "icon_communicate：AI病人溝通－門診AI管理系統(RAG)"
+        - "icon_analyze：AI資料分析－減重門診月度分析自動化"
+
+  - id: 19
+    title: "減重評估表單（一）雙軌資料蒐集設計"
+    summary: "病人可初診前線上填寫Google表單（單一區段設計解決舊版問卷跳題斷資料的問題）；醫師看診時也可用「減重門診輸入工具」下拉選單快速輸入，兩者資料寫入同一份回覆試算表。工具本身是純表單＋樣板拼接，不含AI技術，但由AI agent輔助開發、當天上線。子案例開篇，掛BG標示切入新工具。"
+    tags: ["BG"]
+    bg:
+      prompt_direction: "pale off-white background, faint deep green ink-line motif of a simple form or clipboard icon rendered abstractly, minimal academic editorial style, no text, no glow"
+      opacity: 0.12
+
+  - id: 20
+    title: "減重評估表單（二）自動產生病歷貼稿＋驅動下游"
+    summary: "醫師輸入工具一鍵「產生病歷文字」，把下拉選單資料組成可直接貼病歷系統的結構化貼稿（樣板拼接，非AI生成），同時背景送出同一筆到Google表單，免去雙重輸入；結構化回覆是後續AI管理系統與月度分析自動化共同的資料基礎建設。"
+    tags: []
+
+  - id: 21
+    title: "AI管理系統（一）問題背景與RAG設計"
+    summary: "臨床決策輔助與病人溝通案例——門診AI管理系統的設計動機、RAG架構如何接上院內資料庫。子案例開篇，掛BG標示切入新工具。"
+    tags: ["BG"]
+    bg:
+      prompt_direction: "pale off-white background, faint deep green ink-line motif of a speech bubble connected to a small database cylinder, minimal academic editorial style, no text, no glow"
+      opacity: 0.12
+
+  - id: 22
+    title: "AI管理系統（二）RAG架構降低幻覺風險"
+    summary: "以滑桿對比呈現：無RAG的一般對話式AI（籠統作答、可能編造衛教資訊）vs 有RAG接院內資料庫（先檢索再作答、附實際資料來源）。"
+    tags: ["VIZ"]
+    viz:
+      left_label: "無 RAG（一般對話式AI）"
+      right_label: "有 RAG（接院內資料庫）"
+      left_items:
+        - "憑訓練資料籠統作答"
+        - "可能編造不存在的衛教資訊（幻覺）"
+        - "無法引用院內實際數據"
+      right_items:
+        - "先檢索院內資料庫再作答"
+        - "回答附實際資料來源"
+        - "敏感問題自動轉介真人"
+
+  - id: 23
+    title: "AI管理系統（三）敏感問題自動轉介與應用成效"
+    summary: "當病人提問涉及敏感健康議題時，系統如何自動判斷並轉介真人醫療人員；實際門診溝通輔助的應用場景與初步成效觀察。"
+    tags: []
+
+  - id: 24
+    title: "月度分析自動化（一）流程總覽"
+    summary: "行政與資料分析效率化案例——從Google Drive原始資料（含P19-20的評估表回覆），經統計腳本分析，自動產出HTML／PPTX／DOCX三種格式報告的完整流程。子案例開篇（本場一大亮點），掛BG標示切入新工具。"
+    tags: ["BG"]
+    bg:
+      prompt_direction: "pale off-white background, faint deep green ink-line motif of a cloud connected to three small document outlines, minimal academic editorial style, no text, no glow"
+      opacity: 0.12
+
+  - id: 25
+    title: "月度分析自動化（二）定期檢視成效——一大亮點"
+    summary: "每月固定執行的月度比較：新增個案特徵、藥物成效趨勢、未回診率雙軌口徑，讓門診經營成效不再只靠年度回顧，而能逐月追蹤。"
+    tags: []
+
+  - id: 26
+    title: "月度分析自動化（三）雲端發布與時程佐證"
+    summary: "全流程18天從動手到上線，並自動發布至GitHub Pages、OneDrive、Google Drive三處雲端，每月固定執行一次。"
+    tags: []
+
+  - id: 27
+    title: "衍生應用：「減重大冒險」路線推薦遊戲"
+    summary: "衍生病人衛教工具，玩家答7關後依本院匿名統計自動推薦五種減重路線，數字每月隨月度分析同步更新。"
+    tags: []
+
+  - id: 28
+    title: "骨鬆風險評估工具（一）問題背景"
+    summary: "輔線案例——骨質疏鬆骨折風險評估與用藥決策工具的臨床痛點與設計動機，示範同一套方法論在減重門診之外也能複製。子案例開篇，掛BG標示切入新工具。"
+    tags: ["BG"]
+    bg:
+      prompt_direction: "pale off-white background, faint deep green ink-line motif of a simple skeletal bone silhouette rendered abstractly, minimal academic editorial style, no text, no glow"
+      opacity: 0.12
+
+  - id: 29
+    title: "骨鬆風險評估工具（二）設計原則"
+    summary: "純前端、不存個資、地端運算——工具的核心設計原則，呼應第三段資安論述。"
+    tags: []
+
+  - id: 30
+    title: "骨鬆風險評估工具（三）決策邏輯"
+    summary: "風險分層與用藥建議如何依臨床指引產生，決策流程的具體邏輯拆解。"
+    tags: []
+
+  - id: 31
+    title: "骨鬆風險評估工具（四）臨床應用場景"
+    summary: "實際門診使用場景與初步成效，GitHub Pages上線中、純前端不存資料。"
+    tags: []
+
+  - id: 32
+    title: "肌少症篩檢工具（一）問題背景"
+    summary: "輔線案例——SARC-F+SARC-CalF問卷式初篩的設計動機與臨床需求。子案例開篇，掛BG標示切入新工具。"
+    tags: ["BG"]
+    bg:
+      prompt_direction: "pale off-white background, faint deep green ink-line motif of a simple muscle or grip-strength icon rendered abstractly, minimal academic editorial style, no text, no glow"
+      opacity: 0.12
+
+  - id: 33
+    title: "肌少症篩檢工具（二）判定邏輯與離線架構"
+    summary: "AWGS 2019兩段式判定邏輯如何落地為可操作的篩檢工具流程；PWA離線架構因應社區篩檢站現場無穩定網路環境的限制。"
+    tags: []
+
+  - id: 34
+    title: "肌少症篩檢工具（三）社區篩檢實測數據"
+    summary: "已有社區篩檢站實測數據，呈現工具在真實場域的可用性與成效。"
+    tags: []
+
+  - id: 35
+    title: "同方法論延伸到其他門診"
+    summary: "同一套「rules.json＋決策引擎」方法論已複製到體重管理以外的場域：HP-clinic（幽門螺旋桿菌陽性處置決策工具＋病人衛教單張，公開GitHub Pages）、pneumonia-clinic（PPV23/PCV13/PCV20/PCV21成人肺炎鏈球菌疫苗比較決策器＋PPTX＋病人衛教單張）。共同目標：減少重複問診與行政負擔，把醫師心力留給臨床判斷。子案例開篇，掛BG標示切入新工具。"
+    tags: ["BG"]
+    bg:
+      prompt_direction: "pale off-white background, faint deep green ink-line motif of small branching paths spreading outward from a single point, minimal academic editorial style, no text, no glow"
+      opacity: 0.12
+
+  - id: 36
+    title: "工具導入時程量化佐證"
+    summary: "大數字卡片呈現實測開發時程：18天（月度分析＋遊戲）／當天（評估表單）／跨一夜（骨鬆工具）／13分鐘（肌少症工具）；AI管理系統(RAG)與HP、PCV兩項延伸工具複雜度較高未特別記錄動手時間，不強行湊數字。附方法學限制說明（commit時間非投入工時、第一案含學習期、各案複雜度不同）。"
+    tags: []
+
+  - id: 37
+    title: "共通導入方法論：三步驟框架"
+    summary: "從減重門診三案例延伸到骨鬆、肌少症、HP、PCV共八項工具歸納出的共通方法論：需求盤點→最小可行版本→迭代驗證三步驟，回顧各案例如何走過這三步，驗證框架的可複製性。"
+    tags: ["ICON"]
+    icon:
+      items:
+        - "icon_scope：需求盤點－釐清臨床痛點與資料來源"
+        - "icon_mvp：最小可行版本－先求可用再求完美"
+        - "icon_iterate：迭代驗證－依實測回饋持續修正"
+
+  - id: 38
+    title: "小結：現況實務案例對臨床工作流程的具體影響"
+    summary: "總結減重生態系三案例＋輔線案例（骨鬆、肌少症、HP、PCV）對臨床工作流程的實際影響；現場投票收集聽眾最想優先導入的應用類型。"
+    tags: ["BG", "INTERACT:poll"]
+    bg:
+      prompt_direction: "pale ivory background, extremely subtle deep green ink-line motif of a shield or lock rendered in delicate line style, minimal negative space, no text, no glow"
+      opacity: 0.1
+    interact:
+      type: "poll"
+      options:
+        - "A　資料蒐集自動化"
+        - "B　AI病人溝通"
+        - "C　AI資料分析"
+        - "D　篩檢自動化（骨鬆／肌少症）"
+
+  - id: 39
+    title: "為何AI導入必然伴隨新的資安個資課題"
+    summary: "承接上一段的實務案例，說明AI落地臨床工作的同時，個資保護與資訊安全成為醫療人員必須正視的新課題。本段（P39-47）內容整理自成功大學計算機與網路中心李南逸主任《AI時代之醫療隱私與個資保護挑戰》講義，於本頁與段落末頁（P47）明確標註出處。板塊Ⅲ開篇，掛BG標示進入新板塊。"
+    tags: ["BG"]
+    bg:
+      prompt_direction: "pale off-white background, faint deep amber-tinted green ink-line motif of a padlock or shield rendered abstractly, minimal academic editorial style, no text, no glow"
+      opacity: 0.12
+
+  - id: 40
+    title: "我國個資法對醫療特種個資的規範框架"
+    summary: "個資法第6條：病歷、醫療、基因等特種個資原則禁止蒐集，例外之一是去識別化後供醫療衛生統計或學術研究使用。"
+    tags: []
+
+  - id: 41
+    title: "官方認定之去識別化技術手法"
+    summary: "個資法施行細則第17條五種手法：剔除遮蔽、模糊化區間化、雜湊代碼化、加噪差分隱私、數據聚合；對照講者工具「不存姓名、只算分數」的設計。五項並列，掛ICON強化記憶點。"
+    tags: ["ICON"]
+    icon:
+      items:
+        - "icon_mask：剔除與遮蔽－刪除或遮蔽姓名、身分證字號"
+        - "icon_generalize：模糊化與區間化－精確數據換寬泛區間"
+        - "icon_hash：雜湊與代碼化－不可逆單向雜湊，不留對照表"
+        - "icon_noise：加噪與差分隱私－加入隨機雜訊維持統計準確度"
+        - "icon_aggregate：數據聚合－只輸出統計結果，不留個體資料"
+
+  - id: 42
+    title: "個資反推風險案例（一）：Strava熱圖"
+    summary: "去識別化的全球運動軌跡熱圖，被研究人員結合衛星地圖與打卡時間，反推出美軍秘密基地位置與特定士兵身分。"
+    tags: []
+
+  - id: 43
+    title: "個資反推風險案例（二）：Netflix匿名觀影數據"
+    summary: "Netflix公開50萬用戶觀影評分數據辦競賽，研究人員僅用6部電影評分與時間，99%準確度還原用戶真實身分。"
+    tags: []
+
+  - id: 44
+    title: "個資反推風險案例（三）：美國郵遞區號還原身分"
+    summary: "美國研究：僅「郵遞區號＋生日＋性別」三項特徵，比對公開選民登記資料庫即可精準定位全美87%特定個人。"
+    tags: []
+
+  - id: 45
+    title: "AI醫療新挑戰：風險矩陣"
+    summary: "語音AI／病歷摘要／問答機器人三類生成式AI應用的風險矩陣，涵蓋資料串聯、跨境傳輸、模型訓練二次利用等共通風險。三項並列，掛ICON強化記憶點。"
+    tags: ["ICON"]
+    icon:
+      items:
+        - "icon_voice：語音AI－錄音外洩、聲紋識別、STT轉錄錯誤"
+        - "icon_summary：病歷摘要－AI推論過度延伸、未經確認進病歷"
+        - "icon_chatbot：問答機器人－Prompt Injection、敏感資料直接輸入"
+
+  - id: 46
+    title: "呼應：地端部署、資料不上傳的架構設計"
+    summary: "「資料不上傳」是比「去識別化」更上游的防線，對照Strava、Netflix等去識別化後仍被還原的案例，說明講者工具純前端、零後端傳輸的設計價值。"
+    tags: []
+
+  - id: 47
+    title: "小結：資安治理應內建於工具設計階段"
+    summary: "資安與個資保護不是事後補救的合規檢查項目，而應該從工具設計的第一天就內建於架構之中。頁尾再次標註本段資料來源：成功大學計算機與網路中心李南逸主任《AI時代之醫療隱私與個資保護挑戰》講義。"
+    tags: ["BG"]
+    bg:
+      prompt_direction: "soft off-white background, faint deep green ink-line abstract motif of layered protective circles suggesting a foundation or root structure, minimal academic editorial style, no text, no glow"
+      opacity: 0.12
+
+  - id: 48
+    title: "三階段發展脈絡總結"
+    summary: "過去驗證理論、現在落地應用、資安治理同步跟進——三階段共同構成AI在肥胖醫學運用的完整現況。板塊「結語與展望」開篇，掛BG標示進入最後板塊。"
+    tags: ["BG"]
+    bg:
+      prompt_direction: "soft off-white background, faint deep green ink-line motif of three small connected milestones along an ascending path, minimal academic editorial style, no text, no glow"
+      opacity: 0.12
+
+  - id: 49
+    title: "未來展望與可複製的實務方法"
+    summary: "從四個案例歸納的方法論，作為其他臨床工作者導入AI工具時可複製參考的實務路徑。"
+    tags: []
+
+  - id: 50
+    title: "Q&A與聯絡方式"
+    summary: "開放提問，附講者聯絡方式與案例工具連結。"
+    tags: ["BG"]
+    bg:
+      prompt_direction: "soft off-white paper-textured background, faint deep green ink-line abstract motif of a compass or open horizon suggesting future outlook, generous negative space, minimal academic style, no text, no glow"
+      opacity: 0.12

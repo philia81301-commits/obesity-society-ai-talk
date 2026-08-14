@@ -60,8 +60,17 @@
 | `sarcopenia-clinic` | SARC-F+SARC-CalF 初篩 →AWGS 2019 判定 | PWA 離線可用，已有社區篩檢站實測 |
 | `減重門診AI管理.pptx`（`AI\2026\`） | 門診自建 AI 管理系統（含 RAG 架構說明） | 第9張投影片備註完整說明如何讓聊天機器人不產生幻覺、敏感問題自動轉介 |
 
-### ❓ 待確認
-- 大綱提到的「減重月度分析＋減重大冒險遊戲」是否為「減重門診成效分析」skill 的產出？若能找到實際畫面/數據，會是**對肥胖醫學會聽眾最直接對題**的案例，建議優先確認
+### ✅ 已確認（2026-08-14，家中電腦 DESKTOP-LVSV9Q5 定位）
+「減重月度分析＋減重大冒險遊戲」確認為「減重門診成效分析」skill 的產出，已納入 P24-27。素材位置：
+- 月度報告三格式產出：`C:\Users\phili\OneDrive\文件\減重門診分析產出\2026_06\`、`2026_07\`（HTML／PPTX／DOCX＋NotebookLM簡報）
+- 自動化流程原始碼：`%USERPROFILE%\.claude\tools\weight-clinic\`（analyze_case.js 等分析腳本＋build_pptx.js／build_docx.js 產出模板）
+- 公開發布版：https://philia81301-commits.github.io/weight-clinic-reports/（索引頁）、`.../2026-07.html`（報告）、`.../game.html`（遊戲）
+- 遊戲原始檔：`C:\Users\phili\OneDrive\文件\減重方式適配遊戲.html`
+
+### ✅ 已確認（2026-08-14）：減重評估表單雙軌資料蒐集，已納入 P19-20
+- **病人自填表單**：Google Form，由 `建立減重評估表.gs`（`C:\Users\phili\Downloads\`）建立，回覆寫入 `減重評估表 (回覆)` 試算表（ID `1VjST7r22TwcxGVsNhpRF_1-O25vCPnCf35ie3myvfaY`，即月度分析的原始資料來源）；正式運作版在 Google Drive `G:\我的雲端硬碟\門診工具-正式運作中\減重評估表.gform`
+- **醫師輸入工具**：獨立 repo `philia81301-commits/weight-clinic`（單一 `index.html`），發布於 https://philia81301-commits.github.io/weight-clinic/ ——下拉選單快速輸入，`generateNote()` 樣板拼接產生病歷貼稿（非AI生成），`copyAndSubmit()` 背景送出同一筆到上述回覆試算表
+- 兩者皆純表單／樣板邏輯，不含AI/LLM技術，定位為「AI agent開發的資料蒐集自動化」
 
 ---
 
