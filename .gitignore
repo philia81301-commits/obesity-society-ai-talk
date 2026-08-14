@@ -1,0 +1,13 @@
+desktop.ini
+*.tmp
+~$*
+.env
+*.key
+credentials.*
+
+# 臨床／原始資料，一律不進公開 repo
+*.xlsx
+*.xls
+*.csv
+*.pptx
+*.docx
