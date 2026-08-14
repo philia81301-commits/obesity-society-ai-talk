@@ -3,7 +3,7 @@
 > 本檔為跨 Agent 通用的專案藍圖（AGENTS.md 開放標準）。任何 Agent 的每個 session 都應先讀本檔＋`handoff.md`。
 
 ## 專案簡介
-為肥胖醫學會會員製作一場 45-60 分鐘工作坊型演講，主題是「AI 在肥胖醫學／減重門診的應用」。開場先講肥胖醫學 AI 研究趨勢，實戰段落展示講者自己已產出的 AI 專案（`agent-roadshow`、`osteoporosis-clinic`、`sarcopenia-clinic`）。最終同時產出 PPTX（供大會繳交存查，成品存 OneDrive／演講資料夾，不進 git）與離線可播的單一 HTML（現場播放，本 repo 管理原始碼）。
+為台灣肥胖醫學會 2026 南區學術研討會製作一場 50 張投影片、40 分鐘的演講，講題「人工智慧在肥胖治療運用的新發展」。**架構為 v2（專業角度）**：以「發展脈絡（過去→現在）＋應用分類（診斷／管理／研究）」的學術回顧為主軸，講者自己已產出的 AI 專案（`agent-roadshow`、`osteoporosis-clinic`、`sarcopenia-clinic`）改列為第二段「現況實務」的案例佐證（機構視角，非個人敘事），最後一段是 AI 資訊安全與個資保護。最終同時產出 PPTX（供大會繳交存查，成品存 OneDrive／演講資料夾，不進 git）與離線可播的單一 HTML（現場播放，本 repo 管理原始碼）。
 
 ## 關鍵時程
 - **演講日期：2026-09-20**（台灣肥胖醫學會 2026 南區學術研討會）
@@ -23,6 +23,7 @@
 ## 待確認事項（不擋流程，先記錄）
 - [x] ~~簡報視覺風格~~ 版面／字型／色彩已定案（見下），**但BG底圖的具體圖案風格仍未定案**，見 handoff.md
 - [x] ~~大綱 P28-30／P32-34「減重門診月報自動化＋遊戲」案例素材~~ 已定位並納入大綱（2026-08-14）
+- [x] ~~2026新素材數字查證~~ 已完成，見 `reference/citation-verification.md`，結果已回填大綱
 - [ ] 大綱裡標記「⚠️需查證」的 2026 新素材數字，製作前需回頭核實原始文獻
 
 ## HTML簡報設計定案（2026-08-14）
@@ -38,10 +39,11 @@ obesity-society-ai-talk/
 ├── handoff.md
 ├── .gitignore
 ├── rdq/
-│   └── RDQ-spec-obesity-society-ai-talk-20260814.md
+│   └── RDQ-spec-obesity-society-ai-talk-20260814.md   需求規格卡（revisions:4）
 ├── reference/
 │   ├── material-inventory.md          舊簡報＋自製專案素材盤點（含減重評估表單／醫師輸入工具位置）
-│   └── ai-privacy-security-notes.md   AI醫療隱私個資講義筆記
+│   ├── ai-privacy-security-notes.md   AI醫療隱私個資講義筆記
+│   └── citation-verification.md       2026新素材數字查證報告
 ├── content/
 │   └── outline-50slides.md            50張投影片大綱 v2.1
 └── slides/
