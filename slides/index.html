@@ -192,6 +192,15 @@ section{
 .end-slide{ text-align:center; }
 .end-slide h1{ font-size:2.1em; }
 .end-slide .rule{ width:110px; height:3px; background: var(--sec); margin:.75em auto .85em; }
+/* P50 工具連結：網址要能被台下抄下來或拍照，所以不縮寫、不做超連結樣式 */
+.links{
+  display:grid; grid-template-columns:1fr 1fr; gap:10px 22px;
+  max-width:82%; margin:1.1em auto 0; text-align:left;
+}
+.lk{ border-left:2px solid var(--sec-2); padding-left:12px; }
+.lk-n{ display:block; font-size:.42em; font-weight:700; color: var(--sec); line-height:1.5; }
+.lk-u{ display:block; font-size:.34em; color: var(--text-2); line-height:1.6; word-break:break-all; }
+.lk-note{ font-size:.36em; color: var(--text-2); margin-top:1em; }
 
 /* --- 掛強烈底圖的頁面（P19/P21/P24 減重門診三工具） ---
    插畫主體實際從畫面 ~57% 起（1536x1024 套進 16:9 會上下裁切、主體放大），
@@ -1664,7 +1673,14 @@ section{
         <li><strong>臨床痛點</strong>：骨折風險評估與用藥決策需反覆查表、對照指引</li>
         <li>決策邏輯明確但步驟繁瑣——<strong>正是適合工具化的類型</strong></li>
       </ul>
-      <div class="todo-block"><b>待補：</b>設計動機的具體場景描述（哪一類病人、原本花多少時間）。</div>
+      <div class="quote-box">
+        真正的起點是<strong>一件自費針劑的爭議</strong>：需要與家屬反覆溝通，後續還進到衛生局的爭議會議。
+        過程中才發現問題不在那支藥——病人從頭到尾<strong>沒有真正弄懂為什麼要打、要打多久、停了會怎樣</strong>。
+      </div>
+      <div class="key-box">
+        工具不是為了導入 AI 而做，是<strong>被臨床現實逼出來的</strong>。
+        要補的是<strong>溝通的斷點</strong>，技術只是手段。
+      </div>
     </div>
   </div>
 </section>
@@ -1739,8 +1755,11 @@ section{
       <ul>
         <li>已於 <strong>GitHub Pages 上線</strong>，純前端、不存資料</li>
         <li>門診當場即可操作，不需登入、不需安裝</li>
+        <li>診間<strong>當下點閱、當下生成個人化衛教單</strong>，病人帶得走</li>
       </ul>
-      <div class="todo-block"><b>待補：</b>初步成效觀察（使用頻率／節省時間）。無量化數據則以質性描述呈現。</div>
+      <div class="quote-box">
+        目前以質性觀察為主：省下的不是計算時間，而是<strong>把判斷依據攤開給病人看</strong>的那段解釋。
+      </div>
     </div>
   </div>
 </section>
@@ -1931,9 +1950,6 @@ section{
       <div class="adv-title">迭代驗證</div>
       <div class="adv-desc">依實測回饋持續修正</div>
     </div>
-  </div>
-  <div class="todo-block">
-    <b>待補（選配）：</b>可挑 1–2 個案例，具體回顧它們如何走過這三步（例：肌少症工具在哪一步被現場回饋改寫）。
   </div>
 </section>
 
@@ -2278,11 +2294,19 @@ section{
     <div style="margin-top:1.6em; font-size:.52em; line-height:2;">
       潘湘如 醫師｜高雄榮民總醫院 家庭醫學部
     </div>
-    <div class="todo-block" style="text-align:left; max-width:74%; margin:1.2em auto 0;">
-      <b>待補：</b>聯絡方式（email 或院內分機），以及要公開的案例工具連結。<br>
-      建議只放公開 repo 的 GitHub Pages 網址（如骨鬆、肌少症、HP、PCV 工具），
-      <b>不要放含真實門診資料的月報站</b>。
+    <!-- 刻意只放四個純前端、不存資料的工具站；
+         月報站（weight-clinic-reports）含真實門診彙總，不列。 -->
+    <div class="links">
+      <div class="lk"><span class="lk-n">骨質疏鬆門診工具</span>
+        <span class="lk-u">philia81301-commits.github.io/osteoporosis-clinic</span></div>
+      <div class="lk"><span class="lk-n">肌少症篩檢紀錄工具</span>
+        <span class="lk-u">philia81301-commits.github.io/sarcopenia-clinic</span></div>
+      <div class="lk"><span class="lk-n">幽門螺旋桿菌陽性處置工具集</span>
+        <span class="lk-u">philia81301-commits.github.io/HP-clinic</span></div>
+      <div class="lk"><span class="lk-n">成人肺炎鏈球菌疫苗工具</span>
+        <span class="lk-u">philia81301-commits.github.io/pneumonia-clinic</span></div>
     </div>
+    <div class="lk-note">四個站皆為單頁前端、<strong>不儲存任何資料</strong>，可直接開啟試用。</div>
   </div>
 </section>
 
