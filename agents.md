@@ -24,7 +24,10 @@
       作法為 `slides/build_pptx.py`：Playwright 以 1280×720、2 倍解析度逐頁截圖，
       python-pptx 滿版貼圖並把每頁文字寫進備忘稿（保留可搜尋性）。
       **內容有異動就重跑一次**，成品覆蓋同一資料夾。
-- [ ] 階段六：臨床數據套用四條鐵律二次核對（若有使用門診數據）
+- [x] 階段六：臨床數據套用四條鐵律二次核對 —— **P25 性別編碼交叉驗證經使用者於 2026-08-15 決定略過**，
+      本階段結案（其餘三條鐵律：n<10 未當亮點、藥物欄位未做分組統計、展示個案皆為現行工具截圖，均無適用問題）
+- [ ] 階段七：上台前定稿（2026-08-15 新增，四項待辦見 handoff.md）——
+      PPTX 加頁碼、P9 政策段補新資料、補門診實地照片、P22 改為整頁資訊呈現
 
 ## 待確認事項（不擋流程，先記錄）
 - [x] ~~簡報視覺風格~~ 版面／字型／色彩已定案（見下），**但BG底圖的具體圖案風格仍未定案**，見 handoff.md
@@ -46,17 +49,23 @@ obesity-society-ai-talk/
 ├── .gitignore
 ├── rdq/
 │   └── RDQ-spec-obesity-society-ai-talk-20260814.md   需求規格卡（revisions:4）
+├── index.html                        ★觀眾填答頁（手機版，GitHub Pages 發布，P2 的 QR 指向這裡）
 ├── reference/
 │   ├── material-inventory.md          舊簡報＋自製專案素材盤點（含減重評估表單／醫師輸入工具位置）
 │   ├── ai-privacy-security-notes.md   AI醫療隱私個資講義筆記
 │   ├── citation-verification.md       2026新素材數字查證報告
-│   └── guideline-ai-scan-20260815.md  ★ADA 2026與國際肥胖學會「AI收錄現況」掃描（P9 的出處依據）
+│   ├── guideline-ai-scan-20260815.md  ★ADA 2026與國際肥胖學會「AI收錄現況」掃描（P9 的出處依據）
+│   ├── osteoporosis-guideline-scan-20260815.md  ★骨鬆工具判定邏輯的指引溯源（P30 標註依據）
+│   └── firebase-setup.md              ★現場互動的建置步驟＋Firestore 安全性規則全文
 ├── content/
 │   └── outline-50slides.md            50張投影片大綱 v2.1
 └── slides/
     ├── index.html                     ★簡報本體（50頁，離線可播）
     ├── spec.yaml                      HTML簡報規格（html-slide-builder skill 格式，已驗證）
+    ├── live-config.js                 ★現場互動設定（Firebase config 待填，未填會自動降級）
     ├── build_fonts.py                 中文字型子集化腳本（改內文後需重跑，見下方離線化）
+    ├── build_qr.py                    產生 P2 的作答 QR（網址改了要重跑）
+    ├── build_pptx.py                  ★HTML→PPTX 轉檔（階段五，內容異動就重跑）
     ├── vendor/                        reveal.js 5.1.0 本地副本（reset.css／reveal.css／reveal.js）
     ├── fonts/                         Noto Sans/Serif TC 子集 woff2（*-VF.ttf 來源檔不進 git）
     └── images/                        P1 封面底圖、P19／P21／P24 手繪底圖（已定案採用）
