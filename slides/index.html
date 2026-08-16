@@ -123,6 +123,12 @@ section{
 .reveal .slide-number{
   background:none; color: var(--text-2); font-size:14px; opacity:.6; right:26px; bottom:12px;
 }
+/* Reveal 把頁碼包在 <a> 裡，預設帶超連結底線；PPTX 是直接截圖，底線會一起進成品。 */
+.reveal .slide-number a{ color:inherit; text-decoration:none; }
+/* 封面是深色底圖，頁碼（淺灰、opacity .6）在上面幾乎看不見——與其留一團看不清的字，
+   不如明確隱藏。用 :has() 純 CSS 判斷，舊瀏覽器不支援時規則失效、退回原狀，不會壞。
+   ⚠️ 必須加 !important：Reveal 是用 inline style 設 display:block，樣式表權重贏不了。 */
+.reveal:has(.slides > section.cover-bg.present) .slide-number{ display:none !important; }
 .reveal .progress{ color: var(--sec); height:3px; }
 .reveal .controls{ color: var(--sec-2); }
 
@@ -486,21 +492,6 @@ section{
   padding:14px 18px; font-size:.42em; color:#7A5B00; line-height:1.7; margin-top:.6em;
 }
 .todo-block b{ color:#7A5B00; }
-
-/* --- VIZ 滑桿（P22） --- */
-.viz-wrap{ position:relative; height:328px; border:1px solid var(--rule); border-radius:3px; overflow:hidden; margin-top:.4em; background:#fff; }
-.viz-pane{ position:absolute; inset:0; padding:26px 30px; }
-.viz-pane.after{ clip-path: inset(0 100% 0 0); background: var(--bg-alt); }
-.viz-pane .vp-label{ font-size:.48em; font-weight:700; margin-bottom:.5em; }
-.viz-pane.before .vp-label{ color: var(--warn); }
-.viz-pane.after  .vp-label{ color: var(--sec); }
-.viz-pane ul{ font-size:.48em; }
-.viz-divider{
-  position:absolute; top:0; left:0; width:2px; height:100%;
-  background: var(--sec); pointer-events:none; z-index:5;
-}
-.viz-slider{ width:100%; margin-top:14px; accent-color: var(--sec); }
-.viz-hint{ font-size:.36em; color: var(--text-2); text-align:center; margin-top:.2em; }
 
 /* --- 現場互動（P2 文字雲／P38 投票） ---
    資料來自 Firestore，設定在 live-config.js。
@@ -974,43 +965,46 @@ section{
 <section data-slide="9">
   <div class="sec-mark">Ⅰ　發展脈絡</div>
   <div class="slide-head">
-    <h2>政策與產業採用現況</h2>
+    <h2>政策已到位，指引的證據等級還沒跟上</h2>
   </div>
-  <!-- .tight：加入 key-box 對照塊後整頁到 92%，壓縮上方兩欄換取空間 -->
+  <!-- .tight：本頁元素多（兩欄＋key-box＋長 cite），保留壓縮修飾類。
+       2026-08-16 加入 2026/5 生成式 AI 指引時同步精簡各塊文字，實測 81%。 -->
   <div class="two-col tight">
     <div class="col-box mark-a">
-      <div class="cb-title">2025 衛生福利政策白皮書</div>
+      <div class="cb-title">我國政策進程</div>
       <ul>
-        <li>遠距醫療：偏鄉與醫療資源不足地區</li>
-        <li>輔具：提升自主生活與生活品質</li>
-        <li>健康資訊系統、<strong>AI 與大數據</strong></li>
-        <li>智慧家庭、穿戴裝置、遠距監測系統</li>
+        <li><strong>2025 政策白皮書</strong>：<strong>AI 與大數據</strong>、遠距醫療、穿戴監測</li>
+        <li><strong>2026.05 生成式 AI 指引</strong>：適用所有醫院及診所</li>
+        <li><strong>Human-in-the-Loop</strong>：AI 輸出不得直接作為診斷依據</li>
       </ul>
     </div>
     <div class="col-box mark-b">
-      <div class="cb-title">國際指引收錄現況</div>
+      <div class="cb-title">指引收錄現況</div>
       <ul>
-        <li>ADA 指引<strong>肥胖與體重管理章</strong>　AI 提及
+        <li><strong>ADA 2026</strong>（體重管理章、全套 20 章、肥胖專屬指引）
+          AI 與 machine learning 各提及
           <span class="em-num" style="color:var(--sec-2);">0</span> 次</li>
-        <li>2026 全套 20 章　machine learning
-          <span class="em-num" style="color:var(--sec-2);">0</span> 次</li>
-        <li>ADA <strong>肥胖專屬指引</strong>兩章　AI
-          <span class="em-num" style="color:var(--sec-2);">0</span> 次</li>
+        <li><strong>台灣 2025</strong>：醫療科技介入列
+          <strong>1A</strong>（強建議、證據高）</li>
+        <li>但 <strong>AI 聊天機器人</strong>與<strong>臨床決策輔助系統（CDSS）</strong>兩條僅
+          <strong style="color:var(--warn);">2C</strong>（弱建議、證據低）</li>
       </ul>
     </div>
   </div>
   <div class="key-box">
-    數位化是政策方向，但 <b>AI 至今未寫進任何一條肥胖治療建議條文</b>——落差正是本場要談的空間。
+    問題不在 AI 有沒有被寫進指引，而在<b>證據只停在最低那一格</b>——
+    醫療科技整體是 1A，一到 AI 的具體應用就掉到 2C。
     <span class="kb-note">
-      對照：同一時期的<b>台灣骨鬆指引已經把 AI 寫進條文</b>——定位為輔助性篩檢工具，
-      診斷仍須依循 DXA 或脆弱性骨折標準。可見不是醫界還沒準備好，是肥胖領域還沒輪到。
+      該章由本場講者執筆：撰寫當時能給的最高等級就是 2C。
+      缺的不是想像力，是<b>可放進系統性回顧的實務證據</b>——這正是第二段要補的空缺。
     </span>
   </div>
   <div class="cite">
     ADA. Standards of Care in Diabetes—2026. <i>Diabetes Care</i> 2026;49(Suppl 1)（Section 8：DOI 10.2337/dc26-S008）；
     The Obesity Association. Standards of Care in Overweight and Obesity（DOI 10.1136/bmjdrc-2025-005729、10.1136/bmjdrc-2026-006247）。
     以 Europe PMC 全文檢索，檢索日 2026-08-15。
-    骨鬆對照：2025 台灣成人骨質疏鬆症防治之共識及指引（中華民國骨質疏鬆症學會，114 年 10 月版）第 18 頁。
+    台灣：成人肥胖指引 2025〈科技與虛擬醫療在體重管理的運用〉章 GRADE 建議表（本場講者執筆）。
+    生成式 AI 指引：《醫療機構應用生成式人工智慧指引》衛部醫字第 1151663164 號（2026-05-29）。
   </div>
 </section>
 
@@ -1438,29 +1432,37 @@ section{
     <div class="case-body">
       <div class="slide-head">
         <h2>RAG 架構如何降低幻覺風險</h2>
-        <div class="sub">拖曳滑桿，比較有無 RAG 的差異</div>
+        <div class="sub">知識庫內容：學會治療指引與教科書</div>
       </div>
-      <div class="viz-wrap">
-        <div class="viz-pane before">
-          <div class="vp-label">無 RAG（一般對話式 AI）</div>
+      <div class="two-col tight">
+        <div class="col-box mark-w">
+          <div class="cb-title">一般對話式 AI</div>
           <ul>
-            <li>憑訓練資料籠統作答</li>
-            <li>可能編造不存在的衛教資訊（幻覺）</li>
-            <li>無法引用院內實際數據</li>
+            <li>依模型<strong>訓練時的記憶</strong>作答——記憶可能過時，也可能根本沒有</li>
+            <li>答錯時語氣一樣肯定，<strong>從文字看不出來</strong></li>
+            <li>追問出處，只能再編一個</li>
           </ul>
+          <div style="font-size:.4em; color:var(--warn); margin-top:.5em; font-weight:700;">
+            解決的是「答得像」
+          </div>
         </div>
-        <div class="viz-pane after" id="viz-after">
-          <div class="vp-label">有 RAG（接院內資料庫）</div>
+        <div class="col-box" style="--sec:#2D6A4F; border-top:3px solid #2D6A4F;">
+          <div class="cb-title" style="color:#2D6A4F;">接上知識庫（RAG）</div>
           <ul>
-            <li>先檢索院內資料庫再作答</li>
-            <li>回答附實際資料來源</li>
-            <li>敏感問題自動轉介真人</li>
+            <li>先檢索<strong>學會指引與教科書</strong>的相關段落</li>
+            <li>生成被<strong>限制在檢索到的內容</strong>之內</li>
+            <li>回答附上引用段落，<strong>可以回頭查證</strong></li>
           </ul>
+          <div style="font-size:.4em; color:#2D6A4F; margin-top:.5em; font-weight:700;">
+            解決的是「答得準」
+          </div>
         </div>
-        <div class="viz-divider" id="viz-divider"></div>
       </div>
-      <input class="viz-slider" id="viz-slider" type="range" min="0" max="100" value="0" aria-label="RAG 對比滑桿">
-      <div class="viz-hint">← 拖曳比較 →</div>
+      <div class="key-box">
+        <b>RAG 不是讓模型更聰明，是讓它只能講有據可查的話。</b>
+        <span class="kb-note">幻覺的根源是憑記憶生成；RAG 把作答依據從模型記憶換成檢索到的指引段落，
+        壓縮的是答錯的空間，而不是期待模型自己變準。</span>
+      </div>
     </div>
   </div>
 </section>
@@ -1491,7 +1493,7 @@ section{
         <div class="flow-step">
           <div class="fs-ic"><svg class="ic sm"><use href="#ic-summary"/></svg></div>
           <div class="fs-title">檢索知識庫</div>
-          <div class="fs-desc">衛教單張<br>＋治療指引</div>
+          <div class="fs-desc">學會指引<br>＋教科書</div>
         </div>
         <div class="flow-arrow">›</div>
         <div class="flow-step">
@@ -2000,16 +2002,37 @@ section{
 <section data-slide="40">
   <div class="sec-mark">Ⅲ　落地挑戰</div>
   <div class="slide-head">
-    <h2>我國個資法對醫療特種個資的規範框架</h2>
-    <div class="sub">個人資料保護法 第 6 條</div>
+    <h2>AI 導入門診要守住的兩道法規界線</h2>
+    <div class="sub">病人資料怎麼用，以及誰負責、能對外說什麼</div>
   </div>
-  <ul>
-    <li><strong>病歷、醫療、基因</strong>等特種個資，<strong>原則禁止蒐集、處理、利用</strong></li>
-    <li>例外之一：<strong>去識別化後</strong>，供醫療衛生統計或學術研究使用</li>
-    <li>臨床意涵：門診自製工具要用到病人資料，<strong>「去識別化」是法定入場券</strong></li>
-  </ul>
+  <div class="two-col tight">
+    <div class="col-box mark-w">
+      <div class="cb-title">一、病人資料怎麼用</div>
+      <ul>
+        <li><strong>病歷、醫療、基因</strong>等特種個資，<strong>原則禁止蒐集、處理、利用</strong></li>
+        <li>例外之一：<strong>去識別化後</strong>，供醫療衛生統計或學術研究使用</li>
+        <li>門診自製工具要用到病人資料，<strong>「去識別化」是法定入場券</strong></li>
+      </ul>
+      <div style="font-size:.4em; color:var(--text-2); margin-top:.6em; font-weight:700;">
+        個人資料保護法 第 6 條
+      </div>
+    </div>
+    <div class="col-box" style="--sec:#8C4A2F; border-top:3px solid #8C4A2F;">
+      <div class="cb-title" style="color:#8C4A2F;">二、誰負責、能對外說什麼</div>
+      <ul>
+        <li><strong>AI 不是法律主體</strong>：診斷、處方、劑量調整的責任仍在醫師，
+            AI 只能是<strong>輔助建議</strong>，不能是決定者</li>
+        <li>診所以 <strong>LINE 等通訊軟體對外發布的 AI 回覆，可能構成醫療廣告</strong>，
+            同受規範，<strong>不得誇大療效</strong>（如「一個月瘦 10 公斤」）</li>
+      </ul>
+      <div style="font-size:.4em; color:var(--text-2); margin-top:.6em; font-weight:700;">
+        醫師法 §11｜醫療法 §82、§9、§87｜醫療機構網際網路資訊管理辦法 §3
+      </div>
+    </div>
+  </div>
   <div class="key-box">
-    但接下來三個案例會說明：<strong>去識別化本身，並不等於安全</strong>。
+    兩道界線都守住，才輪到談技術。
+    <span class="kb-note">但接下來三個案例會說明：<strong>去識別化本身，並不等於安全</strong>。</span>
   </div>
 </section>
 
@@ -2224,8 +2247,8 @@ section{
     </div>
   </div>
   <div class="cite" style="margin-top:1.5em;">
-    本段（P39–47）資料來源：成功大學計算機與網路中心 李南逸主任
-    《AI 時代之醫療隱私與個資保護挑戰》講義
+    本段（P39–47）個資論述主要資料來源：成功大學計算機與網路中心 李南逸主任
+    《AI 時代之醫療隱私與個資保護挑戰》講義；P40 責任歸屬與醫療廣告部分依醫師法、醫療法
   </div>
 </section>
 
@@ -2276,6 +2299,10 @@ section{
     <li><strong>資安從第一天內建</strong>：能不上傳的資料，就不要上傳</li>
   </ul>
   <div class="quote-box">
+    <div style="margin-bottom:.45em;">
+      <strong>AI 提供地圖，醫師擔任嚮導</strong>——人力有限的門診尤其如此，
+      AI 補上的是原本就空著的位置。
+    </div>
     真正的問題不是「科技或人」，而是兩者如何結合，
     <strong>使整體大於部分之和</strong>——為的是更公平、更具人性的醫療照護。
     <div style="font-size:.8em; color:var(--text-2); text-align:right; margin-top:.5em;">
@@ -2344,20 +2371,9 @@ section{
     plugins: []
   });
 
-  /* --- P22 VIZ 滑桿：clip-path 揭露 --- */
-  (function(){
-    var slider  = document.getElementById('viz-slider');
-    var after   = document.getElementById('viz-after');
-    var divider = document.getElementById('viz-divider');
-    if (!slider) return;
-    function render(v){
-      after.style.clipPath = 'inset(0 ' + (100 - v) + '% 0 0)';
-      divider.style.left = v + '%';
-      divider.style.opacity = (v === 0 || v === 100) ? 0 : 1;
-    }
-    slider.addEventListener('input', function(){ render(+this.value); });
-    render(0);
-  })();
+  /* P22 的 clip-path 滑桿已於 2026-08-16 移除，改為整頁靜態對照。
+     原因：對照內容過於結論式，拉開前後資訊量幾乎相同，揭露效果不成立。
+     對應的 .viz-* CSS 一併刪除。 */
 </script>
 
 <!-- ============================================================

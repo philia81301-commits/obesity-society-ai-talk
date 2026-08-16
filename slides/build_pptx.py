@@ -41,8 +41,12 @@ def render_slides() -> list[tuple[Path, str]]:
         page.wait_for_function("typeof Reveal !== 'undefined' && Reveal.isReady()")
 
         # 匯出時隱藏操作介面；字型必須等載入完成，否則會截到 fallback 字型
+        # ⚠️ 只隱藏 .controls 與 .progress，**不要**隱藏 .slide-number——
+        #    右下角頁碼要保留，與 HTML 版一致（2026-08-16 修正）。
+        #    頁碼由 Reveal 的 slideNumber:'c/t' 產生、樣式在 index.html 的 .reveal .slide-number，
+        #    所以不需在 python-pptx 端另外加文字方塊。
         page.add_style_tag(content="""
-            .reveal .controls, .reveal .progress, .reveal .slide-number { display:none !important; }
+            .reveal .controls, .reveal .progress { display:none !important; }
         """)
         page.evaluate("document.fonts.ready")
         time.sleep(1.2)

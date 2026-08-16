@@ -23,3 +23,6 @@ slides/images/cover_*.png
 
 # draw 技能的原始輸出（含未採用版本），定案的底圖已另存為 pNN_*.png 進版
 slides/images/generated/
+
+# build_pptx.py 的逐頁截圖暫存（每次重建都會重新產生，50 張約數十 MB）
+slides/shots/
