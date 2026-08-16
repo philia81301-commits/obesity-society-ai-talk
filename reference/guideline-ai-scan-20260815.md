@@ -21,6 +21,9 @@
 出處：Section 8 = *Diabetes Care* 2026;49(Suppl 1):S166–S182，DOI `10.2337/dc26-S008`。
 肥胖專屬指引 = DOI `10.1136/bmjdrc-2025-005729`（藥物治療）、`10.1136/bmjdrc-2026-006247`（篩檢分期）。
 
+> 📎 **Section 8 已於 2026-08-17 以官方排版 PDF 全 17 頁逐字複核，結論不變**（AI／digital 皆 0 次）。
+> 逐字級佐證、條文原文定位、可用金句見 [`ada-sec8-digital-scan-20260817.md`](ada-sec8-digital-scan-20260817.md)。
+
 > ⚠️ 2026 版 Section 8 標題已拿掉 "Type 2"（改為 "…Prevention and Treatment of **Diabetes**"）。
 
 ### 指引真正寫進去的是「數位」不是「AI」
@@ -81,3 +84,5 @@
 - AACE 2025 肥胖／ABCD 演算法共識全文是否提及 AI（期刊 403）
 - AI-in-MBS Delphi 共識（*Sci Rep* 2025, DOI `10.1038/s41598-025-94335-0`）28 條逐條文字與同意百分比（Nature 登入牆，只讀到摘要）
 - 多數期刊全文取自 PMC 開放版本，**未目視期刊排版 PDF**；逐字引用上投影片前建議再核對一次
+  - ✅ **ADA Section 8 已於 2026-08-17 完成官方 PDF 目視核對**（見 `ada-sec8-digital-scan-20260817.md`）
+  - ⬜ §5.6、§3.6、§1.8 仍停留在全文檢索層級，尚未目視官方 PDF
