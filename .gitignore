@@ -26,3 +26,6 @@ slides/images/generated/
 
 # build_pptx.py 的逐頁截圖暫存（每次重建都會重新產生，50 張約數十 MB）
 slides/shots/
+
+# Python 匯入快取（import build_fonts 等操作會產生）
+__pycache__/

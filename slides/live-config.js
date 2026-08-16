@@ -11,12 +11,12 @@ window.TALK_LIVE = {
   /* ↓↓↓ Firebase Console → 專案設定 → 一般 → 你的應用程式 → SDK 設定與配置 → 「設定」
          把整個 firebaseConfig 物件的六個值貼過來取代 PASTE_* */
   firebaseConfig: {
-    apiKey:            "PASTE_API_KEY",
-    authDomain:        "PASTE_PROJECT_ID.firebaseapp.com",
-    projectId:         "PASTE_PROJECT_ID",
-    storageBucket:     "PASTE_PROJECT_ID.firebasestorage.app",
-    messagingSenderId: "PASTE_SENDER_ID",
-    appId:             "PASTE_APP_ID"
+    apiKey:            "AIzaSyBXXCQ5x0iWicUfe47U5LTgz3_83MrDNB4",
+    authDomain:        "obesity-ai-firebase.firebaseapp.com",
+    projectId:         "obesity-ai-firebase",
+    storageBucket:     "obesity-ai-firebase.firebasestorage.app",
+    messagingSenderId: "343364935435",
+    appId:             "1:343364935435:web:ce3e80555052f4f3c1cc0e"
   },
 
   /* Firestore 集合名稱。用本場專屬名稱，避免跨場次資料污染。
@@ -29,7 +29,7 @@ window.TALK_LIVE = {
     { id: 'a', label: '資料蒐集自動化' },
     { id: 'b', label: 'AI 病人溝通' },
     { id: 'c', label: 'AI 資料分析' },
-    { id: 'd', label: '篩檢自動化（骨鬆／肌少症）' }
+    { id: 'd', label: '自動化篩檢合適減重藥物' }
   ],
 
   /* 觀眾填答頁網址（QR code 指向這裡）。
