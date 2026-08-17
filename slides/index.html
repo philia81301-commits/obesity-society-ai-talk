@@ -465,6 +465,13 @@ section{
   flex:0 0 34px; display:flex; align-items:center; justify-content:center;
   color: var(--sec-line); font-size:.6em; font-weight:700;
 }
+/* 實拍照放進 flow-step，讓「步驟卡」與「現場照」自動對齊同一欄；
+   固定高度 ＋ cover 裁切，三張照片比例不同也不會把卡片撐成不等高。 */
+.flow-step .fs-photo{
+  width:100%; height:138px; object-fit:cover; border-radius:2px;
+  border:1px solid var(--sec-soft); margin-bottom:10px; display:block;
+}
+.flow-step .fs-cap{ font-size:.3em; color: var(--text-2); margin-top:-4px; margin-bottom:8px; }
 
 /* --- 階段推進（時間縱貫，如三個發展階段） --- */
 .phase-row{ display:grid; grid-template-columns:repeat(3,1fr); gap:0; margin-top:.6em; align-items:stretch; }
@@ -968,7 +975,11 @@ section{
     <h2>政策已到位，指引的證據等級還沒跟上</h2>
   </div>
   <!-- .tight：本頁元素多（兩欄＋key-box＋長 cite），保留壓縮修飾類。
-       2026-08-16 加入 2026/5 生成式 AI 指引時同步精簡各塊文字，實測 81%。 -->
+       2026-08-16 加入 2026/5 生成式 AI 指引時同步精簡各塊文字，實測 81%。
+       2026-08-17 加入 ADA §8.8a/§8.8b 的 A→E 落差後一度衝到 1.004（爆版 75px）。
+       解法：右欄三條 bullet 全部壓到「兩行以內」（原本各 3 行、各 70px），
+       再把 cite 從 5 行併成 4 行（108→84px）。實測 0.876，餘裕 17px。
+       ⚠️ 右欄 bullet 只要多一個字換行就會多 23px，改字前先量。 -->
   <div class="two-col tight">
     <div class="col-box mark-a">
       <div class="cb-title">我國政策進程</div>
@@ -981,30 +992,28 @@ section{
     <div class="col-box mark-b">
       <div class="cb-title">指引收錄現況</div>
       <ul>
-        <li><strong>ADA 2026</strong>（體重管理章、全套 20 章、肥胖專屬指引）
-          AI 與 machine learning 各提及
+        <li><strong>ADA 2026</strong> 三份文件：AI 與 machine learning 各提及
           <span class="em-num" style="color:var(--sec-2);">0</span> 次</li>
-        <li><strong>台灣 2025</strong>：醫療科技介入列
-          <strong>1A</strong>（強建議、證據高）</li>
-        <li>但 <strong>AI 聊天機器人</strong>與<strong>臨床決策輔助系統（CDSS）</strong>兩條僅
-          <strong style="color:var(--warn);">2C</strong>（弱建議、證據低）</li>
+        <li>寫進去的是<strong>「數位」不是 AI</strong>：面對面課程 <strong>A</strong>，
+          遠距／app 僅 <strong style="color:var(--warn);">E</strong></li>
+        <li><strong>台灣 2025</strong>：醫療科技介入 <strong>1A</strong>，
+          AI 聊天機器人／CDSS 僅 <strong style="color:var(--warn);">2C</strong>（弱建議、證據低）</li>
       </ul>
     </div>
   </div>
   <div class="key-box">
     問題不在 AI 有沒有被寫進指引，而在<b>證據只停在最低那一格</b>——
-    醫療科技整體是 1A，一到 AI 的具體應用就掉到 2C。
+    而且兩套指引各掉一次：ADA 從 <b>A 掉到 E</b>，台灣從 <b>1A 掉到 2C</b>。
     <span class="kb-note">
       該章由本場講者執筆：撰寫當時能給的最高等級就是 2C。
       缺的不是想像力，是<b>可放進系統性回顧的實務證據</b>——這正是第二段要補的空缺。
     </span>
   </div>
   <div class="cite">
-    ADA. Standards of Care in Diabetes—2026. <i>Diabetes Care</i> 2026;49(Suppl 1)（Section 8：DOI 10.2337/dc26-S008）；
-    The Obesity Association. Standards of Care in Overweight and Obesity（DOI 10.1136/bmjdrc-2025-005729、10.1136/bmjdrc-2026-006247）。
-    以 Europe PMC 全文檢索，檢索日 2026-08-15。
-    台灣：成人肥胖指引 2025〈科技與虛擬醫療在體重管理的運用〉章 GRADE 建議表（本場講者執筆）。
-    生成式 AI 指引：《醫療機構應用生成式人工智慧指引》衛部醫字第 1151663164 號（2026-05-29）。
+    ADA. Standards of Care in Diabetes—2026. <i>Diabetes Care</i> 2026;49(Suppl 1):S166–S182（Section 8：DOI 10.2337/dc26-S008，§8.8a／§8.8b）；
+    肥胖專屬指引兩章（DOI 10.1136/bmjdrc-2025-005729、10.1136/bmjdrc-2026-006247）。Section 8 經官方期刊 PDF 逐字複核（2026-08-17），餘為 Europe PMC 檢索（2026-08-15）。
+    台灣：成人肥胖指引 2025〈科技與虛擬醫療在體重管理的運用〉GRADE 建議表（本場講者執筆）；
+    《醫療機構應用生成式人工智慧指引》衛部醫字第 1151663164 號（2026-05-29）。
   </div>
 </section>
 
@@ -1624,8 +1633,53 @@ section{
   </div>
 </section>
 
-<!-- P27 案例3-4 -->
-<section class="bg-faint" data-slide="27"
+<!-- P27 門診實務（現場實拍）
+     2026-08-17 新增。三張實拍照放在 .flow-step 內，與步驟卡同欄對齊。
+     ⚠️ 照片已去識別化：右側 HIS 螢幕、左螢幕病歷貼稿區均為實心遮罩，EXIF 全剝除。
+     原始 HEIC 不進 repo。遮罩座標與檢核紀錄見 reference/clinic-photo-redaction-20260817.md。 -->
+<section class="bg-faint" data-slide="27">
+  <div class="sec-mark">Ⅱ　現況實務</div>
+  <div class="slide-head">
+    <h2>門診實務：三個工具串成一次看診</h2>
+    <div class="sub">前面拆開講的工具，在診間是同一條動線</div>
+  </div>
+  <div class="flow">
+    <div class="flow-step">
+      <img class="fs-photo" src="images/clinic_input_tool_20260817.jpg"
+           alt="診間實拍：醫師以減重門診輸入工具的下拉選單完成評估輸入">
+      <div class="fs-cap">醫師端輸入工具</div>
+      <div class="fs-title">看診當下輸入</div>
+      <div class="fs-desc">下拉選單完成評估<br>不必另外打字</div>
+    </div>
+    <div class="flow-arrow">›</div>
+    <div class="flow-step">
+      <img class="fs-photo" src="images/clinic_discuss_1_20260817.jpg"
+           alt="診間實拍：醫師與病人一同檢視月度成效儀表板">
+      <div class="fs-cap">月度成效儀表板</div>
+      <div class="fs-title">當場調出成效</div>
+      <div class="fs-desc">個人進度與整體統計<br>同一個畫面看得到</div>
+    </div>
+    <div class="flow-arrow">›</div>
+    <div class="flow-step">
+      <img class="fs-photo" src="images/clinic_discuss_2_20260817.jpg"
+           alt="診間實拍：醫師以趨勢圖與藥物別統計與病人討論治療方向">
+      <div class="fs-cap">趨勢與藥物別統計</div>
+      <div class="fs-title">一起決定下一步</div>
+      <div class="fs-desc">依數據調整用藥與目標<br>而不是只憑印象</div>
+    </div>
+  </div>
+  <div class="key-box">
+    工具的價值不在任何單一步驟，而在<b>把三段接起來之後</b>——
+    輸入的當下就決定了下游拿得到什麼，而下游的數字又回到診間變成可以討論的東西。
+  </div>
+  <div class="cite">
+    診間實拍，2026-08-17，已取得病人同意。畫面中病人資料與院內系統均已遮蔽；照片不含可識別資訊。
+    此頁為前述案例一（減重評估表單）與案例三（月度分析）的實地對照。
+  </div>
+</section>
+
+<!-- P28 案例3-4 -->
+<section class="bg-faint" data-slide="28"
          data-background-image="images/p24_report_bg_20260814_231727.png"
          data-background-size="cover" data-background-opacity="0.1">
   <div class="case">
@@ -1656,9 +1710,9 @@ section{
   </div>
 </section>
 
-<!-- P28 [BG] 輔線A-1 -->
-<section class="section-open" data-background-color="#F6F5F0" data-slide="28">
-  <!-- [BG] spec.yaml P28，opacity 0.12 -->
+<!-- P29 [BG] 輔線A-1 -->
+<section class="section-open" data-background-color="#F6F5F0" data-slide="29">
+  <!-- [BG] spec.yaml P29，opacity 0.12 -->
   <div class="case">
     <div class="case-tab aux">
       <span class="ct-kind">輔線 案例</span>
@@ -1687,8 +1741,8 @@ section{
   </div>
 </section>
 
-<!-- P29 輔線A-2 -->
-<section data-slide="29">
+<!-- P30 輔線A-2 -->
+<section data-slide="30">
   <div class="case">
     <div class="case-tab aux">
       <span class="ct-kind">輔線 案例</span>
@@ -1711,8 +1765,8 @@ section{
   </div>
 </section>
 
-<!-- P30 輔線A-3 -->
-<section data-slide="30">
+<!-- P31 輔線A-3 -->
+<section data-slide="31">
   <div class="case">
     <div class="case-tab aux">
       <span class="ct-kind">輔線 案例</span>
@@ -1743,8 +1797,8 @@ section{
   </div>
 </section>
 
-<!-- P31 輔線A-4 -->
-<section data-slide="31">
+<!-- P32 輔線A-4 -->
+<section data-slide="32">
   <div class="case">
     <div class="case-tab aux">
       <span class="ct-kind">輔線 案例</span>
@@ -1766,9 +1820,9 @@ section{
   </div>
 </section>
 
-<!-- P32 [BG] 輔線B-1 -->
-<section class="section-open" data-background-color="#F6F5F0" data-slide="32">
-  <!-- [BG] spec.yaml P32，opacity 0.12 -->
+<!-- P33 [BG] 輔線B-1 -->
+<section class="section-open" data-background-color="#F6F5F0" data-slide="33">
+  <!-- [BG] spec.yaml P33，opacity 0.12 -->
   <div class="case">
     <div class="case-tab aux">
       <span class="ct-kind">輔線 案例</span>
@@ -1789,8 +1843,8 @@ section{
   </div>
 </section>
 
-<!-- P33 輔線B-2 -->
-<section data-slide="33">
+<!-- P34 輔線B-2 -->
+<section data-slide="34">
   <div class="case">
     <div class="case-tab aux">
       <span class="ct-kind">輔線 案例</span>
@@ -1820,8 +1874,8 @@ section{
   </div>
 </section>
 
-<!-- P34 輔線B-3 -->
-<section data-slide="34">
+<!-- P35 輔線B-3 -->
+<section data-slide="35">
   <div class="case">
     <div class="case-tab aux">
       <span class="ct-kind">輔線 案例</span>
@@ -1866,9 +1920,9 @@ section{
   </div>
 </section>
 
-<!-- P35 [BG] 方法論延伸 -->
-<section class="section-open" data-background-color="#F6F5F0" data-slide="35">
-  <!-- [BG] spec.yaml P35，opacity 0.12 -->
+<!-- P36 [BG] 方法論延伸 -->
+<section class="section-open" data-background-color="#F6F5F0" data-slide="36">
+  <!-- [BG] spec.yaml P36，opacity 0.12 -->
   <div class="opener" style="margin-bottom:.5em;">
     <h1 style="font-size:1.24em;">同方法論延伸到其他門診</h1>
     <div class="rule"></div>
@@ -1895,8 +1949,8 @@ section{
   </div>
 </section>
 
-<!-- P36 大數字卡片（自訂版型） -->
-<section data-slide="36">
+<!-- P37 大數字卡片（自訂版型） -->
+<section data-slide="37">
   <div class="sec-mark">Ⅱ　現況實務</div>
   <div class="slide-head">
     <h2>工具導入時程量化佐證</h2>
@@ -1929,8 +1983,8 @@ section{
   </div>
 </section>
 
-<!-- P37 [ICON] 三步驟方法論 -->
-<section data-slide="37">
+<!-- P38 [ICON] 三步驟方法論 -->
+<section data-slide="38">
   <div class="sec-mark">Ⅱ　現況實務</div>
   <div class="slide-head">
     <h2>共通導入方法論：三步驟框架</h2>
@@ -1955,9 +2009,9 @@ section{
   </div>
 </section>
 
-<!-- P38 [BG][INTERACT:poll] Ⅱ段小結 -->
-<section class="section-open" data-background-color="#F6F5F0" data-slide="38">
-  <!-- [BG] spec.yaml P38，opacity 0.10 -->
+<!-- P39 [BG][INTERACT:poll] Ⅱ段小結 -->
+<section class="section-open" data-background-color="#F6F5F0" data-slide="39">
+  <!-- [BG] spec.yaml P39，opacity 0.10 -->
   <div class="slide-head">
     <h2>小結：對臨床工作流程的具體影響</h2>
   </div>
@@ -1980,9 +2034,9 @@ section{
      Ⅲ 落地挑戰（P39-47）
      ============================================================ -->
 
-<!-- P39 [BG] 板塊Ⅲ開篇 -->
-<section class="section-open" data-background-color="#F6F5F0" data-slide="39">
-  <!-- [BG] spec.yaml P39，opacity 0.12 -->
+<!-- P40 [BG] 板塊Ⅲ開篇 -->
+<section class="section-open" data-background-color="#F6F5F0" data-slide="40">
+  <!-- [BG] spec.yaml P40，opacity 0.12 -->
   <div class="opener">
     <div class="roman">Ⅲ</div>
     <h1 style="font-size:1.28em;">為何 AI 導入必然伴隨<br>新的資安個資課題</h1>
@@ -1998,8 +2052,8 @@ section{
   </div>
 </section>
 
-<!-- P40 -->
-<section data-slide="40">
+<!-- P41 -->
+<section data-slide="41">
   <div class="sec-mark">Ⅲ　落地挑戰</div>
   <div class="slide-head">
     <h2>AI 導入門診要守住的兩道法規界線</h2>
@@ -2036,8 +2090,8 @@ section{
   </div>
 </section>
 
-<!-- P41 [ICON] -->
-<section data-slide="41">
+<!-- P42 [ICON] -->
+<section data-slide="42">
   <div class="sec-mark">Ⅲ　落地挑戰</div>
   <div class="slide-head">
     <h2>官方認定之去識別化技術手法</h2>
@@ -2075,8 +2129,8 @@ section{
   </div>
 </section>
 
-<!-- P42 -->
-<section data-slide="42">
+<!-- P43 -->
+<section data-slide="43">
   <div class="sec-mark">Ⅲ　落地挑戰</div>
   <div class="slide-head">
     <h2>個資反推風險（一）：Strava 熱圖</h2>
@@ -2106,8 +2160,8 @@ section{
   </div>
 </section>
 
-<!-- P43 -->
-<section data-slide="43">
+<!-- P44 -->
+<section data-slide="44">
   <div class="sec-mark">Ⅲ　落地挑戰</div>
   <div class="slide-head">
     <h2>個資反推風險（二）：Netflix 匿名觀影數據</h2>
@@ -2137,8 +2191,8 @@ section{
   </div>
 </section>
 
-<!-- P44 -->
-<section data-slide="44">
+<!-- P45 -->
+<section data-slide="45">
   <div class="sec-mark">Ⅲ　落地挑戰</div>
   <div class="slide-head">
     <h2>個資反推風險（三）：郵遞區號還原身分</h2>
@@ -2169,8 +2223,8 @@ section{
   </div>
 </section>
 
-<!-- P45 [ICON] -->
-<section data-slide="45">
+<!-- P46 [ICON] -->
+<section data-slide="46">
   <div class="sec-mark">Ⅲ　落地挑戰</div>
   <div class="slide-head">
     <h2>AI 醫療新挑戰：風險矩陣</h2>
@@ -2199,8 +2253,8 @@ section{
   </div>
 </section>
 
-<!-- P46 -->
-<section data-slide="46">
+<!-- P47 -->
+<section data-slide="47">
   <div class="sec-mark">Ⅲ　落地挑戰</div>
   <div class="slide-head">
     <h2>呼應：地端部署、資料不上傳的架構設計</h2>
@@ -2235,9 +2289,9 @@ section{
   </div>
 </section>
 
-<!-- P47 [BG] Ⅲ段小結 -->
-<section class="section-open" data-background-color="#F6F5F0" data-slide="47">
-  <!-- [BG] spec.yaml P47，opacity 0.12 -->
+<!-- P48 [BG] Ⅲ段小結 -->
+<section class="section-open" data-background-color="#F6F5F0" data-slide="48">
+  <!-- [BG] spec.yaml P48，opacity 0.12 -->
   <div class="opener">
     <h1 style="font-size:1.3em;">資安治理應內建於<br>工具設計階段</h1>
     <div class="rule"></div>
@@ -2256,9 +2310,9 @@ section{
      結語與展望（P48-50）
      ============================================================ -->
 
-<!-- P48 [BG] 結語開篇 -->
-<section class="section-open" data-background-color="#F6F5F0" data-slide="48">
-  <!-- [BG] spec.yaml P48，opacity 0.12 -->
+<!-- P49 [BG] 結語開篇 -->
+<section class="section-open" data-background-color="#F6F5F0" data-slide="49">
+  <!-- [BG] spec.yaml P49，opacity 0.12 -->
   <div class="opener" style="margin-bottom:.5em;">
     <h1 style="font-size:1.3em;">三階段發展脈絡總結</h1>
     <div class="rule"></div>
@@ -2285,8 +2339,8 @@ section{
   </div>
 </section>
 
-<!-- P49 -->
-<section data-slide="49">
+<!-- P50 -->
+<section data-slide="50">
   <div class="sec-mark">結語與展望</div>
   <div class="slide-head">
     <h2>未來展望與可複製的實務方法</h2>
@@ -2311,9 +2365,9 @@ section{
   </div>
 </section>
 
-<!-- P50 [BG] Q&A -->
-<section class="section-open" data-background-color="#F6F5F0" data-slide="50">
-  <!-- [BG] spec.yaml P50，opacity 0.12 -->
+<!-- P51 [BG] Q&A -->
+<section class="section-open" data-background-color="#F6F5F0" data-slide="51">
+  <!-- [BG] spec.yaml P51，opacity 0.12 -->
   <div class="end-slide">
     <h1>Q &amp; A</h1>
     <div class="rule"></div>

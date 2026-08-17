@@ -1,18 +1,18 @@
 # 現場互動設定步驟（Firebase ＋ GitHub Pages）
 
-> 對應簡報 **P2 即時文字雲**與 **P38 現場投票**。
+> 對應簡報 **P2 即時文字雲**與 **P39 現場投票**。
 > 程式碼已全部寫好，**只差一個 Firebase 專案**——這步必須由你在 Firebase Console 手動完成
 > （Agent 不能代為登入或建立帳號）。全部約 10 分鐘。
 
 ## 現在的狀態
 
 - ✅ 觀眾填答頁：`index.html`（repo 根目錄，手機版）
-- ✅ 簡報端顯示：`slides/index.html` 的 P2／P38
+- ✅ 簡報端顯示：`slides/index.html` 的 P2／P39
 - ✅ Firebase SDK 本地副本：`slides/vendor/firebase-*-compat.js`
 - ✅ QR code：`slides/images/qr_audience.png`
 - ⬜ **Firebase 專案 → 設定值填進 `slides/live-config.js`**
 
-**未填設定不會壞掉**：P2／P38 會顯示「互動未啟用——請改用口頭舉手」，其餘 48 頁完全不受影響。
+**未填設定不會壞掉**：P2／P39 會顯示「互動未啟用——請改用口頭舉手」，其餘 49 頁完全不受影響。
 
 ---
 
@@ -93,7 +93,7 @@ GitHub Pages 約 1 分鐘後更新。
 
 - [ ] 用手機（**行動網路，不要用會場 Wi-Fi**）掃 P2 的 QR，確認填答頁打得開
 - [ ] 送出一個測試答案，確認投影幕上的文字雲有跳出來
-- [ ] 投一票，確認 P38 長條有動
+- [ ] 投一票，確認 P39 長條有動
 - [ ] **測完把測試資料清掉**：Firestore Console → 兩個集合 → 刪除文件
 - [ ] 講者筆電確認能連網；**連不上就直接口頭舉手**，簡報會自己顯示提示，不用臨場改東西
 

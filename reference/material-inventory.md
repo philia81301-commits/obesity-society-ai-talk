@@ -61,7 +61,7 @@
 | `減重門診AI管理.pptx`（`AI\2026\`） | 門診自建 AI 管理系統（含 RAG 架構說明） | 第9張投影片備註完整說明如何讓聊天機器人不產生幻覺、敏感問題自動轉介 |
 
 ### ✅ 已確認（2026-08-14，家中電腦 DESKTOP-LVSV9Q5 定位）
-「減重月度分析＋減重大冒險遊戲」確認為「減重門診成效分析」skill 的產出，已納入 P24-27。素材位置：
+「減重月度分析＋減重大冒險遊戲」確認為「減重門診成效分析」skill 的產出，已納入 P24-28。素材位置：
 - 月度報告三格式產出：`C:\Users\phili\OneDrive\文件\減重門診分析產出\2026_06\`、`2026_07\`（HTML／PPTX／DOCX＋NotebookLM簡報）
 - 自動化流程原始碼：`%USERPROFILE%\.claude\tools\weight-clinic\`（analyze_case.js 等分析腳本＋build_pptx.js／build_docx.js 產出模板）
 - 公開發布版：https://philia81301-commits.github.io/weight-clinic-reports/（索引頁）、`.../2026-07.html`（報告）、`.../game.html`（遊戲）
