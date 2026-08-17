@@ -37,7 +37,10 @@ def render_slides() -> list[tuple[Path, str]]:
             browser = pw.chromium.launch()
         page = browser.new_page(viewport={"width": W, "height": H},
                                 device_scale_factor=SCALE)
-        page.goto(URL, wait_until="networkidle")
+        # ⚠️ 不可用 networkidle：Firebase 啟用後 Firestore 的即時監聽是長連線，
+        #    網路永遠不會靜下來，goto 會直接逾時（2026-08-17 踩到）。
+        #    改用 load，實際的就緒判斷交給下面的 Reveal.isReady() 與 document.fonts.ready。
+        page.goto(URL, wait_until="load")
         page.wait_for_function("typeof Reveal !== 'undefined' && Reveal.isReady()")
 
         # 匯出時隱藏操作介面；字型必須等載入完成，否則會截到 fallback 字型
