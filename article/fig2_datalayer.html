@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+  :root{ --ink:#1B4332; --ink2:#2D6A4F; --line:#B7C9BF; --src:#40916C; --core:#1D3557; --out:#9C6644; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    width:1120px; background:#fff;
+    font-family:"Microsoft JhengHei","微軟正黑體",sans-serif;
+    color:#1a1a1a; padding:32px 38px 26px;
+  }
+  .flow{display:flex; align-items:center; gap:0}
+  .col{display:flex; flex-direction:column; gap:16px; flex:1}
+  .arrows{display:flex; flex-direction:column; gap:16px; width:64px; flex:none; align-items:center}
+
+  .box{border:1.6px solid var(--line); border-radius:10px; overflow:hidden; background:#fff}
+  .tag{color:#fff; font-size:14px; font-weight:700; padding:6px 13px; letter-spacing:.05em}
+  .t-src{background:var(--src)} .t-core{background:var(--core)} .t-out{background:var(--out)}
+  .bt{font-size:21px; font-weight:800; color:var(--ink); padding:12px 16px 2px; line-height:1.25}
+  .bd{font-size:15.5px; color:#33463d; padding:0 16px 14px; line-height:1.55}
+
+  /* 中央：結構化欄位的抽象示意（灰條，不揭露實際欄位） */
+  .core{border:2px solid var(--core); border-radius:12px; padding:0 0 16px}
+  .core .bt{font-size:23px}
+  .schema{padding:4px 16px 0; display:flex; flex-direction:column; gap:9px}
+  .grp{display:flex; align-items:center; gap:9px}
+  .glab{font-size:13.5px; color:#5a6b62; width:74px; flex:none; text-align:right}
+  .bars{display:flex; gap:6px; flex:1}
+  .bar{height:13px; border-radius:3px; background:#ccd7d1}
+  .bar.on{background:var(--core)}
+
+  .arw{display:flex; flex-direction:column; align-items:center; gap:3px}
+  .arw span{font-size:12px; color:#6b7b73}
+
+  .foot{
+    margin-top:22px; border:1.6px solid var(--ink); border-radius:10px;
+    display:flex; align-items:center; overflow:hidden;
+  }
+  .foot .lab{background:var(--ink); color:#fff; font-size:16px; font-weight:700; padding:13px 20px; white-space:nowrap}
+  .foot .txt{font-size:16.5px; color:var(--ink); padding:0 20px; line-height:1.5}
+  .note{margin-top:10px; font-size:13.5px; color:#6b7b73; text-align:right}
+</style>
+<body>
+  <div class="flow">
+    <!-- 輸入來源 -->
+    <div class="col">
+      <div class="box">
+        <div class="tag t-src">輸入來源 ①　病人端</div>
+        <div class="bt">初診前線上表單</div>
+        <div class="bd">單一區段設計，不跳題，避免中途斷答造成資料缺漏</div>
+      </div>
+      <div class="box">
+        <div class="tag t-src">輸入來源 ②　醫師端</div>
+        <div class="bt">看診中輸入工具</div>
+        <div class="bd">以選項取代自由文字，看診當下即完成評估紀錄</div>
+      </div>
+    </div>
+
+    <div class="arrows">
+      <div class="arw">
+        <svg width="46" height="22" viewBox="0 0 46 22"><path d="M2 11h32" stroke="#1B4332" stroke-width="2.2" fill="none"/><path d="M32 4l10 7-10 7z" fill="#1B4332"/></svg>
+      </div>
+      <div class="arw">
+        <svg width="46" height="22" viewBox="0 0 46 22"><path d="M2 11h32" stroke="#1B4332" stroke-width="2.2" fill="none"/><path d="M32 4l10 7-10 7z" fill="#1B4332"/></svg>
+      </div>
+    </div>
+
+    <!-- 核心 -->
+    <div class="col">
+      <div class="box core">
+        <div class="tag t-core">共用同一份資料結構</div>
+        <div class="bt">結構化欄位</div>
+        <div class="schema">
+          <div class="grp"><div class="glab">基本資料</div><div class="bars"><div class="bar on" style="flex:2"></div><div class="bar" style="flex:1"></div><div class="bar" style="flex:1"></div></div></div>
+          <div class="grp"><div class="glab">身體測量</div><div class="bars"><div class="bar" style="flex:1"></div><div class="bar on" style="flex:1"></div><div class="bar" style="flex:2"></div></div></div>
+          <div class="grp"><div class="glab">生活型態</div><div class="bars"><div class="bar on" style="flex:1"></div><div class="bar" style="flex:2"></div><div class="bar" style="flex:1"></div></div></div>
+          <div class="grp"><div class="glab">病史與用藥</div><div class="bars"><div class="bar" style="flex:2"></div><div class="bar" style="flex:1"></div><div class="bar on" style="flex:1"></div></div></div>
+          <div class="grp"><div class="glab">治療意願</div><div class="bars"><div class="bar on" style="flex:1"></div><div class="bar" style="flex:1"></div><div class="bar" style="flex:2"></div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="arrows">
+      <div class="arw">
+        <svg width="46" height="22" viewBox="0 0 46 22"><path d="M2 11h32" stroke="#1B4332" stroke-width="2.2" fill="none"/><path d="M32 4l10 7-10 7z" fill="#1B4332"/></svg>
+        <span>一次輸入</span>
+      </div>
+      <div class="arw">
+        <svg width="46" height="22" viewBox="0 0 46 22"><path d="M2 11h32" stroke="#1B4332" stroke-width="2.2" fill="none"/><path d="M32 4l10 7-10 7z" fill="#1B4332"/></svg>
+        <span>兩路輸出</span>
+      </div>
+    </div>
+
+    <!-- 輸出 -->
+    <div class="col">
+      <div class="box">
+        <div class="tag t-out">輸出 ①　當次看診</div>
+        <div class="bt">病歷貼稿</div>
+        <div class="bd">依樣板組合成文字段落，貼入病歷系統；非生成式模型輸出</div>
+      </div>
+      <div class="box">
+        <div class="tag t-out">輸出 ②　後續分析</div>
+        <div class="bt">同一筆資料寫回試算表</div>
+        <div class="bd">背景送出，累積為月度成效分析的資料來源</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <div class="lab">這一層的意義</div>
+    <div class="txt">把散落在問答與紙本的內容變成可分析的欄位——沒有結構化資料，後續兩項 AI 應用就沒有可分析的對象</div>
+  </div>
+  <div class="note">概念示意圖，非實際操作畫面；本層未使用 AI 技術</div>
+</body>

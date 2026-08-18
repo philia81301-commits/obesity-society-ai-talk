@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+  :root{
+    --ink:#1B4332; --ink2:#2D6A4F; --line:#B7C9BF;
+    --a1:#40916C; --a2:#1D3557; --a3:#9C6644;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    width:1120px; background:#fff;
+    font-family:"Microsoft JhengHei","微軟正黑體",sans-serif;
+    color:#1a1a1a; padding:34px 40px 30px;
+  }
+  .row{display:flex; align-items:stretch; gap:0}
+  .card{
+    flex:1; border:1.6px solid var(--line); border-radius:10px;
+    padding:0 0 18px; background:#fff; overflow:hidden;
+  }
+  .cap{
+    color:#fff; font-size:15px; letter-spacing:.06em;
+    padding:7px 14px; font-weight:700;
+  }
+  .c1 .cap{background:var(--a1)} .c2 .cap{background:var(--a2)} .c3 .cap{background:var(--a3)}
+  .h{font-size:26px; font-weight:800; color:var(--ink); padding:16px 20px 4px; line-height:1.25}
+  .sub{font-size:15px; color:#5a6b62; padding:0 20px 12px}
+  ul{list-style:none; padding:0 20px}
+  li{
+    font-size:17px; line-height:1.5; color:#243b32;
+    padding:6px 0 6px 16px; position:relative; border-top:1px dashed #dbe5e0;
+  }
+  li:first-child{border-top:none}
+  li::before{content:"";position:absolute;left:0;top:14px;width:6px;height:6px;border-radius:50%;background:var(--ink2)}
+  .arrow{
+    width:74px; display:flex; flex-direction:column;
+    align-items:center; justify-content:center; gap:6px; flex:none;
+  }
+  .arrow svg{display:block}
+  .arrow span{font-size:13px; color:#6b7b73; letter-spacing:.04em}
+  .foot{
+    margin-top:26px; border:1.6px solid var(--ink); border-radius:10px;
+    display:flex; align-items:center; overflow:hidden;
+  }
+  .foot .lab{
+    background:var(--ink); color:#fff; font-size:17px; font-weight:700;
+    padding:15px 22px; white-space:nowrap; letter-spacing:.05em;
+  }
+  .foot .steps{display:flex; align-items:center; flex:1; padding:0 22px; gap:14px}
+  .step{font-size:19px; color:var(--ink); font-weight:600}
+  .sep{color:#9bb0a6; font-size:19px}
+  .note{margin-top:12px; font-size:14px; color:#6b7b73; text-align:right}
+</style>
+<body>
+  <div class="row">
+    <div class="card c1">
+      <div class="cap">第一層　資料基礎建設（未使用 AI）</div>
+      <div class="h">資料蒐集自動化</div>
+      <div class="sub">把散落的問答變成結構化欄位</div>
+      <ul>
+        <li>病人初診前線上表單（單一區段設計）</li>
+        <li>醫師端下拉選單輸入工具</li>
+        <li>一鍵產生病歷貼稿，背景寫回試算表</li>
+      </ul>
+    </div>
+
+    <div class="arrow">
+      <svg width="52" height="26" viewBox="0 0 52 26"><path d="M2 13h40" stroke="#1B4332" stroke-width="2.4" fill="none"/><path d="M40 5l10 8-10 8z" fill="#1B4332"/></svg>
+      <span>結構化資料</span>
+    </div>
+
+    <div class="card c2">
+      <div class="cap">第二層　AI 應用</div>
+      <div class="h">AI 衛教問答</div>
+      <div class="sub">檢索增強生成（RAG）</div>
+      <ul>
+        <li>先自衛教知識庫檢索片段</li>
+        <li>再由語言模型組織回答，降低幻覺</li>
+        <li>敏感議題自動轉介，不作答</li>
+      </ul>
+    </div>
+
+    <div class="arrow">
+      <svg width="52" height="26" viewBox="0 0 52 26"><path d="M2 13h40" stroke="#1B4332" stroke-width="2.4" fill="none"/><path d="M40 5l10 8-10 8z" fill="#1B4332"/></svg>
+      <span>回診資料</span>
+    </div>
+
+    <div class="card c3">
+      <div class="cap">第三層　AI 應用</div>
+      <div class="h">成效分析自動化</div>
+      <div class="sub">每月定期檢視，僅輸出聚合統計</div>
+      <ul>
+        <li>新增個案數、藥物別成效、未回診率</li>
+        <li>自動產出報告並發布至雲端</li>
+        <li>衍生病人端衛教遊戲</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="foot">
+    <div class="lab">門診端一次看診</div>
+    <div class="steps">
+      <span class="step">輸入評估</span><span class="sep">→</span>
+      <span class="step">調出成效</span><span class="sep">→</span>
+      <span class="step">與病人共同決定下一步</span>
+    </div>
+  </div>
+  <div class="note">三層工具皆由 AI 編程代理協助開發；第一層本身未使用 AI 技術</div>
+</body>
