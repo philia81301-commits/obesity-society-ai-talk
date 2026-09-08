@@ -102,6 +102,6 @@ P6 依 PMID 34335479 修正 n=2,495／HMO-I 與 LMO 圖例對調／引註頁碼�
 - 時間：2026-09-09（醫院場收工）
 - 更新者：Claude Code（Fable 5）@ X108521（醫院）
 - 階段：P51 底圖定案掛載，**PPTX v6 仍待匯**
-- Git push：待推
-- L3 Obsidian：待更新
+- Git push：✅ 已推（`bb7f820`）
+- L3 Obsidian：✅ 已更新
 - 前一筆：2026-09-09 @ DESKTOP-LVSV9Q5（家用）· ✅ 已推（`9ef14c8`）
