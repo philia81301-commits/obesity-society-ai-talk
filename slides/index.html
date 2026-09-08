@@ -71,7 +71,9 @@ section{
 /* 基準字級：本檔未引入 Reveal 內建 theme（theme 會帶暗色配色），
    故必須自行指定基準，否則所有 em 會以瀏覽器預設 16px 計算而全面過小。
    42px 為 Reveal 各官方 theme 的標準基準值，以下所有 em 皆以此為準。 */
-.reveal{ font-family: var(--font-body); color: var(--text); font-weight:400; font-size:42px; line-height:1.4; }
+/* base 42→46px（2026-09-08 依使用者字級原則放大：base ≥23px@720 座標系的等效值，
+   與 9/13 場 21→23px 同幅度；各元件 em 比例不動，超標頁面逐頁另修） */
+.reveal{ font-family: var(--font-body); color: var(--text); font-weight:400; font-size:46px; line-height:1.4; }
 .reveal-viewport{ background: var(--bg); }
 .reveal .slides{ text-align:left; }
 
@@ -315,7 +317,7 @@ section{
 
 /* --- 兩欄對比 --- */
 .two-col{ display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-top:.5em; }
-.col-box{ border:1px solid var(--sec-soft); border-radius:3px; padding:18px 20px; background: var(--sec-tint); }
+.col-box{ border:1px solid var(--sec-soft); border-radius:3px; padding:15px 20px; background: var(--sec-tint); }
 .col-box.mark-a{ border-top:3px solid var(--sec); }
 .col-box.mark-b{ border-top:3px solid var(--sec-2); }
 .col-box.mark-w{ border-top:3px solid var(--warn); }
@@ -336,8 +338,10 @@ section{
 
 /* --- 引用出處 / 限定條件 --- */
 .cite{
-  font-size:.38em; color: var(--text-2); line-height:1.65; margin-top:1em;
-  padding-top:.7em; border-top:1px solid var(--rule);
+  /* 2026-09-08 base 放大後改固定 px：出處列依使用者字級原則可維持 12–13px，
+     不隨 base 放大，把版面讓給正文（P6/P9/P10/P27 靠這行救回 90% 內） */
+  font-size:13px; color: var(--text-2); line-height:1.55; margin-top:14px;
+  padding-top:9px; border-top:1px solid var(--rule);
 }
 .caveat{
   display:inline-block; font-size:.85em; color: var(--warn);
@@ -346,7 +350,7 @@ section{
 }
 .quote-box{
   border-left:3px solid var(--pop); background: var(--sec-tint);
-  padding:16px 22px; margin:.5em 0; font-size:.54em; line-height:1.72; color: var(--text);
+  padding:12px 20px; margin:.5em 0; font-size:.54em; line-height:1.72; color: var(--text);
 }
 
 /* 深色反白結論塊：整份簡報視覺重量最重的元件，一頁最多一個。
@@ -410,7 +414,7 @@ section{
   color: var(--sec-2); line-height:1;
 }
 .cmp-num .u{ font-size:.45em; margin-left:.06em; }
-.cmp-cap{ font-size:.34em; color: var(--text-2); line-height:1.5; margin-top:.5em; }
+.cmp-cap{ font-size:.36em; color: var(--text-2); line-height:1.5; margin-top:.5em; }
 .cmp-vs{ font-size:.36em; font-weight:700; color: var(--sec-line); }
 .col-box .cb-foot{
   font-size:.32em; color: var(--text-2); line-height:1.6;
@@ -456,7 +460,7 @@ section{
 .flow{ display:flex; align-items:stretch; gap:0; margin-top:.6em; }
 .flow-step{
   flex:1; background: var(--sec-tint); border:1px solid var(--sec-soft);
-  border-top:3px solid var(--sec); border-radius:3px; padding:16px 14px; text-align:center;
+  border-top:3px solid var(--sec); border-radius:3px; padding:12px 14px; text-align:center;
 }
 .flow-step .fs-ic{ margin-bottom:9px; }
 .flow-step .fs-title{ font-size:.46em; font-weight:700; color: var(--sec); line-height:1.35; }
@@ -468,7 +472,7 @@ section{
 /* 實拍照放進 flow-step，讓「步驟卡」與「現場照」自動對齊同一欄；
    固定高度 ＋ cover 裁切，三張照片比例不同也不會把卡片撐成不等高。 */
 .flow-step .fs-photo{
-  width:100%; height:138px; object-fit:cover; border-radius:2px;
+  width:100%; height:120px; object-fit:cover; border-radius:2px;
   border:1px solid var(--sec-soft); margin-bottom:10px; display:block;
 }
 .flow-step .fs-cap{ font-size:.3em; color: var(--text-2); margin-top:-4px; margin-bottom:8px; }
@@ -524,7 +528,7 @@ section{
 .live-col{ min-width:0; }
 .live-main{
   position:relative; background:#fff; border:1px solid var(--rule);
-  border-radius:3px; height:114px; overflow:hidden; margin-top:.4em;
+  border-radius:3px; height:92px; overflow:hidden; margin-top:.3em;
 }
 .live-main canvas{ position:absolute; inset:0; width:100%; height:100%; display:block; }
 .live-empty{
@@ -541,7 +545,7 @@ section{
    .col-box 有 6 頁在用，故走修飾類而非改本體。 */
 .two-col.tight .col-box{ padding:12px 16px; }
 .two-col.tight .col-box .cb-title{ font-size:.5em; }
-.two-col.tight .col-box ul{ font-size:.46em; }
+.two-col.tight .col-box ul{ font-size:.44em; } /* base 46 下＝20.2px，守住 ≥20px 底線 */
 .live-foot b{ color:var(--sec); font-weight:700; }
 /* 斷線／未設定時的提示：不擋畫面，只在底部換一行字 */
 .live-foot .live-msg{ color:var(--warn); font-weight:500; }
@@ -703,7 +707,7 @@ section{
       </ul>
     </div>
   </div>
-  <div class="interact-ph live-2col" id="slide-wordcloud">
+  <div class="interact-ph live-2col" id="slide-wordcloud" style="margin-top:.3em;">
     <div class="live-side">
       <img class="qr" src="images/qr_audience.png" alt="掃描後開啟作答頁面的 QR code" />
       <div class="qr-cap">掃碼作答</div>
@@ -1001,7 +1005,7 @@ section{
       </ul>
     </div>
   </div>
-  <div class="key-box">
+  <div class="key-box" style="font-size:.5em; margin-top:.4em;"><!-- P9 版面救回 90% 內：.54→.5em（23px）-->
     問題不在 AI 有沒有被寫進指引，而在<b>證據只停在最低那一格</b>——
     而且兩套指引各掉一次：ADA 從 <b>A 掉到 E</b>，台灣從 <b>1A 掉到 2C</b>。
     <span class="kb-note">
@@ -1388,7 +1392,7 @@ section{
       </ul>
       <!-- 2026-09-08 加入維持期表單 bullet 後超過 90% 佔高，將本頁截圖上限由 250px 壓至 215px -->
       <figure class="shot">
-        <img src="images/p20_input_tool.png" style="max-height:215px;"
+        <img src="images/p20_input_tool.png" style="max-height:184px;"
              alt="減重門診輸入工具：左側為下拉選單式評估表輸入，右側為一鍵產生的結構化病歷貼稿">
         <figcaption>左：下拉選單輸入　右：一鍵產生的結構化貼稿。畫面為<strong>測試資料</strong>，非真實病人。</figcaption>
       </figure>
@@ -1521,11 +1525,7 @@ section{
       </div>
       <div class="key-box" style="margin-top:.5em;">
         關鍵設計不是「AI 能回答多少」，而是<strong>明確劃出它不該回答的範圍</strong>。
-      </div>
-      <div class="todo-block" style="margin-top:.5em;">
-        <b>待補：</b>「敏感議題」的實際判定範圍（哪些主題會觸發轉介），以及應用場景的成效觀察。
-        若尚無量化數據，建議以質性描述呈現，不要硬湊百分比。
-      </div>
+      </div><!-- 2026-09-08 使用者指示：原「待補敏感議題判定範圍」區塊移除，不再補件 -->
     </div>
   </div>
 </section>
