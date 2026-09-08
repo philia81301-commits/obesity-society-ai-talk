@@ -86,6 +86,6 @@ P6 依 PMID 34335479 修正 n=2,495／HMO-I 與 LMO 圖例對調／引註頁碼�
 - 時間：2026-09-09（收工）
 - 更新者：Claude Code（Fable 5）@ DESKTOP-LVSV9Q5（家用）
 - 階段：階段七結案後校對輪——語句／字級／孤字／內部筆記清理完成，**PPTX v6 待匯**
-- Git push：待推
-- L3 Obsidian：待寫
+- Git push：✅ 已推（`9ef14c8`）
+- L3 Obsidian：✅ 已更新
 - 前一筆：2026-09-08 @ X108521（醫院）· ✅ 已推（`830eab8`）
