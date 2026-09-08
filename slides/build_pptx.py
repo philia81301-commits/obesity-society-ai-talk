@@ -11,6 +11,7 @@ CSS 資料視覺化、手繪底圖與遮罩漸層，原生 PPTX 重畫不可能�
 用法：python build_pptx.py <輸出.pptx>
 """
 
+import os
 import sys
 import time
 from pathlib import Path
@@ -19,7 +20,12 @@ from playwright.sync_api import sync_playwright
 from pptx import Presentation
 from pptx.util import Inches, Emu
 
-URL = "http://127.0.0.1:8765/slides/index.html"  # 需先啟動本機伺服器：python -m http.server 8765（在 repo 根目錄）
+# 需先啟動本機伺服器：python -m http.server <port>（在 repo 根目錄）。
+# ⚠️ 醫院電腦 X108521 上另一個專案（Obesity-lecture）也慣用 8765，撞 port 時
+#    http.server 不會報錯、會靜靜服務到別人的簡報（2026-09-08 差點交錯檔）。
+#    轉檔前先確認 URL 指到本專案，必要時用環境變數改 port：
+#    SLIDES_URL=http://127.0.0.1:8766/slides/index.html
+URL = os.environ.get("SLIDES_URL", "http://127.0.0.1:8765/slides/index.html")
 W, H = 1280, 720
 SCALE = 2               # 2560x1440，投影與列印都夠銳利
 SHOTS = Path("shots")

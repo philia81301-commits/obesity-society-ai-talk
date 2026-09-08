@@ -5,6 +5,20 @@
 
 ## ⏯️ 目前做到哪
 
+**2026-09-08（醫院電腦 X108521，office 帳號）**：投影片資料更新兩處＋PPTX v3 重匯。
+
+- **P25 截圖換成 2026-08 月報**（新圖 `slides/images/p25_report_charts_202608.png`，
+  由 weight-clinic-reports 的 2026-08.html 以 Playwright 2 倍截取；caption 同步改 2026-08）。
+- **P20 新增一條 bullet**：「維持期追蹤表單已於 2026-08 上線」（Google Drive 上 8/18 建立的
+  「\*體重維持紀錄」表單工具，資料持續累積中）。加字後超過 90% 佔高，
+  該頁截圖以 inline style 壓至 `max-height:215px`，實測 0.887／P25 為 0.853。
+- 新增文字經 fontTools 檢查**字型子集無缺字**，不需重跑 build_fonts.py（醫院電腦也跑不了）。
+- **PPTX v3 已匯出**：`肥胖醫學會南區研討會_AI在肥胖治療_潘湘如_v3_20260908.pptx`
+  （51 頁、28.6 MB），在 **office 這台的 OneDrive**
+  `C:\Users\office\OneDrive\文件\演講\2026演講\肥胖醫學會南區研討會\`（與 phili 家用機同一雲端資料夾）。
+  ⚠️ 醫院 `D:\潘湘如\演講\2026演講\肥胖醫學會南區研討會\` **不是**同步中的那份（只有 8/14 摘要），別存那裡。
+- 另查證：WHO 首份 GLP-1 肥胖指引（2025-12）全文 0 次提到 AI/ML——可作 P9 口頭補充素材，未動版面。
+
 **2026-08-18（家用電腦 DESKTOP-LVSV9Q5）**：本次**沒有動投影片**，全部工時在新增的
 **階段八——肥胖醫學會會訊醫學專論**。當日交稿、當日完成。
 
@@ -79,12 +93,18 @@
 - 引用外部指引時**改寫為摘述、不整段逐字轉錄**（講者自己的著作不在此限）。
 - **醫院電腦 X108521 的限制**：網路擋外連下載（`build_fonts.py` 會失敗）、
   `convert` 是 Windows 磁碟工具不是 ImageMagick、Obsidian vault 在 `office` 帳號下無本專案資料夾。
+- **🩸 X108521 的 port 8765 會被另一專案佔用**——`C:\projects\Obesity-lecture\`（9/13、9/15 兩場演講）
+  也慣用 `python -m http.server 8765`，且 Windows 允許兩個行程同綁一個 port、**連線落在先啟動的那個**。
+  2026-09-08 因此把別場的 59 頁簡報轉成本場 PPTX 而不自知（已刪除重做）。
+  `build_pptx.py` 現支援 `SLIDES_URL` 環境變數改 port；轉檔前先
+  `curl http://127.0.0.1:<port>/slides/index.html | grep -c "<section"` 確認是 51。
+- Playwright 在 X108521 沒裝 chromium（下載被擋），**一律用 `channel="chrome"`**（build_pptx.py 已內建 fallback）。
 
 ## 🕐 最後更新
 
-- 時間：2026-08-18
-- 更新者：Claude Code（Opus 5）@ DESKTOP-LVSV9Q5（家用）
-- 階段：**階段八完成（會訊專論當日交稿）**；階段七仍剩 P23 一項
-- Git push：✅ 已推（`efedcf9`）
-- L3 Obsidian：✅ 已更新（含**回填 2026-08-17 那次**，當時醫院端 vault 無本專案資料夾）
-- 前一筆：2026-08-17 @ X108521（醫院）· ✅ 已推（`9ef23a0`、`459db86`）
+- 時間：2026-09-08
+- 更新者：Claude Code（Fable 5）@ X108521（醫院，office 帳號）
+- 階段：階段七剩 P23 一項；**投影片資料更新至 2026-08 月報＋維持期表單，PPTX v3 已匯出**
+- Git push：✅ 已推（本次 commit）
+- L3 Obsidian：未更新（office 帳號下 vault 無本專案資料夾，維持既況）
+- 前一筆：2026-08-18 @ DESKTOP-LVSV9Q5（家用）· ✅ 已推（`efedcf9`）
