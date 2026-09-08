@@ -130,6 +130,6 @@
 - 時間：2026-09-08（第三輪，收工）
 - 更新者：Claude Code（Fable 5）@ X108521（醫院，office 帳號）
 - 階段：**階段七結案**；字級放大、資料更新至 2026-08、P6 事實修正完成，**PPTX v5 為現行繳交版**
-- Git push：待推（收工 commit 後回填）
+- Git push：✅ 已推（`830eab8`）
 - L3 Obsidian：未更新（office 帳號下 vault 無本專案資料夾，維持既況）
 - 前一筆：2026-08-18 @ DESKTOP-LVSV9Q5（家用）· ✅ 已推（`efedcf9`）
