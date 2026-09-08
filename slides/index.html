@@ -443,7 +443,8 @@ section{
 .bar-fill.hi{ background: var(--pop); }
 .bar-fill.dim{ background: color-mix(in srgb, var(--sec) 32%, #fff); color: var(--sec); }
 .bar-tag{
-  display:inline-block; font-size:.3em; font-weight:700; letter-spacing:.06em;
+  /* 2026-09-09 原 .3em 套在 P5 的 h3（.5em）內複合縮成 6.9px 讀不到；改固定 px（使用者要求再放大） */
+  display:inline-block; font-size:19px; font-weight:700; letter-spacing:.06em;
   padding:.15em .6em; border-radius:2px; margin-left:.5em; vertical-align:middle;
 }
 .bar-tag.hi{ background: var(--pop); color:#fff; }
@@ -850,7 +851,7 @@ section{
   </div>
 
   <div class="key-box" style="margin-top:.5em;">
-    模型的價值不只在預測誰會胖，而在指出<strong>哪裡下手最有機會</strong>。
+    模型的價值不只在預測風險，而在指出<strong>哪些因子值得優先介入</strong>。
   </div>
 
   <div class="cite">
@@ -1008,11 +1009,11 @@ section{
     </div>
   </div>
   <div class="key-box" style="font-size:.5em; margin-top:.4em;"><!-- P9 版面救回 90% 內：.54→.5em（23px）-->
-    問題不在 AI 有沒有被寫進指引，而在<b>證據只停在最低那一格</b>——
-    而且兩套指引各掉一次：ADA 從 <b>A 掉到 E</b>，台灣從 <b>1A 掉到 2C</b>。
+    問題不在 AI 有沒有被寫進指引，而在<b>證據等級停在最低一級</b>——
+    ADA 由 <b>A 降至 E</b>，台灣由 <b>1A 降至 2C</b>。
     <span class="kb-note">
-      該章由本場講者執筆：撰寫當時能給的最高等級就是 2C。
-      缺的不是想像力，是<b>可放進系統性回顧的實務證據</b>——這正是第二段要補的空缺。
+      該章由本場講者執筆：依當時可得的證據，最高只能給 2C。
+      缺的是<b>可納入系統性回顧的實務證據</b>——這正是第二段要補的空缺。
     </span>
   </div>
   <div class="cite">
@@ -1037,7 +1038,7 @@ section{
   <!-- .tight：加入 RCT 數據與限制後整頁到 100%，壓縮兩欄卡片換取空間 -->
   <div class="two-col tight" style="margin-top:.5em;">
     <div class="col-box mark-a">
-      <div class="cb-title">目前最嚴謹的一篇：68 週 RCT</div>
+      <div class="cb-title">目前證據等級最高的一篇：68 週 RCT</div>
       <div class="cmp">
         <div class="cmp-side">
           <div class="cmp-num" style="color:var(--pop);">−4.1<span class="u">%</span></div>
@@ -1056,12 +1057,12 @@ section{
       </div>
     </div>
     <div class="col-box mark-w">
-      <div class="cb-title">引用前必須一起說的話</div>
+      <div class="cb-title">引用時應同時說明的限制</div>
       <ul>
-        <li>八位作者<strong>四位任職 Noom</strong><span class="caveat">含末位作者</span></li>
+        <li>八位作者中<strong>四位任職 Noom</strong><span class="caveat">含末位作者</span></li>
         <li>−4.1% <strong>未達 5% 的臨床顯著門檻</strong></li>
-        <li>對照組拿的是衛教材料，<strong>非主動介入</strong></li>
-        <li>83% 女性、平均 BMI 32.5<span class="caveat">與台灣門診族群不同</span></li>
+        <li>對照組<strong>僅接受衛教材料</strong>，非主動介入</li>
+        <li>83% 為女性、平均 BMI 32.5<span class="caveat">與台灣門診族群不同</span></li>
       </ul>
     </div>
   </div>
@@ -1150,10 +1151,7 @@ section{
   <div class="key-box">
     重點不是「AI 讓藥更有效」，而是<strong>用 AI 挑對病人</strong>——把有限的藥物資源，配置到最可能受益的人身上。
   </div>
-  <div class="cite">
-    引用限定條件已依 <code>reference/citation-verification.md</code> 查證回填：GRS 研究為 liraglutide（非 semaglutide）、
-    屬會議摘要；TiP DecScore 為次族群結果，非全體患者使用前後對比。
-  </div>
+<!-- 內部查證紀錄不呈現於畫面（2026-09-09 使用者指示）；查證出處見 reference/citation-verification.md -->
 </section>
 
 <!-- P13 -->
@@ -1178,8 +1176,7 @@ section{
   </ul>
   <div class="cite">
     資料來源：JMIR 2026;e83718（AI 參與度數字）；DelveInsight（市場規模）。
-    原大綱中的「Semaglutide 7.8%→9.5%／Tirzepatide 11.2%→13.9%」已查證為誤植並刪除，請勿於講稿中使用。
-  </div>
+  </div><!-- 內部提醒移出畫面：原大綱「Semaglutide 7.8%→9.5%／Tirzepatide 11.2%→13.9%」為誤植，講稿勿用 -->
 </section>
 
 <!-- P14 -->
@@ -1216,13 +1213,11 @@ section{
     </div>
   </div>
   <div class="key-box" style="margin-top:.45em;">
-    引用這類成效數字務必看 n——WeGoTogether 的漂亮數字
-    <strong>來自 24 個月後仍留下的 325 人</strong>，典型的存活者偏誤。
+    引用這類成效數字務必看 n——WeGoTogether 的成效
+    <strong>來自 24 個月後仍留下的 325 人</strong>，屬存活者偏誤。
   </div>
-  <div class="cite">
-    引用已依 <code>reference/citation-verification.md</code> 篩選：原列之「streaMLine」查無此平台（疑似幻覺）已刪除。
-    WeGoTogether 數字真實，但簡報現場若被追問 n 數，需主動說明存活者偏誤。
-  </div>
+<!-- 內部查證紀錄不呈現於畫面（2026-09-09 使用者指示）：
+     原列「streaMLine」查無此平台已刪；現場若被追問 WeGoTogether 的 n 數，口頭說明存活者偏誤 -->
 </section>
 
 <!-- P15 -->
@@ -1252,12 +1247,7 @@ section{
       </ul>
     </div>
   </div>
-  <div class="cite">
-    Contemporary Clinical Trials. 2023;124:107029（Using artificial intelligence to optimize
-    delivery of weight loss treatment）——
-    對臨床端的意涵：AI 的價值不只在「效果更好」，更在<strong>用更少的人力達到同樣效果</strong>；
-    但相對地，<strong>處方與資源決策外部化的壓力也將浮現</strong>。
-  </div>
+<!-- 出處備查（2026-09-09 使用者指示自畫面刪除）：Contemporary Clinical Trials. 2023;124:107029 -->
 </section>
 
 <!-- P16 -->
@@ -1296,7 +1286,7 @@ section{
     <div class="rule"></div>
     <div class="lead">
       前面談的是「別人做到哪裡」。<br>
-      接下來這一段，是在自己的門診裡實際做出來、每天在用的東西。
+      接下來這一段，是在自己的門診裡實際做出來、每天在用的工具。
     </div>
   </div>
 </section>
@@ -1333,10 +1323,11 @@ section{
       <div class="adv-desc">月度分析自動化</div>
     </div>
   </div>
-  <div class="cite" style="margin-top:.8em;">
-    本節「AI」有兩層意義，先分清楚：<strong>①工具本身運用 AI 技術</strong>（如 RAG 檢索）；
-    <strong>②工具由 AI agent 輔助開發完成</strong>。評估表單屬於後者——它沒有用到 AI 技術，
-    但它是後續兩個 AI 案例的資料基礎建設。
+<!-- 2026-09-09 原為 13px 的 .cite，使用者反映太小；內容是觀眾需要的框架說明，升級為 quote-box（24.8px） -->
+  <div class="quote-box" style="margin-top:.8em;">
+    本節「AI」有兩層意義：<strong>①工具本身運用 AI 技術</strong>（如 RAG 檢索）；
+    <strong>②工具由 AI agent 輔助開發</strong>。評估表單屬於後者——未用到 AI 技術，
+    但它是後續兩個 AI 案例共同的資料基礎建設。
   </div>
 </section>
 
@@ -1362,7 +1353,8 @@ section{
         <li><strong>醫師端</strong>：看診時用「減重門診輸入工具」下拉選單快速輸入</li>
         <li>兩者資料<strong>寫入同一份回覆試算表</strong>，不必事後合併</li>
       </ul>
-      <div class="cite">
+<!-- 2026-09-09 定位說明是觀眾需要的內容，自 13px .cite 升級為 quote-box -->
+      <div class="quote-box">
         定位說明：本工具為純表單＋樣板拼接，<strong>不含 AI 技術</strong>；
         但由 AI agent 輔助開發、<strong>當天上線</strong>。
       </div>
@@ -1427,7 +1419,8 @@ section{
         <li><strong>衛教單張</strong>——門診原本就在發的素材，病人看得懂的語言</li>
         <li><strong>治療指引</strong>——院內實際採用的處置準則</li>
       </ul>
-      <div class="cite">
+<!-- 2026-09-09 內容說明升級為 quote-box -->
+      <div class="quote-box">
         兩者都是<strong>既有文件</strong>，不需為了導入 AI 另外編寫內容——
         這也是這套系統能快速上線的原因。
       </div>
@@ -1540,7 +1533,7 @@ section{
     <div class="case-tab">
       <span class="ct-kind">主線 案例</span>
       <span class="ct-no">03</span>
-      <span class="ct-name">月度分析自動化</span>
+      <span class="ct-name">月度分析<br>自動化</span>
       <span class="ct-step">1 / 4</span>
     </div>
     <div class="case-body">
@@ -1558,12 +1551,12 @@ section{
         <div class="flow-step">
           <div class="fs-ic"><svg class="ic sm"><use href="#ic-analyze"/></svg></div>
           <div class="fs-title">統計分析</div>
-          <div class="fs-desc">腳本自動執行<br>月度比較</div>
+          <div class="fs-desc">自動執行<br>月度比較</div>
         </div>
         <div class="flow-arrow">›</div>
         <div class="flow-step">
           <div class="fs-ic"><svg class="ic sm"><use href="#ic-summary"/></svg></div>
-          <div class="fs-title">三格式產出</div>
+          <div class="fs-title">報告產出</div>
           <div class="fs-desc">HTML／PPTX<br>／DOCX</div>
         </div>
         <div class="flow-arrow">›</div>
@@ -1588,7 +1581,7 @@ section{
     <div class="case-tab">
       <span class="ct-kind">主線 案例</span>
       <span class="ct-no">03</span>
-      <span class="ct-name">月度分析自動化</span>
+      <span class="ct-name">月度分析<br>自動化</span>
       <span class="ct-step">2 / 4</span>
     </div>
     <div class="case-body">
@@ -1618,7 +1611,7 @@ section{
     <div class="case-tab">
       <span class="ct-kind">主線 案例</span>
       <span class="ct-no">03</span>
-      <span class="ct-name">月度分析自動化</span>
+      <span class="ct-name">月度分析<br>自動化</span>
       <span class="ct-step">3 / 4</span>
     </div>
     <div class="case-body">
@@ -1674,7 +1667,7 @@ section{
   </div>
   <div class="key-box">
     工具的價值不在任何單一步驟，而在<b>把三段接起來之後</b>——
-    輸入的當下就決定了下游拿得到什麼，而下游的數字又回到診間變成可以討論的東西。
+    輸入的當下就決定了下游拿得到什麼，而下游的數字又回到診間變成可以討論的依據。
   </div>
   <div class="cite">
     診間實拍，2026-08-17，已取得病人同意。畫面中病人資料與院內系統均已遮蔽；照片不含可識別資訊。
@@ -1690,7 +1683,7 @@ section{
     <div class="case-tab">
       <span class="ct-kind">主線 案例</span>
       <span class="ct-no">03</span>
-      <span class="ct-name">月度分析自動化</span>
+      <span class="ct-name">月度分析<br>自動化</span>
       <span class="ct-step">4 / 4</span>
     </div>
     <div class="case-body">
@@ -1707,7 +1700,7 @@ section{
         <figure class="shot">
           <img src="images/p27_game_result.png"
                alt="減重大冒險推薦結果頁：推薦路線、門診匿名追蹤的夥伴人數與平均調減幅度">
-          <figcaption>推薦結果頁。路線比較中 <strong>n&lt;10 的組別已排除</strong>，避免小樣本百分比誤導。</figcaption>
+          <figcaption>推薦結果頁。<strong>n&lt;10 的組別不列入路線比較</strong>，避免小樣本百分比誤導。</figcaption>
         </figure>
       </div>
     </div>
@@ -1738,7 +1731,7 @@ section{
         過程中才發現問題不在那支藥——病人從頭到尾<strong>沒有真正弄懂為什麼要打、要打多久、停了會怎樣</strong>。
       </div>
       <div class="key-box">
-        工具不是為了導入 AI 而做，是<strong>被臨床現實逼出來的</strong>。
+        工具不是為了導入 AI 而做，而是<strong>從臨床的實際問題出發</strong>。
         要補的是<strong>溝通的斷點</strong>，技術只是手段。
       </div>
     </div>
@@ -1764,7 +1757,8 @@ section{
         <div class="adv-card"><div class="adv-title">不存個資</div><div class="adv-desc">不留姓名與識別資訊</div></div>
         <div class="adv-card"><div class="adv-title">地端運算</div><div class="adv-desc">資料不離開瀏覽器</div></div>
       </div>
-      <div class="cite">此設計呼應 Ⅲ 段核心主張：<strong>「資料不上傳」是比「去識別化」更上游的防線</strong>。</div>
+<!-- 2026-09-09 內容說明升級為 quote-box -->
+      <div class="quote-box">此設計呼應 Ⅲ 段核心主張：<strong>「資料不上傳」是比「去識別化」更上游的防線</strong>。</div>
     </div>
   </div>
 </section>
@@ -1841,7 +1835,7 @@ section{
       </div>
       <ul>
         <li>社區與門診都需要<strong>快速初篩</strong>，但紙本問卷計分與判讀耗時</li>
-        <li>篩檢的價值在<strong>量體</strong>——工具化才能把量做出來</li>
+        <li>篩檢的價值在<strong>規模</strong>——工具化才能提高篩檢量</li>
       </ul>
     </div>
   </div>
@@ -1978,13 +1972,9 @@ section{
       <div class="label">肌少症篩檢工具<br>（SARC-F ＋ SARC-CalF）</div>
     </div>
   </div>
-  <div class="cite">
-    <b>方法學限制（請務必於現場口頭說明）：</b>
-    ①以上為 commit 時間區間，<strong>非實際投入工時</strong>；
-    ②第一個案例含學習期，時間不可與後續案例直接比較；
-    ③各案複雜度不同，數字僅示意可行性、不代表開發效率。<br>
-    AI 管理系統（RAG）與 HP、PCV 兩項延伸工具複雜度較高，未特別記錄動手時間，故不列入、不強行湊數字。
-  </div>
+<!-- 2026-09-09 使用者指示刪除畫面上的方法學限制；講稿備查：
+     ①數字為 commit 時間區間非實際工時 ②第一案含學習期不可直接比較 ③各案複雜度不同僅示意可行性
+     ④RAG 與 HP、PCV 未記錄動手時間故不列入 -->
 </section>
 
 <!-- P38 [ICON] 三步驟方法論 -->
@@ -2080,7 +2070,7 @@ section{
       <ul>
         <li><strong>AI 不是法律主體</strong>：診斷、處方、劑量調整的責任仍在醫師，
             AI 只能是<strong>輔助建議</strong>，不能是決定者</li>
-        <li>診所以 <strong>LINE 等通訊軟體對外發布的 AI 回覆，可能構成醫療廣告</strong>，
+        <li>診所以 <strong>LINE 等通訊軟體對外發布的 AI 回覆，可能被認定為醫療廣告</strong>，
             同受規範，<strong>不得誇大療效</strong>（如「一個月瘦 10 公斤」）</li>
       </ul>
       <div style="font-size:.4em; color:var(--text-2); margin-top:.6em; font-weight:700;">
@@ -2128,7 +2118,8 @@ section{
       <div class="adv-desc">只輸出統計結果，不留個體資料</div>
     </div>
   </div>
-  <div class="cite">
+<!-- 2026-09-09 內容說明升級為 quote-box -->
+  <div class="quote-box">
     對照講者工具的設計：<strong>不存姓名、只算分數</strong>——同時落在「剔除遮蔽」與「數據聚合」兩類。
   </div>
 </section>
@@ -2251,7 +2242,8 @@ section{
       <div class="adv-desc">Prompt Injection、<br>敏感資料被直接輸入</div>
     </div>
   </div>
-  <div class="cite">
+<!-- 2026-09-09 本頁收束句自 13px .cite 升級為 key-box -->
+  <div class="key-box">
     三者共通風險：<strong>資料串聯、跨境傳輸、模型訓練的二次利用</strong>——
     使用雲端服務時，資料是否被用於訓練，必須在導入前確認。
   </div>
@@ -2351,7 +2343,7 @@ section{
     <div class="sub">給想從自己門診開始的臨床工作者</div>
   </div>
   <ul>
-    <li><strong>從最煩的那件事開始</strong>——不是從最酷的技術開始</li>
+    <li><strong>從最耗時的例行工作開始</strong>——不是從最新的技術開始</li>
     <li><strong>先做最小可行版本</strong>，讓它在真實門診跑一週，再決定要不要長大</li>
     <li><strong>資料設計比功能設計更重要</strong>：結構化的一次輸入，能餵養後續所有應用</li>
     <li><strong>資安從第一天內建</strong>：能不上傳的資料，就不要上傳</li>
@@ -2362,7 +2354,7 @@ section{
       AI 補上的是原本就空著的位置。
     </div>
     真正的問題不是「科技或人」，而是兩者如何結合，
-    <strong>使整體大於部分之和</strong>——為的是更公平、更具人性的醫療照護。
+    <strong>使整體大於部分之和</strong>——為的是更公平、更具人性的照護。
     <div style="font-size:.8em; color:var(--text-2); text-align:right; margin-top:.5em;">
       — Dr. Abraham Verghese, Stanford University School of Medicine
     </div>
@@ -2372,26 +2364,22 @@ section{
 <!-- P51 [BG] Q&A -->
 <section class="section-open" data-background-color="#F6F5F0" data-slide="51">
   <!-- [BG] spec.yaml P51，opacity 0.12 -->
+<!-- 2026-09-09 使用者指示：移除工具連結區，整頁重新設計。
+       改為與封面呼應的收尾：Q&A 主標＋核心訊息一句＋講者署名＋場次資訊。 -->
   <div class="end-slide">
     <h1>Q &amp; A</h1>
     <div class="rule"></div>
-    <p style="color:var(--text-2);">感謝聆聽，歡迎討論</p>
-    <div style="margin-top:1.6em; font-size:.52em; line-height:2;">
-      潘湘如 醫師｜高雄榮民總醫院 家庭醫學部
+    <div style="font-family:var(--font-head); font-size:.78em; font-weight:700;
+                color:var(--sec); letter-spacing:.05em; margin-top:.8em;">
+      AI 提供地圖，醫師擔任嚮導
     </div>
-    <!-- 刻意只放四個純前端、不存資料的工具站；
-         月報站（weight-clinic-reports）含真實門診彙總，不列。 -->
-    <div class="links">
-      <div class="lk"><span class="lk-n">骨質疏鬆門診工具</span>
-        <span class="lk-u">philia81301-commits.github.io/osteoporosis-clinic</span></div>
-      <div class="lk"><span class="lk-n">肌少症篩檢紀錄工具</span>
-        <span class="lk-u">philia81301-commits.github.io/sarcopenia-clinic</span></div>
-      <div class="lk"><span class="lk-n">幽門螺旋桿菌陽性處置工具集</span>
-        <span class="lk-u">philia81301-commits.github.io/HP-clinic</span></div>
-      <div class="lk"><span class="lk-n">成人肺炎鏈球菌疫苗工具</span>
-        <span class="lk-u">philia81301-commits.github.io/pneumonia-clinic</span></div>
+    <p style="color:var(--text-2); margin-top:.7em;">感謝聆聽，歡迎討論</p>
+    <div style="margin-top:1.5em; font-size:.52em; line-height:2;">
+      潘湘如 醫師｜高雄榮民總醫院 家庭醫學部<br>
+      <span style="font-size:.78em; color:var(--text-2); letter-spacing:.04em;">
+        台灣肥胖醫學會 2026 南區學術研討會｜2026 年 9 月 20 日
+      </span>
     </div>
-    <div class="lk-note">四個站皆為單頁前端、<strong>不儲存任何資料</strong>，可直接開啟試用。</div>
   </div>
 </section>
 
