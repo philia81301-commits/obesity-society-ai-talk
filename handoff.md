@@ -5,7 +5,20 @@
 
 ## ⏯️ 目前做到哪
 
-**2026-09-09（家用電腦 DESKTOP-LVSV9Q5）語句與版面校對輪（收工）**：使用者逐頁校對 S1–S51，
+**2026-09-09（醫院電腦 X108521）P51 底圖輪（收工）**：
+
+- **P51 封底底圖定案掛載**：gpt-image-2（low, 1536×1024）生成 2 張候選（NT$0.6），
+  採用「羅盤＋地平線＋神經網路節點＋體重計＋下降曲線」版；因原圖綠色偏灰橄欖，
+  以 PIL duotone 重上色為 `--accent #1B4332` × `--bg-alt #F6F5F0`，
+  存 `slides/images/p51_qa_bg_duotone_20260909.png`，掛上 P51（cover、opacity 0.12），瀏覽器實測通過。
+  候選原檔在 `slides/generated/`（已加入 .gitignore，不進 git）。
+- **pull 回家用機校對輪**（`9ef14c8`＋`300a555`）：使用者在醫院看到「可介入」仍小字，
+  原因是這台沒 pull——拉回後 P5 實測 19px 標籤正常。本機曾與遠端 P51 重設計重疊修改，
+  以遠端版為準，僅重新掛上底圖；被取代的本機修改在 stash（可 `git stash drop` 清掉）。
+- **port 衝突**：醫院機 8765 也被 `Obesity-lecture`（9/13 場）server 佔用，
+  `.claude/launch.json` 改為 **port 8770**。
+
+**2026-09-09（家用電腦 DESKTOP-LVSV9Q5）語句與版面校對輪**：使用者逐頁校對 S1–S51，
 全部指正已處理完畢並實測驗證。**只改了 `slides/index.html`；PPTX v6 尚未重匯**。
 
 - **語句去誇大、去口語（專業醫師口吻，形容詞減量）**：
@@ -32,8 +45,9 @@ P6 依 PMID 34335479 修正 n=2,495／HMO-I 與 LMO 圖例對調／引註頁碼�
 
 ## 🚦 目前狀態
 
-- **HTML 簡報（51 頁）**：本輪校對後為最新版，可運行、離線可播、孤字歸零、無缺字。
-- **⚠️ PPTX 繳交版仍是 v5（2026-09-08）**，未含本輪全部修改——**需重匯 v6** 才能繳交。
+- **HTML 簡報（51 頁）**：最新版＝校對輪＋P51 底圖，可運行、離線可播、孤字歸零。
+  P51 底圖為新增 PNG 資產，非文字變更，**不需重跑 build_fonts.py**。
+- **⚠️ PPTX 繳交版仍是 v5（2026-09-08）**，未含校對輪與 P51 底圖——**需重匯 v6** 才能繳交。
 - 專論已定稿可投（OneDrive）；repo 內仍殘留 Word 鎖定檔與作廢舊標題 DOCX（不進 git，可刪）。
 
 ## ➡️ 下一步
@@ -49,10 +63,12 @@ P6 依 PMID 34335479 修正 n=2,495／HMO-I 與 LMO 圖例對調／引註頁碼�
 
 ### 本輪新增（2026-09-09）
 
-- **🩸 家用機 DESKTOP-LVSV9Q5 的 port 8765 也會撞**——`C:\projects\Obesity-lecture`（9/13 場）的
-  `python -m http.server 8765` 在跑，本輪預覽中途畫面被換成那份簡報。
-  本輪改用 **port 8899** 完成所有量測。轉 PPTX 前先關掉別場伺服器，或
-  `SLIDES_URL=http://127.0.0.1:8899` ＋先驗 51 個 `<section>`。
+- **🩸 port 8765 兩台電腦都會撞**——`Obesity-lecture`（9/13 場）的 `python -m http.server 8765`
+  在家用機與醫院機都在跑，預覽畫面會被換成那份簡報。
+  醫院機 `.claude/launch.json` 已改 **8770**；家用機曾臨時用 8899。
+  轉 PPTX 前先關掉別場伺服器或指定 `SLIDES_URL`，並 `curl` 驗證 51 個 `<section>`。
+- 醫院機有一筆已被遠端取代的 stash（舊 P51 修改），無影響，可 `git stash drop`。
+- draw 技能輸出目錄為 `slides/generated/`（非 `slides/images/generated/`），已補進 .gitignore。
 - **內部查證筆記不上畫面**（使用者鐵律，已存記憶 `slide-content-style-rules`）：
   「已依 reference/xxx 查證」「疑似幻覺已刪除」「請勿於講稿使用」「被追問需說明」類文字
   一律放 HTML 註解或 reference/，不得出現在投影片上。
@@ -83,9 +99,9 @@ P6 依 PMID 34335479 修正 n=2,495／HMO-I 與 LMO 圖例對調／引註頁碼�
 
 ## 🕐 最後更新
 
-- 時間：2026-09-09（收工）
-- 更新者：Claude Code（Fable 5）@ DESKTOP-LVSV9Q5（家用）
-- 階段：階段七結案後校對輪——語句／字級／孤字／內部筆記清理完成，**PPTX v6 待匯**
-- Git push：✅ 已推（`9ef14c8`）
-- L3 Obsidian：✅ 已更新
-- 前一筆：2026-09-08 @ X108521（醫院）· ✅ 已推（`830eab8`）
+- 時間：2026-09-09（醫院場收工）
+- 更新者：Claude Code（Fable 5）@ X108521（醫院）
+- 階段：P51 底圖定案掛載，**PPTX v6 仍待匯**
+- Git push：待推
+- L3 Obsidian：待更新
+- 前一筆：2026-09-09 @ DESKTOP-LVSV9Q5（家用）· ✅ 已推（`9ef14c8`）

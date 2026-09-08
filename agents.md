@@ -50,6 +50,9 @@
 - **2026-09-09（家用機）語句與版面校對輪**：全簡報去誇大／去口語（專業醫師口吻）、
   內部查證筆記全數移出畫面（改 HTML 註解備查）、承載內容的 13px 小字升級 quote-box／key-box、
   行末孤字逐頁檢測排除、P51 移除工具連結整頁重設計。**PPTX v6 尚未重匯**，詳見 handoff.md。
+- **2026-09-09（醫院機 X108521）P51 底圖輪**：gpt-image-2 生成 P51 封底底圖（羅盤＋神經網路＋體重計＋下降曲線），
+  duotone 重上色為 `--accent #1B4332` × `--bg-alt #F6F5F0` 後掛上（opacity 0.12）；
+  pull 回家用機校對輪；`.claude/launch.json` port 8765→8770 避開他場簡報 server。
 
 ## ⚠️ 2026-08-16 重要事實修正（P9）
 
@@ -115,6 +118,7 @@ obesity-society-ai-talk/
     ├── vendor/                        reveal.js 5.1.0 本地副本（reset.css／reveal.css／reveal.js）
     ├── fonts/                         Noto Sans/Serif TC 子集 woff2（*-VF.ttf 來源檔不進 git）
     └── images/                        P1 封面底圖、P19／P21／P24 手繪底圖（已定案採用）
+                                       ＋ p51_qa_bg_duotone_20260909.png（P51 封底底圖，duotone 墨綠版）
                                        ＋ p20/p25/p27/p30 四張工具操作截圖
                                        ⚠️ 新圖不可命名 cover_*.png（.gitignore 擋掉該樣式）
                                        generated/ 為 draw 技能原始輸出，不進 git
