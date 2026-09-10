@@ -109,7 +109,7 @@ section{
 .sec-mark{
   display:block; margin-bottom:.45em;
   font-family: var(--font-body);
-  font-size:.34em; letter-spacing:.2em; font-weight:500;
+  font-size:16px; letter-spacing:.2em; font-weight:500;
   color: var(--sec-2);
 }
 .sec-mark::before{
@@ -236,13 +236,13 @@ section{
   padding:16px 10px 18px; text-align:center; align-self:stretch;
 }
 .case-tab.aux{ background: var(--sec-2); }
-.case-tab .ct-kind{ font-size:.32em; letter-spacing:.14em; opacity:.8; display:block; }
+.case-tab .ct-kind{ font-size:16px; letter-spacing:.14em; opacity:.8; display:block; }
 .case-tab .ct-no{
   font-family: var(--font-head); font-size:1.15em; font-weight:900; line-height:1.05; display:block; margin:.12em 0 .2em;
 }
-.case-tab .ct-name{ font-size:.32em; line-height:1.55; opacity:.92; display:block; }
+.case-tab .ct-name{ font-size:16px; line-height:1.55; opacity:.92; display:block; }
 .case-tab .ct-step{
-  font-size:.3em; letter-spacing:.1em; margin-top:.9em; padding-top:.7em;
+  font-size:16px; letter-spacing:.1em; margin-top:.9em; padding-top:.7em;
   border-top:1px solid rgba(255,255,255,.28); opacity:.8; display:block;
 }
 .case-body h2{ margin-bottom:.1em; }
@@ -307,8 +307,8 @@ section{
 }
 .shot img{ display:block; max-width:100%; max-height:250px; width:auto; height:auto; margin:0 auto; }
 .shot figcaption{
-  font-size:.3em; color: var(--text-2); line-height:1.55;
-  padding:7px 12px; border-top:1px solid var(--rule);
+  font-size:16px; color: var(--text-2); line-height:1.55;
+  padding:5px 12px; border-top:1px solid var(--rule);
 }
 /* 直式截圖：與條列並排，否則等比縮到剩一條細長影子，投影出去讀不到 */
 .case-split{ display:grid; grid-template-columns:1fr 306px; gap:24px; align-items:start; }
@@ -344,7 +344,7 @@ section{
   padding-top:9px; border-top:1px solid var(--rule);
 }
 .caveat{
-  display:inline-block; font-size:.85em; color: var(--warn);
+  display:inline-block; font-size:16px; color: var(--warn);
   border:1px solid rgba(181,101,29,.35); border-radius:2px;
   padding:.1em .5em; margin-left:.3em; white-space:nowrap;
 }
@@ -376,7 +376,7 @@ section{
   color:#fff; font-weight:700; position:relative;
 }
 .stack-seg .ss-pct{ font-size:.5em; line-height:1; }
-.stack-seg .ss-key{ font-size:.28em; letter-spacing:.06em; margin-top:.35em; opacity:.9; }
+.stack-seg .ss-key{ font-size:16px; letter-spacing:.06em; margin-top:.35em; opacity:.9; }
 /* 堆疊條下方的兩端標尺：把「44 vs 56」這個真正的臨床對比講出來 */
 .stack-scale{
   display:flex; justify-content:space-between; margin-top:.35em;
@@ -400,7 +400,7 @@ section{
 .chain-node.start{ border-top:3px solid var(--sec-2); }
 .chain-node.mid{ border-top:3px solid var(--sec); }
 .chain-node.end{ border-top:3px solid var(--pop); background: color-mix(in srgb, var(--pop) 8%, #fff); }
-.chain-node .cn-step{ font-size:.3em; letter-spacing:.12em; color: var(--text-2); }
+.chain-node .cn-step{ font-size:16px; letter-spacing:.12em; color: var(--text-2); }
 .chain-node .cn-title{ font-size:.44em; font-weight:700; color: var(--sec); margin:.35em 0 .3em; line-height:1.35; }
 .chain-node.end .cn-title{ color: var(--pop); }
 .chain-node .cn-desc{ font-size:.36em; color: var(--text-2); line-height:1.65; }
@@ -417,7 +417,7 @@ section{
 .cmp-cap{ font-size:.36em; color: var(--text-2); line-height:1.5; margin-top:.5em; }
 .cmp-vs{ font-size:.36em; font-weight:700; color: var(--sec-line); }
 .col-box .cb-foot{
-  font-size:.32em; color: var(--text-2); line-height:1.6;
+  font-size:16px; color: var(--text-2); line-height:1.6;
   margin-top:.6em; padding-top:.55em; border-top:1px solid var(--sec-soft);
 }
 
@@ -454,7 +454,7 @@ section{
 .bar-fill{
   height:100%; background: var(--sec); border-radius:2px;
   display:flex; align-items:center; justify-content:flex-end; padding-right:10px;
-  color:#fff; font-size:.34em; font-weight:700;
+  color:#fff; font-size:16px; font-weight:700;
 }
 
 /* --- 流程圖（橫向步驟，如今日架構、月報自動化流程） --- */
@@ -476,7 +476,7 @@ section{
   width:100%; height:120px; object-fit:cover; border-radius:2px;
   border:1px solid var(--sec-soft); margin-bottom:10px; display:block;
 }
-.flow-step .fs-cap{ font-size:.3em; color: var(--text-2); margin-top:-4px; margin-bottom:8px; }
+.flow-step .fs-cap{ font-size:16px; color: var(--text-2); margin-top:-4px; margin-bottom:8px; }
 
 /* --- 階段推進（時間縱貫，如三個發展階段） --- */
 .phase-row{ display:grid; grid-template-columns:repeat(3,1fr); gap:0; margin-top:.6em; align-items:stretch; }
@@ -486,7 +486,7 @@ section{
   border-top:3px solid var(--sec);
 }
 .phase:not(:last-child){ border-right:1px solid var(--sec-soft); }
-.phase .ph-era{ font-size:.34em; letter-spacing:.1em; color: var(--sec-2); }
+.phase .ph-era{ font-size:16px; letter-spacing:.1em; color: var(--sec-2); }
 .phase .ph-name{ font-family: var(--font-head); font-size:.62em; font-weight:700; color: var(--sec); margin:.25em 0 .4em; }
 .phase .ph-claim{ font-size:.42em; color: var(--text); line-height:1.6; }
 .phase .ph-claim b{ color: var(--sec); }
@@ -525,7 +525,7 @@ section{
 }
 .live-side{ display:flex; flex-direction:column; align-items:center; gap:6px; }
 .live-side .qr{ width:112px; height:112px; display:block; background:#fff; padding:4px; border:1px solid var(--rule); }
-.live-side .qr-cap{ font-size:.28em; color:var(--text-2); line-height:1.4; letter-spacing:.02em; text-align:center; }
+.live-side .qr-cap{ font-size:16px; color:var(--text-2); line-height:1.4; letter-spacing:.02em; text-align:center; }
 .live-col{ min-width:0; }
 .live-main{
   position:relative; background:#fff; border:1px solid var(--rule);
@@ -535,11 +535,11 @@ section{
 .live-empty{
   position:absolute; inset:0; display:flex; flex-direction:column;
   align-items:center; justify-content:center; gap:.3em;
-  font-size:.34em; color:#9AA7A0; line-height:1.7; text-align:center; pointer-events:none;
+  font-size:16px; color:#9AA7A0; line-height:1.7; text-align:center; pointer-events:none;
 }
 .live-foot{
   display:flex; justify-content:center; gap:1.6em;
-  font-size:.32em; color:var(--text-2); margin-top:.45em;
+  font-size:16px; color:var(--text-2); margin-top:.45em;
 }
 .live-2col .live-foot{ justify-content:flex-start; }
 /* P2 專用：把上方兩欄壓緊，讓出空間給文字雲。

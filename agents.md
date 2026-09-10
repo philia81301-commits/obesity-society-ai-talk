@@ -53,6 +53,11 @@
 - **2026-09-09（醫院機 X108521）P51 底圖輪**：gpt-image-2 生成 P51 封底底圖（羅盤＋神經網路＋體重計＋下降曲線），
   duotone 重上色為 `--accent #1B4332` × `--bg-alt #F6F5F0` 後掛上（opacity 0.12）；
   pull 回家用機校對輪；`.claude/launch.json` port 8765→8770 避開他場簡報 server。
+- **2026-09-10（醫院機 X108521）字級 16px 底線清查輪＋PPTX v6**：依記憶「簡報字級鐵則」全面清查，
+  15 個註記類 class（sec-mark／ct-*／cb-foot／caveat／ss-key／shot figcaption／fs-cap／ph-era／
+  qr-cap／live-*／cn-step／bar-fill）自 12.5–15.6px 統一改**固定 16px**（僅 `.cite` 13px 與頁尾屬例外）；
+  全 51 頁實測佔高 ≤0.90（P25 曾 0.903，收 figcaption padding 後 0.897）、無新孤字、無缺字免重跑字型。
+  **PPTX v6 已重匯**（51 頁、30.3 MB，存 OneDrive，v5 作廢）。
 
 ## ⚠️ 2026-08-16 重要事實修正（P9）
 
@@ -101,7 +106,9 @@ obesity-society-ai-talk/
 │   └── clinic-photo-redaction-20260817.md ★門診實拍去識別化紀錄（換照片前必讀）
 ├── content/
 │   ├── outline-50slides.md            50張投影片大綱 v2.1（檔名沿用，實際已 51 頁）
-│   └── article-newsletter-2026.md     ★會訊醫學專論原始稿（階段八，Markdown 為單一真實來源）
+│   ├── article-newsletter-2026.md     ★會訊醫學專論原始稿（階段八，Markdown 為單一真實來源）
+│   └── exam-questions-ch11-20260910.md  肥胖專科醫師命題 8 題備選（v4 定案選 1/3/4/5/7/8 共 6 題，
+│                                        定稿 DOCX 存 OneDrive 不進 git）
 ├── article/                           ★會訊專論的排版與製圖工具（階段八）
 │   ├── build_docx.py                  Markdown→DOCX（版面比照學會既有專論體例）
 │   ├── build_figs.py                  產生圖一／圖二（Playwright 截圖）與圖四（PIL 組圖）
@@ -126,8 +133,9 @@ obesity-society-ai-talk/
 最終成品（摘要 DOCX、簡報 PPTX）不進本 repo（見工作約定）。
 ⚠️ 路徑因電腦而異：**家用 DESKTOP-LVSV9Q5 沒有 D 槽**，
 2026-08-15 起改存 C:\Users\phili\OneDrive\文件\演講\2026演講\肥胖醫學會南區研討會\
-（同一個 OneDrive 同步範圍，醫院端 D:\潘湘如\演講\2026演講\ 應為同一份雲端資料夾的不同掛載點，
-到醫院時請確認，若不是同一份要手動搬過去）
+（**2026-09-10 實查確認**：醫院機的同一份雲端資料夾掛在
+`C:\Users\office\OneDrive\文件\演講\2026演講\肥胖醫學會南區研討會\`——v1–v6 都在這裡；
+**`D:\潘湘如\演講\` 是另一份本機資料夾，不是 OneDrive 同步範圍，別存那裡**）
 ```
 
 ## 離線化（2026-08-14 完成，現場播放的命脈）
@@ -167,4 +175,5 @@ cd slides && python build_fonts.py
 - 所有回應與文件使用繁體中文
 - 修改前先確認計畫，優先保留原有資料結構
 - **repo 為公開**：門診數據一律去識別化、聚合呈現，套用臨床資料鐵律（性別編碼交叉驗證、n<10 不當亮點、藥物欄位先掃 distinct 值、個案限近一年仍回診者）；原始 `.xlsx`／`.csv` 等資料檔一律不進 git（見 `.gitignore`）
-- PPTX／Word 等最終成品存放於 `D:\潘湘如\演講\2026演講\`（OneDrive 同步範圍），不進本 repo；本 repo 只放 HTML 原始碼與文件
+- PPTX／Word 等最終成品存放於 OneDrive 演講資料夾（家用機 `C:\Users\phili\OneDrive\文件\演講\2026演講\`、
+  醫院機 `C:\Users\office\OneDrive\文件\演講\2026演講\`；**醫院 D 槽不是同步範圍**），不進本 repo；本 repo 只放 HTML 原始碼與文件
