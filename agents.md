@@ -58,6 +58,11 @@
   qr-cap／live-*／cn-step／bar-fill）自 12.5–15.6px 統一改**固定 16px**（僅 `.cite` 13px 與頁尾屬例外）；
   全 51 頁實測佔高 ≤0.90（P25 曾 0.903，收 figcaption padding 後 0.897）、無新孤字、無缺字免重跑字型。
   **PPTX v6 已重匯**（51 頁、30.3 MB，存 OneDrive，v5 作廢）。
+- **2026-09-15（醫院機 X108521）可編輯 PPTX v7**：使用者要「改動會呈現」的版本，新寫
+  `slides/build_pptx_editable.py`＋`slides/pptx_fonts.py`：截圖前把文字設透明當**投影片背景**
+  （`<p:bg>`，點不到、拖不動），文字依 DOM 量測逐段放成原生文字方塊（630 個），
+  Noto Sans／Serif TC 子集切成靜態 Regular／Bold／Black 以 Windows `TTEmbedFont` 產 EOT **嵌進檔案**。
+  v7 為 51 頁、26 MB，存 OneDrive 與 `F:\南區\`；v6（截圖版）仍保留當備援播放版。
 
 ## ⚠️ 2026-08-16 重要事實修正（P9）
 
@@ -121,9 +126,11 @@ obesity-society-ai-talk/
     ├── live-config.js                 ★現場互動設定（Firebase config 已填，2026-08-17 啟用）
     ├── build_fonts.py                 中文字型子集化腳本（改內文後需重跑，見下方離線化）
     ├── build_qr.py                    產生 P2 的作答 QR（網址改了要重跑）
-    ├── build_pptx.py                  ★HTML→PPTX 轉檔（階段五，內容異動就重跑）
+    ├── build_pptx.py                  HTML→PPTX 截圖版（v1–v6；備援播放用）
+    ├── build_pptx_editable.py         ★HTML→**可編輯** PPTX（v7 起；底圖＋原生文字方塊＋嵌入字型）
+    ├── pptx_fonts.py                  字型嵌入模組（fontTools 切靜態實例 → t2embed 產 EOT）
     ├── vendor/                        reveal.js 5.1.0 本地副本（reset.css／reveal.css／reveal.js）
-    ├── fonts/                         Noto Sans/Serif TC 子集 woff2（*-VF.ttf 來源檔不進 git）
+    ├── fonts/                         Noto Sans/Serif TC 子集 woff2（*-VF.ttf 來源檔、embed/ 靜態快取不進 git）
     └── images/                        P1 封面底圖、P19／P21／P24 手繪底圖（已定案採用）
                                        ＋ p51_qa_bg_duotone_20260909.png（P51 封底底圖，duotone 墨綠版）
                                        ＋ p20/p25/p27/p30 四張工具操作截圖

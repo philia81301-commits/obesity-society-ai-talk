@@ -30,3 +30,5 @@ slides/shots/
 
 # Python 匯入快取（import build_fonts 等操作會產生）
 __pycache__/
+slides/shots_editable/
+slides/fonts/embed/
