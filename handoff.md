@@ -120,6 +120,6 @@ t2embed 產 EOT 嵌入）。v7 存 OneDrive＋`F:\南區\`。已知限制：SVG 
 - 時間：2026-09-16（家用機，P12 補查＋改字＋PPTX v8 輪）
 - 更新者：Claude Code（Opus 5）@ DESKTOP-LVSV9Q5（家用）
 - 階段：**PPTX v8 已匯**（OneDrive），P8／P12 修正已入 HTML 與 PPTX，剩排練
-- Git push：⏳ 待推
-- L3 Obsidian：⏳ 本輪收工時補（含 09-15 欠的 v7 紀錄）
+- Git push：✅ 已推（`283bef1`）
+- L3 Obsidian：✅ 已補（含 09-15 欠的 v7 紀錄）
 - 前一筆：2026-09-15 @ X108521（醫院）· ✅ 已推（`cf1b33d`／`d255940`）
