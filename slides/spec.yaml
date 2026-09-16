@@ -139,7 +139,7 @@ slides:
 
   - id: 8
     title: "中期：穿戴裝置與數位行為介入（二）"
-    summary: "2022-2024驗證期——自我監控成效研究，數位行為介入對減重維持的實證證據。"
+    summary: "2022-2024驗證期——Warwick／UHCW W8Buddy 單院觀察研究（JMIR 2025;27:e62661，n=412，面對面門診＋App vs 純門診，App 組每月多減 0.74 kg，追蹤約 4 個月）；COVID 遠距自然實驗與機器感知輔助減重。2026-09-16 修正：原「450 人／4 家醫院／6 個月」屬 NIHR 進行中研究（僅 protocol），已撤下。"
     tags: []
 
   - id: 9
@@ -159,7 +159,7 @@ slides:
 
   - id: 12
     title: "現在：GLP-1藥物與AI結合的進展（一）"
-    summary: "Mayo Clinic／Phenomix GRS研究（liraglutide，n=110，噁心副作用比例68% vs 30%，會議摘要層級）；TiP DecScore：<55歲亞組中用藥符合AI建議者HbA1c控制率64.1% vs不符合者46.2%。"
+    summary: "Mayo Clinic／Phenomix CTS-GRS研究（Fredrick, Gastroenterology 2025增刊／DDW 2025 Su2057；liraglutide組內post-hoc，有基因資料n=110，高vs低CTS-GRS噁心68% vs 30%，OR 5.0，p=0.0058；會議摘要層級，截至2026-09未見全文；卡標題寫「預測噁心風險」不寫「藥物反應」，因同一分數在療效上方向相反）；TiP DecScore（Shi, Commun Med 2026;6:165；上海回溯世代、醫師開藥時未見分數，故寫「處方恰與模型建議一致」而非「用藥符合AI建議」；<55歲亞組12個月HbA1c<7%達標率64.1% vs 46.2%，P=0.001；全體55.1% vs 47.4%，P=0.028，故不寫「僅」亞組）。出處補查見reference/p12-glp1-ai-source-check-20260916.md。"
     tags: []
 
   - id: 13

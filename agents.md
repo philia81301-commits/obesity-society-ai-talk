@@ -63,6 +63,13 @@
   （`<p:bg>`，點不到、拖不動），文字依 DOM 量測逐段放成原生文字方塊（630 個），
   Noto Sans／Serif TC 子集切成靜態 Regular／Bold／Black 以 Windows `TTEmbedFont` 產 EOT **嵌進檔案**。
   v7 為 51 頁、26 MB，存 OneDrive 與 `F:\南區\`；v6（截圖版）仍保留當備援播放版。
+- **2026-09-16（家用機 DESKTOP-LVSV9Q5）P12 出處補查＋改字＋可編輯 PPTX v8**：三個 subagent 平行補查
+  P12 兩張數字卡與結論句（`reference/p12-glp1-ai-source-check-20260916.md`），依查證結果改字——
+  左卡「基因風險分數（CTS-GRS）預測噁心風險」＋正式增刊引用（DDW 2025 Su2057、OR 5.0、p=0.0058）、
+  右卡「TiP DecScore：處方與模型建議一致與否」＋全體 55.1% vs 47.4%、caveat 拿掉「僅」；
+  `citation-verification.md` 主張 4／7 補註（含 57.9%/28.6% 誤讀更正）。同日另一 session 的 P8 修正
+  （Warwick 450→JMIR 2025 n=412）一併入庫。**PPTX v8 已匯**（51 頁、26.6 MB，含 P8＋P12），
+  `pptx_fonts.py` 改走 `TTEmbedFontFromFileA` 解決家用機系統同名字型衝突。
 
 ## ⚠️ 2026-08-16 重要事實修正（P9）
 
@@ -108,7 +115,9 @@ obesity-society-ai-talk/
 │   │                                    ＋附錄：同資料夾第二份簡報（TFDA 法規／2026-05 生成式 AI 指引）
 │   ├── legal-citations-20260816.md    ★醫師法／醫療法條號查證（P41 引註依據，含查不到的部分）
 │   ├── ada-sec8-digital-scan-20260817.md  ★ADA 2026 Sec8 官方 PDF 逐字掃描（P9 的 A→E 落差依據）
-│   └── clinic-photo-redaction-20260817.md ★門診實拍去識別化紀錄（換照片前必讀）
+│   ├── clinic-photo-redaction-20260817.md ★門診實拍去識別化紀錄（換照片前必讀）
+│   └── p12-glp1-ai-source-check-20260916.md ★P12 兩張數字卡＋結論句的出處補查（改字總表、Q&A 備忘、
+│                                            OR/p 解讀、同行反駁 8 條、建議講稿）
 ├── content/
 │   ├── outline-50slides.md            50張投影片大綱 v2.1（檔名沿用，實際已 51 頁）
 │   ├── article-newsletter-2026.md     ★會訊醫學專論原始稿（階段八，Markdown 為單一真實來源）
@@ -128,7 +137,9 @@ obesity-society-ai-talk/
     ├── build_qr.py                    產生 P2 的作答 QR（網址改了要重跑）
     ├── build_pptx.py                  HTML→PPTX 截圖版（v1–v6；備援播放用）
     ├── build_pptx_editable.py         ★HTML→**可編輯** PPTX（v7 起；底圖＋原生文字方塊＋嵌入字型）
-    ├── pptx_fonts.py                  字型嵌入模組（fontTools 切靜態實例 → t2embed 產 EOT）
+    ├── pptx_fonts.py                  字型嵌入模組（fontTools 切靜態實例 → t2embed 產 EOT；
+    │                                  2026-09-16 起優先 TTEmbedFontFromFileA 直接指定檔案，避開系統同名字型）
+    ├── build_summary_docx.py          一頁 A4 演講摘要 DOCX（2026-09-13 產出，內容寫在檔內 CONTENT 區塊）
     ├── vendor/                        reveal.js 5.1.0 本地副本（reset.css／reveal.css／reveal.js）
     ├── fonts/                         Noto Sans/Serif TC 子集 woff2（*-VF.ttf 來源檔、embed/ 靜態快取不進 git）
     └── images/                        P1 封面底圖、P19／P21／P24 手繪底圖（已定案採用）

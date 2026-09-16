@@ -88,18 +88,62 @@ def _win():
         _t2.TTEmbedFont.argtypes = [ctypes.c_void_p, wintypes.ULONG, wintypes.ULONG, ctypes.c_void_p, ctypes.c_void_p,
                                     _WRITEPROC, ctypes.c_void_p, ctypes.c_void_p, ctypes.c_ushort, ctypes.c_ushort,
                                     ctypes.c_void_p]
+        # 直接指定字型檔的版本：多了 szFontFileName（ANSI）與 usTTCIndex 兩個參數，其餘同 TTEmbedFont
+        _t2.TTEmbedFontFromFileA.argtypes = [ctypes.c_void_p, ctypes.c_char_p, ctypes.c_ushort, wintypes.ULONG,
+                                             wintypes.ULONG, ctypes.c_void_p, ctypes.c_void_p, _WRITEPROC,
+                                             ctypes.c_void_p, ctypes.c_void_p, ctypes.c_ushort, ctypes.c_ushort,
+                                             ctypes.c_void_p]
+        _t2.TTEmbedFontFromFileA.restype = ctypes.c_long
+
+
+def _check_size(raw: bytes, data: bytes, family: str, how: str) -> None:
+    """未壓縮 EOT 表頭 offset 4 是 FontDataSize：拿來確認包進去的真的是我們的檔。"""
+    font_size = struct.unpack_from("<I", raw, 4)[0]
+    if font_size != len(data):
+        raise RuntimeError(f"{family}：{how} 選到別的字型（{font_size} vs {len(data)} bytes），請檢查系統是否裝了同名字型")
 
 
 def ttf_to_eot(ttf_path: Path, family: str, weight: int) -> bytes:
-    """用 Windows t2embed 的 TTEmbedFont 產生 EOT（MTX 壓縮）。
+    """用 Windows t2embed 產生 EOT（MTX 壓縮）。
 
     自己手刻 EOT 表頭被 PowerPoint 拒收（2026-09-15：缺 XOR 旗標、名稱字串少 NUL 結尾，
     t2embed 回 E_FONTDATAINVALID），所以改讓 Windows 自己產。
-    字型以 FR_PRIVATE 載入，只在本程序可見，不動系統字型與登錄檔。
+
+    2026-09-16 起優先走 TTEmbedFontFromFileA：直接把靜態子集檔路徑交給 t2embed，不經 GDI 選字。
+    原因：家用機系統裝了同名的 Noto Serif TC（完整 VF），舊路徑用家族名 CreateFont 會被 GDI
+    配到系統那份，防呆檢查就擋下（醫院機沒裝 Serif 所以沒撞到）。FromFile 失敗才退回舊路徑
+    （FR_PRIVATE 載入＋GDI 選字，只在本程序可見，不動系統字型與登錄檔）。
     """
     _win()
     data = ttf_path.read_bytes()
     path = str(ttf_path.resolve())
+
+    # --- 新路徑：直接指定檔案 ---
+    hdc = _user.GetDC(None)
+    try:
+        def run_file(flags: int) -> bytes:
+            out = io.BytesIO()
+
+            @_WRITEPROC
+            def wr(_stream, src, n):
+                out.write(ctypes.string_at(src, n))
+                return n
+
+            priv = wintypes.ULONG(); st = wintypes.ULONG()
+            rc = _t2.TTEmbedFontFromFileA(hdc, path.encode("mbcs"), 0, flags, 1, ctypes.byref(priv), ctypes.byref(st),
+                                          wr, None, None, 0, 0, None)
+            if rc:
+                raise RuntimeError(f"TTEmbedFontFromFileA({family}) 失敗 rc={rc:#x}")
+            return out.getvalue()
+
+        _check_size(run_file(0x0), data, family, "FromFile")
+        return run_file(0x4)                                   # TTEMBED_TTCOMPRESSED
+    except RuntimeError as e:
+        print(f"  ⚠️ {e}；退回 GDI 選字路徑")
+    finally:
+        _user.ReleaseDC(None, hdc)
+
+    # --- 舊路徑：FR_PRIVATE ＋ GDI 依家族名選字 ---
     if not _gdi.AddFontResourceExW(path, 0x10, None):          # FR_PRIVATE
         raise RuntimeError(f"AddFontResourceEx 失敗：{path}")
     hdc = _user.GetDC(None)
@@ -121,10 +165,7 @@ def ttf_to_eot(ttf_path: Path, family: str, weight: int) -> bytes:
             return out.getvalue()
 
         # 先用未壓縮版驗證 GDI 選到的確實是這個檔（系統若裝了同名字型，GDI 可能挑到那一個）
-        raw = run(0x0)
-        font_size = struct.unpack_from("<I", raw, 4)[0]
-        if font_size != len(data):
-            raise RuntimeError(f"{family}：GDI 選到別的字型（{font_size} vs {len(data)} bytes），請檢查系統是否裝了同名字型")
+        _check_size(run(0x0), data, family, "GDI")
         return run(0x4)                                        # TTEMBED_TTCOMPRESSED
     finally:
         _gdi.SelectObject(hdc, old); _gdi.DeleteObject(hf); _user.ReleaseDC(None, hdc)

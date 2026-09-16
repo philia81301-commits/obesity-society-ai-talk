@@ -92,6 +92,8 @@
 
 **來源**：PR Newswire (2025-05-07) "Mayo Clinic Study Uses Phenomix AI Algorithm to Predict GLP-1 Side Effects"；Patient Care Online "Genetic Risk Score Identifies Individuals Likely to Report Adverse Events from GLP-1 Mimetic Therapy"
 
+> **2026-09-16 補查**：正式引用為 Fredrick TW, et al. Su2057. *Gastroenterology* 2025;169(1 Suppl):S-946–S-947. doi:10.1016/S0016-5085(25)03109-9（標題應為 GLP-1 **Receptor** Agonist）。截至 2026-09-16 仍無全文。68%/30% 為 liraglutide 組內比較（OR 5.0，p=0.0058），n=110 是含安慰劑組的有基因資料人數；該分數為 CTS-GRS（同 Phenomix MyPhenome），在療效上方向相反（低分減重較好）。詳見 `p12-glp1-ai-source-check-20260916.md` §1。
+
 ---
 
 ### 5. 副作用預測列線圖(nomogram) AUC值0.84-0.86
@@ -135,6 +137,8 @@
 「TiP DecScore」確實真實存在，並非自創或誤植的產品名。原始論文：發表於 *Communications Medicine*（Nature旗下期刊）2026年2月17日，第6卷，Article 165。全稱為「SGLT-2i/GLP-1RA Decision Score」，用機器學習（gradient boosting decision tree，15項臨床特徵）協助決定第2型糖尿病患者該用SGLT-2i還是GLP-1RA。訓練資料集來自「China Metabolic Analytics Project」，衍生資料集 n=24,322，驗證資料集 n=1,459。
 
 **46.2% vs 64.1% 這組數字的真實語境**：這是**12個月時、「年齡<55歲」這個特定年齡亞組**中，「治療方式與TiP DecScore建議相符（concordant）」組別 HbA1c控制率64.1%，「不相符（discordant）」組別46.2%（P=0.001）——**不是「AI建議使用前後」的縱向對比，而是「用藥是否遵循AI建議」的橫向分組比較，且僅限於<55歲亞組**。全體患者的整體數字並非46%/64%（例如另一個對比是「GLP-1RA優於SGLT-2i」亞組在12個月時57.9% vs 28.6%）。
+
+> **2026-09-16 更正**：上句「GLP-1RA 優於 SGLT-2i 亞組 57.9% vs 28.6%」為誤讀——原文 "the recommendation rates for GLP-1RA and SGLT-2i were 57.9% and 28.6%" 是模型建議兩種藥的**病人比例**（另 13.5% 不給建議），不是療效比較。另外，全體世代 concordant vs discordant 在 6、12 個月**皆顯著**（12 個月 55.1% vs 47.4%，P=0.028），只有 ≥55 歲與女性亞組在 12 個月時不顯著且方向反轉；因此投影片不宜寫「僅」<55 歲亞組。此外驗證世代為回溯資料、醫師開藥時未見分數，「用藥符合 AI 建議」應改為「處方恰與模型建議一致」。詳見 `p12-glp1-ai-source-check-20260916.md` §2。
 
 **結論**：「TiP DecScore」這個名稱是真的，不是幻覺產品名；但投影片把「特定年齡亞組、用藥符合度分組」的數字，簡化包裝成「使用AI建議後從46%提升到64%」的因果敘事，這種簡化容易被同行識破——正確說法應該是「在<55歲患者亞組中，用藥符合TiP DecScore建議者，HbA1c控制率（64.1%）顯著高於不符合者（46.2%）」。
 
