@@ -5,6 +5,33 @@
 
 ## ⏯️ 目前做到哪
 
+**2026-10-20（醫院機）12/13 台灣肥胖醫學會 AI 場：沿用本 51 頁版，插入 3D 體型掃描＋NeRF 4 頁（全冊 55 頁）**：
+
+- 新頁 `data-slide="13.1"`–`"13.4"`，插在 P13（GLP-1×AI 參與度）與 P14（Agentic AI）之間；用小數編號讓
+  頁尾 BOUNDS 自動歸Ⅰ段，**其餘頁的 data-slide 與 HTML 註解 `<!-- Pnn -->` 都沒有重排**（舊編號＝9/20 版編號）。
+- **使用者指示：2019 年（含）以前的文獻太舊不用**——P13.1 改以 Wong 2021＋Leong 2024 重寫、P13.3 兒童研究換 Garber 2023；
+  之後 Tian 2020 也換掉：P13.3 第三卡改「手機 2D 照片」＝Majmudar 2022（CCC 0.96，Amazon 廠商研究）＋Encarnação 2026（獨立研究，3 款 App 皆低估）。
+  **現在 4 頁引用全部 ≥2021 年**（Majmudar 2022 為最舊）。
+- 文獻卡 `reference/refs-3d-optical-imaging.md`（T01／T04 已刪，PubMed 摘要逐篇核對；T02／T03 以 PMC 全文確認為 R²；
+  T03 六個研究**無減重藥物**，含減重手術）。同一份也在 Obesity-lecture repo。
+- `build_fonts.py` 已重跑（醫院網路擋下載，VF 來源檔從 `C:\projects\Obesity-lecture\slides\fonts\` 複製），無缺字。
+- 瀏覽器實測 4 頁：佔高 0.785–0.872、孤字 0、<16px 0。
+- **未做**：PPTX 未重匯（v9 待匯）、`slides/spec.yaml` 未同步、12/13 場名／時長待使用者提供（封面日期與頁尾
+  「2026 肥胖醫學會南區研討會」字樣尚未改）。
+- **結語段再加 2 頁（data-slide 50.1／50.2，全冊 57 頁）**：減重門診訓練場域的流程＋軟硬體（3D 實景重建／Gaussian Splatting）。
+  50.x 超出 BOUNDS，section 上直接寫 `data-sec="4"`。工具現況 2026-10 查證（Scaniverse 免費手機端、Polycam 免費版受限、
+  Postshot 需 Windows＋NVIDIA、SuperSplat 開源瀏覽器），來源寫在 HTML 註解。實測佔高 0.749／0.822、孤字 0。
+- **P50.05 新增（全冊 58 頁）**：「跨域啟發：兩部沉浸式作品」，置於展望段開頭（P50 後、P50.1 前）——左《羽火共舞》（重建人）、
+  右《雲在兩千米》（重建環境，報導者專訪提及 NeRF／3DGS）。使用者說訓練場域構想的靈感來源。查證細節與未上畫面項目（片長、坎城、
+  掃描地點說法不一）寫在 HTML 註解。實測佔高 0.767、每點一行。**使用者指示：VR／NeRF 相關內容一律放 12/13 場。**
+  右欄技術列依使用者提供的**商業周刊**剪報改為「整合 4DViews、NeRF、3DGS 與物件掃描」（剪報期數／日期未知，引用列只寫刊名）。
+- **講稿機制（新）**：`content/speaker-notes-1213.md`＋頁內隱藏 `<aside class="notes">`（目前只有 P50.05）。
+  `build_pptx_editable.py` 新增 `NOTES_JS`：有 notes 的頁，備忘稿＝【講稿】＋【頁面文字】；無 notes 的頁行為不變（瀏覽器模擬已驗證，**尚未實際匯出 PPTX 測**）。
+- **封面／頁尾／封底改 12/13 場名**：「2026 年台灣肥胖醫學會學術研討會｜2026 年 12 月 13 日」。封面底圖換 `images/p1_cover_bg_20261020c.png`（high 第 2 張白底圖示版，使用者選定）
+  （構想 B：神經網路→醫學圖示→VR 頭顯，白底冰藍青綠，使用者選定），封面標題／kicker／rule 以 `.cover-bg .title-slide` 覆寫為深藍＋青綠；
+  封底與內頁仍墨綠。舊圖 p1_cover_bg_20260815.png 保留。點雲人形版（壓到標題）已否決。
+- 本機預覽：此輪從 Obesity-lecture session 開的 server（該 repo `.claude/launch.json` 加了 `ai-talk-slides`，port 8770）。
+
 **2026-09-16（家用機 DESKTOP-LVSV9Q5）P12 出處補查＋改字＋可編輯 PPTX v8**：
 
 - **P12 出處補查**：使用者在 P12 截圖標了 [1] GRS 卡、[2] TiP DecScore 卡、[3] 結論句，派三個 subagent
@@ -117,9 +144,9 @@ t2embed 產 EOT 嵌入）。v7 存 OneDrive＋`F:\南區\`。已知限制：SVG 
 
 ## 🕐 最後更新
 
-- 時間：2026-09-16（家用機，P12 補查＋改字＋PPTX v8 輪）
-- 更新者：Claude Code（Opus 5）@ DESKTOP-LVSV9Q5（家用）
-- 階段：**PPTX v8 已匯**（OneDrive），P8／P12 修正已入 HTML 與 PPTX，剩排練
-- Git push：✅ 已推（`283bef1`）
-- L3 Obsidian：✅ 已補（含 09-15 欠的 v7 紀錄）
-- 前一筆：2026-09-15 @ X108521（醫院）· ✅ 已推（`cf1b33d`／`d255940`）
+- 時間：2026-10-20（醫院機 office，12/13 場：3D 體型掃描＋NeRF 4 頁、沉浸式作品、訓練場域 2 頁、講稿機制、封面換新）
+- 更新者：Claude Code（Opus 5.5）@ 醫院機（office 帳號）
+- 階段：HTML 58 頁已改完並實測；**PPTX 未重匯（v9 待匯，會順便測講稿備忘稿）**；12/13 時長待使用者補
+- Git push：⏳ 已 commit，**未 push**（使用者只要求 commit）
+- L3 Obsidian：未更新
+- 前一筆：2026-09-16 @ DESKTOP-LVSV9Q5（家用）· ✅ 已推（`283bef1`）

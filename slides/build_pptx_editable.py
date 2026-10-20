@@ -77,6 +77,17 @@ EMBED_FONTS = os.environ.get("EMBED_FONTS", "1") == "1"
 # ---------------------------------------------------------------------------
 # 瀏覽器端：把目前頁的文字拆成「段落方塊」並回傳幾何與樣式
 # ---------------------------------------------------------------------------
+NOTES_JS = r"""
+(i) => {
+  const s = document.querySelectorAll('.slides > section')[i];
+  const t = (s.innerText || '').trim();
+  const n = s.querySelector('aside.notes');
+  if (!n) return t;
+  const notes = n.textContent.split('\n').map(x => x.trim()).filter(Boolean).join('\n\n');
+  return '【講稿】\n' + notes + '\n\n【頁面文字】\n' + t;
+}
+"""
+
 COLLECT_JS = r"""
 (idx) => {
   const sec = document.querySelectorAll('.slides > section')[idx];
@@ -336,7 +347,8 @@ def render(only: set[int] | None = None) -> list[dict]:
                 continue
             page.evaluate(f"Reveal.slide({i})")
             time.sleep(0.45)
-            text = page.evaluate(f"document.querySelectorAll('.slides > section')[{i}].innerText")
+            # 有 <aside class="notes"> 講稿的頁面：講稿放備忘稿最前面，其後接頁面文字（2026-10-20 起，12/13 場）
+            text = page.evaluate(NOTES_JS, i)
             info = page.evaluate(COLLECT_JS, i)
             time.sleep(0.05)
             f = SHOTS / f"slide_{i + 1:02d}.png"

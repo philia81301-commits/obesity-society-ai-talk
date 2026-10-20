@@ -189,9 +189,25 @@ section{
 .slide-background.cover-bg .slide-background-content::after{
   content:''; position:absolute; inset:0;
   background: linear-gradient(to right,
-    #F1E9D6 0%, #F1E9D6 30%,
-    rgba(241,233,214,.80) 44%,
-    rgba(241,233,214,0) 58%);
+    #FFFFFF 0%, #FFFFFF 30%,
+    rgba(255,255,255,.80) 44%,
+    rgba(255,255,255,0) 58%);
+}
+/* 2026-10-20 12/13 場封面改「白底＋冰藍青綠」（使用者選定）：只覆寫封面，封底與內頁仍是墨綠。
+   立體字結構不變：左上青綠鑲邊＋右下五層漸深藍做厚度＋落地柔影。 */
+.cover-bg .title-slide .kicker{ color:#1E88C8; border-color:rgba(30,136,200,.35); }
+.cover-bg .title-slide .rule{ background:#1E88C8; }
+.cover-bg .title-slide h1{
+  color:#0B3C5D;
+  text-shadow:
+    -2px -2px 0 #20B2AA,
+    -1px -1px 0 #20B2AA,
+     1px  1px 0 #0A3654,
+     2px  2px 0 #09304B,
+     3px  3px 0 #082A42,
+     4px  4px 0 #072439,
+     5px  5px 0 #061E30,
+     6px  9px 18px rgba(6,30,48,.28);
 }
 .title-slide .rule{ width:110px; height:3px; background: var(--sec); margin:.7em 0 .85em; }
 .title-slide .who{ font-size:.6em; color: var(--text); line-height:1.85; }
@@ -655,7 +671,7 @@ section{
 </svg>
 
 <div class="reveal">
-  <div class="footer-brand">AI 在肥胖治療的新發展｜2026 肥胖醫學會南區研討會</div>
+  <div class="footer-brand">AI 在肥胖治療的新發展｜2026 台灣肥胖醫學會學術研討會</div>
   <div class="slides">
 
 <!-- ============================================================
@@ -664,23 +680,27 @@ section{
 
 <!-- P1 [BG] 標題頁 -->
 <section class="section-open cover-bg" data-slide="1"
-         data-background-color="#F1E9D6"
-         data-background-image="images/p1_cover_bg_20260815.png"
+         data-background-color="#FFFFFF"
+         data-background-image="images/p1_cover_bg_20261020c.png"
          data-background-size="cover" data-background-position="right center">
-  <!-- [BG] 封面底圖（gpt-image-2, high, 2026-08-15）。插畫重量在右三分之一、
+  <!-- 2026-10-20 試換點雲人形底圖（已刪；原始輸出留在 generated/p1_cover1213_*）：人物壓到標題，使用者否決，暫回原圖；
+       使用者要求新封面「AI 科技感與醫學結合」→ 選構想 B（神經網路→醫學圖示→VR 頭顯）＋白底冰藍青綠；
+       使用者再要求「更明亮＋高品質」→ 現用 images/p1_cover_bg_20261020c.png（gpt-image-2 high 第 2 張＝白底圖示版，使用者選定；圖示在右 20%、心臟不被標題擋）；
+       備選：generated/p1_cover1213c_*_1.png（彩色實心圖示版）；前一版 low 原始檔在 generated/p1_cover1213b_*。
+       封面底圖（gpt-image-2, high, 2026-08-15）。插畫重量在右三分之一、
        左側大片留白給標題；不透明度維持 1，靠 .cover-bg 的左側漸層遮罩保證讀字。
        ⚠️ 檔名不可用 cover_*.png——.gitignore 擋掉那個樣式（當初為排除四張廢稿）。
        備選版本（細胞代謝取向，紙張色 #F2EFE2）留在本機 images/generated/，
        該資料夾不進 git；換用時記得同步改 data-background-color 與 .cover-bg 遮罩色。 -->
   <div class="title-slide">
-    <span class="kicker">台灣肥胖醫學會 2026 南區學術研討會</span>
+    <span class="kicker">2026 年台灣肥胖醫學會學術研討會</span>
     <h1>人工智慧在<br>肥胖治療運用的新發展</h1>
     <div class="rule"></div>
     <div class="who">
       潘湘如 醫師<br>
       <span style="font-size:.82em; color:var(--text-2);">高雄榮民總醫院 家庭醫學部</span>
     </div>
-    <div class="meta">2026 年 9 月 20 日</div>
+    <div class="meta">2026 年 12 月 13 日</div>
   </div>
 </section>
 
@@ -1189,6 +1209,136 @@ section{
   <div class="cite">
     資料來源：JMIR 2026;e83718（AI 參與度數字）；DelveInsight（市場規模）。
   </div><!-- 內部提醒移出畫面：原大綱「Semaglutide 7.8%→9.5%／Tirzepatide 11.2%→13.9%」為誤植，講稿勿用 -->
+</section>
+
+<!-- P13.1–13.4：3D 體型掃描＋NeRF／Gaussian Splatting（2026-10-20 為 12/13 場新增）
+     data-slide 用小數，板塊色分界表（頁尾 BOUNDS）自動歸入Ⅰ段，其餘頁碼屬性不必重排。
+     文獻核對見 reference/refs-3d-optical-imaging.md（T02／T03 R² 已以 PMC 全文確認；2026-10-20 使用者指示刪除 2019 年文獻 T01、T04） -->
+<section data-slide="13.1">
+  <div class="sec-mark">Ⅰ　發展脈絡</div>
+  <div class="slide-head">
+    <h2>BMI 看不到的：從 3D 體型推估體組成</h2>
+    <div class="sub">3D 光學體型掃描（3DO）｜Shape Up! Adults，n=472</div>
+  </div>
+  <div class="stat-row" style="grid-template-columns:repeat(3,1fr);">
+    <div class="stat-card" style="border-top-color:var(--pop); background:color-mix(in srgb, var(--pop) 9%, #fff);">
+      <div class="num" style="color:var(--pop);">0.94</div>
+      <div class="label">脂肪量，對照 DXA 的 R²（女）<br>男性 0.91</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">0.92</div>
+      <div class="label">去脂體重，對照 DXA 的 R²（女）<br>男性 0.95</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">0.79</div>
+      <div class="label">內臟脂肪，對照 DXA 的 R²（女）<br>男性 0.77</div>
+    </div>
+  </div>
+  <ul style="margin-top:.6em;">
+    <li>掃描先以軟體重擺成標準姿勢再建模，減少站姿不同造成的誤差</li>
+    <li>深度學習可由 3D 體型生成 DXA 影像，但脂肪量誤差約 5 kg（R² 0.73）</li>
+  </ul>
+  <div class="key-box" style="margin-top:.45em;">
+    體型本身帶有體組成的資訊；3DO <strong>不需游離輻射，可以重複量測</strong>。
+  </div>
+  <div class="cite">資料來源：Wong MC, et al. Obesity 2021;29:1835-47｜Leong LT, et al. Commun Med 2024;4:13.</div>
+</section>
+
+<section data-slide="13.2">
+  <div class="sec-mark">Ⅰ　發展脈絡</div>
+  <div class="slide-head">
+    <h2>能否追蹤介入期間的體組成變化？</h2>
+    <div class="sub">6 個介入研究回溯分析｜n=133，平均追蹤 13 週</div>
+  </div>
+  <div class="two-col">
+    <div class="col-box mark-a">
+      <div class="cb-title">女性（n=45）：變化量對照 DXA 的 R²</div>
+      <ul>
+        <li>脂肪量 <span class="em-num">0.86</span>（誤差 1.98 kg）</li>
+        <li>去脂體重 <span class="em-num">0.73</span>（誤差 1.58 kg）</li>
+        <li>四肢瘦體組織 <span class="em-num">0.70</span>（誤差 0.37 kg）</li>
+      </ul>
+    </div>
+    <div class="col-box mark-b">
+      <div class="cb-title">男性（n=88）：變化量對照 DXA 的 R²</div>
+      <ul>
+        <li>脂肪量 <span class="em-num">0.75</span>（誤差 2.31 kg）</li>
+        <li>去脂體重 <span class="em-num">0.75</span>（誤差 1.77 kg）</li>
+        <li>四肢瘦體組織 <span class="em-num">0.52</span>（誤差 0.52 kg）</li>
+      </ul>
+    </div>
+  </div>
+  <div class="caveat" style="display:block; margin-top:.5em;">介入包含減重手術、低醣飲食、限時進食、阻力運動；6 個研究中沒有減重藥物研究；誤差為 RMSE</div>
+  <div class="key-box" style="margin-top:.45em;">
+    使用 GLP-1 藥物時，需要追蹤減掉的是脂肪還是肌肉。<br>3DO 可以頻繁量測，但<strong>四肢瘦體組織的一致性較低，男性 R² 僅 0.52</strong>。
+  </div>
+  <div class="cite">資料來源：Wong MC, et al. Am J Clin Nutr 2023;117:802-13.</div>
+</section>
+
+<section data-slide="13.3">
+  <div class="sec-mark">Ⅰ　發展脈絡</div>
+  <div class="slide-head">
+    <h2>從掃描機，到手機掃描，到手機照片</h2>
+    <div class="sub">設備越方便，個人層級的誤差越大</div>
+  </div>
+  <div class="adv-grid c3">
+    <div class="adv-card">
+      <div class="adv-icon"><svg class="ic"><use href="#ic-diagnosis"/></svg></div>
+      <div class="adv-title">專用 3D 掃描機</div>
+      <div class="adv-desc">
+        研究證據最多<br>
+        低 BMI 族群：去脂體重對照 DXA，CCC <span class="em-num" style="font-size:1.2em;">0.97</span>
+      </div>
+    </div>
+    <div class="adv-card">
+      <div class="adv-icon"><svg class="ic"><use href="#ic-collect"/></svg></div>
+      <div class="adv-title">手機 3D 掃描</div>
+      <div class="adv-desc">
+        群體平均接近 DXA；個人體脂率一致性界限達 <span class="em-num" style="font-size:1.2em;">9.5–10.2</span> 個百分點<br>
+        追蹤 12 週訓練的體脂率變化，與 DXA 最一致
+      </div>
+    </div>
+    <div class="adv-card">
+      <div class="adv-icon"><svg class="ic"><use href="#ic-scope"/></svg></div>
+      <div class="adv-title">手機 2D 照片</div>
+      <div class="adv-desc">
+        體脂率對照 DXA：CCC <span class="em-num" style="font-size:1.2em;">0.96</span>（廠商研究）<br>
+        獨立研究：3 款 App 皆低估體脂率
+      </div>
+    </div>
+  </div>
+  <div class="key-box" style="margin-top:.45em;">
+    手機與照片適合<strong>追蹤個人趨勢與群體篩檢</strong>；個人的體組成判讀，仍以 DXA 為準。
+  </div>
+  <div class="cite">資料來源：Garber AK, et al. Am J Clin Nutr 2023;118:812-21｜Florez CM, et al. Br J Nutr 2024;132:1143-51｜Graybeal AJ, et al. Mil Med 2026｜Majmudar MD, et al. NPJ Digit Med 2022;5:79｜Encarnação IGA, et al. Clin Nutr ESPEN 2026;75:103391.</div>
+</section>
+
+<section data-slide="13.4">
+  <div class="sec-mark">Ⅰ　發展脈絡</div>
+  <div class="slide-head">
+    <h2>下一代：NeRF 與 Gaussian Splatting</h2>
+    <div class="sub">多角度照片重建成照片級、可自由轉動視角的 3D 模型</div>
+  </div>
+  <div class="two-col">
+    <div class="col-box mark-a">
+      <div class="cb-title">技術原理</div>
+      <ul>
+        <li><strong>NeRF</strong>（2020）：神經網路學習空間各點的顏色與密度</li>
+        <li><strong>3D Gaussian Splatting</strong>（2023）：用大量半透明橢球表示場景，可即時算圖，VR／AR 頭戴裝置可用</li>
+      </ul>
+    </div>
+    <div class="col-box mark-w">
+      <div class="cb-title">醫學應用現況</div>
+      <ul>
+        <li>遠距復健：單一相機重建病人的 3D 影像，在 HoloLens 2 上檢視</li>
+        <li>法醫：全身 360° 傷勢記錄與互動檢視；作者說明尺寸量測尚未驗證</li>
+      </ul>
+    </div>
+  </div>
+  <div class="key-box" style="margin-top:.5em;">
+    目前尚無以 NeRF／3DGS 估算體組成的臨床驗證。<br>現階段適合<strong>衛教與遠距照護的視覺呈現</strong>，不能當作量測工具。
+  </div>
+  <div class="cite">資料來源：Cao S, et al. IEEE Trans Vis Comput Graph 2025;31:7311-23｜Thali M, et al. Forensic Sci Med Pathol 2026.</div>
 </section>
 
 <!-- P14 -->
@@ -2373,6 +2523,138 @@ section{
   </div>
 </section>
 
+<!-- P50.1–50.2：減重門診訓練場域（3D 實景重建）的流程與軟硬體（2026-10-20 為 12/13 場新增）
+     data-slide 50.x 超出頁尾 BOUNDS 最後一格（50），故直接寫 data-sec="4"（腳本只在符合分界時才覆寫）。
+     工具現況 2026-10 查證：Scaniverse 免費、手機端運算；Polycam 免費版受限；Postshot 需 Windows＋NVIDIA；SuperSplat 開源瀏覽器編輯器。
+     來源：radiancefields.com（該站自營拍攝 App，屬單一編輯觀點）、cgpress.org、help.sketchup.com -->
+<!-- P50.05：訓練場域構想的來源——兩部沉浸式作品並列（2026-10-20 使用者指示：左《羽火共舞》重建人、右《雲在兩千米》重建環境）
+     【羽火共舞】
+     2026-10-20 查證：兩廳院實驗劇場 2026/10/10–10/24；VIVE Arts × Atlas V，導演 Pierre-Alain Giraud；
+     體積影像擷取錄製王羽佳演奏，現場史坦威 Spirio 自動鋼琴同步彈奏；VIVE Focus Vision 頭顯，靠近鋼琴時 MR／VR 切換；
+     巴黎愛樂廳首演，巡演上海、倫敦（Southbank Centre 2026/9/9–2027/1/3）。
+     未上畫面：片長（OPENTIX 60 分 vs 上海 約 50 分，說法不一）、坎城入圍（僅單一來源）。
+     來源：opentix.life 節目頁、cna.com.tw、news.tvbs.com.tw、blog.vive.com、southbankcentre.co.uk 新聞稿
+     【雲在兩千米】（2026-10-20 新增；使用者指示 VR／NeRF 相關內容一律放 12/13 場）
+     查證：第 82 屆威尼斯影展＝2025 年（有搜尋摘要誤寫 2026），沉浸式競賽「最佳沉浸體驗大獎」，陳芯宜繼 2022《無法離開的人》再獲；
+     改編吳明益〈雲在兩千米〉（《苦雨之地》）；報導者專訪提及 NeRF、3DGS（未說明用途）；製作兩年、前半年技術測試；
+     掃描地點說法不一（LINE Today／鏡報：太平山、棲蘭山；報導者：花蓮清水溪谷）故畫面不寫地名；雲豹製作方式未查到；
+     北師美術館 2026/7/25–10/11（已展畢）。
+     2026-10-20 使用者提供商業周刊報導剪報（期數／日期未知）：去年九月獲獎（確認 2025）；導演整合 4DViews、NeRF、GS、物件掃描四種技術；
+     開展前三週售票，三千多張 48 小時售罄；現場加入氣味設計。右欄技術列依剪報改寫。
+-->
+<section data-slide="50.05" data-sec="4">
+  <div class="sec-mark">結語與展望</div>
+  <div class="slide-head">
+    <h2>跨域啟發：兩部沉浸式作品</h2>
+    <div class="sub">藝術與科技交會：重建人，也重建環境</div>
+  </div>
+  <div class="two-col">
+    <div class="col-box mark-a">
+      <div class="cb-title">《羽火共舞》｜重建人</div>
+      <ul>
+        <li>鋼琴家王羽佳，兩廳院 2026 年 10 月 10–24 日</li>
+        <li>體積影像擷取：多台相機同步拍攝，重建出 3D 演奏者</li>
+        <li>觀眾戴頭顯走到鋼琴旁，從任意角度觀看</li>
+      </ul>
+    </div>
+    <div class="col-box mark-b">
+      <div class="cb-title">《雲在兩千米》｜重建環境</div>
+      <ul>
+        <li>威尼斯影展 2025 最佳沉浸體驗大獎，導演陳芯宜</li>
+        <li>實地掃描台灣山林，重建雲豹的棲息環境</li>
+        <li>整合 4DViews、<strong>NeRF</strong>、<strong>3DGS</strong> 與物件掃描</li>
+      </ul>
+    </div>
+  </div>
+  <div class="key-box" style="margin-top:.55em;">
+    兩部作品分別重建了人與環境；訓練場域要重建的是<strong>病人的生活環境</strong>。
+  </div>
+  <div class="cite">資料來源：OPENTIX 兩廳院節目頁；VIVE Arts；Southbank Centre 新聞稿；報導者〈陳芯宜專訪〉；商業周刊；LINE Today（2026）。</div>
+  <aside class="notes">
+    這兩部作品，一部重建人，一部重建環境。
+    《羽火共舞》用多台相機錄下王羽佳的演奏，觀眾戴上頭顯，可以走到鋼琴旁邊，從任何角度看她彈琴。
+    《雲在兩千米》去年拿下威尼斯影展的最佳沉浸體驗大獎。團隊實地掃描台灣山林，整合了 NeRF、Gaussian Splatting 等四種技術。開展前三週開放售票，三千多張票在 48 小時內賣完；現場除了畫面和聲音，還加入了氣味設計。
+    沉浸式體驗不只靠畫面——訓練場域是不是也能加入更多感官？例如廚房的油煙味、拆零食包裝的聲音，這些都是病人每天生活裡的線索。
+  </aside>
+</section>
+
+<section data-slide="50.1" data-sec="4">
+  <div class="sec-mark">結語與展望</div>
+  <div class="slide-head">
+    <h2>展望：建置減重門診訓練場域</h2>
+    <div class="sub">以 3D 實景重建（Gaussian Splatting）呈現病人的生活環境</div>
+  </div>
+  <div class="flow" style="font-size:1.36em; margin-top:.4em;">
+    <div class="flow-step">
+      <div class="fs-ic"><svg class="ic sm"><use href="#ic-scope"/></svg></div>
+      <div class="fs-title">佈置場景</div>
+      <div class="fs-desc">依去識別化個案佈置廚房、客廳等空間</div>
+    </div>
+    <div class="flow-arrow">›</div>
+    <div class="flow-step">
+      <div class="fs-ic"><svg class="ic sm"><use href="#ic-collect"/></svg></div>
+      <div class="fs-title">手機拍攝</div>
+      <div class="fs-desc">繞著場景錄一段影片</div>
+    </div>
+    <div class="flow-arrow">›</div>
+    <div class="flow-step">
+      <div class="fs-ic"><svg class="ic sm"><use href="#ic-analyze"/></svg></div>
+      <div class="fs-title">3D 重建</div>
+      <div class="fs-desc">產生 3D 模型，裁切雜物並壓縮檔案</div>
+    </div>
+    <div class="flow-arrow">›</div>
+    <div class="flow-step">
+      <div class="fs-ic"><svg class="ic sm"><use href="#ic-summary"/></svg></div>
+      <div class="fs-title">標註線索</div>
+      <div class="fs-desc">放入可點擊的線索，如含糖飲料、樓梯</div>
+    </div>
+    <div class="flow-arrow">›</div>
+    <div class="flow-step">
+      <div class="fs-ic"><svg class="ic sm"><use href="#ic-communicate"/></svg></div>
+      <div class="fs-title">互動訓練</div>
+      <div class="fs-desc">以手機或 VR 探索場景，再進入看診</div>
+    </div>
+  </div>
+  <ul style="margin-top:.55em;">
+    <li>同一場景可搭配不同個案劇本，用於住院醫師、營養師、個管師的訓練</li>
+  </ul>
+  <div class="key-box" style="margin-top:.4em;">
+    門診問診看不到病人的生活環境；訓練場域讓學員<strong>練習從環境找出影響體重的因素</strong>。
+  </div>
+</section>
+
+<section data-slide="50.2" data-sec="4">
+  <div class="sec-mark">結語與展望</div>
+  <div class="slide-head">
+    <h2>訓練場域所需的軟硬體設備</h2>
+    <div class="sub">以手機為主，電腦與 VR 為選配</div>
+  </div>
+  <div class="two-col">
+    <div class="col-box mark-a">
+      <div class="cb-title">硬體</div>
+      <ul>
+        <li><strong>智慧型手機</strong>：拍攝場景，也是學員端的檢視裝置</li>
+        <li><strong>電腦</strong>（選配）：NVIDIA 顯示卡，用於電腦端重建</li>
+        <li><strong>VR 頭戴裝置</strong>（選配）：沉浸式檢視</li>
+        <li><strong>場景道具</strong>：食物、餐具、家具</li>
+      </ul>
+    </div>
+    <div class="col-box mark-b">
+      <div class="cb-title">軟體</div>
+      <ul>
+        <li><strong>手機重建</strong>：Scaniverse（免費）、Polycam</li>
+        <li><strong>電腦重建</strong>：Postshot（Windows）</li>
+        <li><strong>清理與壓縮</strong>：SuperSplat（開源，瀏覽器操作）</li>
+        <li><strong>發布</strong>：網頁檢視器＋QR code，學員免安裝</li>
+      </ul>
+    </div>
+  </div>
+  <div class="caveat" style="display:block; margin-top:.5em;">軟體為 2026 年 10 月現況，功能與授權以各官網為準</div>
+  <div class="key-box" style="margin-top:.45em;">
+    只拍佈置的空間，<strong>不拍病人、不進病人家</strong>；現場網路不穩時，以靜態圖備援。
+  </div>
+</section>
+
 <!-- P51 [BG] Q&A -->
 <section class="section-open" data-background-color="#F6F5F0" data-slide="51"
          data-background-image="images/p51_qa_bg_duotone_20260909.png"
@@ -2393,7 +2675,7 @@ section{
     <div style="margin-top:1.5em; font-size:.52em; line-height:2;">
       潘湘如 醫師｜高雄榮民總醫院 家庭醫學部<br>
       <span style="font-size:.78em; color:var(--text-2); letter-spacing:.04em;">
-        台灣肥胖醫學會 2026 南區學術研討會｜2026 年 9 月 20 日
+        2026 年台灣肥胖醫學會學術研討會｜2026 年 12 月 13 日
       </span>
     </div>
   </div>
