@@ -16,8 +16,10 @@
   T03 六個研究**無減重藥物**，含減重手術）。同一份也在 Obesity-lecture repo。
 - `build_fonts.py` 已重跑（醫院網路擋下載，VF 來源檔從 `C:\projects\Obesity-lecture\slides\fonts\` 複製），無缺字。
 - 瀏覽器實測 4 頁：佔高 0.785–0.872、孤字 0、<16px 0。
-- **未做**：PPTX 未重匯（v9 待匯）、`slides/spec.yaml` 未同步、12/13 場名／時長待使用者提供（封面日期與頁尾
-  「2026 肥胖醫學會南區研討會」字樣尚未改）。
+- **PPTX v9 可編輯版已匯（2026-10-20）**：58 頁、726 文字方塊、24.9 MB，存 OneDrive 新資料夾
+  `文件\演講\2026演講\台灣肥胖醫學會1213\台灣肥胖醫學會1213_AI在肥胖治療_潘湘如_v9_可編輯_20261020.pptx`；
+  python-pptx 驗證 P55 備忘稿開頭為【講稿】。`slides/spec.yaml` 未同步；使用者表示 12/13 時長不重要，不必配速。
+  ⚠️ office 這台的 OneDrive.exe 原本沒在執行（見 Obesity-lecture handoff），已手動啟動，請在別台確認 1213 資料夾已上雲。
 - **結語段再加 2 頁（data-slide 50.1／50.2，全冊 57 頁）**：減重門診訓練場域的流程＋軟硬體（3D 實景重建／Gaussian Splatting）。
   50.x 超出 BOUNDS，section 上直接寫 `data-sec="4"`。工具現況 2026-10 查證（Scaniverse 免費手機端、Polycam 免費版受限、
   Postshot 需 Windows＋NVIDIA、SuperSplat 開源瀏覽器），來源寫在 HTML 註解。實測佔高 0.749／0.822、孤字 0。
@@ -146,7 +148,7 @@ t2embed 產 EOT 嵌入）。v7 存 OneDrive＋`F:\南區\`。已知限制：SVG 
 
 - 時間：2026-10-20（醫院機 office，12/13 場：3D 體型掃描＋NeRF 4 頁、沉浸式作品、訓練場域 2 頁、講稿機制、封面換新）
 - 更新者：Claude Code（Opus 5.5）@ 醫院機（office 帳號）
-- 階段：HTML 58 頁已改完並實測；**PPTX 未重匯（v9 待匯，會順便測講稿備忘稿）**；12/13 時長待使用者補
+- 階段：HTML 58 頁已改完並實測；**PPTX v9 已匯**（OneDrive `台灣肥胖醫學會1213\`）
 - Git push：✅ 已推（`e9f2937`）
 - L3 Obsidian：未更新
 - 前一筆：2026-09-16 @ DESKTOP-LVSV9Q5（家用）· ✅ 已推（`283bef1`）
