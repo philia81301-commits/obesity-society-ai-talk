@@ -147,6 +147,6 @@ t2embed 產 EOT 嵌入）。v7 存 OneDrive＋`F:\南區\`。已知限制：SVG 
 - 時間：2026-10-20（醫院機 office，12/13 場：3D 體型掃描＋NeRF 4 頁、沉浸式作品、訓練場域 2 頁、講稿機制、封面換新）
 - 更新者：Claude Code（Opus 5.5）@ 醫院機（office 帳號）
 - 階段：HTML 58 頁已改完並實測；**PPTX 未重匯（v9 待匯，會順便測講稿備忘稿）**；12/13 時長待使用者補
-- Git push：⏳ 已 commit，**未 push**（使用者只要求 commit）
+- Git push：✅ 已推（`e9f2937`）
 - L3 Obsidian：未更新
 - 前一筆：2026-09-16 @ DESKTOP-LVSV9Q5（家用）· ✅ 已推（`283bef1`）
