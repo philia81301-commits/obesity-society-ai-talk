@@ -115,6 +115,6 @@
 
 - 時間：2026-10-27 傍晚（醫院機 X108521／office 帳號，P13／P50.1 插圖改版＋封面標題修正＋PPTX v12）
 - 更新者：Claude Code（Opus 5.5）@ X108521
-- Git push：待推
+- Git push：✅ 已推（`8a3a9a4`）
 - L3 Obsidian：已補（`2ndBrain/obesity-society-ai-talk/專案工作流程.md`）
 - 前一筆：2026-10-27 上午 @ X108521 · ✅ 已推（`bab789a`）
