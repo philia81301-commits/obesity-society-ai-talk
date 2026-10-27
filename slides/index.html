@@ -667,6 +667,10 @@ section{
       <circle cx="9.2" cy="12.8" r="1.1"/><circle cx="14.8" cy="12.8" r="1.1"/>
       <path d="M12 7.5V4.2M10.4 3h3.2"/><path d="M2.5 11.5v3.5M21.5 11.5v3.5"/>
     </symbol>
+    <symbol id="ic-code" viewBox="0 0 24 24">
+      <rect x="2.5" y="4" width="19" height="16" rx="2"/>
+      <path d="M9 9.5 6.5 12 9 14.5M15 9.5l2.5 2.5-2.5 2.5M13 8.5l-2 7"/>
+    </symbol>
   </defs>
 </svg>
 
@@ -2242,7 +2246,7 @@ section{
   </div>
   <div class="key-box">
     兩道界線都守住，才輪到談技術。
-    <span class="kb-note">但接下來三個案例會說明：<strong>去識別化本身，並不等於安全</strong>。</span>
+    <span class="kb-note">但接下來三頁會說明：<strong>AI 讓攻擊變快，AI 本身也成為新破口</strong>。</span>
   </div>
 </section>
 
@@ -2286,98 +2290,139 @@ section{
   </div>
 </section>
 
-<!-- P43 -->
+<!-- P43  2026-10-27 取代舊 Strava 熱圖案例（2018，使用者：2019 年以前太舊）
+     查證（2026-10-27，皆為原始報告）：
+     - 27 秒／29 分鐘／快 65%：CrowdStrike 2026 Global Threat Report 新聞稿（2026-02-24），指 eCrime breakout time（入侵後橫向擴散）
+     - 141 vs 127：Google GTIG〈Vulnerability Discovery and Exploitation Trends in the AI Era〉2026-10-01，
+       "From January 2026 to August 2026, GTIG recorded 141 distinct vulnerabilities disclosed and exploited ... full year of 2025 (127)"
+     - 247 天、醫療業 664 萬美元（連續 13 年最高）：IBM Cost of a Data Breach Report 2026 全文 PDF
+     商業周刊 2031 期「漏洞被發現到武器化中位數少於 24 小時」在 GTIG 原文查無，未採用。 -->
 <section data-slide="43">
   <div class="sec-mark">Ⅲ　落地挑戰</div>
   <div class="slide-head">
-    <h2>個資反推風險（一）：Strava 熱圖</h2>
-    <div class="sub">去識別化的運動軌跡，仍反推出軍事機密</div>
+    <h2>AI 讓攻擊變快：2026 資安現況</h2>
+    <div class="sub">攻擊方以秒計，防守方以天計</div>
   </div>
-  <div class="chain">
-    <div class="chain-node start">
-      <div class="cn-step">公開的資料</div>
-      <div class="cn-title">全球運動軌跡熱圖</div>
-      <div class="cn-desc">聚合呈現，<strong>不含使用者身分</strong>、不含姓名</div>
+  <div class="stat-row" style="grid-template-columns:repeat(3,1fr); margin-top:.35em;">
+    <div class="stat-card" style="border-top-color:var(--pop); background:color-mix(in srgb, var(--pop) 9%, #fff);">
+      <div class="num" style="color:var(--pop);">27<span class="unit">秒</span></div>
+      <div class="label">駭客入侵後最快擴散到其他系統<br>（平均 29 分鐘，比前一年快 65%）</div>
     </div>
-    <div class="chain-arrow">›</div>
-    <div class="chain-node mid">
-      <div class="cn-step">反推手法</div>
-      <div class="cn-title">疊合衛星地圖<br>與打卡時間</div>
-      <div class="cn-desc">在無人區出現的規律路線，本身就是線索</div>
+    <div class="stat-card" style="border-top-color:var(--pop); background:color-mix(in srgb, var(--pop) 9%, #fff);">
+      <div class="num" style="color:var(--pop);">141<span class="unit">個</span></div>
+      <div class="label">2026 年 1–8 月遭實際利用的漏洞<br>已超過 2025 全年（127 個）</div>
     </div>
-    <div class="chain-arrow">›</div>
-    <div class="chain-node end">
-      <div class="cn-step">還原結果</div>
-      <div class="cn-title">軍事基地位置<br>與特定士兵身分</div>
-      <div class="cn-desc">從「沒有名字的線」回推到具體的人</div>
+    <div class="stat-card" style="border-top-color:var(--sec-line); background:#fff;">
+      <div class="num" style="color:var(--sec-2);">247<span class="unit">天</span></div>
+      <div class="label">企業從遭入侵到發現並圍堵<br>的平均時間</div>
     </div>
   </div>
-  <div class="key-box">
-    教訓：<strong>拿掉姓名，不代表拿掉身分</strong>——軌跡本身就是識別特徵。
+  <div class="key-box" style="margin-top:.5em;">
+    醫療業外洩成本<strong>連續 13 年各產業最高</strong>，平均每起 664 萬美元。
   </div>
+  <div class="cite">
+    CrowdStrike 2026 Global Threat Report；Google Threat Intelligence Group, 2026-10-01；IBM Cost of a Data Breach Report 2026。
+  </div>
+  <aside class="notes">
+    這一頁是 2026 年三份原始報告的數字。
+    CrowdStrike 統計，駭客入侵後最快 27 秒就擴散到其他系統，平均 29 分鐘，比前一年快了 65%。
+    Google 統計，今年 1 到 8 月實際被利用的漏洞有 141 個，已經超過去年全年的 127 個。
+    IBM 統計，企業從被入侵到發現並圍堵，平均要 247 天。醫療業的外洩成本連續 13 年各產業最高，平均每起 664 萬美元。
+  </aside>
 </section>
 
-<!-- P44 -->
+<!-- P44  2026-10-27 取代舊 Netflix 案例（2006）
+     查證：PHP2Shell 兩個漏洞 CVSS v4.0 皆 9.2、未經身分驗證可遠端執行程式；修補版 PHP 8.5.12／8.4.27／8.3.36／8.2.35（2026-10-21），
+     8.1 以前已無官方修補；Calif 以 OpenAI 模型、Wiz 以 AI 工具各自發現；PHP 佔已知伺服器端語言網站 69.3%；
+     高市早苗 2026-10-21 晚間於 X 呼籲修補、必要時暫停網站；pixiv、Niconico、日本財務省部分網頁暫停。
+     來源：科技新報 2026-10-22、自由時報 2026-10-23、CNN 2026-10-21。
+     Capcom 1,177 萬筆外洩與本漏洞的關聯未證實 → 不上畫面。「潛伏 20 年」只見於標題，未核到內文 → 不上畫面。
+     講者工具無 PHP：2026-10-27 掃 10 個工具 repo（osteoporosis／sarcopenia／weight-maintain／obesity-education／
+     pneumonia／HP-clinic／healthy-weight-public／agent-roadshow／github.io／本 repo），.php／.htaccess／composer.json／wp-config 皆 0，
+     均為 HTML＋JavaScript 靜態檔，GitHub Pages 託管（後端如有，為 Google Apps Script／Firebase 託管服務，非自架 PHP）。 -->
 <section data-slide="44">
   <div class="sec-mark">Ⅲ　落地挑戰</div>
   <div class="slide-head">
-    <h2>個資反推風險（二）：Netflix 匿名觀影數據</h2>
-    <div class="sub">公開競賽資料，成為身分還原的素材</div>
+    <h2>案例：PHP2Shell 漏洞（2026 年 10 月）</h2>
+    <div class="sub">AI 協助找出漏洞，全球網站緊急修補</div>
   </div>
   <div class="chain">
     <div class="chain-node start">
-      <div class="cn-step">公開的資料</div>
-      <div class="cn-title">50 萬名用戶<br>觀影評分數據</div>
-      <div class="cn-desc">為辦競賽而公開，<strong>已做匿名處理</strong></div>
+      <div class="cn-step">漏洞發現</div>
+      <div class="cn-title">AI 輔助找出<br>PHP 重大漏洞</div>
+      <div class="cn-desc">兩個漏洞嚴重度皆 9.2 分，<strong>不必登入就能遠端操控伺服器</strong></div>
     </div>
     <div class="chain-arrow">›</div>
     <div class="chain-node mid">
-      <div class="cn-step">反推手法</div>
-      <div class="cn-title">比對 6 部電影的<br>評分與時間</div>
-      <div class="cn-desc">與公開影評網站的發文紀錄交叉比對</div>
+      <div class="cn-step">影響範圍</div>
+      <div class="cn-title">約 7 成網站<br>以 PHP 執行</div>
+      <div class="cn-desc">WordPress 等常見架站系統都在範圍內</div>
     </div>
     <div class="chain-arrow">›</div>
     <div class="chain-node end">
-      <div class="cn-step">還原結果</div>
-      <div class="cn-title">99% 準確度<br>還原真實身分</div>
-      <div class="cn-desc">連帶暴露政治傾向與性向等敏感資訊</div>
+      <div class="cn-step">各國反應</div>
+      <div class="cn-title">日本首相<br>親自呼籲修補</div>
+      <div class="cn-desc">10/21 呼籲必要時暫停網站；日本財務省等網站一度暫停</div>
     </div>
   </div>
   <div class="key-box">
-    教訓：<strong>少數幾個非敏感欄位的組合，就足以構成指紋</strong>。
+    講者的門診工具<strong>全為 HTML＋JavaScript 靜態網頁</strong>，不使用 PHP、不自架伺服器——不在此次影響範圍。
   </div>
+  <div class="cite">
+    科技新報 2026-10-22；自由時報 2026-10-23；CNN 2026-10-21。
+  </div>
+  <aside class="notes">
+    十月最受關注的事件是 PHP 漏洞。資安團隊用 AI 協助找出兩個重大漏洞，嚴重度都是 9.2 分，駭客不必登入就能遠端操控伺服器。
+    PHP 是約 7 成網站使用的伺服器端語言，WordPress 這類常見架站系統都在範圍內。10 月 21 日日本首相高市早苗親自發文，呼籲網站管理者盡快修補，來不及就先暫停網站。
+    我的門診工具全部是 HTML 和 JavaScript 寫成的靜態網頁，沒有使用 PHP，也沒有自己架伺服器，所以不在這次的影響範圍。
+    補充：日本同一週有遊戲公司個資外洩，外界懷疑和這個漏洞有關，但目前沒有證實。
+  </aside>
 </section>
 
-<!-- P45 -->
+<!-- P45  2026-10-27 取代舊郵遞區號案例（2000）
+     查證：
+     - 影子 AI 20%→43%：IBM Cost of a Data Breach Report 2026 全文 "Security incidents involving an organization's shadow AI—
+       where workers use unapproved AI—more than doubled to 43% this year from 20% last year."
+     - 45%：Veracode 2025 GenAI Code Security Report（2025-07-30；80 項任務、100 多個模型）
+     - 逾 90 個組織：CrowdStrike 2026 GTR 新聞稿 "injecting malicious prompts into GenAI tools at more than 90 organizations"
+     - 92%：IBM 2026 "Among organizations that experienced an AI-related breach, the vast majority (92%) lacked proper AI access controls."
+     商業周刊「88% 企業試用 AI 代理／46% 管控」與 IBM 原文的 88%（AI 資安投資意願增幅）不符，未採用。 -->
 <section data-slide="45">
   <div class="sec-mark">Ⅲ　落地挑戰</div>
   <div class="slide-head">
-    <h2>個資反推風險（三）：郵遞區號還原身分</h2>
-    <div class="sub">三個欄位，定位 87% 的美國人</div>
+    <h2>AI 本身成為新破口</h2>
+    <div class="sub">三種新風險與門診對應場景</div>
   </div>
-  <div class="chain">
-    <div class="chain-node start">
-      <div class="cn-step">看似無害的欄位</div>
-      <div class="cn-title">郵遞區號<br>生日 ＋ 性別</div>
-      <div class="cn-desc">三項都<strong>不是</strong>個資法定義的識別資訊</div>
+  <div class="adv-grid c3">
+    <div class="adv-card">
+      <div class="adv-icon"><svg class="ic"><use href="#ic-mask"/></svg></div>
+      <div class="adv-title">影子 AI</div>
+      <div class="adv-desc">員工使用未核准的 AI 工具<br>相關資安事件 20%→43%<br><strong>門診：病歷貼進免費聊天機器人</strong></div>
     </div>
-    <div class="chain-arrow">›</div>
-    <div class="chain-node mid">
-      <div class="cn-step">反推手法</div>
-      <div class="cn-title">比對公開的<br>選民登記資料庫</div>
-      <div class="cn-desc">合法可取得的第二份資料即可完成串聯</div>
+    <div class="adv-card">
+      <div class="adv-icon"><svg class="ic"><use href="#ic-code"/></svg></div>
+      <div class="adv-title">AI 寫程式</div>
+      <div class="adv-desc">45% 的 AI 生成程式碼<br>含資安漏洞<br><strong>門診：自製工具未經審查就上線</strong></div>
     </div>
-    <div class="chain-arrow">›</div>
-    <div class="chain-node end">
-      <div class="cn-step">還原結果</div>
-      <div class="cn-title">定位全美 87%<br>的特定個人</div>
-      <div class="cn-desc">三個欄位就足以構成唯一指紋</div>
+    <div class="adv-card">
+      <div class="adv-icon"><svg class="ic"><use href="#ic-chatbot"/></svg></div>
+      <div class="adv-title">提示詞注入</div>
+      <div class="adv-desc">逾 90 個組織的 AI 工具<br>遭植入惡意指令<br><strong>門診：衛教機器人被誘導洩漏資料</strong></div>
     </div>
   </div>
   <div class="key-box">
-    對門診的直接意涵：<strong>「年齡＋性別＋就診地區」在小樣本下同樣具備識別力</strong>
-    <span class="kb-note">這正是月度報告一律聚合呈現、n&lt;10 不單獨列出的理由。</span>
+    發生 AI 相關外洩的組織，<strong>92% 沒有做好 AI 的存取控管</strong>。
   </div>
+  <div class="cite">
+    IBM Cost of a Data Breach Report 2026；Veracode 2025 GenAI Code Security Report；CrowdStrike 2026 Global Threat Report。
+  </div>
+  <aside class="notes">
+    AI 本身也成為新的破口。
+    第一是影子 AI，也就是員工使用未經核准的 AI 工具。IBM 統計，涉及影子 AI 的資安事件從 20% 增加到 43%。在門診，最常見的就是把病歷內容貼進免費的聊天機器人。
+    第二是 AI 寫程式。Veracode 測試 100 多個模型，約 45% 的 AI 生成程式碼含有資安漏洞。我的工具也是和 AI 協作寫成，所以更需要在架構上把關。
+    第三是提示詞注入，CrowdStrike 發現超過 90 個組織的 AI 工具被植入惡意指令。衛教機器人如果能讀取病人資料，就可能被誘導洩漏。
+    發生 AI 相關外洩的組織，92% 沒有做好 AI 的存取控管。
+  </aside>
 </section>
 
 <!-- P46 [ICON] -->
@@ -2419,11 +2464,11 @@ section{
   </div>
   <div class="two-col">
     <div class="col-box mark-w">
-      <div class="cb-title">下游：去識別化</div>
+      <div class="cb-title">下游：事後防堵</div>
       <ul>
-        <li>Strava、Netflix、郵遞區號三案</li>
-        <li>資料<strong>已經去識別化</strong></li>
-        <li>但仍被<strong>反推還原身分</strong></li>
+        <li>去識別化：法定的<strong>最低門檻</strong></li>
+        <li>伺服器漏洞：<strong>要追著修補</strong></li>
+        <li>外洩平均 <strong>247 天</strong>才圍堵</li>
       </ul>
       <div style="font-size:.4em; color:var(--warn); margin-top:.6em; font-weight:700;">
         處理的是「洩漏後的傷害」
@@ -2433,7 +2478,7 @@ section{
       <div class="cb-title" style="color:#2D6A4F;">上游：資料不離開現場</div>
       <ul>
         <li>純前端、<strong>零後端傳輸</strong></li>
-        <li>地端運算，不存個資</li>
+        <li>靜態網頁，<strong>無伺服器程式可攻擊</strong></li>
         <li>講者所有工具的一致選擇</li>
       </ul>
       <div style="font-size:.4em; color:#2D6A4F; margin-top:.6em; font-weight:700;">
@@ -2459,8 +2504,9 @@ section{
     </div>
   </div>
   <div class="cite" style="margin-top:1.5em;">
-    本段（P39–47）個資論述主要資料來源：成功大學計算機與網路中心 李南逸主任
-    《AI 時代之醫療隱私與個資保護挑戰》講義；P40 責任歸屬與醫療廣告部分依醫師法、醫療法
+    本段個資論述主要資料來源：成功大學計算機與網路中心 李南逸主任
+    《AI 時代之醫療隱私與個資保護挑戰》講義；責任歸屬與醫療廣告部分依醫師法、醫療法；
+    2026 資安現況依 CrowdStrike、Google、IBM、Veracode 原始報告
   </div>
 </section>
 
