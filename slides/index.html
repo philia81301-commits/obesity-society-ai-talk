@@ -435,6 +435,8 @@ section{
   border:1px solid var(--sec-soft); border-left:5px solid var(--sec); border-radius:3px; padding:12px 16px; background: var(--sec-tint); }
 .vstat .vs-num{ font-family: var(--font-body); font-weight:900; font-size:1.0em; color: var(--sec); line-height:1; }
 .vstat .vs-label{ font-size:.36em; color: var(--text-2); line-height:1.55; }
+.vstat .vs-label b{ color: var(--text); }
+.vstat .vs-label .vs-head{ font-size:1.12em; color: var(--sec); }
 
 /* --- 兩數對比（A vs B）：把埋在句子裡的對照數字拉成視覺 --- */
 .cmp{ display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:10px; margin:.5em 0 .3em; }
@@ -1308,29 +1310,21 @@ section{
     <h2>從掃描機，到手機掃描，到手機照片</h2>
     <div class="sub">設備越方便，個人層級的誤差越大</div>
   </div>
-  <div class="adv-grid c3">
-    <div class="adv-card">
-      <div class="adv-icon"><svg class="ic"><use href="#ic-diagnosis"/></svg></div>
-      <div class="adv-title">專用 3D 掃描機</div>
-      <div class="adv-desc">
-        研究證據最多<br>
-        低 BMI 族群：去脂體重對照 DXA，CCC <span class="em-num" style="font-size:1.2em;">0.97</span>
+  <div style="display:grid; grid-template-columns:40% 1fr; gap:28px; align-items:center; margin-top:.25em;">
+    <img src="images/p13_3_three_methods.jpg" alt="左：專用 3D 掃描機；中：醫護人員拿手機繞受測者掃描；右：在家用腳架上的手機拍全身照"
+         style="display:block; width:100%; height:auto; border:1px solid var(--sec-soft); border-radius:3px;" />
+    <div class="vstat">
+      <div class="vs-row">
+        <div class="vs-num" style="font-size:.78em;">0.97</div>
+        <div class="vs-label"><b>專用 3D 掃描機</b><br>去脂體重對照 DXA 的 CCC（低 BMI 族群）</div>
       </div>
-    </div>
-    <div class="adv-card">
-      <div class="adv-icon"><svg class="ic"><use href="#ic-collect"/></svg></div>
-      <div class="adv-title">手機 3D 掃描</div>
-      <div class="adv-desc">
-        群體平均接近 DXA；個人體脂率一致性界限達 <span class="em-num" style="font-size:1.2em;">9.5–10.2</span> 個百分點<br>
-        追蹤 12 週訓練的體脂率變化，與 DXA 最一致
+      <div class="vs-row">
+        <div class="vs-num" style="font-size:.78em;">±10</div>
+        <div class="vs-label"><b>手機 3D 掃描</b><br>個人體脂率一致性界限 9.5–10.2 個百分點</div>
       </div>
-    </div>
-    <div class="adv-card">
-      <div class="adv-icon"><svg class="ic"><use href="#ic-scope"/></svg></div>
-      <div class="adv-title">手機 2D 照片</div>
-      <div class="adv-desc">
-        體脂率對照 DXA：CCC <span class="em-num" style="font-size:1.2em;">0.96</span>（廠商研究）<br>
-        獨立研究：3 款 App 皆低估體脂率
+      <div class="vs-row" style="border-left-color:var(--pop); background:color-mix(in srgb, var(--pop) 9%, #fff);">
+        <div class="vs-num" style="font-size:.78em; color:var(--pop);">0.96</div>
+        <div class="vs-label"><b>手機 2D 照片</b><br>體脂率 CCC（廠商研究）；獨立研究 3 款 App 皆低估</div>
       </div>
     </div>
   </div>
@@ -1338,6 +1332,15 @@ section{
     手機與照片適合<strong>追蹤個人趨勢與群體篩檢</strong>；個人的體組成判讀，仍以 DXA 為準。
   </div>
   <div class="cite">資料來源：Garber AK, et al. Am J Clin Nutr 2023;118:812-21｜Florez CM, et al. Br J Nutr 2024;132:1143-51｜Graybeal AJ, et al. Mil Med 2026｜Majmudar MD, et al. NPJ Digit Med 2022;5:79｜Encarnação IGA, et al. Clin Nutr ESPEN 2026;75:103391.</div>
+  <!-- 2026-10-27 改版：左圖右數字。插圖 gpt-image-2 high（--edit 自 P13.1 圖，同一人物），漸層條註字以 PIL 疊上（微軟正黑體 56px）；
+       「研究證據最多」「追蹤 12 週訓練與 DXA 最一致」移入講稿 -->
+  <aside class="notes">
+    這三種方法，設備越方便，個人層級的誤差就越大。
+    專用 3D 掃描機的研究證據最多；在低 BMI 族群，去脂體重和 DXA 的一致性 CCC 達 0.97。
+    手機 3D 掃描是由另一個人拿手機繞著受測者走一圈。群體平均接近 DXA，但個人體脂率的一致性界限有 9.5 到 10.2 個百分點，也就是單一個人可能差到 10 個百分點。不過追蹤 12 週訓練期間的體脂率變化，它和 DXA 最一致。
+    手機 2D 照片只要拍正面和側面照。廠商研究的體脂率 CCC 是 0.96，但獨立研究測了 3 款 App，都會低估體脂率。
+    所以手機和照片適合追蹤個人趨勢和群體篩檢；要判讀單一病人的體組成，還是以 DXA 為準。
+  </aside>
 </section>
 
 <section data-slide="13.4">
@@ -1346,26 +1349,34 @@ section{
     <h2>下一代：NeRF 與 Gaussian Splatting</h2>
     <div class="sub">多角度照片重建成照片級、可自由轉動視角的 3D 模型</div>
   </div>
-  <div class="two-col">
-    <div class="col-box mark-a">
-      <div class="cb-title">技術原理</div>
-      <ul>
-        <li><strong>NeRF</strong>（2020）：神經網路學習空間各點的顏色與密度</li>
-        <li><strong>3D Gaussian Splatting</strong>（2023）：用大量半透明橢球表示場景，可即時算圖，VR／AR 頭戴裝置可用</li>
-      </ul>
-    </div>
-    <div class="col-box mark-w">
-      <div class="cb-title">醫學應用現況</div>
-      <ul>
-        <li>遠距復健：單一相機重建病人的 3D 影像，在 HoloLens 2 上檢視</li>
-        <li>法醫：全身 360° 傷勢記錄與互動檢視；作者說明尺寸量測尚未驗證</li>
-      </ul>
+  <div style="display:grid; grid-template-columns:40% 1fr; gap:28px; align-items:center; margin-top:.25em;">
+    <img src="images/p13_4_nerf_3dgs.jpg" alt="左：多台相機從各角度拍攝受測者；中：人形由大量半透明橢圓點組成；右：治療師戴混合實境頭戴裝置檢視可旋轉的 3D 人形"
+         style="display:block; width:100%; height:auto; border:1px solid var(--sec-soft); border-radius:3px;" />
+    <div class="vstat">
+      <div class="vs-row" style="grid-template-columns:1fr;">
+        <div class="vs-label"><b class="vs-head">技術原理</b><br>
+          <b>NeRF</b>（2020）：神經網路學習空間各點的顏色與密度<br>
+          <b>3D Gaussian Splatting</b>（2023）：大量半透明橢球，可即時算圖</div>
+      </div>
+      <div class="vs-row" style="grid-template-columns:1fr; border-left-color:var(--pop);">
+        <div class="vs-label"><b class="vs-head" style="color:var(--pop);">醫學應用現況</b><br>
+          遠距復健：單一相機重建，HoloLens 2 檢視<br>
+          法醫：全身 360° 傷勢記錄與互動檢視</div>
+      </div>
     </div>
   </div>
-  <div class="key-box" style="margin-top:.5em;">
+  <div class="key-box" style="margin-top:.45em;">
     目前尚無以 NeRF／3DGS 估算體組成的臨床驗證。<br>現階段適合<strong>衛教與遠距照護的視覺呈現</strong>，不能當作量測工具。
   </div>
   <div class="cite">資料來源：Cao S, et al. IEEE Trans Vis Comput Graph 2025;31:7311-23｜Thali M, et al. Forensic Sci Med Pathol 2026.</div>
+  <!-- 2026-10-27 改版：左圖右文。插圖 gpt-image-2 high（--edit 自 P13.1 圖，同一人物）；頭戴裝置為通用造型。
+       「VR／AR 頭戴裝置可用」「法醫作者說明尺寸量測尚未驗證」移入講稿 -->
+  <aside class="notes">
+    下一代技術是 NeRF 和 3D Gaussian Splatting，都是把多個角度的照片，重建成照片級、可以自由轉動視角的 3D 模型。
+    NeRF 是 2020 年提出的，用神經網路學習空間中每一點的顏色和密度。3D Gaussian Splatting 是 2023 年提出的，用大量半透明的橢球來表示場景，可以即時算圖，所以 VR、AR 頭戴裝置也能用。
+    醫學上目前有兩個應用：遠距復健，用單一相機重建病人的 3D 影像，在 HoloLens 2 上檢視；法醫，做全身 360 度的傷勢記錄和互動檢視，但作者也說明，尺寸量測還沒有驗證。
+    目前還沒有用 NeRF 或 3DGS 估算體組成的臨床驗證，現階段適合衛教和遠距照護的視覺呈現，不能當作量測工具。
+  </aside>
 </section>
 
 <!-- P14 -->
