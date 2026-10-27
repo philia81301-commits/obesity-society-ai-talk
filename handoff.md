@@ -5,109 +5,49 @@
 
 ## ⏯️ 目前做到哪
 
-**2026-10-27（醫院機 office）12/13 場第Ⅲ段資安更新：P43–45 舊案例換 2026 新內容＋P44.1 風險入口圖（全冊 59 頁）**：
+**2026-10-27（醫院機 X108521）12/13 場第Ⅲ段資安更新，全冊 59 頁，PPTX v10 已匯**：
 
-- 使用者指示「舊的資料刪除以最新的取代」：刪 Strava（2018）／Netflix（2006）／郵遞區號（2000）三案，**沿用 data-slide 43–45**
-  改為：P43「AI 讓攻擊變快：2026 資安現況」（27 秒／141 個／247 天＋醫療業 664 萬美元）、P44「案例：PHP2Shell 漏洞（2026 年 10 月）」
-  （日相高市早苗 10/21 呼籲修補；收束句「講者工具全為 HTML＋JS 靜態網頁，不用 PHP、不自架伺服器」）、P45「AI 本身成為新破口」
-  （影子 AI 20%→43%、AI 程式碼 45% 含漏洞、提示詞注入逾 90 組織、92% 缺 AI 存取控管）。新增圖示 `#ic-code`。
-- 連動改：P41 key-box 預告句、P47 左欄改「下游：事後防堵」＋右欄加「靜態網頁，無伺服器程式可攻擊」、P48 出處列。
-- **數字全部回原始報告核對**（CrowdStrike 2026 GTR 新聞稿、Google GTIG 2026-10-01 部落格、IBM Cost of a Data Breach 2026 全文 PDF、
-  Veracode 2025），引文寫在各頁 HTML 註解。商業周刊 2031 期剪報（2026.10，何佩珊）只當線索：其「武器化少於 24 小時」查無原文、
-  「88% 企業試用 AI 代理」與 IBM 原文的 88% 意義不符 → 皆未採用。Capcom 外洩與 PHP 關聯未證實 → 不上畫面。
-- 「無 PHP」查證：掃 10 個工具 repo，.php／.htaccess／composer.json／wp-config 皆 0（細節見 P44 註解）。
-- 講稿：P43–45 加 `<aside class="notes">`＋`content/speaker-notes-1213.md` 同步。`build_fonts.py` 已重跑無缺字；瀏覽器 1280×720 截圖檢查版面正常、孤字 0、<16px 0。
-- **P44.1「風險入口在哪裡」新增（全冊 59 頁）**：左圖 `images/p44_php2shell_markers.png`（gpt-image-2 底圖＋PIL 編號標記），右欄原生文字圖說
-  （①–③ PHP 伺服器入口、④⑤ 靜態網頁仍有的入口：託管帳號、使用者電腦，✓ 無伺服器程式）；CSS `.risk-legend`。P44 中間卡＋講稿補 PHP 白話說明。
-  另存含圖說的完整版 `images/p44_php2shell_risk_entry.png`（可單獨分享）。實測圖底約佔高 0.90。
-- **PPTX v10 可編輯版已匯（2026-10-27）**：59 頁、734 文字方塊、25.7 MB，OneDrive `文件\演講6演講\台灣肥胖醫學會1213\台灣肥胖醫學會1213_AI在肥胖治療_潘湘如_v10_可編輯_20261027.pptx`；python-pptx 驗證 P47–50（P43／P44／P44.1／P45）備忘稿開頭為【講稿】。v9 已被取代（保留與否由使用者決定）。office 這台 OneDrive.exe 又沒在執行，已手動啟動。
+- 使用者指示「舊的資料刪除以最新的取代」：刪 Strava（2018）／Netflix（2006）／郵遞區號（2000）三案，**沿用 data-slide 43–45** 改為：
+  - P43「AI 讓攻擊變快：2026 資安現況」——27 秒（CrowdStrike）／141 個（Google GTIG，2026 1–8 月 vs 2025 全年 127）／247 天（IBM）＋醫療業外洩成本 664 萬美元連續 13 年最高
+  - P44「案例：PHP2Shell 漏洞（2026 年 10 月）」——日相高市早苗 10/21 呼籲修補；中間卡用白話說明 PHP 是什麼；收束句「講者工具全為 HTML＋JS 靜態網頁，不用 PHP、不自架伺服器」
+  - **P44.1「風險入口在哪裡」（新頁）**——左圖 `images/p44_php2shell_markers.png`（gpt-image-2 底圖＋PIL 編號），右欄原生文字圖說（CSS `.risk-legend`）：①–③ PHP 伺服器入口、④⑤ 靜態網頁仍有的入口（託管帳號、使用者電腦）、✓ 無伺服器程式。含圖說完整版 `images/p44_php2shell_risk_entry.png` 可單獨分享
+  - P45「AI 本身成為新破口」——影子 AI 20%→43%、AI 程式碼 45% 含漏洞、提示詞注入逾 90 組織、92% 缺 AI 存取控管；新圖示 `#ic-code`
+- 連動：P41 預告句、P47 左欄「下游：事後防堵」＋右欄「靜態網頁，無伺服器程式可攻擊」、P48 出處列。
+- 引文與查證寫在各頁 HTML 註解；講稿 P43／P44／P44.1／P45 入 `<aside class="notes">`＋`content/speaker-notes-1213.md`。
+- **PPTX v10 可編輯版**：59 頁、734 文字方塊、25.7 MB，OneDrive `文件\演講\2026演講\台灣肥胖醫學會1213\台灣肥胖醫學會1213_AI在肥胖治療_潘湘如_v10_可編輯_20261027.pptx`；python-pptx 驗證 P47–50 備忘稿開頭為【講稿】。**v9 使用者已自行刪除**。
 
-**2026-10-20（醫院機）12/13 台灣肥胖醫學會 AI 場：沿用本 51 頁版，插入 3D 體型掃描＋NeRF 4 頁（全冊 55 頁）**：
+**前一輪 2026-10-20（醫院機）**：12/13 場插入 3D 體型掃描＋NeRF 4 頁（P13.1–13.4，引用全部 ≥2021）、P50.05 沉浸式作品、P50.1–50.2 訓練場域、
+講稿機制（`aside.notes` → PPTX 備忘稿【講稿】）、封面／頁尾改 12/13 場名＋新封面底圖；PPTX v9（已被 v10 取代）。
 
-- 新頁 `data-slide="13.1"`–`"13.4"`，插在 P13（GLP-1×AI 參與度）與 P14（Agentic AI）之間；用小數編號讓
-  頁尾 BOUNDS 自動歸Ⅰ段，**其餘頁的 data-slide 與 HTML 註解 `<!-- Pnn -->` 都沒有重排**（舊編號＝9/20 版編號）。
-- **使用者指示：2019 年（含）以前的文獻太舊不用**——P13.1 改以 Wong 2021＋Leong 2024 重寫、P13.3 兒童研究換 Garber 2023；
-  之後 Tian 2020 也換掉：P13.3 第三卡改「手機 2D 照片」＝Majmudar 2022（CCC 0.96，Amazon 廠商研究）＋Encarnação 2026（獨立研究，3 款 App 皆低估）。
-  **現在 4 頁引用全部 ≥2021 年**（Majmudar 2022 為最舊）。
-- 文獻卡 `reference/refs-3d-optical-imaging.md`（T01／T04 已刪，PubMed 摘要逐篇核對；T02／T03 以 PMC 全文確認為 R²；
-  T03 六個研究**無減重藥物**，含減重手術）。同一份也在 Obesity-lecture repo。
-- `build_fonts.py` 已重跑（醫院網路擋下載，VF 來源檔從 `C:\projects\Obesity-lecture\slides\fonts\` 複製），無缺字。
-- 瀏覽器實測 4 頁：佔高 0.785–0.872、孤字 0、<16px 0。
-- **PPTX v9 可編輯版已匯（2026-10-20）**：58 頁、726 文字方塊、24.9 MB，存 OneDrive 新資料夾
-  `文件\演講\2026演講\台灣肥胖醫學會1213\台灣肥胖醫學會1213_AI在肥胖治療_潘湘如_v9_可編輯_20261020.pptx`；
-  python-pptx 驗證 P55 備忘稿開頭為【講稿】。`slides/spec.yaml` 未同步；使用者表示 12/13 時長不重要，不必配速。
-  ⚠️ office 這台的 OneDrive.exe 原本沒在執行（見 Obesity-lecture handoff），已手動啟動，請在別台確認 1213 資料夾已上雲。
-- **結語段再加 2 頁（data-slide 50.1／50.2，全冊 57 頁）**：減重門診訓練場域的流程＋軟硬體（3D 實景重建／Gaussian Splatting）。
-  50.x 超出 BOUNDS，section 上直接寫 `data-sec="4"`。工具現況 2026-10 查證（Scaniverse 免費手機端、Polycam 免費版受限、
-  Postshot 需 Windows＋NVIDIA、SuperSplat 開源瀏覽器），來源寫在 HTML 註解。實測佔高 0.749／0.822、孤字 0。
-- **P50.05 新增（全冊 58 頁）**：「跨域啟發：兩部沉浸式作品」，置於展望段開頭（P50 後、P50.1 前）——左《羽火共舞》（重建人）、
-  右《雲在兩千米》（重建環境，報導者專訪提及 NeRF／3DGS）。使用者說訓練場域構想的靈感來源。查證細節與未上畫面項目（片長、坎城、
-  掃描地點說法不一）寫在 HTML 註解。實測佔高 0.767、每點一行。**使用者指示：VR／NeRF 相關內容一律放 12/13 場。**
-  右欄技術列依使用者提供的**商業周刊**剪報改為「整合 4DViews、NeRF、3DGS 與物件掃描」（剪報期數／日期未知，引用列只寫刊名）。
-- **講稿機制（新）**：`content/speaker-notes-1213.md`＋頁內隱藏 `<aside class="notes">`（目前只有 P50.05）。
-  `build_pptx_editable.py` 新增 `NOTES_JS`：有 notes 的頁，備忘稿＝【講稿】＋【頁面文字】；無 notes 的頁行為不變（瀏覽器模擬已驗證，**尚未實際匯出 PPTX 測**）。
-- **封面／頁尾／封底改 12/13 場名**：「2026 年台灣肥胖醫學會學術研討會｜2026 年 12 月 13 日」。封面底圖換 `images/p1_cover_bg_20261020c.png`（high 第 2 張白底圖示版，使用者選定）
-  （構想 B：神經網路→醫學圖示→VR 頭顯，白底冰藍青綠，使用者選定），封面標題／kicker／rule 以 `.cover-bg .title-slide` 覆寫為深藍＋青綠；
-  封底與內頁仍墨綠。舊圖 p1_cover_bg_20260815.png 保留。點雲人形版（壓到標題）已否決。
-- 本機預覽：此輪從 Obesity-lecture session 開的 server（該 repo `.claude/launch.json` 加了 `ai-talk-slides`，port 8770）。
-
-**2026-09-16（家用機 DESKTOP-LVSV9Q5）P12 出處補查＋改字＋可編輯 PPTX v8**：
-
-- **P12 出處補查**：使用者在 P12 截圖標了 [1] GRS 卡、[2] TiP DecScore 卡、[3] 結論句，派三個 subagent
-  平行查（PubMed／Europe PMC／Crossref／OpenAlex／ClinicalTrials.gov／官方政策文件），整合為
-  `reference/p12-glp1-ai-source-check-20260916.md`：§0 改字總表、§1–2 兩篇的正式引用與逐項核對、
-  §3 結論句的佐證＋**同行反駁 8 條**＋建議講稿、各節「查不到」清單、OR/p 值解讀（備忘稿用）。
-  關鍵發現：GRS 摘要有正式增刊引用（*Gastroenterology* 2025;169(1 Suppl):S-946，DDW Su2057）但**仍無全文**；
-  TiP DecScore 是回溯資料、醫師開藥時未見分數，且**全體世代亦顯著**（55.1% vs 47.4%，P=0.028），
-  8/14 筆記的「57.9% vs 28.6%」是誤讀（模型建議比例，非療效）；Acosta 2021 表型導向 15.9% vs 9.0%
-  **非隨機**（更正啟事），Mayo 真正的 RCT NCT03374956 幾乎無差且未發表。
-- **P12 改字**（`slides/index.html`＋`slides/spec.yaml`，使用者「照建議更正」）：
-  左卡「基因風險分數（CTS-GRS）預測噁心風險」、註腳 `Mayo／Phenomix｜Gastroenterology 2025 增刊（DDW Su2057）｜
-  liraglutide 組 post-hoc，有基因資料 n=110｜OR 5.0，p=0.0058`；右卡「TiP DecScore：處方與模型建議一致與否」、
-  標籤「處方恰與建議一致／12 個月 HbA1c <7% 達標率」vs「不一致者」、註腳 `Shi et al., Commun Med 2026;6:165｜
-  上海回溯世代（醫師開藥時未見分數），12 個月 n=829｜全體 55.1% vs 47.4%，P=0.028`、caveat「<55 歲亞組，P=0.001」。
-  結論句不動。瀏覽器實測：兩卡標題各一行、註腳各兩行、佔高 545/720（<648）、`build_fonts.py` 重跑無缺字。
-- `reference/citation-verification.md` 主張 4／7 各補一則 2026-09-16 引用區塊註記（原文未刪）。
-- **同日稍早另一 session（未收工）的 P8 修正一併入庫**：Warwick 數字卡 450 人／4 家醫院→
-  JMIR 2025;27:e62661 單院 n=412、App 組每月多減 0.74 kg（詳見 index.html P8 的 HTML 註解）。
-- **PPTX v8 可編輯版已匯**：51 頁、630 文字方塊、26.6 MB、四家族字型嵌入，**含 P8＋P12 兩處修正**，
-  `C:\Users\phili\OneDrive\文件\演講\2026演講\肥胖醫學會南區研討會\肥胖醫學會南區研討會_AI在肥胖治療_潘湘如_v8_可編輯_20260916.pptx`
-  （醫院機對應 `C:\Users\office\OneDrive\...`，OneDrive 同步後即可拿到）。驗證：python-pptx 讀 P12 20 個文字方塊皆新版、
-  備忘稿同步、6 個 fntdata；PowerPoint COM 轉圖 P12 與瀏覽器原版灰階差中位 0/255。
-- **修 `slides/pptx_fonts.py`**：第一次匯出在嵌字型時失敗——家用機系統裝了完整版 Noto Serif TC（16.8 MB VF），
-  與腳本 FR_PRIVATE 載入的靜態子集**同名**，GDI 選字選到系統那份被防呆檢查擋下。改為優先
-  `TTEmbedFontFromFileA` 直接指定字型檔（不經 GDI 選字），失敗才退回舊路徑；六個字型檔單測皆走新路徑成功。
-- `slides/build_summary_docx.py`（2026-09-13 家用機產一頁摘要 DOCX 的腳本，先前未入庫）一併入庫。
-
-**前一輪：2026-09-15（醫院電腦 X108521）可編輯 PPTX v7**：新寫 `build_pptx_editable.py`（文字設透明截圖當
-`<p:bg>` 背景＋DOM 量測放 630 個原生文字方塊＋備忘稿）與 `pptx_fonts.py`（子集切 Regular／Bold／Black 靜態實例，
-t2embed 產 EOT 嵌入）。v7 存 OneDrive＋`F:\南區\`。已知限制：SVG 內文字與頁碼在底圖不可編輯；PowerPoint 折行點偶爾差一兩字；
-封面立體字單層陰影近似；改字後底圖框線不會跟著長。**v8 已取代 v7**。
-
-**更早輪次摘要**（細節見 git log 與 Obsidian）：2026-09-10 字級 16px 底線清查＋PPTX v6（醫院）；
-2026-09-09 P51 底圖（醫院）／語句與版面校對（家用）；2026-09-08 資料更新→字級放大→P6 修正 v3–v5（醫院）；
-2026-08-18 會訊專論交稿（家用）。
+**更早輪次**（細節見 git log 與 Obsidian `專案工作流程.md`）：2026-09-16 P12 出處補查＋v8（家用）；09-15 可編輯 PPTX v7 機制；
+09-10 字級底線清查；09-08 資料更新＋字級放大；08-18 會訊專論交稿。
 
 ## 🚦 目前狀態
 
-- **HTML 簡報（51 頁）**：可運行、離線可播、字級達鐵則底線、孤字歸零、佔高全數 ≤0.90；P8／P12 為 2026-09-16 版。
-- **PPTX v8 可編輯版（2026-09-16）＝現行繳交／修改版**；v6 截圖版保留作備援播放；v7 已被 v8 取代（可留可刪，使用者決定）。
-- 一頁摘要 DOCX／PDF（2026-09-13）已在 OneDrive；專論已定稿可投；命題定稿 6 題 DOCX 在 OneDrive。
-- 本機預覽：`.claude/launch.json` 的 `talk-preview`（`python -m http.server 8770` 於 repo 根目錄），匯 PPTX 時直接沿用同一個伺服器。
+- **HTML 簡報 59 頁（12/13 場版）**：可運行、離線可播；新頁皆實測（1280×720 截圖、孤字 0、<16px 0；P44.1 圖底約佔高 0.90 壓線）。
+- **PPTX v10 可編輯版（2026-10-27）＝12/13 場現行版**；9/20 場的 v8 在 OneDrive `肥胖醫學會南區研討會\`。
+- `slides/spec.yaml` 未同步 12/13 版（使用者表示 12/13 時長不重要，不必配速）。
+- 本機預覽：伺服器 port 8770 於 repo 根目錄，網址 `/slides/index.html`（office 機由 Obesity-lecture 的 launch.json `ai-talk-slides` 啟動）。
 
 ## ➡️ 下一步
 
-1. 演講日 **2026-09-20**：剩排練（51 頁配 40 分鐘）。P12 講法先讀 `reference/p12-glp1-ai-source-check-20260916.md`
-   §1.3「OR 5.0／p=0.0058 怎麼解讀」、§3.5 同行反駁、§3.7 建議講稿。
-2. 使用者若再逐頁指正：事實類先調文獻原文核對；語句類套「專業醫師口吻」（記憶 `slide-content-style-rules`）；
-   改完 `cd slides && python build_fonts.py` → 測佔高＋孤字 → **重匯可編輯 PPTX（v9 起跳）**：
-   `cd slides && python build_pptx_editable.py "<OneDrive 路徑>\..._v9_可編輯_<日期>.pptx"`
-   （8770 伺服器要開著；第二個參數可只匯指定頁測試，如 `1,12`）。
-3. （選辦，使用者未決定）`content/article-newsletter-2026.md` 參考文獻 [1] 標題少 "Receptor"、可升級為正式增刊引用；
-   內容本身無誤，不改也可。
-4. （選辦）OneDrive 內 v1–v5、v7 若要清理，由使用者決定（勿自動刪）。
+1. 12/13 場名全稱／時長待使用者補（封面目前寫「2026 年台灣肥胖醫學會學術研討會｜2026 年 12 月 13 日」）。
+2. 使用者若再逐頁指正：事實類先回原始文獻／報告核對；改完 `cd slides && python build_fonts.py` → 實測 → 重匯 PPTX（v11 起跳）：
+   `cd slides && python build_pptx_editable.py "<OneDrive>\台灣肥胖醫學會1213\..._v11_可編輯_<日期>.pptx"`（8770 要開著）。
+3. 在別台電腦確認 OneDrive `台灣肥胖醫學會1213\` 有 v10（office 機 OneDrive.exe 常沒在跑，本輪已手動啟動）。
 
 ## ⚠️ 注意事項
+
+### 本輪新增（2026-10-27）
+
+- **資安段數字的底線**：商業周刊 2031 期剪報只當線索。「漏洞武器化少於 24 小時」查無原文、「88% 企業試用 AI 代理」與 IBM 原文 88%（資安投資意願增幅）不符 → 未採用；
+  Capcom 1,177 萬筆外洩與 PHP2Shell 關聯**未證實**，只放講稿不上畫面；日本 112 起外洩分析未見「AI 被濫用」的已證實案例，**別講成 AI 已造成攻擊**。
+- **「工具無 PHP」的根據**：掃 10 個工具 repo（.php／.htaccess／composer.json／wp-config 皆 0），皆為 GitHub Pages 靜態網頁。新增工具若改用自架伺服器，P44／P44.1 說法要改。
+- 疊中文字的 PIL 腳本在 session scratchpad（未入庫）；要改 P44.1 圖：底圖 `slides/generated/p44_php2shell_20261027_143149_1.png`（不進 git，只在 office 機），
+  標記座標 ①(470,455) ②(330,205) ③(640,640) ④(1150,120) ⑤(1215,700) ✓(1278,560)，字型 msjhbd／arialbd。
+- 工具坑：`python -I` 會忽略 `PYTHONIOENCODING`，印中文變亂碼（資料本身沒壞）；Python 字串寫 Windows 路徑 `\2026` 要用 raw string 或雙反斜線，
+  單反斜線會被當八進位跳脫（本輪 handoff 一度出現「演講6演講」即此）。
+
 
 ### 本輪新增（2026-09-16）
 
@@ -163,9 +103,8 @@ t2embed 產 EOT 嵌入）。v7 存 OneDrive＋`F:\南區\`。已知限制：SVG 
 
 ## 🕐 最後更新
 
-- 時間：2026-10-27（醫院機 office，12/13 場第Ⅲ段資安更新：P43–45 換 2026 新內容）
-- 更新者：Claude Code（Opus 5.5）@ 醫院機（office 帳號）
-- 階段：HTML 58 頁已改完並實測；**PPTX v9 已匯**（OneDrive `台灣肥胖醫學會1213\`）
-- Git push：✅ 已推（`e9f2937`）
-- L3 Obsidian：未更新
-- 前一筆：2026-09-16 @ DESKTOP-LVSV9Q5（家用）· ✅ 已推（`283bef1`）
+- 時間：2026-10-27（醫院機 X108521／office 帳號，12/13 場第Ⅲ段資安更新＋P44.1＋PPTX v10）
+- 更新者：Claude Code（Opus 5.5）@ X108521
+- Git push：待推
+- L3 Obsidian：已補（`2ndBrain/obesity-society-ai-talk/專案工作流程.md`）
+- 前一筆：2026-10-20 @ X108521 · ✅ 已推（`0049f55`）
