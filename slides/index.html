@@ -429,6 +429,13 @@ section{
 .risk-legend .rl-dot{ flex:0 0 28px; height:28px; border-radius:50%; color:#fff; font-weight:900; font-size:17px;
   display:flex; align-items:center; justify-content:center; font-family:Arial, sans-serif; margin-top:2px; }
 
+/* --- P13.1 右側直列數字 --- */
+.vstat{ display:flex; flex-direction:column; gap:14px; }
+.vstat .vs-row{ display:grid; grid-template-columns:auto 1fr; gap:18px; align-items:center;
+  border:1px solid var(--sec-soft); border-left:5px solid var(--sec); border-radius:3px; padding:12px 16px; background: var(--sec-tint); }
+.vstat .vs-num{ font-family: var(--font-body); font-weight:900; font-size:1.0em; color: var(--sec); line-height:1; }
+.vstat .vs-label{ font-size:.36em; color: var(--text-2); line-height:1.55; }
+
 /* --- 兩數對比（A vs B）：把埋在句子裡的對照數字拉成視覺 --- */
 .cmp{ display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:10px; margin:.5em 0 .3em; }
 .cmp-side{ text-align:center; }
@@ -1231,28 +1238,37 @@ section{
     <h2>BMI 看不到的：從 3D 體型推估體組成</h2>
     <div class="sub">3D 光學體型掃描（3DO）｜Shape Up! Adults，n=472</div>
   </div>
-  <div class="stat-row" style="grid-template-columns:repeat(3,1fr);">
-    <div class="stat-card" style="border-top-color:var(--pop); background:color-mix(in srgb, var(--pop) 9%, #fff);">
-      <div class="num" style="color:var(--pop);">0.94</div>
-      <div class="label">脂肪量，對照 DXA 的 R²（女）<br>男性 0.91</div>
-    </div>
-    <div class="stat-card">
-      <div class="num">0.92</div>
-      <div class="label">去脂體重，對照 DXA 的 R²（女）<br>男性 0.95</div>
-    </div>
-    <div class="stat-card">
-      <div class="num">0.79</div>
-      <div class="label">內臟脂肪，對照 DXA 的 R²（女）<br>男性 0.77</div>
+  <!-- 2026-10-27 改版：左圖右數字。插圖 gpt-image-2 high（--edit 自 low 版第 2 張），內臟脂肪畫成包覆器官的橘色脂肪；
+       原兩條重點（姿勢標準化、深度學習生成 DXA 影像）移入講稿 -->
+  <div style="display:grid; grid-template-columns:47% 1fr; gap:28px; align-items:center; margin-top:.25em;">
+    <img src="images/p13_1_3do_scan.jpg" alt="受測者站在相機環繞的掃描架上，轉成 3D 網格人形，再推估脂肪、肌肉與內臟脂肪"
+         style="display:block; width:100%; height:auto; border:1px solid var(--sec-soft); border-radius:3px;" />
+    <div class="vstat">
+      <div class="vs-row" style="border-left-color:var(--pop); background:color-mix(in srgb, var(--pop) 9%, #fff);">
+        <div class="vs-num" style="color:var(--pop);">0.94</div>
+        <div class="vs-label">脂肪量，對照 DXA 的 R²（女）<br>男性 0.91</div>
+      </div>
+      <div class="vs-row">
+        <div class="vs-num">0.92</div>
+        <div class="vs-label">去脂體重，對照 DXA 的 R²（女）<br>男性 0.95</div>
+      </div>
+      <div class="vs-row">
+        <div class="vs-num">0.79</div>
+        <div class="vs-label">內臟脂肪，對照 DXA 的 R²（女）<br>男性 0.77</div>
+      </div>
     </div>
   </div>
-  <ul style="margin-top:.6em;">
-    <li>掃描先以軟體重擺成標準姿勢再建模，減少站姿不同造成的誤差</li>
-    <li>深度學習可由 3D 體型生成 DXA 影像，但脂肪量誤差約 5 kg（R² 0.73）</li>
-  </ul>
   <div class="key-box" style="margin-top:.45em;">
     體型本身帶有體組成的資訊；3DO <strong>不需游離輻射，可以重複量測</strong>。
   </div>
   <div class="cite">資料來源：Wong MC, et al. Obesity 2021;29:1835-47｜Leong LT, et al. Commun Med 2024;4:13.</div>
+  <aside class="notes">
+    BMI 只看身高和體重，分不出脂肪和肌肉。3D 光學體型掃描是用多台相機拍下全身體型，建成 3D 模型，再推估體組成。
+    Shape Up! Adults 研究 472 人，和 DXA 對照：女性脂肪量 R² 0.94、去脂體重 0.92、內臟脂肪 0.79；男性分別是 0.91、0.95、0.77。
+    掃描時，軟體會先把每個人的模型重擺成同一個標準姿勢再分析，減少站姿不同造成的誤差。
+    另一個方向是用深度學習，直接從 3D 體型生成類似 DXA 的影像，但脂肪量誤差約 5 公斤，R² 0.73，目前還不夠精準。
+    重點是：體型本身帶有體組成的資訊，而且 3DO 不需要游離輻射，可以重複量測。
+  </aside>
 </section>
 
 <section data-slide="13.2">
