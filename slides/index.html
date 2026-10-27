@@ -199,15 +199,9 @@ section{
 .cover-bg .title-slide .rule{ background:#1E88C8; }
 .cover-bg .title-slide h1{
   color:#0B3C5D;
-  text-shadow:
-    -2px -2px 0 #20B2AA,
-    -1px -1px 0 #20B2AA,
-     1px  1px 0 #0A3654,
-     2px  2px 0 #09304B,
-     3px  3px 0 #082A42,
-     4px  4px 0 #072439,
-     5px  5px 0 #061E30,
-     6px  9px 18px rgba(6,30,48,.28);
+  /* 2026-10-27 使用者反映「字重疊不清楚」：五層深藍厚度與字色太接近，投影／PPTX（只能近似成單層實心影）都糊成一團。
+     改為無厚度、只留一層淡柔影；PPTX 匯出時柔影會被略過，標題即為乾淨的實心字。 */
+  text-shadow: 0 3px 12px rgba(11,60,93,.16);
 }
 .title-slide .rule{ width:110px; height:3px; background: var(--sec); margin:.7em 0 .85em; }
 .title-slide .who{ font-size:.6em; color: var(--text); line-height:1.85; }
