@@ -2697,43 +2697,27 @@ section{
     <h2>展望：建置減重門診訓練場域</h2>
     <div class="sub">以 3D 實景重建（Gaussian Splatting）呈現病人的生活環境</div>
   </div>
-  <div class="flow" style="font-size:1.36em; margin-top:.4em;">
-    <div class="flow-step">
-      <div class="fs-ic"><svg class="ic sm"><use href="#ic-scope"/></svg></div>
-      <div class="fs-title">佈置場景</div>
-      <div class="fs-desc">依去識別化個案佈置廚房、客廳等空間</div>
-    </div>
-    <div class="flow-arrow">›</div>
-    <div class="flow-step">
-      <div class="fs-ic"><svg class="ic sm"><use href="#ic-collect"/></svg></div>
-      <div class="fs-title">手機拍攝</div>
-      <div class="fs-desc">繞著場景錄一段影片</div>
-    </div>
-    <div class="flow-arrow">›</div>
-    <div class="flow-step">
-      <div class="fs-ic"><svg class="ic sm"><use href="#ic-analyze"/></svg></div>
-      <div class="fs-title">3D 重建</div>
-      <div class="fs-desc">產生 3D 模型，裁切雜物並壓縮檔案</div>
-    </div>
-    <div class="flow-arrow">›</div>
-    <div class="flow-step">
-      <div class="fs-ic"><svg class="ic sm"><use href="#ic-summary"/></svg></div>
-      <div class="fs-title">標註線索</div>
-      <div class="fs-desc">放入可點擊的線索，如含糖飲料、樓梯</div>
-    </div>
-    <div class="flow-arrow">›</div>
-    <div class="flow-step">
-      <div class="fs-ic"><svg class="ic sm"><use href="#ic-communicate"/></svg></div>
-      <div class="fs-title">互動訓練</div>
-      <div class="fs-desc">以手機或 VR 探索場景，再進入看診</div>
+  <!-- 2026-10-27 改版：左圖右步驟。插圖 gpt-image-2 high（--edit 自 P13.4 圖，同系列畫風），飲料與零食包裝已放大確認無品牌字樣；
+       原「去識別化個案」與「同一場景搭配不同劇本」移入講稿 -->
+  <div style="display:grid; grid-template-columns:58% 1fr; gap:30px; align-items:center; margin-top:.3em;">
+    <img src="images/p50_1_training_field.jpg" alt="左：工作人員拿手機在佈置好的居家空間錄影；中：房間的 3D 重建模型，含糖飲料、零食櫃、電視、樓梯上有可點擊標記；右：學員戴 VR 頭戴裝置互動，旁邊是看診情境"
+         style="display:block; width:100%; height:auto; border:1px solid var(--sec-soft); border-radius:3px;" />
+    <div class="risk-legend">
+      <div class="rl-item"><span class="rl-dot" style="background:var(--sec);">1</span><div><b>佈置場景</b><br>依個案佈置廚房、客廳</div></div>
+      <div class="rl-item"><span class="rl-dot" style="background:var(--sec);">2</span><div><b>手機拍攝</b><br>繞著場景錄一段影片</div></div>
+      <div class="rl-item"><span class="rl-dot" style="background:var(--sec);">3</span><div><b>3D 重建</b><br>產生模型，裁切並壓縮檔案</div></div>
+      <div class="rl-item"><span class="rl-dot" style="background:var(--sec);">4</span><div><b>標註線索</b><br>含糖飲料、樓梯等可點擊</div></div>
+      <div class="rl-item"><span class="rl-dot" style="background:var(--sec);">5</span><div><b>互動訓練</b><br>手機或 VR 探索，再進入看診</div></div>
     </div>
   </div>
-  <ul style="margin-top:.55em;">
-    <li>同一場景可搭配不同個案劇本，用於住院醫師、營養師、個管師的訓練</li>
-  </ul>
-  <div class="key-box" style="margin-top:.4em;">
+  <div class="key-box" style="margin-top:.5em;">
     門診問診看不到病人的生活環境；訓練場域讓學員<strong>練習從環境找出影響體重的因素</strong>。
   </div>
+  <aside class="notes">
+    門診問診看不到病人的生活環境，所以我們想建置一個訓練場域。
+    流程分五步：第一，依照去識別化的個案，佈置廚房、客廳等空間；第二，用手機繞著場景錄一段影片；第三，用 Gaussian Splatting 產生 3D 模型，裁掉雜物並壓縮檔案；第四，在模型裡放入可以點擊的線索，例如桌上的含糖飲料、櫃子裡的零食、家裡的樓梯；第五，學員用手機或 VR 頭戴裝置探索這個場景，再進入模擬看診。
+    同一個場景可以搭配不同的個案劇本，用在住院醫師、營養師、個管師的訓練，讓學員練習從環境找出影響體重的因素。
+  </aside>
 </section>
 
 <section data-slide="50.2" data-sec="4">
