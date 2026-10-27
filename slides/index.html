@@ -422,6 +422,13 @@ section{
 .chain-node .cn-desc{ font-size:.36em; color: var(--text-2); line-height:1.65; }
 .chain-arrow{ display:flex; align-items:center; justify-content:center; color: var(--sec-line); font-size:.7em; font-weight:700; }
 
+/* --- P44.1 風險入口圖說 --- */
+.risk-legend .rl-head{ font-size:.42em; font-weight:900; margin-bottom:.25em; }
+.risk-legend .rl-item{ display:flex; gap:12px; align-items:flex-start; font-size:.36em; line-height:1.45; color: var(--text-2); margin:.38em 0; }
+.risk-legend .rl-item b{ color: var(--text); }
+.risk-legend .rl-dot{ flex:0 0 28px; height:28px; border-radius:50%; color:#fff; font-weight:900; font-size:17px;
+  display:flex; align-items:center; justify-content:center; font-family:Arial, sans-serif; margin-top:2px; }
+
 /* --- 兩數對比（A vs B）：把埋在句子裡的對照數字拉成視覺 --- */
 .cmp{ display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:10px; margin:.5em 0 .3em; }
 .cmp-side{ text-align:center; }
@@ -2378,6 +2385,37 @@ section{
     10 月 21 日日本首相高市早苗親自發文，呼籲網站管理者盡快修補，來不及就先暫停網站。
     我的門診工具全部是 HTML 和 JavaScript 寫成的靜態網頁，沒有使用 PHP，也沒有自己架伺服器，所以不在這次的影響範圍。
     補充：日本同一週有遊戲公司個資外洩，外界懷疑和這個漏洞有關，但目前沒有證實。
+  </aside>
+</section>
+
+<!-- P44.1  2026-10-27 新增：PHP2Shell 風險入口說明圖。底圖 gpt-image-2（slides/generated/p44_php2shell_20261027_143149_1.png），
+     編號標記以 PIL 疊上（images/p44_php2shell_markers.png）；圖說用原生文字以便 PPTX 可編輯。
+     data-slide 用小數，頁尾 BOUNDS 自動歸Ⅲ段（≤47）。④⑤為靜態網頁仍存在的入口，照實列出。 -->
+<section data-slide="44.1">
+  <div class="sec-mark">Ⅲ　落地挑戰</div>
+  <div class="slide-head">
+    <h2>風險入口在哪裡</h2>
+    <div class="sub">有 PHP 伺服器的網站 vs 靜態網頁工具</div>
+  </div>
+  <div style="display:grid; grid-template-columns:52% 1fr; gap:30px; align-items:center; margin-top:.3em;">
+    <img src="images/p44_php2shell_markers.png" alt="左：AI 找到伺服器裂縫、駭客伸手取走資料；右：靜態網頁從雲端直接送到醫師電腦，駭客被盾牌擋在外"
+         style="display:block; width:100%; height:auto; border:1px solid var(--sec-soft); border-radius:3px;" />
+    <div class="risk-legend">
+      <div class="rl-head" style="color:#C0392B;">有 PHP 伺服器的網站</div>
+      <div class="rl-item"><span class="rl-dot" style="background:#C0392B;">1</span><div><b>伺服器程式漏洞</b><br>不必登入就能遠端操控伺服器</div></div>
+      <div class="rl-item"><span class="rl-dot" style="background:#C0392B;">2</span><div><b>沒有更新的舊版程式</b><br>PHP 8.1 以前已無官方修補</div></div>
+      <div class="rl-item"><span class="rl-dot" style="background:#C0392B;">3</span><div><b>存在伺服器上的資料</b><br>入侵後可整批帶走</div></div>
+      <div class="rl-head" style="color:#2D6A4F; margin-top:.5em;">靜態網頁工具（講者的作法）</div>
+      <div class="rl-item"><span class="rl-dot" style="background:#C77D1A;">4</span><div><b>網站託管帳號</b><br>被盜可竄改網頁 → 開雙因子驗證</div></div>
+      <div class="rl-item"><span class="rl-dot" style="background:#C77D1A;">5</span><div><b>使用者的電腦與瀏覽器</b><br>中毒或惡意外掛 → 保持更新</div></div>
+      <div class="rl-item"><span class="rl-dot" style="background:#2D6A4F;">✓</span><div><b>沒有伺服器程式</b><br>PHP2Shell 這類漏洞無處可攻擊</div></div>
+    </div>
+  </div>
+  <aside class="notes">
+    這張圖把兩種網站的風險入口標出來。
+    左邊是有 PHP 伺服器的網站，有三個入口：第一是伺服器程式本身的漏洞，這次的 PHP2Shell 就是這一種；第二是沒有更新的舊版程式，PHP 8.1 以前的版本已經沒有官方修補；第三是存在伺服器上的資料，伺服器一被入侵，資料就可能整批被帶走。
+    右邊是我的門診工具採用的靜態網頁。伺服器上沒有程式在執行，所以 PHP2Shell 這類漏洞沒有地方可以攻擊。
+    但靜態網頁不是零風險，還有兩個入口：一是放網頁的託管帳號，帳號被盜，對方可以竄改網頁，所以要開雙因子驗證；二是使用者自己的電腦和瀏覽器，中毒或裝到惡意外掛一樣會出事，所以系統和瀏覽器要保持更新。
   </aside>
 </section>
 
