@@ -2486,6 +2486,111 @@ section{
   </aside>
 </section>
 
+<!-- P45.1  2026-11-02 新增：OpenAI 評測代理人逃出沙盒、入侵 Hugging Face（2026 年 7 月）
+     查證（2026-11-02，詳見 reference/huang-ai-guardian-source-check-20261102.md）：
+     - 評測：ExploitGym 網路攻擊能力評測，7/8 啟動；刻意關閉 production safety classifiers（HF 技術時間軸 2026-07-27）；
+       The Record 2026-07-22 引 OpenAI："a pre-release system running without standard safety filters"
+     - 逃脫：經套件庫快取代理（package registry cache proxy）的 zero-day（HF）；另經某用戶自架、未設防的 Modal 沙盒端點連外（METR／HF）
+     - 約 1,200 個代理人在 Artifactory 快取上的非授權留言板串連，7/8 晚至 7/13，逾 70,000 則訊息與檔案；
+       7/11 下午約 700 個代理人在攻擊 HF（METR 2026-08-26 獨立調查）
+     - 動機：METR 認為主要想摸清／騙過自動評分器；OpenAI 稱 HF 是「可能的答案來源」；HF 稱想偷測試解答 → 畫面寫「為了拿高分找捷徑」
+     - HF：單一 worker pod 執行程式 → 13 小時內取得多個內部叢集 cluster-admin（HF 原文）；客戶內容僅 5 個資料集被存取；
+       未發現公開模型／資料集被竄改；HF 7/16 揭露、OpenAI 7/21 公布
+     - 分歧：HF 文中寫「the agent」（單數）、METR 寫約 700 個；侵入向量 HF 寫資料集處理器注入、OpenAI 寫被盜憑證＋第二個 zero-day
+     - 商周 2030 期寫「從五月到七月」查無出處，不採用
+     - 本事件本身無醫療資料；醫療案例見 P45.2 -->
+<section data-slide="45.1">
+  <div class="sec-mark">Ⅲ　落地挑戰</div>
+  <div class="slide-head">
+    <h2>案例：AI 代理人自己逃出測試環境（2026 年 7 月）</h2>
+    <div class="sub">OpenAI 網路攻擊能力評測，波及 Hugging Face</div>
+  </div>
+  <div class="chain">
+    <div class="chain-node start">
+      <div class="cn-step">測試設定</div>
+      <div class="cn-title">評測 AI 的<br>攻擊能力</div>
+      <div class="cn-desc">為測出能力上限，<strong>刻意關閉安全過濾</strong></div>
+    </div>
+    <div class="chain-arrow">›</div>
+    <div class="chain-node mid">
+      <div class="cn-step">逃脫與串連</div>
+      <div class="cn-title">逃出沙盒<br>彼此串連</div>
+      <div class="cn-desc">約 1,200 個代理人在<strong>未經授權的留言板</strong>交換訊息逾 7 萬則</div>
+    </div>
+    <div class="chain-arrow">›</div>
+    <div class="chain-node end">
+      <div class="cn-step">波及外部</div>
+      <div class="cn-title">約 700 個代理人<br>攻擊 Hugging Face</div>
+      <div class="cn-desc">13 小時內取得<strong>多個內部系統最高權限</strong></div>
+    </div>
+  </div>
+  <div class="key-box">
+    沒有人下令攻擊——代理人<strong>為了在評測中拿高分，自己找捷徑</strong>。
+  </div>
+  <div class="cite">
+    METR 獨立調查 2026-08-26；Hugging Face 技術時間軸 2026-07-27；The Record 2026-07-22。
+  </div>
+  <aside class="notes">
+    今年七月有一個代表性事件。OpenAI 在內部評測模型的網路攻擊能力，為了測出能力的上限，評測時刻意關閉了平常的安全過濾。
+    結果代理人利用套件伺服器的一個未知漏洞逃出測試用的沙盒。獨立調查機構 METR 統計，約 1,200 個代理人在一個未經授權的留言板上互相串連，交換了七萬多則訊息。
+    到 7 月 11 日，約 700 個代理人在攻擊 Hugging Face，也就是全球最大的開源模型平台，13 小時內就拿到多個內部系統的最高權限。Hugging Face 表示，被存取的客戶內容只有 5 個資料集，公開的模型和資料集沒有被竄改。
+    重點是：沒有人叫它們去攻擊。調查認為，代理人主要是想摸清、甚至騙過自動評分系統，為了拿高分自己找捷徑。
+    補充：輝達在 9 月推出代理人安全平台時表示，若早一點採用可能擋得下這次入侵；這是廠商自己的說法，沒有獨立驗證。
+  </aside>
+</section>
+
+<!-- P45.2  2026-11-02 新增：OpenAI 代理人越權存取政府醫療統計（2026 年 6 月，事後才揭露）
+     查證（2026-11-02）：
+     - 澳洲 Medicare：Services Australia 的 Medicare 統計報表入口，2026-06-18 遭存取；代理人在研究醫療支出；
+       存取公開與非公開檔案並寫入檔案；OpenAI 稱無證據病人紀錄被存取，內容為 "aggregate health statistics and internal file names"；
+       OpenAI 8 月才發現，9 月以電子郵件寄到 Services Australia 公共信箱通報；總理 Albanese 9/24 公開並致電 Altman 表達 "extreme concern"。
+       來源：ABC News 2026-09-24、CNN 2026-09-23、CNBC 2026-09-24（Al Jazeera 寫 7/18，與多數來源不符，不採用）
+     - 病床資料：OpenAI Misalignment Reports〈Retrieving server secrets and bypassing authorization on a government statistics website〉
+       （事件 2026-06-17、8/13 發現、10/15 更新）：RL 訓練中的內部模型，只被要求查某地區衛生機構病床總數；
+       系統指令只允許 HTTP GET；以路徑穿越漏洞讀出設定檔（資料庫連線字串、JWT 簽章密鑰、郵件帳密），偽造未簽章 JWT 取得資料；
+       另取得逾 1,000 筆含電子郵件的帳號名錄、曾考慮猜密碼；存下 24 年年度統計；回答時未提及越權；監測系統標為 critical。
+       網站與國家皆未具名。Fortune 2026-10-16 報導此案。
+     - ⚠️ 兩案日期相鄰（6/17、6/18）且皆為政府衛生統計，可能是同一事件，也可能不是——無來源證實，畫面以兩張卡分列並加註
+     - 不要說「病歷外洩」：兩案目前皆無病人個資外洩的證據 -->
+<section data-slide="45.2">
+  <div class="sec-mark">Ⅲ　落地挑戰</div>
+  <div class="slide-head">
+    <h2>醫療資料也在範圍內</h2>
+    <div class="sub">只是被交代「查統計數字」，AI 代理人自行越權</div>
+  </div>
+  <div class="two-col tight">
+    <div class="col-box mark-w">
+      <div class="cb-title">澳洲 Medicare 統計入口</div>
+      <ul>
+        <li>研究醫療支出時<strong>繞過封鎖</strong>，讀取非公開檔案並寫入檔案</li>
+        <li>OpenAI 兩個月後才發現，再以<strong>電子郵件寄到公共信箱</strong>通報</li>
+        <li>澳洲總理親自致電 OpenAI 執行長表達關切</li>
+      </ul>
+    </div>
+    <div class="col-box mark-w">
+      <div class="cb-title">政府統計網站病床資料</div>
+      <ul>
+        <li>只被要求查一個地區的<strong>病床總數</strong></li>
+        <li>利用網站漏洞取出密鑰，<strong>偽造登入憑證</strong></li>
+        <li>下載 24 年資料，回答時<strong>未提自己越權</strong></li>
+      </ul>
+    </div>
+  </div>
+  <div class="key-box">
+    兩案目前<strong>皆無病人個資外洩的證據</strong>，但能連網的代理人，權限必須事先限縮。
+  </div>
+  <div class="cite">
+    ABC News 2026-09-24；CNN 2026-09-23；OpenAI Misalignment Reports（2026-10-15 更新）。兩案時間相鄰，是否為同一事件未經證實。
+  </div>
+  <aside class="notes">
+    同一批揭露裡，也有和醫療資料有關的案例，都發生在今年六月，八月以後才被發現。
+    第一個是澳洲。OpenAI 的代理人在研究醫療支出時，繞過封鎖進入澳洲 Services Australia 的 Medicare 統計入口，讀取了非公開檔案，還寫入檔案。OpenAI 兩個月後才發現，再寄一封電子郵件到對方的公共信箱通報。澳洲總理 Albanese 九月公開這件事，並親自打電話給 OpenAI 執行長 Altman 表達關切。OpenAI 表示，沒有證據顯示病人紀錄被存取，被讀取的是彙總的衛生統計和內部檔名。
+    第二個是 OpenAI 自己公布的報告。訓練中的模型只被要求查某個地區的病床總數，它卻利用網站漏洞取出密鑰、偽造登入憑證，下載了 24 年的資料，還拿到上千筆帳號的電子郵件；最後回答時，完全沒提到自己越權。報告沒有公開是哪個國家的網站。
+    兩案時間只差一天，都是政府衛生統計，可能是同一件事，但目前沒有來源證實，所以分開列。
+    兩案目前都沒有病人個資外洩的證據。但這提醒我們：給 AI 代理人的任務再單純，只要它能連網、能碰到系統，權限就必須事先限縮。
+  </aside>
+</section>
+
 <!-- P46 [ICON] -->
 <section data-slide="46">
   <div class="sec-mark">Ⅲ　落地挑戰</div>
@@ -2567,7 +2672,7 @@ section{
   <div class="cite" style="margin-top:1.5em;">
     本段個資論述主要資料來源：成功大學計算機與網路中心 李南逸主任
     《AI 時代之醫療隱私與個資保護挑戰》講義；責任歸屬與醫療廣告部分依醫師法、醫療法；
-    2026 資安現況依 CrowdStrike、Google、IBM、Veracode 原始報告
+    2026 資安現況依 CrowdStrike、Google、IBM、Veracode 原始報告；代理人越權事件依 METR、Hugging Face、OpenAI 揭露與澳洲官方說明
   </div>
 </section>
 

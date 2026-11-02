@@ -51,6 +51,8 @@
       10-20 插入 3D 體型掃描＋NeRF、沉浸式作品、訓練場域、新封面（58 頁，PPTX v9）；
       10-27 第Ⅲ段資安更新：P43–45 換 2026 AI 資安新內容（數字全回 CrowdStrike／Google GTIG／IBM／Veracode 原始報告核對）、
       P44.1「風險入口在哪裡」（gpt-image-2 插圖＋原生圖說），59 頁，**PPTX v10 已匯 OneDrive `台灣肥胖醫學會1213\`**（v9 使用者已刪）。
+      11-02 依商周專欄〈輝達為何突然當起「AI守門員」？〉查證後新增 P45.1（OpenAI 代理人逃出沙盒攻擊 Hugging Face）、
+      P45.2（澳洲 Medicare 統計入口等醫療相關越權案，皆無病人個資外洩證據），**61 頁，PPTX v13 已匯 OneDrive `台灣肥胖醫學會1213`**。
 
 ## 補充輪次（階段七結案後的逐頁校對）
 - **2026-09-09（家用機）語句與版面校對輪**：全簡報去誇大／去口語（專業醫師口吻）、
@@ -122,8 +124,9 @@ obesity-society-ai-talk/
 │   ├── legal-citations-20260816.md    ★醫師法／醫療法條號查證（P41 引註依據，含查不到的部分）
 │   ├── ada-sec8-digital-scan-20260817.md  ★ADA 2026 Sec8 官方 PDF 逐字掃描（P9 的 A→E 落差依據）
 │   ├── clinic-photo-redaction-20260817.md ★門診實拍去識別化紀錄（換照片前必讀）
-│   └── p12-glp1-ai-source-check-20260916.md ★P12 兩張數字卡＋結論句的出處補查（改字總表、Q&A 備忘、
-│                                            OR/p 解讀、同行反駁 8 條、建議講稿）
+│   ├── p12-glp1-ai-source-check-20260916.md ★P12 兩張數字卡＋結論句的出處補查（改字總表、Q&A 備忘、
+│   │                                        OR/p 解讀、同行反駁 8 條、建議講稿）
+│   └── huang-ai-guardian-source-check-20261102.md ★商周專欄（黃仁勳／AI 守門員）查證＋P45.1／P45.2 一手來源
 ├── content/
 │   ├── outline-50slides.md            50張投影片大綱 v2.1（檔名沿用，實際已 51 頁）
 │   ├── article-newsletter-2026.md     ★會訊醫學專論原始稿（階段八，Markdown 為單一真實來源）
