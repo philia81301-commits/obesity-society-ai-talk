@@ -5,6 +5,14 @@
 
 ## ⏯️ 目前做到哪
 
+**2026-11-04（醫院機 X108521）院訊民眾稿＋P19 事實更正**：
+
+- **院訊稿〈讓看診多一點對話：AI 在家庭醫學科的應用〉**：對象一般民眾，一頁 A4、內文 926 字、標楷體、五段編號小標（使用者要求**不要分隔線**）、右下角衛教工具集 QR（使用者已確認 QR 沒問題）。原稿 `content/article-hospital-ai-familymed-202611.md`，排版 `article/build_hospital_newsletter.py`；DOCX 在 `article/hospital-newsletter/`（`*.docx` 不進 git，**只在 office 機**，尚未放 OneDrive，改原稿後重跑腳本即可）。
+- **🩸 事實更正（使用者告知）：目前病人無法於看診前線上填表，問診在看診中由醫師用網頁工具下拉選單完成。** P19 由「雙軌資料蒐集」改為「看診中完成結構化問診」，統計卡改「醫師端輸入工具」。舊資料仍寫病人初診前填表：`reference/material-inventory.md`、已交稿的 `content/article-newsletter-2026.md` 第四節、`content/outline-50slides.md`、`slides/spec.yaml`、`article/fig2_datalayer.html`——**引用前以本條為準**。
+- 院訊稿沒有寫「每診省幾分鐘」：查無實測數字，使用者若提供可補。
+- **PPTX v14**：commit 當下仍在匯出中，輸出檔名 `台灣肥胖醫學會1213\台灣肥胖醫學會1213_AI在肥胖治療_潘湘如_v14_可編輯_20261104.pptx`，結果見下一筆回填。下次重匯從 v15 起跳。
+- 工具坑：Word COM 的 `OpenNoRepairDialog` 在本機會卡死；改用 `Documents.Open(path, $false, $true, $false)`＋`ExportAsFixedFormat` 正常。`ComputeStatistics(2)` 頁數可能失準（回報 2 頁、實際 PDF 1 頁），以 PDF 頁數為準。
+
 **2026-11-02（醫院機 X108521）新增 P45.1／P45.2，全冊 61 頁，PPTX v13 已匯**：
 
 - 起因：使用者給商周 2030 期專欄〈輝達為何突然當起「AI守門員」？〉掃描檔，先整理黃仁勳重點並查證（`reference/huang-ai-guardian-source-check-20261102.md`）。
