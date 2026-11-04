@@ -10,7 +10,7 @@
 - **院訊稿〈讓看診多一點對話：AI 在家庭醫學科的應用〉**：對象一般民眾，一頁 A4、內文 926 字、標楷體、五段編號小標（使用者要求**不要分隔線**）、右下角衛教工具集 QR（使用者已確認 QR 沒問題）。原稿 `content/article-hospital-ai-familymed-202611.md`，排版 `article/build_hospital_newsletter.py`；DOCX 在 `article/hospital-newsletter/`（`*.docx` 不進 git，**只在 office 機**，尚未放 OneDrive，改原稿後重跑腳本即可）。
 - **🩸 事實更正（使用者告知）：目前病人無法於看診前線上填表，問診在看診中由醫師用網頁工具下拉選單完成。** P19 由「雙軌資料蒐集」改為「看診中完成結構化問診」，統計卡改「醫師端輸入工具」。舊資料仍寫病人初診前填表：`reference/material-inventory.md`、已交稿的 `content/article-newsletter-2026.md` 第四節、`content/outline-50slides.md`、`slides/spec.yaml`、`article/fig2_datalayer.html`——**引用前以本條為準**。
 - 院訊稿沒有寫「每診省幾分鐘」：查無實測數字，使用者若提供可補。
-- **PPTX v14**：commit 當下仍在匯出中，輸出檔名 `台灣肥胖醫學會1213\台灣肥胖醫學會1213_AI在肥胖治療_潘湘如_v14_可編輯_20261104.pptx`，結果見下一筆回填。下次重匯從 v15 起跳。
+- **PPTX v14 已匯**：61 頁、752 文字方塊、28.6 MB，OneDrive `台灣肥胖醫學會1213\台灣肥胖醫學會1213_AI在肥胖治療_潘湘如_v14_可編輯_20261104.pptx`；python-pptx 驗證全冊無「病人端／雙軌資料／初診前」，第 23 張（P19）為新內容。下次重匯從 v15 起跳。
 - 工具坑：Word COM 的 `OpenNoRepairDialog` 在本機會卡死；改用 `Documents.Open(path, $false, $true, $false)`＋`ExportAsFixedFormat` 正常。`ComputeStatistics(2)` 頁數可能失準（回報 2 頁、實際 PDF 1 頁），以 PDF 頁數為準。
 
 **2026-11-02（醫院機 X108521）新增 P45.1／P45.2，全冊 61 頁，PPTX v13 已匯**：
@@ -48,16 +48,16 @@
 
 ## 🚦 目前狀態
 
-- **HTML 簡報 59 頁（12/13 場版）**：可運行、離線可播；新頁皆實測（1280×720 截圖、孤字 0、<16px 0；P44.1 圖底約佔高 0.90 壓線）。
-- **PPTX v12 可編輯版（2026-10-27 傍晚）＝12/13 場現行版**（v10、v11 為同日較早版本）；9/20 場的 v8 在 OneDrive `肥胖醫學會南區研討會\`。
+- **HTML 簡報 61 頁（12/13 場版）**：可運行、離線可播；新頁皆實測（1280×720 截圖、孤字 0、<16px 0；P44.1 圖底約佔高 0.90 壓線）。
+- **PPTX v14 可編輯版（2026-11-04）＝12/13 場現行版**（v10–v13 為較早版本）；9/20 場的 v8 在 OneDrive `肥胖醫學會南區研討會\`。
 - `slides/spec.yaml` 未同步 12/13 版（使用者表示 12/13 時長不重要，不必配速）。
 - 本機預覽：伺服器 port 8770 於 repo 根目錄，網址 `/slides/index.html`（office 機由 Obesity-lecture 的 launch.json `ai-talk-slides` 啟動）。
 
 ## ➡️ 下一步
 
 1. 12/13 場名全稱／時長待使用者補（封面目前寫「2026 年台灣肥胖醫學會學術研討會｜2026 年 12 月 13 日」）。
-2. 使用者若再逐頁指正：事實類先回原始文獻／報告核對；改完 `cd slides && python build_fonts.py` → 實測 → 重匯 PPTX（v14 起跳）：
-   `cd slides && python build_pptx_editable.py "<OneDrive>\台灣肥胖醫學會1213\..._v14_可編輯_<日期>.pptx"`（8770 要開著）。
+2. 使用者若再逐頁指正：事實類先回原始文獻／報告核對；改完 `cd slides && python build_fonts.py` → 實測 → 重匯 PPTX（v15 起跳）：
+   `cd slides && python build_pptx_editable.py "<OneDrive>\台灣肥胖醫學會1213\..._v15_可編輯_<日期>.pptx"`（8770 要開著）。
 3. 在別台電腦確認 OneDrive `台灣肥胖醫學會1213\` 有 v10（office 機 OneDrive.exe 常沒在跑，本輪已手動啟動）。
 
 ## ⚠️ 注意事項
