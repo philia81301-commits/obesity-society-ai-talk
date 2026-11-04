@@ -1148,6 +1148,85 @@ section{
   </p>
 </section>
 
+<!-- P11.1  2026-11-04 新增：使用者提供 alive 雜誌報導（棒壘球場館的 AI 運動科技），定位為「商業模式的想法」，不是臨床證據。
+     「不須穿戴感測器」只出自雜誌；大魯閣新聞稿只寫高速攝影＋AI 揮棒分析，無精準度數據。首轟館仍用球棒感測器，故不寫成全部免感測。
+     雜誌照片有版權且 repo 公開，插圖改用 gpt-image-2 示意。查證見 reference/ai-sports-vision-source-check-20261104.md -->
+<section data-slide="11.1">
+  <div class="sec-mark">Ⅰ　發展脈絡</div>
+  <div class="slide-head">
+    <h2>消費端平台的 AI 產品化（三）：運動場館</h2>
+    <div class="sub">商業模式觀察｜從穿戴感測器，走向攝影機與 AI 影像分析</div>
+  </div>
+  <div style="display:grid; grid-template-columns:33% 1fr; gap:28px; align-items:center; margin-top:.25em;">
+    <img src="images/p11_1_vision_swing.jpg" alt="打者身上沒有穿戴裝置，場邊攝影機拍攝揮棒，身上疊加關節點骨架，螢幕顯示動作曲線（示意圖）"
+         style="display:block; width:100%; height:auto; border:1px solid var(--sec-soft); border-radius:3px;" />
+    <div class="vstat" style="gap:8px;">
+      <div class="vs-row" style="grid-template-columns:1fr; border-left-color:var(--pop); background:color-mix(in srgb, var(--pop) 9%, #fff);">
+        <div class="vs-label" style="font-size:.42em;"><b class="vs-head" style="color:var(--pop);">大魯閣 SWING X</b><br>
+          不須穿戴感測器，分析揮棒節奏與重心轉移</div>
+      </div>
+      <div class="vs-row" style="grid-template-columns:1fr;">
+        <div class="vs-label" style="font-size:.42em;"><b class="vs-head">台中首轟館</b><br>
+          球棒感測器＋AI 影像，對照姿勢與擊球結果</div>
+      </div>
+      <div class="vs-row" style="grid-template-columns:1fr;">
+        <div class="vs-label" style="font-size:.42em;"><b class="vs-head">貝思沛拉 AI Coach 2.0</b><br>
+          協助教練整理檢測報告、排課表、追蹤成效</div>
+      </div>
+    </div>
+  </div>
+  <div class="key-box" style="margin-top:.45em;">
+    穿戴裝置記錄<strong>動了多少</strong>，影像 AI 進一步看<strong>動得如何</strong>。<br>
+    這個方向值得減重門診關注；研究已開始驗證偵測與成效（下頁）。
+  </div>
+  <div class="cite">資料來源：林秀娟．alive 雜誌，頁 123｜大魯閣新聞稿 2026/10/28｜Uhlrich SD. PLoS Comput Biol 2023｜Horsak B. J Biomech 2023｜Cokorilo N. J Funct Morphol Kinesiol 2026｜插圖為示意</div>
+  <aside class="notes">
+    前面談穿戴裝置，它記錄的主要是步數和活動時間，也就是動了多少。消費市場已經開始往下一步走，這裡舉台灣棒壘球場館的例子，它是商業模式的觀察，不是臨床證據。
+    大魯閣的 SWING X 用高速攝影加 AI 分析揮棒，報導提到不須穿戴感測器，就能分析揮棒節奏與重心轉移。台中首轟館仍用球棒感測器，搭配 AI 影像，對照身體姿勢、球棒軌跡和擊球結果。貝思沛拉棒球學校把職業球團的運動科學方法，延伸到一般球友，AI Coach 2.0 協助教練整理檢測報告、排課表，再追蹤成效。
+    同類技術在學術上也有驗證。史丹佛的 OpenCap 用兩支以上的手機拍攝，就能估算動作和關節受力；在 100 人的現場研究，比實驗室方法快 25 倍，成本不到 1%。但另一篇步態驗證，整體誤差約 5.8 度，仍高於臨床期望的 2 到 5 度。
+    回到減重門診，我們常常只能問病人有沒有運動，很難知道動作做得對不對。這類技術未來可能用在阻力運動的動作回饋，這是我的想法。2026 年一篇範圍回顧也認為，AI 應視為專業人員的輔助，還不能取代。下一頁看研究證據。
+  </aside>
+</section>
+
+<!-- P11.2  2026-11-04 新增：使用者要求進一步查 PubMed「用 AI 偵測運動、做成效分析」。檢索式與篩選見 reference/ai-sports-vision-source-check-20261104.md。
+     Heo 2026 已讀全文（單組、年輕成人、未報告 BMI，體脂為 BIA 中位數）；其餘只讀摘要。Hicks 的介入是體感遊戲，不是 AI 動作分析；Cao 的 AI 是開運動處方，不是鏡頭偵測。 -->
+<section data-slide="11.2">
+  <div class="sec-mark">Ⅰ　發展脈絡</div>
+  <div class="slide-head">
+    <h2>AI 偵測運動的研究證據到哪裡？</h2>
+    <div class="sub">PubMed 檢索｜偵測準確度與介入成效</div>
+  </div>
+  <div class="two-col">
+    <div class="col-box mark-a">
+      <div class="cb-title">多數研究：非肥胖族群</div>
+      <ul>
+        <li>手機偵測深蹲 <span class="em-num">0–95.5%</span>，取決於鏡頭位置（n=44）</li>
+        <li>16 週 AI 阻力訓練，體脂 <span class="em-num">23.3→20.0%</span>（單組，146 人完訓）</li>
+        <li>肌少症 AI 遠距 vs 面授：<span class="em-num">組間無差異</span>（RCT，n=75）</li>
+      </ul>
+    </div>
+    <div class="col-box mark-b">
+      <div class="cb-title">肥胖族群：證據仍少</div>
+      <ul>
+        <li>肥胖兒童 AI 開運動處方，BMI <span class="em-num">25.3→23.6</span>（單組，n=19）</li>
+        <li>體感遊戲 6 個月，腰圍、脂肪量<span class="em-num">組間無差異</span>（RCT，n=100）</li>
+      </ul>
+    </div>
+  </div>
+  <div class="key-box" style="margin-top:.45em;">
+    目前未查到鏡頭式 AI 動作回饋用於肥胖成人的對照試驗。<br>
+    導入前需先確認<strong>肥胖體型的偵測準確度與實際成效</strong>。
+  </div>
+  <div class="cite">資料來源：Oliosi 2026 JMIR Mhealth Uhealth 14:e82412｜Heo 2026 Healthcare 14:482｜He 2024 BMC Geriatr 24:586｜Cao 2026 Front Public Health 14:1886988｜Hicks 2025 Contemp Clin Trials 151:107846</div>
+  <aside class="notes">
+    我們到 PubMed 查了用 AI 偵測運動、再看成效的研究，可以分成兩邊看。
+    左邊多半不是肥胖族群。第一，偵測本身受拍攝條件影響很大：44 位健康大學生的研究，手機偵測深蹲的成功率從 0% 到 95.5%，斜前方 200 公分最好，側面 90 公分最差。第二，韓國一個 16 週的手機 AI 阻力訓練，216 位年輕成人收案，146 人完成，體脂中位數由 23.3% 降到 20.0%，但這是單組研究，沒有對照組。第三，肌少症長者的隨機試驗，75 人做 24 式太極，AI 遠距、一般遠距和面授三組之間沒有顯著差異。要注意，沒有差異不等於已證明等效。
+    右邊是肥胖族群。四川 19 位肥胖兒童，AI 開立並調整運動處方，由教練現場執行，12 週後 BMI 由 25.3 降到 23.6，這是單組前驅研究，而且 AI 開處方，不是鏡頭偵測。另一篇是 100 位過重或肥胖的美國黑人女性，用 Wii Fit 和 Kinect 體感遊戲 6 個月，腰圍、脂肪量和瘦體組織都和對照組沒有差異，這是遊戲，也不是 AI 動作分析，但提醒我們有科技不等於有成效。
+    另外，一篇研究也發現，體型大小會影響無標記動作分析的膝踝角度結果，所以不能直接把一般人的準確度套用到肥胖病人身上。
+    結論是，在這次檢索範圍內，還沒有查到用鏡頭式 AI 動作回饋介入肥胖成人的對照試驗。商業上已經走在前面，臨床上要先確認肥胖體型的偵測準確度和實際成效。
+  </aside>
+</section>
+
 <!-- P12 -->
 <section data-slide="12">
   <div class="sec-mark">Ⅰ　發展脈絡</div>
