@@ -377,6 +377,14 @@ section{
 }
 .key-box .kb-note{ display:block; margin-top:.5em; font-size:.85em; opacity:.8; }
 
+/* 厚度底座（2026-11-20）：卡片下方墊一塊深一階、往下錯開 10px 的實心色塊（不模糊），
+   做出卡片厚度。色彩跟著 --sec 走，各段自動換色；匯出可編輯 PPTX 時隨底圖截入。
+   淡底卡＝主色 33% 混白；深底結論塊＝主色壓黑 35%（與 11/29、12/27 PPTX 版同一配方）。 */
+.col-box, .adv-card, .stat-card, .flow-step{
+  box-shadow: 0 10px 0 color-mix(in srgb, var(--sec) 33%, #fff);
+}
+.key-box{ box-shadow: 0 10px 0 color-mix(in srgb, var(--sec) 65%, #000); }
+
 /* ============ 資料視覺化元件 ============ */
 
 /* --- 水平堆疊條（構成比例，如代謝表型分群） --- */
@@ -722,12 +730,12 @@ section{
 <section data-slide="2">
   <div class="sec-mark">前言</div>
   <div class="slide-head">
-    <h2>為什麼是現在？</h2>
-    <div class="sub">肥胖照護負擔持續上升，與 AI 技術快速演進，在此刻交會。</div>
+    <h2>肥胖照護負擔上升，AI 已能在門診使用</h2>
+    <div class="sub">復胖率高，門診人力與衛教時間有限</div>
   </div>
   <div class="two-col tight" style="margin-bottom:.5em;">
     <div class="col-box mark-w">
-      <div class="cb-title">減重的真正難題不是減下來</div>
+      <div class="cb-title">減重後最難的是維持</div>
       <ul>
         <li>2 年內　<span class="em-num" style="color:var(--warn);">&gt;50%</span>　復胖</li>
         <li>5 年內　<span class="em-num" style="color:var(--warn);">&gt;80%</span>　復胖</li>
@@ -885,7 +893,7 @@ section{
   </div>
 
   <div class="key-box" style="margin-top:.5em;">
-    模型的價值不只在預測風險，而在指出<strong>哪些因子值得優先介入</strong>。
+    模型除了預測風險，也指出<strong>哪些因子值得優先介入</strong>。
   </div>
 
   <div class="cite">
@@ -933,11 +941,11 @@ section{
     <div class="sl-item" style="--c:#DFA968;"><span class="sl-name">HMO-I</span>高胰島素型，PCOS 風險高</div>
   </div>
   <div class="key-box" style="margin-top:.5em;">
-    同樣是肥胖，<strong>超過半數帶有代謝異常</strong>——BMI 相同，風險未必相同。
+    同樣是肥胖，<strong>超過半數帶有代謝異常</strong>；BMI 相同，風險未必相同。
   </div>
   <div class="cite">
     Lin Z, et al. Front Endocrinol (Lausanne). 2021;12:713592｜另一取徑：以深度學習（DNN）
-    從營養攝取預測多項代謝疾病——Int J Environ Res Public Health. 2021 May 24（韓國 KNHANES）
+    從營養攝取預測多項代謝疾病，Int J Environ Res Public Health. 2021 May 24（韓國 KNHANES）
   </div>
 </section>
 
@@ -949,7 +957,7 @@ section{
     <div class="sub">2022–2024　驗證期</div>
   </div>
   <p style="margin-bottom:.15em;">
-    證據等級已由單一試驗，走向<strong>系統性回顧的再回顧</strong>——
+    證據等級已由單一試驗，走向<strong>系統性回顧的再回顧</strong>：
     身體活動 SMD 0.3–0.6、身體組成 SMD 0.7–2.0、體適能 SMD 0.3
   </p>
   <!-- 顏色承載語意：前兩張＝行為確實改變（暖橘），第三張＝但體重產出有限（淡） -->
@@ -968,8 +976,8 @@ section{
     </div>
   </div>
   <div class="key-box" style="margin-top:.5em;">
-    行為改變幅度明確，換算成體重卻只有 1 公斤——
-    <strong>單靠監測不足以處理肥胖</strong>，必須與臨床介入結合。
+    行為改變幅度明確，換算成體重只有 1 公斤。
+    <strong>單靠監測不足以處理肥胖</strong>，需與臨床介入結合。
   </div>
   <div class="cite">
     Lancet Digit Health. 2022;4:e615–26；另見 Obesity Reviews. 2019;20:1485–1493。
@@ -1016,8 +1024,8 @@ section{
     </div>
   </div>
   <div class="key-box" style="margin-top:.5em;">
-    面對面與線上<strong>不是取代關係</strong>——線上的價值在於問責感、個人化回饋，
-    以及避開團體活動的心理負擔。
+    線上介入<strong>搭配面對面門診使用</strong>，提供問責感與個人化回饋，
+    也讓病人避開團體活動的心理負擔。
   </div>
 </section>
 
@@ -1055,11 +1063,11 @@ section{
     </div>
   </div>
   <div class="key-box" style="font-size:.5em; margin-top:.4em;"><!-- P9 版面救回 90% 內：.54→.5em（23px）-->
-    問題不在 AI 有沒有被寫進指引，而在<b>證據等級停在最低一級</b>——
+    AI 已寫進指引，但<b>證據等級停在最低一級</b>：
     ADA 由 <b>A 降至 E</b>，台灣由 <b>1A 降至 2C</b>。
     <span class="kb-note">
       該章由本場講者執筆：依當時可得的證據，最高只能給 2C。
-      缺的是<b>可納入系統性回顧的實務證據</b>——這正是第二段要補的空缺。
+      缺的是<b>可納入系統性回顧的實務證據</b>；第二段介紹本院門診的實際導入經驗。
     </span>
   </div>
   <div class="cite">
@@ -1193,7 +1201,7 @@ section{
 <section data-slide="11.2">
   <div class="sec-mark">Ⅰ　發展脈絡</div>
   <div class="slide-head">
-    <h2>AI 偵測運動的研究證據到哪裡？</h2>
+    <h2>AI 偵測運動的研究多在非肥胖族群</h2>
     <div class="sub">PubMed 檢索｜偵測準確度與介入成效</div>
   </div>
   <div class="two-col">
@@ -1274,7 +1282,7 @@ section{
     </div>
   </div>
   <div class="key-box">
-    重點不是「AI 讓藥更有效」，而是<strong>用 AI 挑對病人</strong>——把有限的藥物資源，配置到最可能受益的人身上。
+    AI 在這裡的用途是<strong>挑出適合用藥的病人</strong>，把有限的藥物資源用在最可能受益的人身上。
   </div>
 <!-- 內部查證紀錄不呈現於畫面（2026-09-09 使用者指示）；查證出處見 reference/citation-verification.md 與 reference/p12-glp1-ai-source-check-20260916.md（2026-09-16 補查後改字） -->
 </section>
@@ -1342,14 +1350,14 @@ section{
     Shape Up! Adults 研究 472 人，和 DXA 對照：女性脂肪量 R² 0.94、去脂體重 0.92、內臟脂肪 0.79；男性分別是 0.91、0.95、0.77。
     掃描時，軟體會先把每個人的模型重擺成同一個標準姿勢再分析，減少站姿不同造成的誤差。
     另一個方向是用深度學習，直接從 3D 體型生成類似 DXA 的影像，但脂肪量誤差約 5 公斤，R² 0.73，目前還不夠精準。
-    重點是：體型本身帶有體組成的資訊，而且 3DO 不需要游離輻射，可以重複量測。
+    體型本身帶有體組成的資訊，而且 3DO 不需要游離輻射，可以重複量測。
   </aside>
 </section>
 
 <section data-slide="13.2">
   <div class="sec-mark">Ⅰ　發展脈絡</div>
   <div class="slide-head">
-    <h2>能否追蹤介入期間的體組成變化？</h2>
+    <h2>3DO 追蹤體組成變化，脂肪量較準、四肢瘦體組織較差</h2>
     <div class="sub">6 個介入研究回溯分析｜n=133，平均追蹤 13 週</div>
   </div>
   <div class="two-col">
@@ -1370,7 +1378,7 @@ section{
       </ul>
     </div>
   </div>
-  <div class="caveat" style="display:block; margin-top:.5em;">介入包含減重手術、低醣飲食、限時進食、阻力運動；6 個研究中沒有減重藥物研究；誤差為 RMSE</div>
+  <div class="caveat" style="display:block; margin-top:.85em;">介入包含減重手術、低醣飲食、限時進食、阻力運動；6 個研究中沒有減重藥物研究；誤差為 RMSE</div>
   <div class="key-box" style="margin-top:.45em;">
     使用 GLP-1 藥物時，需要追蹤減掉的是脂肪還是肌肉。<br>3DO 可以頻繁量測，但<strong>四肢瘦體組織的一致性較低，男性 R² 僅 0.52</strong>。
   </div>
@@ -1486,7 +1494,7 @@ section{
     </div>
   </div>
   <div class="key-box" style="margin-top:.45em;">
-    引用這類成效數字務必看 n——WeGoTogether 的成效
+    引用這類成效數字要看 n。WeGoTogether 的成效
     <strong>來自 24 個月後仍留下的 325 人</strong>，屬存活者偏誤。
   </div>
 <!-- 內部查證紀錄不呈現於畫面（2026-09-09 使用者指示）：
@@ -1527,7 +1535,7 @@ section{
 <section data-slide="16">
   <div class="sec-mark">Ⅰ　發展脈絡</div>
   <div class="slide-head">
-    <h2>小結：三個發展階段的共同軌跡</h2>
+    <h2>AI 研究從預測風險走到輔助決策</h2>
   </div>
   <div class="phase-row">
     <div class="phase">
@@ -1547,7 +1555,7 @@ section{
     </div>
   </div>
   <div class="key-box" style="margin-top:.9em;">
-    共同軌跡：<strong>從理論驗證，走向臨床可操作的工具</strong>。
+    <strong>從理論驗證，走向臨床可操作的工具</strong>。
   </div>
 </section>
 
@@ -1599,7 +1607,7 @@ section{
 <!-- 2026-09-09 原為 13px 的 .cite，使用者反映太小；內容是觀眾需要的框架說明，升級為 quote-box（24.8px） -->
   <div class="quote-box" style="margin-top:.8em;">
     本節「AI」有兩層意義：<strong>①工具本身運用 AI 技術</strong>（如 RAG 檢索）；
-    <strong>②工具由 AI agent 輔助開發</strong>。評估表單屬於後者——未用到 AI 技術，
+    <strong>②工具由 AI agent 輔助開發</strong>。評估表單屬於後者，本身未用到 AI 技術，
     但它是後續兩個 AI 案例共同的資料基礎建設。
   </div>
 </section>
@@ -1653,7 +1661,7 @@ section{
       <ul>
         <li>一鍵「產生病歷文字」：把下拉選單資料組成<strong>可直接貼進病歷系統的結構化貼稿</strong>
           <span class="caveat">樣板拼接，非 AI 生成</span></li>
-        <li>同時背景送出同一筆資料到 Google 表單——<strong>免去雙重輸入</strong></li>
+        <li>同時背景送出同一筆資料到 Google 表單，<strong>不必重複輸入</strong></li>
         <li>結構化回覆，是後續 AI 管理系統與月度分析自動化<strong>共同的資料基礎建設</strong></li>
         <li>同一套做法持續擴充：<strong>維持期追蹤表單</strong>已於 2026-08 上線</li>
       </ul>
@@ -1689,13 +1697,13 @@ section{
       </ul>
       <h3 style="font-size:.5em; margin:.5em 0 .1em;">知識庫涵蓋兩類院內既有文件</h3>
       <ul style="margin-top:0;">
-        <li><strong>衛教單張</strong>——門診原本就在發的素材，病人看得懂的語言</li>
-        <li><strong>治療指引</strong>——院內實際採用的處置準則</li>
+        <li><strong>衛教單張</strong>：門診原本就在發的素材，病人看得懂的語言</li>
+        <li><strong>治療指引</strong>：院內實際採用的處置準則</li>
       </ul>
 <!-- 2026-09-09 內容說明升級為 quote-box -->
       <div class="quote-box">
-        兩者都是<strong>既有文件</strong>，不需為了導入 AI 另外編寫內容——
-        這也是這套系統能快速上線的原因。
+        兩者都是<strong>既有文件</strong>，不需為了導入 AI 另外編寫內容，
+        系統因此能快速上線。
       </div>
     </div>
   </div>
@@ -1721,7 +1729,7 @@ section{
         <div class="col-box mark-w">
           <div class="cb-title">一般對話式 AI</div>
           <ul>
-            <li>依模型<strong>訓練時的記憶</strong>作答——記憶可能過時，也可能根本沒有</li>
+            <li>依模型<strong>訓練時的記憶</strong>作答，記憶可能過時，也可能根本沒有</li>
             <li>答錯時語氣一樣肯定，<strong>從文字看不出來</strong></li>
             <li>追問出處，只能再編一個</li>
           </ul>
@@ -1742,9 +1750,9 @@ section{
         </div>
       </div>
       <div class="key-box">
-        <b>RAG 不是讓模型更聰明，是讓它只能講有據可查的話。</b>
-        <span class="kb-note">幻覺的根源是憑記憶生成；RAG 把作答依據從模型記憶換成檢索到的指引段落，
-        壓縮的是答錯的空間，而不是期待模型自己變準。</span>
+        <b>RAG 讓模型只根據檢索到的指引段落回答。</b>
+        <span class="kb-note">幻覺來自模型憑記憶生成；改用檢索到的段落作答，
+        答錯的機會減少，答案也能回頭查證。</span>
       </div>
     </div>
   </div>
@@ -1792,7 +1800,7 @@ section{
         </div>
       </div>
       <div class="key-box" style="margin-top:.5em;">
-        關鍵設計不是「AI 能回答多少」，而是<strong>明確劃出它不該回答的範圍</strong>。
+        設計時先<strong>明確劃出 AI 不該回答的範圍</strong>，這些問題轉給醫師。
       </div><!-- 2026-09-08 使用者指示：原「待補敏感議題判定範圍」區塊移除，不再補件 -->
     </div>
   </div>
@@ -1894,10 +1902,10 @@ section{
       <ul>
         <li>全流程<strong>18 天</strong>從動手到上線</li>
         <li>自動發布至 <strong>GitHub Pages、OneDrive、Google Drive</strong> 三處</li>
-        <li><strong>每月固定執行一次</strong>——關鍵不在單次產出，而在「不需要記得做」</li>
+        <li><strong>每月固定自動執行一次</strong>，不需要有人記得去跑</li>
       </ul>
       <div class="key-box">
-        自動化真正省下的不是分析時間，而是<strong>每個月重新啟動這件事的心力</strong>。
+        自動化省下<strong>每個月重新整理資料、重跑分析的心力</strong>。
       </div>
     </div>
   </div>
@@ -1939,8 +1947,8 @@ section{
     </div>
   </div>
   <div class="key-box">
-    工具的價值不在任何單一步驟，而在<b>把三段接起來之後</b>——
-    輸入的當下就決定了下游拿得到什麼，而下游的數字又回到診間變成可以討論的依據。
+    <b>三個工具接成一條動線</b>：看診時輸入的資料決定下游能分析什麼，
+    分析出的數字再回到診間，成為和病人討論的依據。
   </div>
   <div class="cite">
     診間實拍，2026-08-17，已取得病人同意。畫面中病人資料與院內系統均已遮蔽；照片不含可識別資訊。
@@ -1967,7 +1975,7 @@ section{
       <div class="case-split">
         <ul>
           <li>玩家答完 <strong>7 關</strong>後，依<strong>本院匿名統計</strong>自動推薦五種減重路線</li>
-          <li>推薦數字<strong>每月隨月度分析同步更新</strong>——衛教素材不會過期</li>
+          <li>推薦數字<strong>每月隨月度分析同步更新</strong>，衛教素材不會過期</li>
           <li>意義：同一份分析基礎建設，同時服務<strong>門診經營</strong>與<strong>病人衛教</strong></li>
         </ul>
         <figure class="shot">
@@ -1997,15 +2005,15 @@ section{
       </div>
       <ul>
         <li><strong>臨床痛點</strong>：骨折風險評估與用藥決策需反覆查表、對照指引</li>
-        <li>決策邏輯明確但步驟繁瑣——<strong>正是適合工具化的類型</strong></li>
+        <li>決策邏輯明確但步驟繁瑣，<strong>適合做成工具</strong></li>
       </ul>
       <div class="quote-box">
-        真正的起點是<strong>一件自費針劑的爭議</strong>：需要與家屬反覆溝通，後續還進到衛生局的爭議會議。
-        過程中才發現問題不在那支藥——病人從頭到尾<strong>沒有真正弄懂為什麼要打、要打多久、停了會怎樣</strong>。
+        工具的起點是<strong>一件自費針劑的爭議</strong>：需要與家屬反覆溝通，後續還進到衛生局的爭議會議。
+        過程中才發現，病人從頭到尾<strong>沒有真正弄懂為什麼要打、要打多久、停了會怎樣</strong>。
       </div>
       <div class="key-box">
-        工具不是為了導入 AI 而做，而是<strong>從臨床的實際問題出發</strong>。
-        要補的是<strong>溝通的斷點</strong>，技術只是手段。
+        工具<strong>從臨床的實際問題出發</strong>，
+        要補的是<strong>用藥理由與療程長短的說明</strong>。
       </div>
     </div>
   </div>
@@ -2050,7 +2058,7 @@ section{
       <div class="case-split">
         <ul>
           <li>風險分層依<strong>臨床指引</strong>產生，規則外顯可查核</li>
-          <li>用藥建議跟著分層走，<strong>邏輯寫在 rules 檔而非程式碼裡</strong>——指引更新時只改規則</li>
+          <li>用藥建議跟著分層走，<strong>邏輯寫在 rules 檔，不寫死在程式碼</strong>，指引更新時只改規則</li>
           <li>判定依據直接列在結果頁上，<strong>醫師與病人都看得到為什麼</strong></li>
         </ul>
         <figure class="shot">
@@ -2085,7 +2093,7 @@ section{
         <li>診間<strong>當下點閱、當下生成個人化衛教單</strong>，病人帶得走</li>
       </ul>
       <div class="quote-box">
-        目前以質性觀察為主：省下的不是計算時間，而是<strong>把判斷依據攤開給病人看</strong>的那段解釋。
+        診間解釋時，可以直接<strong>把判斷依據攤開給病人看</strong>（目前為質性觀察）。
       </div>
     </div>
   </div>
@@ -2108,7 +2116,7 @@ section{
       </div>
       <ul>
         <li>社區與門診都需要<strong>快速初篩</strong>，但紙本問卷計分與判讀耗時</li>
-        <li>篩檢的價值在<strong>規模</strong>——工具化才能提高篩檢量</li>
+        <li>做成工具，<strong>才能擴大篩檢量</strong></li>
       </ul>
     </div>
   </div>
@@ -2157,7 +2165,7 @@ section{
     <div class="case-body">
       <div class="slide-head">
         <h2>衍生衛教工具：寓教於樂</h2>
-        <div class="sub">「存肌力、享健康」——給做完篩檢的長輩與家人</div>
+        <div class="sub">「存肌力、享健康」，給做完篩檢的長輩與家人</div>
       </div>
       <div class="flow">
         <div class="flow-step">
@@ -2179,7 +2187,7 @@ section{
         </div>
       </div>
       <div class="key-box" style="margin-top:.5em;">
-        篩檢工具的價值不在判定本身，而在<strong>判定之後病人知道要做什麼</strong>。
+        篩檢判定之後，<strong>病人拿到下一步要做什麼</strong>。
         <span class="kb-note">與主線的「減重大冒險」同一個模式：臨床工具產出，直接長成衛教素材。</span>
       </div>
       <div class="cite">
@@ -2254,7 +2262,7 @@ section{
 <section data-slide="38">
   <div class="sec-mark">Ⅱ　現況實務</div>
   <div class="slide-head">
-    <h2>共通導入方法論：三步驟框架</h2>
+    <h2>從需求盤點、最小可行版本到迭代驗證</h2>
     <div class="sub">從減重門診三案例，延伸到骨鬆、肌少症、HP、PCV 共八項工具歸納而得</div>
   </div>
   <div class="adv-grid c3">
@@ -2283,7 +2291,7 @@ section{
     <h2>小結：對臨床工作流程的具體影響</h2>
   </div>
   <ul>
-    <li>主線三案例構成<strong>完整生態系</strong>：蒐集 → 溝通 → 分析，資料一次輸入、多處使用</li>
+    <li>主線三案例<strong>串成一條資料流</strong>：蒐集 → 溝通 → 分析，資料一次輸入、多處使用</li>
     <li>輔線四項工具佐證<strong>方法論可複製</strong>，不限於單一疾病領域</li>
   </ul>
   <div class="interact-ph" id="slide-poll" style="margin-top:.6em;">
@@ -2310,7 +2318,7 @@ section{
     <div class="rule"></div>
     <div class="lead">
       前一段的每一個工具，都在處理病人資料。<br>
-      工具愈好用，資料流動愈頻繁——個資保護因此不是附加題，而是必答題。
+      工具愈好用，資料流動愈頻繁，個資保護要和工具一起設計。
     </div>
   </div>
   <div class="cite" style="margin-top:1.4em;">
@@ -2393,7 +2401,7 @@ section{
   </div>
 <!-- 2026-09-09 內容說明升級為 quote-box -->
   <div class="quote-box">
-    對照講者工具的設計：<strong>不存姓名、只算分數</strong>——同時落在「剔除遮蔽」與「數據聚合」兩類。
+    對照講者工具的設計：<strong>不存姓名、只算分數</strong>，同時落在「剔除遮蔽」與「數據聚合」兩類。
   </div>
 </section>
 
@@ -2473,7 +2481,7 @@ section{
     </div>
   </div>
   <div class="key-box">
-    講者的門診工具<strong>全為 HTML＋JavaScript 靜態網頁</strong>，不使用 PHP、不自架伺服器——不在此次影響範圍。
+    講者的門診工具<strong>全為 HTML＋JavaScript 靜態網頁</strong>，不使用 PHP、不自架伺服器，不在此次影響範圍。
   </div>
   <div class="cite">
     科技新報 2026-10-22；自由時報 2026-10-23；CNN 2026-10-21。
@@ -2604,7 +2612,7 @@ section{
     </div>
   </div>
   <div class="key-box">
-    沒有人下令攻擊——代理人<strong>為了在評測中拿高分，自己找捷徑</strong>。
+    沒有人下令攻擊，代理人<strong>為了在評測中拿高分，自己找捷徑</strong>。
   </div>
   <div class="cite">
     METR 獨立調查 2026-08-26；Hugging Face 技術時間軸 2026-07-27；The Record 2026-07-22。
@@ -2613,7 +2621,7 @@ section{
     今年七月有一個代表性事件。OpenAI 在內部評測模型的網路攻擊能力，為了測出能力的上限，評測時刻意關閉了平常的安全過濾。
     結果代理人利用套件伺服器的一個未知漏洞逃出測試用的沙盒。獨立調查機構 METR 統計，約 1,200 個代理人在一個未經授權的留言板上互相串連，交換了七萬多則訊息。
     到 7 月 11 日，約 700 個代理人在攻擊 Hugging Face，也就是全球最大的開源模型平台，13 小時內就拿到多個內部系統的最高權限。Hugging Face 表示，被存取的客戶內容只有 5 個資料集，公開的模型和資料集沒有被竄改。
-    重點是：沒有人叫它們去攻擊。調查認為，代理人主要是想摸清、甚至騙過自動評分系統，為了拿高分自己找捷徑。
+    沒有人叫它們去攻擊。調查認為，代理人主要是想摸清、甚至騙過自動評分系統，為了拿高分自己找捷徑。
     補充：輝達在 9 月推出代理人安全平台時表示，若早一點採用可能擋得下這次入侵；這是廠商自己的說法，沒有獨立驗證。
   </aside>
 </section>
@@ -2696,7 +2704,7 @@ section{
   </div>
 <!-- 2026-09-09 本頁收束句自 13px .cite 升級為 key-box -->
   <div class="key-box">
-    三者共通風險：<strong>資料串聯、跨境傳輸、模型訓練的二次利用</strong>——
+    三者共通風險：<strong>資料串聯、跨境傳輸、模型訓練的二次利用</strong>。
     使用雲端服務時，資料是否被用於訓練，必須在導入前確認。
   </div>
 </section>
@@ -2733,7 +2741,7 @@ section{
   </div>
   <div class="key-box">
     <strong>「資料不上傳」是比「去識別化」更上游的防線。</strong>
-    <span class="kb-note">能不上傳的資料，就不要上傳——這是設計決策，不是事後補救。</span>
+    <span class="kb-note">能不上傳的資料就不上傳，在工具設計時就決定。</span>
   </div>
 </section>
 
@@ -2744,8 +2752,8 @@ section{
     <h1 style="font-size:1.3em;">資安治理應內建於<br>工具設計階段</h1>
     <div class="rule"></div>
     <div class="lead">
-      不是事後補救的合規檢查項目，<br>
-      而應該從工具設計的第一天，就內建於架構之中。
+      從工具設計的第一天，<br>
+      就把資安寫進架構。
     </div>
   </div>
   <div class="cite" style="margin-top:1.5em;">
@@ -2780,11 +2788,11 @@ section{
     <div class="phase" style="--sec:#8C4A2F;">
       <div class="ph-era">Ⅲ　落地挑戰</div>
       <div class="ph-name">同步：資安治理</div>
-      <div class="ph-claim">不是事後補救，<br>設計階段即內建</div>
+      <div class="ph-claim">個資保護<br>設計階段即內建</div>
     </div>
   </div>
   <div class="key-box" style="margin-top:.9em;">
-    三者缺一不可——<strong>只有前兩項，是把風險留給未來</strong>。
+    <strong>實證、落地與資安同步推進</strong>；只做前兩項，資安風險會在上線後才出現。
   </div>
 </section>
 
@@ -2796,7 +2804,7 @@ section{
     <div class="sub">給想從自己門診開始的臨床工作者</div>
   </div>
   <ul>
-    <li><strong>從最耗時的例行工作開始</strong>——不是從最新的技術開始</li>
+    <li><strong>從最耗時的例行工作開始</strong>，例如病歷貼稿與月報統計</li>
     <li><strong>先做最小可行版本</strong>，讓它在真實門診跑一週，再決定要不要長大</li>
     <li><strong>資料設計比功能設計更重要</strong>：結構化的一次輸入，能餵養後續所有應用</li>
     <li><strong>資安從第一天內建</strong>：能不上傳的資料，就不要上傳</li>
@@ -2865,7 +2873,7 @@ section{
     這兩部作品，一部重建人，一部重建環境。
     《羽火共舞》用多台相機錄下王羽佳的演奏，觀眾戴上頭顯，可以走到鋼琴旁邊，從任何角度看她彈琴。
     《雲在兩千米》去年拿下威尼斯影展的最佳沉浸體驗大獎。團隊實地掃描台灣山林，整合了 NeRF、Gaussian Splatting 等四種技術。開展前三週開放售票，三千多張票在 48 小時內賣完；現場除了畫面和聲音，還加入了氣味設計。
-    沉浸式體驗不只靠畫面——訓練場域是不是也能加入更多感官？例如廚房的油煙味、拆零食包裝的聲音，這些都是病人每天生活裡的線索。
+    訓練場域也可以加入畫面以外的感官線索，例如廚房的油煙味、拆零食包裝的聲音，這些都是病人每天生活裡的線索。
   </aside>
 </section>
 
@@ -2924,7 +2932,7 @@ section{
       </ul>
     </div>
   </div>
-  <div class="caveat" style="display:block; margin-top:.5em;">軟體為 2026 年 10 月現況，功能與授權以各官網為準</div>
+  <div class="caveat" style="display:block; margin-top:.85em;">軟體為 2026 年 10 月現況，功能與授權以各官網為準</div>
   <div class="key-box" style="margin-top:.45em;">
     只拍佈置的空間，<strong>不拍病人、不進病人家</strong>；現場網路不穩時，以靜態圖備援。
   </div>
