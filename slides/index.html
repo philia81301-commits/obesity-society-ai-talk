@@ -273,6 +273,7 @@ section{
 /* --- ICON 卡（圖標未生成，先用序號圓佔位） --- */
 .adv-grid{ display:grid; gap:18px; margin-top:.5em; }
 .adv-grid.c3{ grid-template-columns:repeat(3,1fr); }
+.adv-grid.c4{ grid-template-columns:repeat(4,1fr); }
 .adv-grid.c5{ grid-template-columns:repeat(5,1fr); }
 .adv-card{
   border:1px solid var(--sec-soft); border-top:3px solid var(--sec-2);
@@ -949,6 +950,46 @@ section{
   </div>
 </section>
 
+<!-- P6.1  2026-11-26 新增（12/13 場）：診斷面的近期統合證據。文獻卡 reference/refs-1213-ai-evidence-verified.md A7–A10，皆 PubMed 摘要核對。
+     Wang 2026：收 12 篇、8 篇進入合併（原 AI 摘要誤寫「12 篇合併、13,640 人」，人數不在摘要，不用）。
+     Foula 2026 的 AUC 0.68／0.88、Kermansaravi 的「76%」未核到原文，不放。 -->
+<section data-slide="6.1">
+  <div class="sec-mark">Ⅰ　發展脈絡</div>
+  <div class="slide-head">
+    <h2>減重手術後體重預測模型：AUC 0.846，多數偏誤風險高</h2>
+    <div class="sub">診斷面的近期統合證據（2025–2026）</div>
+  </div>
+  <p style="margin-bottom:.2em;">
+    2008–2024 年 46 篇 AI 肥胖研究，<strong>多數集中在偵測肥胖</strong>，用於預防與治療的研究較少
+  </p>
+  <div class="two-col">
+    <div class="col-box mark-a">
+      <div class="cb-title">預測表現（統合分析）</div>
+      <ul>
+        <li>12 篇 ML 研究，8 篇合併：AUC <span class="em-num">0.846</span>（I² 75%）</li>
+        <li>多數為高偏誤風險，方法報告不完整</li>
+      </ul>
+    </div>
+    <div class="col-box mark-b">
+      <div class="cb-title">臨床定位</div>
+      <ul>
+        <li>88 篇系統性回顧：AI 在減重手術定位為<strong>輔助工具</strong></li>
+        <li>35 國 68 位外科醫師共識：AI 參與決策應寫進<strong>知情同意</strong></li>
+      </ul>
+    </div>
+  </div>
+  <div class="key-box" style="margin-top:.45em;">
+    鑑別力已有統合數據；臨床使用前仍需<strong>外部驗證與校準評估</strong>。
+  </div>
+  <div class="cite">資料來源：Haghighathoseini 2026 Obes Rev 27:e70062｜Wang 2026 Obes Surg 36:3301–3311｜Foula 2026 Obes Surg 36:5478–5497｜Kermansaravi 2025 Sci Rep 15:9312</div>
+  <aside class="notes">
+    診斷面再補近兩年的統合證據。先看研究分布：2026 年一篇系統性回顧整理 2008 到 2024 年 46 篇 AI 用於肥胖的研究，多數做的是偵測肥胖，用在預防、管理和治療的研究比較少。
+    左邊是減重手術後體重結果的預測。2026 年的統合分析收了 12 篇機器學習研究，其中 8 篇可以合併，合併後 AUC 0.846，鑑別力不錯；但研究間差異大，I 平方 75%，而且用 PROBAST+AI 評估，多數研究偏誤風險高，特別是分析方法，報告也常缺關鍵細節。
+    右邊是臨床定位。一篇收 88 篇研究的系統性回顧認為，AI 在減重手術是輔助工具，大型語言模型只適合謹慎用在初步衛教。另一份 35 國、68 位減重外科醫師的 Delphi 共識，28 條陳述都達到 70% 以上共識，其中一條是：AI 參與決策時，應該寫進知情同意。
+    結論是，鑑別力已經有統合數據，但多數模型只做內部驗證，很少評估校準和實際臨床影響，上線前要先做外部驗證。
+  </aside>
+</section>
+
 <!-- P7 -->
 <section data-slide="7">
   <div class="sec-mark">Ⅰ　發展脈絡</div>
@@ -1029,6 +1070,43 @@ section{
   </div>
 </section>
 
+<!-- P8.1  2026-11-26 新增（12/13 場）：管理面第一個 12 個月全 AI 生活型態 RCT。文獻卡 A2、D1、D5、D6，皆 PubMed 摘要核對。
+     PMC 無 JAMA 全文：完成率 64% vs 50%、學歷分布、各組平均體重變化「未核到原文」，不放。
+     主要結果是複合終點，不等於 ≥5% 減重；比較對象是真人教練，非一般照護。 -->
+<section data-slide="8.1">
+  <div class="sec-mark">Ⅰ　發展脈絡</div>
+  <div class="slide-head">
+    <h2>AI 主導 DPP 不劣於真人教練（JAMA 2025）</h2>
+    <div class="sub">美國 2 院區 368 人｜前期糖尿病合併過重／肥胖｜12 個月不劣性 RCT</div>
+  </div>
+  <div class="stat-row" style="grid-template-columns:repeat(2,1fr); max-width:76%;">
+    <div class="stat-card" style="border-top-color:var(--pop); background:color-mix(in srgb, var(--pop) 9%, #fff);">
+      <div class="num" style="color:var(--pop);">31.7<span class="unit">%</span></div>
+      <div class="label">AI 主導 DPP 組<br>達成主要結果</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">31.9<span class="unit">%</span></div>
+      <div class="label">真人教練 DPP 組<br>達成主要結果</div>
+    </div>
+  </div>
+  <ul style="margin-top:.5em;">
+    <li>AI 組以 app＋藍牙體重計<strong>全自動</strong>執行；實際開始參加：AI 組 <span class="em-num">93.4%</span>，真人教練組 82.7%</li>
+  </ul>
+  <div class="key-box" style="margin-top:.4em;">
+    <b>AI 組達成率與真人教練組相近，參加率較高。</b>
+    <span class="kb-note">主要結果：HbA1c 全程 &lt;6.5%，且減重 ≥5%、減重 ≥4% 加每週活動 ≥150 分鐘、HbA1c 降 ≥0.2 三者之一。
+    比較對象是真人教練，未與一般照護比較。</span>
+  </div>
+  <div class="cite">資料來源：Mathioudakis N, et al. JAMA 2025;334(23):2079–2089（NCT05056376）</div>
+  <!-- 講稿背景數字出處：Hesseldal 2022 JMIR 24:e39741；Metzendorf 2024 Cochrane CD013591；Chew 2022 JMIR 24:e40141 -->
+  <aside class="notes">
+    管理面在 2025 年有一個新的隨機試驗，發表在 JAMA。對象是前期糖尿病合併過重或肥胖的成人，美國兩個院區共 368 人，隨機分到兩組：一組轉介到完全由 AI 執行的糖尿病預防計畫，用手機 app 和藍牙體重計，沒有真人教練；另一組轉介到真人教練帶的遠距 DPP。兩組都進行 12 個月。
+    主要結果是複合終點：HbA1c 全程維持在 6.5% 以下，同時達成三者之一，減重 5% 以上、減重 4% 以上加每週 150 分鐘活動、或 HbA1c 降 0.2 以上。AI 組 31.7% 達成，真人教練組 31.9%，差距在事先設定的 15% 不劣性界限內。實際開始參加的比例，AI 組 93.4%，真人教練組 82.7%。
+    解讀時，比較對象是真人教練，所以結論是 AI 版不劣於真人教練，沒有和一般照護比較。另外，複合終點包含 HbA1c 下降 0.2，不等於每個人都減到 5%。
+    當作背景，純數位工具 12 個月的減重大約 1.5 到 4.5 公斤：丹麥初級照護的數位教練 RCT 是 4.5 對 1.5 公斤；Cochrane 2024 統合 app 對比無介入，12 個月差 2.5 公斤，但信賴區間跨過 0，證據確定性低；app 統合分析則是 3 個月減 2.18 公斤，12 個月剩 1.63 公斤。
+  </aside>
+</section>
+
 <!-- P9 -->
 <section data-slide="9">
   <div class="sec-mark">Ⅰ　發展脈絡</div>
@@ -1067,7 +1145,7 @@ section{
     ADA 由 <b>A 降至 E</b>，台灣由 <b>1A 降至 2C</b>。
     <span class="kb-note">
       該章由本場講者執筆：依當時可得的證據，最高只能給 2C。
-      缺的是<b>可納入系統性回顧的實務證據</b>；第二段介紹本院門診的實際導入經驗。
+      JAMA 2025 已有第一個 12 個月全 AI 生活型態 RCT，<b>可納入系統性回顧的實務證據</b>開始累積；第二段介紹本院門診的實際導入經驗。
     </span>
   </div>
   <div class="cite">
@@ -1307,8 +1385,12 @@ section{
   <ul style="margin-top:.7em;">
     <li>市場規模：<strong>US$38.5B</strong><span class="caveat">限定主要市場，非全球</span>（DelveInsight）</li>
   </ul>
+  <!-- 2026-11-26 新增：Liu 2026 結構化回顧（文獻卡 A1，摘要核對）。 -->
+  <div class="key-box" style="margin-top:.5em;">
+    2026 年結構化回顧：目前<strong>沒有經外部驗證、前瞻性實施</strong>，並證明改善病人結果的 AI 處方系統。
+  </div>
   <div class="cite">
-    資料來源：JMIR 2026;e83718（AI 參與度數字）；DelveInsight（市場規模）。
+    資料來源：JMIR 2026;e83718（AI 參與度數字）；DelveInsight（市場規模）；Liu 2026 Front Endocrinol 17:1955223（結構化回顧）。
   </div><!-- 內部提醒移出畫面：原大綱「Semaglutide 7.8%→9.5%／Tirzepatide 11.2%→13.9%」為誤植，講稿勿用 -->
 </section>
 
@@ -1467,7 +1549,7 @@ section{
     <h2>新興方向：Agentic AI 在肥胖照護</h2>
     <div class="sub">從「回答問題」走向「主動執行照護任務」</div>
   </div>
-  <div class="adv-grid c3">
+  <div class="adv-grid c4">
     <div class="adv-card">
       <div class="adv-icon"><svg class="ic"><use href="#ic-chatbot"/></svg></div>
       <div class="adv-title">MediKarma</div>
@@ -1490,6 +1572,16 @@ section{
       <div class="adv-desc">
         成效 <span class="em-num" style="font-size:1.35em;">-20.4%</span>／<span class="em-num" style="font-size:1.35em;">-50.5%</span><br>
         <span class="caveat">24 個月僅存 325 人</span>
+      </div>
+    </div>
+    <!-- 2026-11-26 新增：BETTER4All 計畫書（Obes Rev 2026:e70243，PMID 42945991，NCT06997510；文獻卡 A4，摘要核對） -->
+    <div class="adv-card">
+      <div class="adv-icon"><svg class="ic"><use href="#ic-research"/></svg></div>
+      <div class="adv-title">BETTER4All</div>
+      <div class="adv-desc">
+        AI＋多基因風險分數<br>
+        歐洲 7 國　<span class="em-num" style="font-size:1.35em;">1,022</span> 人<br>
+        <span class="caveat">RCT 進行中，結果未發表</span>
       </div>
     </div>
   </div>
@@ -1518,6 +1610,8 @@ section{
       <ul>
         <li>52 名過重／肥胖者，4 週團體治療後隨機分派 12 週</li>
         <li>對照組＝標準照護，介入組＝AI 最佳化分配</li>
+        <!-- 2026-11-26 新增：正式 RCT 計畫書 Forman 2023（PMID 36435427）；PubMed 2026-11-26 檢索未見結果論文 -->
+        <li>正式試驗 336 人、12 個月，<strong>進行中</strong></li>
       </ul>
     </div>
     <div class="col-box" style="border-top:3px solid var(--pop); background:color-mix(in srgb, var(--pop) 9%, #fff);">
@@ -1551,11 +1645,13 @@ section{
     <div class="phase">
       <div class="ph-era">2025 – 2026</div>
       <div class="ph-name">精準醫療期</div>
-      <div class="ph-claim">證明「<b>可決策</b>」<br>GLP-1 反應預測與資源配置</div>
+      <div class="ph-claim">開始驗證「<b>可決策</b>」<br>GLP-1 反應預測與資源配置</div>
     </div>
   </div>
+  <!-- 2026-11-26 改：第三期原為「證明可決策」，與 Liu 2026 結論（無外部驗證、前瞻實施的 AI 處方系統）不符，改為「開始驗證」 -->
   <div class="key-box" style="margin-top:.9em;">
     <strong>從理論驗證，走向臨床可操作的工具</strong>。
+    <span class="kb-note">處方類 AI 仍待外部驗證與前瞻性研究（Liu 2026 Front Endocrinol 17:1955223）。</span>
   </div>
 </section>
 
@@ -1752,8 +1848,11 @@ section{
       <div class="key-box">
         <b>RAG 讓模型只根據檢索到的指引段落回答。</b>
         <span class="kb-note">幻覺來自模型憑記憶生成；改用檢索到的段落作答，
-        答錯的機會減少，答案也能回頭查證。</span>
+        答錯的機會減少，答案也能回頭查證。
+        2026 年回顧：LLM 可協助衛教與文件草稿，證據不支持在無人監督下選擇治療。</span>
       </div>
+      <!-- 2026-11-26 新增 kb-note 末句：Liu 2026（文獻卡 A1，摘要核對） -->
+      <div class="cite">Liu W, et al. Front Endocrinol 2026;17:1955223</div>
     </div>
   </div>
 </section>
@@ -2808,8 +2907,10 @@ section{
     <li><strong>先做最小可行版本</strong>，讓它在真實門診跑一週，再決定要不要長大</li>
     <li><strong>資料設計比功能設計更重要</strong>：結構化的一次輸入，能餵養後續所有應用</li>
     <li><strong>資安從第一天內建</strong>：能不上傳的資料，就不要上傳</li>
+    <!-- 2026-11-26 新增：Liu 2026 結構化回顧列出的臨床採用條件（文獻卡 A1，摘要核對） -->
+    <li><strong>採用前的證據</strong>：外部驗證、前瞻評估、病人結果、安全公平、資料治理、成本效益</li>
   </ul>
-  <div class="quote-box">
+  <div class="quote-box" style="margin-top:.3em;"><!-- 2026-11-26 新增第 5 條後 0.904，上距 .5→.3em -->
     <div style="margin-bottom:.45em;">
       <strong>AI 提供地圖，醫師擔任嚮導</strong>——人力有限的門診尤其如此，
       AI 補上的是原本就空著的位置。
