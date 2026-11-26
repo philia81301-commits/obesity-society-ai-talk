@@ -167,6 +167,6 @@
 
 - 時間：2026-11-26（office 帳號，新文獻核對＋P6.1／P8.1，只改 HTML；OpenEvidence 查詢暫停）
 - 更新者：Claude Code（Opus 5.5）@ X108521
-- Git push：待推
+- Git push：✅ 已推（`b441c8b` 內容＋`e0f50bd` 收工）
 - L3 Obsidian：已補（2026-11-26 收工）
 - 前一筆：2026-11-20 @ X108521 · ✅ 已推（`4ef5488`）
