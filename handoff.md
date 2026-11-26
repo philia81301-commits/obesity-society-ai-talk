@@ -14,6 +14,7 @@
   P15 正式 RCT 336 人進行中、**P16 第三期「證明可決策」→「開始驗證可決策」**、P22 LLM 證據一句、P50 第 5 條「採用前的證據」。
 - 字型已重跑（無缺字）；1280×720 實測改動頁皆 ≤0.90（P8.1、P50 0.897），無 <16px、P6.1 已排除行尾兩字。講稿同步 `content/speaker-notes-1213.md`。
 - 未做：AI-DPP 全文（完成率 64%/50% 等未核到）、Liu 2026 全文未讀；**PPTX 仍等 12/6 後匯 v16**。
+- OpenEvidence：擬了 6 題補缺口（題目見下一步），用 Claude in Chrome 送第 1 題即被 OpenEvidence 人機驗證擋下（「存取暫時受限」），**已暫停，三題皆無回答**。
 
 **2026-11-20（office 機）AI 腔修正＋厚度底座，只改 HTML 母本**：
 - `slides/index.html` 53 處文案修正（不是A而是B、「價值不在A而在B」、破折號、問句標題、「三步驟框架」「共同軌跡」數字框架、「必答題」「生態系」「缺一不可」口號）；講稿 md 3 處（「重點是：」、「不只靠畫面——」）。替換腳本與逐條清單：Obesity-lecture repo `slides/shots/audit-1213-v15-AI腔清單.md`
@@ -82,8 +83,20 @@
 2. 使用者若再逐頁指正：事實類先回原始文獻／報告核對；改完 `cd slides && python build_fonts.py` → 實測 → 重匯 PPTX（v16 起跳）：
    `cd slides && python build_pptx_editable.py "<OneDrive>\台灣肥胖醫學會1213\..._v16_可編輯_<日期>.pptx"`（8770 要開著）。
 3. 在別台電腦確認 OneDrive `台灣肥胖醫學會1213\` 有 v10（office 機 OneDrive.exe 常沒在跑，本輪已手動啟動）。
+4. **OpenEvidence 補缺口（使用者自己查、Agent 核對）**：先問 Q1–Q3，結果貼回或存 docx，再用 PubMed 逐篇查 PMID 做文獻卡。
+   - Q1（補 P14）：peer-reviewed evidence for LLM-based or agentic AI systems in obesity/weight management care, 2024–2026, with design, n, outcomes
+   - Q2（補 P21–22）：accuracy of LLMs answering obesity／GLP-1 RA questions; RAG vs standard LLM hallucination rates
+   - Q3（補 P20）：RCT／controlled studies 2024–2026 of AI ambient scribes on documentation time, burnout, note accuracy
+   - 備用：Q4 AI 支持加在 GLP-1 治療上（與「藥廠試驗不放」界線近，問前先問使用者）、Q5 東亞／台灣族群 AI 肥胖研究、Q6 AI 處方決策前瞻性研究
 
 ## ⚠️ 注意事項
+
+### 本輪新增（2026-11-26）
+
+- **OpenEvidence 不能自動化**：無官方連接器／API；社群 MCP（htlin222、bakhtiersizhaev）借用瀏覽器登入 session，**Agent 不代裝**。
+  Chrome 代操作一送出即觸發人機驗證，**不可代為通過**，改由使用者手動查詢。
+- 佔高量測：reveal `center:true` 時要用 `(內容最低點 − section 頂) ÷ (720×Reveal.getScale())`，用 `.slides` 頂端會高估約 0.06。
+- AI 文獻工具（OpenEvidence 類）摘要的數字錯誤率高：這次兩份 docx 就有 10 處（含把 12 週試驗列進 12 個月表），一律回 PubMed 核對。
 
 ### 本輪新增（2026-10-27）
 
@@ -152,8 +165,8 @@
 
 ## 🕐 最後更新
 
-- 時間：2026-11-20（office 帳號，去 AI 腔＋厚度底座，只改 HTML）
+- 時間：2026-11-26（office 帳號，新文獻核對＋P6.1／P8.1，只改 HTML；OpenEvidence 查詢暫停）
 - 更新者：Claude Code（Opus 5.5）@ X108521
-- Git push：✅ 已推（`4ef5488`）
-- L3 Obsidian：已補（2026-11-20 收工）
-- 前一筆：2026-11-04 @ X108521 · ✅ 已推（`d98a5ff`）
+- Git push：待推
+- L3 Obsidian：已補（2026-11-26 收工）
+- 前一筆：2026-11-20 @ X108521 · ✅ 已推（`4ef5488`）

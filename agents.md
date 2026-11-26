@@ -131,7 +131,9 @@ obesity-society-ai-talk/
 │   ├── p12-glp1-ai-source-check-20260916.md ★P12 兩張數字卡＋結論句的出處補查（改字總表、Q&A 備忘、
 │   │                                        OR/p 解讀、同行反駁 8 條、建議講稿）
 │   ├── huang-ai-guardian-source-check-20261102.md ★商周專欄（黃仁勳／AI 守門員）查證＋P45.1／P45.2 一手來源
-│   └── ai-sports-vision-source-check-20261104.md ★P11.1／P11.2 查證（AI 運動場館、PubMed 檢索範圍與限制）
+│   ├── ai-sports-vision-source-check-20261104.md ★P11.1／P11.2 查證（AI 運動場館、PubMed 檢索範圍與限制）
+│   ├── refs-1213-ai-evidence-verified.md  ★12/13 場 AI 新文獻卡（P6.1／P8.1 等出處，含原摘要 10 處更正）
+│   └── refs-glp1-discontinuation-verified.md  GLP-1 停藥後體重回升文獻卡（備用，12/13 場不用）
 ├── content/
 │   ├── outline-50slides.md            50張投影片大綱 v2.1（檔名沿用，實際已 51 頁）
 │   ├── article-newsletter-2026.md     ★會訊醫學專論原始稿（階段八，Markdown 為單一真實來源）
