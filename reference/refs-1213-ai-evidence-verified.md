@@ -127,7 +127,7 @@
 3. **純數位工具 12 個月約減 1.5–4.5 kg。**多數病人達不到 5% 門檻（D1、D2、D5、D6）。
 4. **AI 處方系統仍無外部驗證與前瞻性實施證據**（A1）；減重手術 ML 模型 pooled AUC 0.846，但多數高偏誤風險（A8）。
 
-## 四、預計用在哪一頁（待使用者決定）
+## 四、預計用在哪一頁（2026-11-26 已依使用者「照分配做」寫入：P6.1、P8.1、P9、P13–P16、P22、P50）
 
 - A1、A2、D5–D8 → 中期「穿戴裝置與數位行為介入」兩頁（目前 P7／P8 一帶）或 P9「指引的證據等級」頁，補 2025–2026 新證據
 - A2 → 可單獨一頁：AI-DPP 不劣性 RCT（目前簡報尚未引用這篇）
@@ -137,4 +137,194 @@
 
 - AI-DPP 全文（完成率、學歷、各組平均體重變化）：需從 JAMA 網站取得
 - Liu 2026 全文（PMC13581758）：原稿多數結論出自這篇，上投影片前建議讀全文確認細節
-- Forman RL 試驗正式結果是否已發表：未查
+- Forman RL 試驗正式結果：PubMed 2026-11-26 檢索未見結果論文（P15 寫「進行中」）
+
+---
+
+## 六、OpenEvidence 第 1 題：LLM／agentic AI 在肥胖照護的證據（2026-11-27）
+
+- 來源：使用者在 OpenEvidence 自行查詢後貼回（題目：peer-reviewed evidence for LLM-based or agentic AI systems in obesity care, 2024–2026）
+- OpenEvidence 的總結：沒有已完成的 LLM 教練 RCT 證明減重成效；自主執行任務或照護導航的 agent 沒有病人結果資料
+- 核對：6 篇新文獻逐篇以 PubMed 摘要核對；Liu 2026（A1）、BETTER4All（A4）已在前面
+
+### B1　Lyra：LLM 聊天機器人 CBT 生活型態計畫（可行性研究）
+- Forman EM, et al. Feasibility study of an artificial intelligence chatbot-powered cognitive-behavioral lifestyle modification program. *Ann Behav Med.* 2026;60(1):kaag038. doi:10.1093/abm/kaag038
+- **PMID 42847389**（PMC13355595）｜單組可行性研究，8 週，n=17，過重／肥胖（平均 BMI 31.5）
+- 數字（摘要）：成本每人每週 1.78 美元；編碼員評 2,288 則訊息、475 次對話**全部判定安全**，專業度平均 8.5/10；
+  參與者認為有幫助 69%、有同理心 88%、容易使用 94%；88% 重視 24 小時可用，75% 對 Lyra 產生連結感
+- 限制：**未報告減重成效**，作者明言需嚴謹檢驗效果
+- 核對：**摘要**，與 OpenEvidence 敘述一致
+
+### B2　Zhao 2026：心血管代謝照護的 LLM 對話代理（範疇回顧）
+- Zhao Y, et al. Behavior Change Content and Implementation of Large Language Model-Driven Conversational Agents in Cardiometabolic Care: Scoping Review. *J Med Internet Res.* 2026;28:e89190. doi:10.2196/89190
+- **PMID 42456008**（PMC13372078）｜38 篇（19 篇實證、19 篇技術或模擬），2020-01 至 2025-11
+- 數字（摘要）：多數定位為第 2 型糖尿病、肥胖的衛教或教練；GPT 家族模型＋RAG 或規則元件的混合架構為主；
+  LLM 主要用於客製化說明與情緒回應，自我監測、提醒與安全功能多仍是規則式；
+  **完整報告 prompt 只有 34%（13/38），完整報告安全機制 42%（16/38）**；行為或生理結果少，多為先導、短期或單一個案
+- 核對：**摘要**，與 OpenEvidence 敘述一致
+
+### B3　Noh 2023：體重管理對話代理（系統性回顧，LLM 普及前）
+- Noh E, et al. Conversational Agents for Body Weight Management: Systematic Review. *J Med Internet Res.* 2023;25:e42238. doi:10.2196/42238
+- **PMID 37234029**（PMC10257112）｜8 篇（3 篇 RCT、5 篇前後比較），檢索至 2022-12
+- 數字（摘要）：只有 3/8 報告明顯減重，**12–15 週減 1.3–2.4 kg**；整體品質低
+- 註：「pre-LLM」是 OpenEvidence 依檢索時間的說法，摘要未這樣寫
+- 核對：**摘要**
+
+### B4　Motevalli 2026：ChatGPT 用於肥胖管理（Lancet Digital Health 回顧）
+- Motevalli M, Boaventura B, Stanford FC. ChatGPT for obesity management: a review of evidence, potential challenges, and clinical implications. *Lancet Digit Health.* 2026;8(5):100980. doi:10.1016/j.landig.2026.100980
+- **PMID 41966942**｜主題綜整，37 篇（29 原著、8 回顧），2022-12 至 2025-10
+- 數字（摘要）：與專家或指引標準比較，生活型態與營養 **9/12（75%）** 高正確率、減重手術 **5/10（50%）**；
+  與其他 AI 工具比較，ChatGPT 整體正確率較高，但與專用工具的比較很少；**高信心等級只有 10/37（27%）**；
+  實施障礙六類：正確性、演算法偏誤、文化敏感度、透明與問責、過度依賴、倫理法律
+- 核對：**摘要**（較適合第 2 題／P22）
+
+### B5　Suenghataiphorn 2026：LLM 在肥胖領域（系統性回顧）
+- Suenghataiphorn T, et al. Large language models in obesity: a systematic review. *Int J Obes (Lond).* 2026;50(3):479-491. doi:10.1038/s41366-025-01992-2
+- **PMID 41413746**｜33 篇，檢索至 2025-08，ROBINS-I
+- 摘要結論：正確率差異大；有建議不一致、錯誤、複雜情境處理困難、偏誤輸出等限制；需要醫師監督與驗證
+- **未核到原文**：OpenEvidence 列出的個別研究數字（ChatGPT-3.5 對 ADA/AACE 20 題、Gemini／GPT-4 81 題與 FDA 資訊相當、
+  GPT-4 與 30 位外科醫師共識一致 30%、ASMBS 200 題 83.0%／76.0%／65.0%）**都不在摘要內**，要用需另查原始研究
+- 核對：**摘要**（只核到篇數與結論）
+
+### B6　Annor 2025：Gemini 與 Copilot 回答肥胖藥物與手術問題
+- Annor E, et al. Assessing online chat-based artificial intelligence models for weight loss recommendation appropriateness and bias in the presence of guideline incongruence. *Int J Obes (Lond).* 2025;49(5):896-901. doi:10.1038/s41366-025-01717-5
+- **PMID 39871015**｜橫斷面，10 題（藥物與手術），對照 ADA、AACE 建議
+- 數字（摘要）：Copilot 10/10 適當、10/10 完整，2 題偏向特定指引；Gemini 8/10 適當（**另 2 題拒答、要求就醫**，無不適當回答）、5/10 完整，無偏向
+- 核對：**摘要**（OpenEvidence 寫「Gemini 8/10」未說明另 2 題是拒答）
+
+### 這一題可以上投影片的結論
+
+1. **LLM 減重教練目前只有可行性資料**：Lyra 17 人 8 週，訊息全數判定安全、成本每人每週 1.78 美元，未報告減重成效（B1）。
+2. **LLM 對話代理的研究多為先導或短期**，完整報告 prompt 34%、安全機制 42%（B2）。
+3. **LLM 之前的聊天機器人**：8 篇只有 3 篇明顯減重，12–15 週減 1.3–2.4 kg（B3）。
+4. 自主執行任務或照護導航的 agent，在這次檢索範圍內沒有病人結果資料（OpenEvidence 總結；我們未另行系統性檢索）。
+
+---
+
+## 七、OpenEvidence 追問：LLM 教練的風險（2026-11-27）
+
+- 來源：使用者在 OpenEvidence 追問後貼回（LLM coaching 的風險與緩解）
+- OpenEvidence 的總結：肥胖教練情境沒有前瞻性研究量化傷害率；證據多來自橫斷面回答稽核與心理健康聊天機器人文獻
+- 核對：7 篇新文獻以 PubMed 摘要核對；Suenghataiphorn 2026 見 B5
+
+### C1　Ponzo 2024：10 種通用聊天機器人給肥胖病人營養建議
+- Ponzo V, et al. Comparison of the Accuracy, Completeness, Reproducibility, and Consistency of Different AI Chatbots in Providing Nutritional Advice: An Exploratory Study. *J Clin Med.* 2024;13(24):7810. doi:10.3390/jcm13247810
+- **PMID 39768733**（PMC11677083）｜探索性研究；2 個案例連續 3 天問 10 種聊天機器人，3 位營養師評分
+- 數字（摘要）：
+  - 案例 1（35 歲男性，肥胖無共病）：正確率最高 ChatGPT 3.5 **67.2%**、最低 Copilot **21.1%**；重現性最低 ChatGPT 4.0 **50%**、ChatGPT 3.5 52.8%（最高 Chatsonic 86.1%）
+  - 案例 2（65 歲女性，肥胖＋第 2 型糖尿病＋肌少症＋慢性腎病）：**沒有一個聊天機器人正確率達 50%**
+  - 多數聊天機器人在同一回答中**同時建議減少與增加蛋白質攝取**
+- 核對：**摘要**，與 OpenEvidence 敘述一致
+
+### C2　Bragazzi 2025：LLM 與營養系學生的營養知識比較
+- Bragazzi NL, et al. Comparative analysis of AI on human nutrition knowledge. *PLoS One.* 2025;20(12):e0336577. doi:10.1371/journal.pone.0336577
+- **PMID 41359659**（PMC12685196）｜GNKQ-R 問卷，4 種 LLM 對照人類
+- 數字（摘要）：LLM 平均 77.3/88，與營養系學生相當；ChatGPT-4 **82/88**，高於營養系學生 79.3、英文系學生 67.7；
+  作者提醒 LLM 難以依臨床複雜度與個體差異給個人化建議
+- 核對：**摘要**
+
+### C3　Asgari 2025：LLM 產生臨床紀錄的幻覺率
+- Asgari E, et al. A framework to assess clinical safety and hallucination rates of LLMs for medical text summarisation. *NPJ Digit Med.* 2025;8(1):274. doi:10.1038/s41746-025-01670-7
+- **PMID 40360677**（PMC12075489）｜18 種實驗設定，12,999 句經臨床人員標註
+- 數字（摘要）：**幻覺率 1.47%、遺漏率 3.45%**；調整 prompt 與流程後，重大錯誤降到低於文獻中的人工記錄錯誤率
+- **圖 2 核對（使用者 2026-11-27 提供截圖，數值為讀長條圖，約略值）**：
+  - 幻覺句共 **191 句**；各 prompt 幻覺率約 0.1%–5.3%（整體 1.47%）
+  - 依類型（重大／全部）：捏造 ≈48/82、否定 ≈23/56、脈絡 ≈4/33、因果 ≈10/20 → 重大合計約 85/191（**約 44%**，OpenEvidence「近一半」大致成立）
+  - 依段落：**Plan 段最多，約 76 句（重大約 42）**，其次 Assessment 約 41；OpenEvidence「Plan 段最容易出錯」成立
+  - 上投影片時寫「約 4 成為重大錯誤」「計畫段最多」，並註明讀圖；圖要自繪，不直接貼原圖
+- 註：這篇是病歷記錄生成；作者單位為 Tortus AI（廠商）。**P20 的病歷貼稿是樣板拼接、非 AI 生成**，所以這篇可用來說明「為什麼貼稿不用 LLM 生成」，不能說成本院工具的錯誤率
+- 核對：**摘要**
+
+### C4　Diel 2026：LLM 聊天機器人的心理健康傷害（範疇回顧）
+- Diel A, et al. A scoping review on the mental health harms of LLM-based chatbots. *NPJ Digit Med.* 2026;9(1):644. doi:10.1038/s41746-026-03054-x
+- **PMID 42624944**（PMC13493897）｜119 篇
+- 內容（摘要）：概念性文獻提到的傷害包括幻覺、諂媚（sycophancy）、偏誤、資料安全；情境題研究顯示回答心理健康問題不符臨床標準；過度依賴與情緒依附和心理症狀相關
+- 未核到原文：「幻覺是最常被提到的傷害」摘要沒有排序
+- 核對：**摘要**
+
+### C5　Hua 2025：心理健康聊天機器人從規則式到 LLM（系統性回顧）
+- Hua Y, et al. Charting the evolution of artificial intelligence mental health chatbots from rule-based systems to large language models: a systematic review. *World Psychiatry.* 2025;24(3):383-394. doi:10.1002/wps.21352
+- **PMID 40948070**（PMC12434366）｜160 篇（2020–2024）
+- 數字（摘要）：2024 年新研究中 LLM 型佔 **45%**；但 LLM 研究只有 **16% 做到臨床療效測試**，77% 仍在早期驗證；
+  行銷宣稱「AI-powered」與實際架構不符，很多只是規則式腳本
+- 核對：**摘要**（OpenEvidence 只引用它談隱私與偏誤，摘要的 16% 數字更有用）
+
+### C6　Kleinman 2026：LLM 用於治療的前景與風險（社論）
+- Kleinman RA, Torous J, Danilewitz M. Use of Large-Language Models for Therapy: Promise and Perils. *Ann Intern Med.* 2026;179(4):600-601. doi:10.7326/ANNALS-25-04914
+- **PMID 41698202**｜Editorial，**PubMed 無摘要**
+- **未核到原文**：諂媚、長對話安全防護失效、模型靜默更新需重測、互動誘因、建議先篩檢飲食障礙等說法，全部無法從摘要核對
+
+### C7　Clusmann 2026：醫療 LLM 的安全與資安（Nature 回顧）
+- Clusmann J, et al. Safety and security of large language models in healthcare. *Nature.* 2026;656(8128):577-589. doi:10.1038/s41586-026-10687-1
+- **PMID 42618758**｜Review
+- 內容（摘要）：把資安危害對應到臨床 AI 開發階段（設計、資料、模型、推論、環境），整理安全層級並依臨床相關性分類威脅
+- 未核到原文：長對話效能下降、代理過度授權、「提醒與安全升級維持規則式」等具體說法不在摘要
+- 註：適合第Ⅲ段資安頁（P45「AI 本身成為新破口」）當學術出處
+- 核對：**摘要**
+
+### 這一段可以上投影片的結論
+
+1. **病人越複雜，通用聊天機器人越不可靠**：肥胖合併糖尿病、肌少症、慢性腎病的案例，10 種都未達 50% 正確率；同一問題隔天再問，重現性最低 50%（C1）。
+2. **知識題答得好，個人化建議答不好**：ChatGPT-4 營養知識 82/88，高於營養系學生，但作者提醒個人化建議受限（C2、C1）。
+3. **LLM 產生臨床紀錄的幻覺率 1.47%、遺漏率 3.45%**；幻覺句約 4 成屬重大錯誤，最常出現在治療計畫段（C3，圖 2 讀圖）。
+4. **心理健康領域的 LLM 聊天機器人只有 16% 做到臨床療效測試**（C5）。
+
+---
+
+## 八、OpenEvidence 追問：醫師審核 AI 輸出的工作量（2026-11-27）
+
+- 來源：使用者在 OpenEvidence 追問後貼回（監督 AI 輸出會增加多少醫師工作）
+- OpenEvidence 的總結：證據來自 AI 草擬病人訊息與病歷書寫工具，不是肥胖教練；負擔感與倦怠改善，但每則訊息花的時間常沒有減少
+- 核對：PubMed 摘要；OpenEvidence 引用的 Harris 2024 是 JAMA 新聞稿，**改引原始研究 Garcia 2024**
+
+### E1　Garcia 2024：AI 草擬病人訊息回覆（Stanford，5 週）
+- Garcia P, et al. Artificial Intelligence-Generated Draft Replies to Patient Inbox Messages. *JAMA Netw Open.* 2024;7(3):e243201. doi:10.1001/jamanetworkopen.2024.3201
+- **PMID 38506805**（PMC10955355）｜前瞻性單組品質改善研究，基層醫療與腸胃肝膽科，162 位臨床人員（問卷完成 73 人，45.1%）
+- 數字（摘要）：AI 草稿使用率平均 **20%**；**閱讀、撰寫、回覆時間都沒有改變**；任務負荷分數 61.31→47.26（P<.001）、工作耗竭分數 1.95→1.62（P<.001）
+- OpenEvidence 原引：Harris E. *JAMA.* 2024;331(17):1440（**PMID 38607634，新聞稿**），投影片引原始研究
+- 核對：**摘要**
+
+### E2　Jeanselme 2026：Epic AI 草稿工具與回覆時間、下班後回覆（Columbia）
+- Jeanselme V, et al. AI-Generated Draft Response Tool, Message Turnaround Time, and After-Hours Replies Among Health Care Professionals. *JAMA Netw Open.* 2026;9(10):e2641364. doi:10.1001/jamanetworkopen.2026.41364
+- **PMID 42961417**（PMC13723026）｜回溯世代，983,154 則回覆、1,542 位臨床人員，2023-03 至 2025-05
+- 數字（摘要）：
+  - **導入工具後整體回覆時間反而增加 8.6%**（95% CI 4.6–12.9%）
+  - 實際使用草稿的回覆，回覆時間減少 29.5%（95% CI −34.5% 至 −24.1%）
+  - 整體下班後回覆負擔沒有減少（+0.61 個百分點，P=.46）；下班時間收到的訊息，使用工具後下班回覆**增加** 4.52 個百分點；上班時間收到的檢驗結果問題，下班回覆減少 3.67 個百分點
+  - 下班相關結果對「上班時間」定義敏感
+- **未核到原文**：OpenEvidence 的「上班時間收到減少約 35–43%、下班收到減少約 13–24%」不在摘要；而且 OpenEvidence **沒提到導入後整體回覆時間增加 8.6%**
+- 核對：**摘要**
+
+### E3　Poursoltan 2026：醫師修改 AI 草稿的內容與耗時（UC San Diego）
+- Poursoltan L, et al. Physician Edits to AI-Drafted Patient Messages and Their Impact on Clinical Workload. *NEJM AI.* 2026;3(9):AIoa2501034. doi:10.1056/AIoa2501034
+- **PMID 42932708**｜品質改善研究，14,350 則 AI 輔助回覆、1,131 位醫師，2024-04 至 2025-08
+- 數字（摘要）：所有 15 類修改都使回覆時間變長；增幅最大的是判讀影像（**+70.1%**）、釐清或排除診斷（+63.9%）、判讀檢驗（+60.8%）；
+  **最常見的修改是安排門診與生活型態建議**；累積負擔最大的是排程、**生活型態建議**、轉介協調
+- **未核到原文**：OpenEvidence 的「用藥管理 40–50%、生活型態 20–40%、行政與同理心 <20%」分級來自圖 3，摘要沒有
+- 核對：**摘要**
+
+### E4　Zhao 2025：AI 工具與臨床文書負擔（統合分析）
+- Zhao J, et al. Application of artificial intelligence tools and clinical documentation burden: a systematic review and meta-analysis. *BMC Med Inform Decis Mak.* 2025;26(1):29. doi:10.1186/s12911-025-03324-w
+- **PMID 41444884**（PMC12836966）｜23 篇（12 篇非隨機有同期對照、11 篇前後比較），方法品質普遍低、異質性大
+- 數字（摘要）：14 篇合併，文書負擔與倦怠 **SMD −0.71**（95% CI −0.93 至 −0.49）；醫師有審閱修改 AI 草稿的研究，文書時間 **SMD −0.72**（−0.99 至 −0.45）；AI 產生的紀錄品質至少與人工相當
+- 核對：**摘要**（**沒有 RCT**）
+
+### E5　Brodeur 2026：AMIE 對話式診斷 AI 在基層急症門診（Lancet）
+- Brodeur PG, et al. Conversational diagnostic artificial intelligence in ambulatory primary care: a prospective feasibility study. *Lancet.* 2026;408(10565):1732-1744. doi:10.1016/S0140-6736(26)01535-7
+- **PMID 42849491**｜前瞻性單中心單組可行性研究（NCT06911398），收 114 人、98 人完成；Alphabet 資助
+- 數字（摘要）：病人在門診前與 AMIE 對話，醫師安全監督者全程監看：**安全暫停 0 次**，監督者記錄 **1 次幻覺**、5 次補充臨床資訊；
+  臨床評估者對 17 項標準的好評 87–100%；看過逐字稿的醫師 33/44 認為有助看診準備
+- **未核到原文**：「作者呼籲試驗量測醫師工作量與所需監督量」不在摘要
+- 核對：**摘要**
+
+### 未核到原文
+- Sharko M, Cole CL. *JAMA Netw Open.* 2025;8(3):e250462（PMID 40067306）：PubMed 無摘要，「告知 AI 撰寫後病人滿意度下降」無法核對
+- Mastrianni A, et al. *npj Digital Medicine* 2026（doi:10.1038/s41746-026-03185-1）：PubMed 查無收錄
+
+### 這一段可以上投影片的結論
+
+1. **AI 草稿減輕負擔感，但不一定省時間**：Stanford 162 人 5 週，負荷與耗竭分數下降，閱讀與回覆時間不變（E1）。
+2. **導入 AI 草稿後整體回覆時間增加 8.6%**；下班時間收到的訊息，使用工具後下班回覆反而增加（E2，98 萬則回覆）。
+3. **醫師最常修改的是生活型態建議與排程**；判讀影像、檢驗與診斷的修改最耗時（+60–70%）（E3）。
+4. **AI 文書工具的統合分析：負擔與文書時間中度下降（SMD 約 −0.7），但沒有 RCT、品質普遍低**（E4）。
+
