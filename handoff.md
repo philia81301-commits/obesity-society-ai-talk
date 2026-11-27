@@ -180,5 +180,5 @@
 - 時間：2026-11-27（office 帳號，OpenEvidence 三段核對＋P23.1／P38.5＋舊頁去 AI 腔，67 頁，只改 HTML）
 - 更新者：Claude Code（Opus 5.5）@ X108521
 - Git push：✅ 已推（`5c3c9b9` Q4–Q6 追加）
-- L3 Obsidian：已補（2026-11-27 收工）
+- L3 Obsidian：已補（2026-11-27 收工，含 Q4–Q6）
 - 前一筆：2026-11-26 @ X108521 · ✅ 已推（`b441c8b`＋`e0f50bd`）
