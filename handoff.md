@@ -6,6 +6,7 @@
 ## ⏯️ 目前做到哪
 
 **2026-11-27（office 機）OpenEvidence 三段回答核對＋P23.1／P38.5，全冊 67 頁，只改 HTML 母本**：
+- **晚間追加（Q4–Q6）**：使用者再貼三段 OpenEvidence（數位＋GLP-1、東亞族群 ML、AI 選藥），20 筆查 PubMed，寫入文獻卡第九–十二節。依「照用法做」**不新增頁**：P11 加 key-box＋cite＋講稿（藥物＋數位管理只有觀察性證據）、P6.1 kb-note（17 篇僅 1 篇外部驗證、台灣無本土模型）、P12 kb-note＋講稿（無前瞻驗證 AI 選藥工具）。實測 P6.1 0.881、P11 0.842、P12 0.824，標題單行、無孤字；字型無缺字（「ł」字型沒有，改寫 Kurylowicz）。
 - 使用者自己在 OpenEvidence 查詢後貼回三段（LLM／agentic AI 證據、LLM 教練風險、醫師審核 AI 輸出的工作量），20 篇新文獻逐篇查 PMID 核對，寫入 `reference/refs-1213-ai-evidence-verified.md` 第六–八節。
   OpenEvidence 這次多數數字正確，但有漏報（Jeanselme：導入後整體回覆時間 +8.6%）與核不到的分級數字，見文獻卡。
 - 新增 **P23.1**「聊天機器人回答共病肥胖個案，正確率皆未達 50%」（接案例 02 後）、**P38.5**「AI 草擬病人訊息後，負荷分數下降、回覆時間未減少」（P39 小結前；頁尾 BOUNDS 第二格 38→38.5）；P14 key-box 補 LLM 教練可行性研究一句。
@@ -94,11 +95,11 @@
 2. 使用者若再逐頁指正：事實類先回原始文獻／報告核對；改完 `cd slides && python build_fonts.py` → 實測 → 重匯 PPTX（v16 起跳）：
    `cd slides && python build_pptx_editable.py "<OneDrive>\台灣肥胖醫學會1213\..._v16_可編輯_<日期>.pptx"`（8770 要開著）。
 3. 在別台電腦確認 OneDrive `台灣肥胖醫學會1213\` 有 v10（office 機 OneDrive.exe 常沒在跑，本輪已手動啟動）。
-4. **OpenEvidence 補缺口（使用者自己查、Agent 核對）**：先問 Q1–Q3，結果貼回或存 docx，再用 PubMed 逐篇查 PMID 做文獻卡。
+4. **OpenEvidence 補缺口（使用者自己查、Agent 核對）**：結果貼回，再用 PubMed 逐篇查 PMID 做文獻卡。
    - Q1（補 P14）：peer-reviewed evidence for LLM-based or agentic AI systems in obesity/weight management care, 2024–2026, with design, n, outcomes
    - Q2（補 P21–22）：accuracy of LLMs answering obesity／GLP-1 RA questions; RAG vs standard LLM hallucination rates
    - Q3（補 P20）：RCT／controlled studies 2024–2026 of AI ambient scribes on documentation time, burnout, note accuracy
-   - 備用：Q4 AI 支持加在 GLP-1 治療上（與「藥廠試驗不放」界線近，問前先問使用者）、Q5 東亞／台灣族群 AI 肥胖研究、Q6 AI 處方決策前瞻性研究
+   - Q1–Q6 皆已查完並核對（文獻卡第六–十一節），已套用。OpenEvidence 每題結尾提的追問（進行中的數位＋GLP-1 RCT、亞洲族群治療反應 ML、早期反應門檻）可視需要再查。
 
 ## ⚠️ 注意事項
 
@@ -178,6 +179,6 @@
 
 - 時間：2026-11-27（office 帳號，OpenEvidence 三段核對＋P23.1／P38.5＋舊頁去 AI 腔，67 頁，只改 HTML）
 - 更新者：Claude Code（Opus 5.5）@ X108521
-- Git push：✅ 已推（`b37791c` 內容＋收工 commit）
+- Git push：待推（Q4–Q6 追加）
 - L3 Obsidian：已補（2026-11-27 收工）
 - 前一筆：2026-11-26 @ X108521 · ✅ 已推（`b441c8b`＋`e0f50bd`）
