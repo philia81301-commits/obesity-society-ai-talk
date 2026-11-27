@@ -56,6 +56,7 @@
       11-04 新增 P11.1（AI 運動場館的商業模式）、P11.2（AI 偵測運動的 PubMed 證據），**63 頁，PPTX v15 已匯 OneDrive `台灣肥胖醫學會1213`**。
       11-26 新文獻（AI-DPP JAMA 2025、減重手術 ML 統合分析、Liu 2026 回顧等）分配進第Ⅰ段與結語，新增 P6.1／P8.1，**65 頁**；
       文獻卡 `reference/refs-1213-ai-evidence-verified.md`，GLP-1 停藥另存 `refs-glp1-discontinuation-verified.md`（本場不用）。
+      11-27 OpenEvidence 三段回答（使用者手動查詢）逐篇 PMID 核對，新增 P23.1（聊天機器人共病個案正確率）／P38.5（AI 草擬病人訊息的工作量），舊頁 37 處去 AI 腔，**67 頁**，仍只改 HTML 母本。
       11-20 去 AI 腔（HTML 53 處＋講稿 3 處）與卡片厚度底座 CSS，**只改 HTML 母本，PPTX 等 12/6 南港 AI 醫療科技展新資訊加入後再匯 v16**；P50 Verghese 引言與 Q&A「地圖／嚮導」句保留待定。
 
 ## 補充輪次（階段七結案後的逐頁校對）
